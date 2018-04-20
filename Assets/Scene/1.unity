@@ -162,6 +162,7 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb40ef2dadad4c143b886ec79fe95e7d, type: 2}
   m_IsPrefabParent: 0
+<<<<<<< HEAD
 --- !u!1 &52828652
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,6 +257,8 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+=======
+>>>>>>> b64a220a21c50cd46fbf30df9512cd6e88c1bf38
 --- !u!1 &247078261
 GameObject:
   m_ObjectHideFlags: 0
@@ -790,6 +793,7 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+<<<<<<< HEAD
 --- !u!1 &666178911
 GameObject:
   m_ObjectHideFlags: 0
@@ -870,6 +874,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce4046e60a9e450459797c4fb2a2ad96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+=======
+>>>>>>> b64a220a21c50cd46fbf30df9512cd6e88c1bf38
 --- !u!1 &699189348
 GameObject:
   m_ObjectHideFlags: 0
@@ -1730,6 +1736,7 @@ PolygonCollider2D:
       - {x: -1.6349537, y: 1.082866}
       - {x: -1.3472714, y: 0.4861373}
       - {x: -0.043510713, y: -0.04003889}
+<<<<<<< HEAD
 --- !u!1 &1495202554
 GameObject:
   m_ObjectHideFlags: 0
@@ -1798,6 +1805,8 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1495202554}
+=======
+>>>>>>> b64a220a21c50cd46fbf30df9512cd6e88c1bf38
 --- !u!1 &1518080152
 GameObject:
   m_ObjectHideFlags: 0
@@ -1951,6 +1960,7 @@ Transform:
   - {fileID: 639484723}
   m_Father: {fileID: 0}
   m_RootOrder: 2
+<<<<<<< HEAD
 --- !u!1 &1546905876
 GameObject:
   m_ObjectHideFlags: 0
@@ -2013,6 +2023,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
+=======
+>>>>>>> b64a220a21c50cd46fbf30df9512cd6e88c1bf38
 --- !u!1 &1774849989 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000014239120428, guid: cb40ef2dadad4c143b886ec79fe95e7d,

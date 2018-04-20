@@ -75,9 +75,14 @@ public class CharacterControl : MonoBehaviour
                 attack(); // 攻击
                 shoot(); //射击
 
+<<<<<<< HEAD
                 if(Input.GetKeyDown(KeyCode.C) && isEnable[(int)state.dash] && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_dash)
                 {
                     CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_dash;
+=======
+                if(Input.GetKeyDown(KeyCode.C) && isEnable[(int)state.dash])
+                {
+>>>>>>> b64a220a21c50cd46fbf30df9512cd6e88c1bf38
                     currentState = state.dash;  //冲刺
                 }
 
@@ -101,9 +106,14 @@ public class CharacterControl : MonoBehaviour
                     XJumpSpeed = Walkspeed + 1;
                 }
 
+<<<<<<< HEAD
                 if (Input.GetKeyDown(KeyCode.C) && isEnable[(int)state.dash] && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_dash)
                 {
                     CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_dash;
+=======
+                if (Input.GetKeyDown(KeyCode.C) && isEnable[(int)state.dash])
+                {
+>>>>>>> b64a220a21c50cd46fbf30df9512cd6e88c1bf38
                     currentState = state.dash;  //冲刺
                 }
 
@@ -118,6 +128,7 @@ public class CharacterControl : MonoBehaviour
                 }
                 break;
             case state.run:
+<<<<<<< HEAD
 
                 if(! (CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_run * Time.deltaTime))
                 {
@@ -126,6 +137,8 @@ public class CharacterControl : MonoBehaviour
                 }
                 CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_run * Time.deltaTime;  //奔跑气息消耗
 
+=======
+>>>>>>> b64a220a21c50cd46fbf30df9512cd6e88c1bf38
                 if (Input.GetKey(KeyCode.LeftArrow))
                 {
                     rig.velocity += new Vector2(-RunSpeed, 0);
@@ -143,9 +156,14 @@ public class CharacterControl : MonoBehaviour
                 attack(); // 攻击
                 shoot(); //射击
 
+<<<<<<< HEAD
                 if (Input.GetKeyDown(KeyCode.C) && isEnable[(int)state.dash] && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_dash)
                 {
                     CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_dash;
+=======
+                if (Input.GetKeyDown(KeyCode.C) && isEnable[(int)state.dash])
+                {
+>>>>>>> b64a220a21c50cd46fbf30df9512cd6e88c1bf38
                     currentState = state.dash;  //冲刺
                 }
 
@@ -164,9 +182,14 @@ public class CharacterControl : MonoBehaviour
                 break;
             case state.jump:
                 currentState = state.fall;    //下落
+<<<<<<< HEAD
                 if(Input.GetKey(KeyCode.Space) && JumpAccelerateTime < MaxJumpTime && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_jump * Time.deltaTime)
                 {
                     CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_jump * Time.deltaTime;  //气息消耗
+=======
+                if(Input.GetKey(KeyCode.Space) && JumpAccelerateTime < MaxJumpTime)
+                {
+>>>>>>> b64a220a21c50cd46fbf30df9512cd6e88c1bf38
                     JumpAccelerateTime += Time.deltaTime;
                     YJumpSpeed = YJumpSpeed - Yacceleration * Time.deltaTime;
                     if(YJumpSpeed < 0)
@@ -185,9 +208,14 @@ public class CharacterControl : MonoBehaviour
                 }
                 shoot(); //射击
 
+<<<<<<< HEAD
                 if (Input.GetKeyDown(KeyCode.C) && dashTimes == 0 && isEnable[(int)state.dash] && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_dash)
                 {
                     CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_dash;
+=======
+                if (Input.GetKeyDown(KeyCode.C) && dashTimes == 0 && isEnable[(int)state.dash])
+                {
+>>>>>>> b64a220a21c50cd46fbf30df9512cd6e88c1bf38
                     currentState = state.dash;  //冲刺
                     dashTimes = 1;
                 }
@@ -304,9 +332,14 @@ public class CharacterControl : MonoBehaviour
                 }
                 rig.velocity = new Vector2(rig.velocity.x, -YJumpSpeed);
 
+<<<<<<< HEAD
                 if (Input.GetKeyDown(KeyCode.X) && isEnable[(int)state.attack1] && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_attack)
                 {
                     CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_attack;
+=======
+                if (Input.GetKeyDown(KeyCode.X) && isEnable[(int)state.attack1])
+                {
+>>>>>>> b64a220a21c50cd46fbf30df9512cd6e88c1bf38
                     currentState = state.attack1;  //攻击
                     CharacterObjectManager.instance.attack1(Dir);
                 }
@@ -322,9 +355,14 @@ public class CharacterControl : MonoBehaviour
 
                 shoot(); //射击
 
+<<<<<<< HEAD
                 if (Input.GetKeyDown(KeyCode.C) && dashTimes == 0 && isEnable[(int)state.dash] && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_dash)
                 {
                     CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_dash;
+=======
+                if (Input.GetKeyDown(KeyCode.C) && dashTimes == 0 && isEnable[(int)state.dash])
+                {
+>>>>>>> b64a220a21c50cd46fbf30df9512cd6e88c1bf38
                     currentState = state.dash;  //冲刺
                     dashTimes = 1;
                 }
@@ -537,7 +575,11 @@ public class CharacterControl : MonoBehaviour
 
     bool attack()  //封装攻击
     {
+<<<<<<< HEAD
         if(Input.GetKeyDown(KeyCode.X) && isEnable[(int)state.attack1] && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_attack)
+=======
+        if(Input.GetKeyDown(KeyCode.X) && isEnable[(int)state.attack1])
+>>>>>>> b64a220a21c50cd46fbf30df9512cd6e88c1bf38
         {
             if(isAttack && _DoubleAttackSpaceTime < DoubleAttackSpaceTime)
             {
@@ -553,7 +595,10 @@ public class CharacterControl : MonoBehaviour
                 _DoubleAttackSpaceTime = 0;
                 CharacterObjectManager.instance.attack1(Dir);
             }
+<<<<<<< HEAD
             CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_attack; //气息消耗
+=======
+>>>>>>> b64a220a21c50cd46fbf30df9512cd6e88c1bf38
             return true;
         }
         return false;
@@ -565,23 +610,35 @@ public class CharacterControl : MonoBehaviour
         {
             if (isJump)
             {
+<<<<<<< HEAD
                 if (JumpShootTimes < MaxJumpShootTimes && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_jumpshoot)
+=======
+                if (JumpShootTimes < MaxJumpShootTimes)
+>>>>>>> b64a220a21c50cd46fbf30df9512cd6e88c1bf38
                 {
                     currentState = state.jumpshoot;
                     YJumpSpeed = 0;
                     rig.velocity = new Vector2(0, 0);  //停滞在空中
                     JumpShootTimes++;
+<<<<<<< HEAD
                     CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_jumpshoot;   //气息消耗
+=======
+>>>>>>> b64a220a21c50cd46fbf30df9512cd6e88c1bf38
                 }
             }
             else
             {
+<<<<<<< HEAD
                 if (CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_shoot)
                 {
                     currentState = state.shoot;
                     CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_shoot;   //气息消耗
                     Invoke("arrow", 0.2f);
                 }
+=======
+                currentState = state.shoot;
+                Invoke("arrow", 0.2f);
+>>>>>>> b64a220a21c50cd46fbf30df9512cd6e88c1bf38
             }
             return true;
         }

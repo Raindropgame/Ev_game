@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
@@ -32,3 +33,11 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+=======
+.vs/
+Library/
+Ev.csproj
+Ev.Plugins.csproj
+Ev.sln
+Ev.userprefs
+>>>>>>> b64a220a21c50cd46fbf30df9512cd6e88c1bf38
