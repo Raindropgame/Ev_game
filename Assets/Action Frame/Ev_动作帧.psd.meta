@@ -1,0 +1,535 @@
+fileFormatVersion: 2
+guid: 1ecc0267a08eeaa4e857dda4c5b4bbbf
+timeCreated: 1522672713
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: "Ev_\u52A8\u4F5C\u5E27_0"
+    21300002: "Ev_\u52A8\u4F5C\u5E27_1"
+    21300004: "Ev_\u52A8\u4F5C\u5E27_2"
+    21300006: "Ev_\u52A8\u4F5C\u5E27_3"
+    21300008: "Ev_\u52A8\u4F5C\u5E27_4"
+    21300010: "Ev_\u52A8\u4F5C\u5E27_5"
+    21300012: "Ev_\u52A8\u4F5C\u5E27_6"
+    21300014: "Ev_\u52A8\u4F5C\u5E27_7"
+    21300016: "Ev_\u52A8\u4F5C\u5E27_8"
+    21300018: "Ev_\u52A8\u4F5C\u5E27_9"
+    21300020: "Ev_\u52A8\u4F5C\u5E27_10"
+    21300022: "Ev_\u52A8\u4F5C\u5E27_11"
+    21300024: "Ev_\u52A8\u4F5C\u5E27_12"
+    21300026: "Ev_\u52A8\u4F5C\u5E27_13"
+    21300028: "Ev_\u52A8\u4F5C\u5E27_14"
+    21300030: "Ev_\u52A8\u4F5C\u5E27_15"
+    21300032: "Ev_\u52A8\u4F5C\u5E27_16"
+    21300034: "Ev_\u52A8\u4F5C\u5E27_17"
+    21300036: "Ev_\u52A8\u4F5C\u5E27_18"
+    21300038: "Ev_\u52A8\u4F5C\u5E27_19"
+    21300040: "Ev_\u52A8\u4F5C\u5E27_20"
+    21300042: "Ev_\u52A8\u4F5C\u5E27_21"
+    21300044: "Ev_\u52A8\u4F5C\u5E27_22"
+    21300046: "Ev_\u52A8\u4F5C\u5E27_23"
+    21300048: "Ev_\u52A8\u4F5C\u5E27_24"
+    21300050: "Ev_\u52A8\u4F5C\u5E27_25"
+    21300052: "Ev_\u52A8\u4F5C\u5E27_26"
+    21300054: "Ev_\u52A8\u4F5C\u5E27_27"
+    21300056: "Ev_\u52A8\u4F5C\u5E27_28"
+    21300058: "Ev_\u52A8\u4F5C\u5E27_29"
+    21300060: "Ev_\u52A8\u4F5C\u5E27_30"
+    21300062: "Ev_\u52A8\u4F5C\u5E27_31"
+    21300064: "Ev_\u52A8\u4F5C\u5E27_32"
+    21300066: "Ev_\u52A8\u4F5C\u5E27_33"
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_0"
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 1942
+        width: 261
+        height: 403
+      alignment: 9
+      pivot: {x: 0.36996672, y: 0.026290553}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_1"
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 1940
+        width: 271
+        height: 386
+      alignment: 9
+      pivot: {x: 0.4060732, y: 0.02923995}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_2"
+      rect:
+        serializedVersion: 2
+        x: 751
+        y: 1933
+        width: 277
+        height: 395
+      alignment: 9
+      pivot: {x: 0.4183182, y: 0.02564651}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_3"
+      rect:
+        serializedVersion: 2
+        x: 1132
+        y: 1925
+        width: 264
+        height: 386
+      alignment: 9
+      pivot: {x: 0.39554805, y: 0.031071639}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_4"
+      rect:
+        serializedVersion: 2
+        x: 1462
+        y: 1933
+        width: 269
+        height: 393
+      alignment: 9
+      pivot: {x: 0.3790905, y: 0.032228116}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_5"
+      rect:
+        serializedVersion: 2
+        x: 1822
+        y: 1925
+        width: 255
+        height: 399
+      alignment: 9
+      pivot: {x: 0.4279072, y: 0.03748966}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_6"
+      rect:
+        serializedVersion: 2
+        x: 2159
+        y: 1923
+        width: 268
+        height: 396
+      alignment: 9
+      pivot: {x: 0.45514917, y: 0.030414928}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_7"
+      rect:
+        serializedVersion: 2
+        x: 2526
+        y: 1921
+        width: 259
+        height: 388
+      alignment: 9
+      pivot: {x: 0.41264102, y: 0.031666864}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_8"
+      rect:
+        serializedVersion: 2
+        x: 2846
+        y: 1914
+        width: 256
+        height: 384
+      alignment: 9
+      pivot: {x: 0.39228344, y: 0.04151885}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_9"
+      rect:
+        serializedVersion: 2
+        x: 3198
+        y: 1916
+        width: 322
+        height: 367
+      alignment: 9
+      pivot: {x: 0.29578775, y: 0.053033065}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_10"
+      rect:
+        serializedVersion: 2
+        x: 3606
+        y: 1921
+        width: 318
+        height: 369
+      alignment: 9
+      pivot: {x: 0.26453635, y: 0.0571256}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_11"
+      rect:
+        serializedVersion: 2
+        x: 4021
+        y: 1912
+        width: 296
+        height: 367
+      alignment: 9
+      pivot: {x: 0.24440786, y: 0.0491797}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_12"
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 1357
+        width: 296
+        height: 367
+      alignment: 9
+      pivot: {x: 0.2467977, y: 0.033767242}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_13"
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 1340
+        width: 262
+        height: 382
+      alignment: 9
+      pivot: {x: 0.3056947, y: 0.04096929}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_14"
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1323
+        width: 260
+        height: 401
+      alignment: 9
+      pivot: {x: 0.21717787, y: 0.03803358}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_15"
+      rect:
+        serializedVersion: 2
+        x: 1124
+        y: 1338
+        width: 280
+        height: 390
+      alignment: 9
+      pivot: {x: 0.2904083, y: 0.06488913}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_16"
+      rect:
+        serializedVersion: 2
+        x: 1498
+        y: 1323
+        width: 276
+        height: 395
+      alignment: 9
+      pivot: {x: 0.28737077, y: 0.06681665}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_17"
+      rect:
+        serializedVersion: 2
+        x: 1907
+        y: 1321
+        width: 256
+        height: 397
+      alignment: 9
+      pivot: {x: 0.20447254, y: 0.044064924}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_18"
+      rect:
+        serializedVersion: 2
+        x: 2291
+        y: 1340
+        width: 380
+        height: 410
+      alignment: 9
+      pivot: {x: 0.17438194, y: 0.039551675}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_19"
+      rect:
+        serializedVersion: 2
+        x: 2728
+        y: 1353
+        width: 261
+        height: 386
+      alignment: 9
+      pivot: {x: 0.15866241, y: 0.0438944}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_20"
+      rect:
+        serializedVersion: 2
+        x: 3098
+        y: 1323
+        width: 263
+        height: 416
+      alignment: 9
+      pivot: {x: 0.18545404, y: 0.10398102}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_21"
+      rect:
+        serializedVersion: 2
+        x: 3457
+        y: 1305
+        width: 305
+        height: 422
+      alignment: 9
+      pivot: {x: 0.3029513, y: 0.09453218}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_22"
+      rect:
+        serializedVersion: 2
+        x: 3961
+        y: 1318
+        width: 262
+        height: 400
+      alignment: 9
+      pivot: {x: 0.17615771, y: 0.040414125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_23"
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 680
+        width: 227
+        height: 406
+      alignment: 9
+      pivot: {x: 0.107537456, y: 0.03327393}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_24"
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 680
+        width: 366
+        height: 441
+      alignment: 9
+      pivot: {x: 0.39568025, y: 0.028629918}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_25"
+      rect:
+        serializedVersion: 2
+        x: 858
+        y: 680
+        width: 330
+        height: 424
+      alignment: 9
+      pivot: {x: 0.37572947, y: 0.029741684}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_26"
+      rect:
+        serializedVersion: 2
+        x: 1285
+        y: 689
+        width: 385
+        height: 432
+      alignment: 9
+      pivot: {x: 0.37144443, y: 0.030266656}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_27"
+      rect:
+        serializedVersion: 2
+        x: 1729
+        y: 689
+        width: 307
+        height: 354
+      alignment: 9
+      pivot: {x: 0.24435414, y: 0.05060056}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_28"
+      rect:
+        serializedVersion: 2
+        x: 2180
+        y: 693
+        width: 305
+        height: 350
+      alignment: 9
+      pivot: {x: 0.23572297, y: 0.045464564}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_29"
+      rect:
+        serializedVersion: 2
+        x: 2622
+        y: 660
+        width: 322
+        height: 426
+      alignment: 9
+      pivot: {x: 0.40777475, y: 0.04356764}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_30"
+      rect:
+        serializedVersion: 2
+        x: 3070
+        y: 689
+        width: 290
+        height: 392
+      alignment: 9
+      pivot: {x: 0.25862575, y: 0.08153877}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_31"
+      rect:
+        serializedVersion: 2
+        x: 3465
+        y: 680
+        width: 284
+        height: 386
+      alignment: 9
+      pivot: {x: 0.2609949, y: 0.08052941}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_32"
+      rect:
+        serializedVersion: 2
+        x: 3880
+        y: 687
+        width: 288
+        height: 394
+      alignment: 9
+      pivot: {x: 0.24958378, y: 0.07648464}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Ev_\u52A8\u4F5C\u5E27_33"
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 67
+        width: 294
+        height: 408
+      alignment: 9
+      pivot: {x: 0.64670163, y: 0.028629696}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
