@@ -1,0 +1,410 @@
+fileFormatVersion: 2
+guid: 94ab6641229f31d4dbffc517bda775bc
+timeCreated: 1524308000
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: "\u6811\u6797_0"
+    21300002: "\u6811\u6797_1"
+    21300004: "\u6811\u6797_2"
+    21300006: "\u6811\u6797_3"
+    21300008: "\u6811\u6797_4"
+    21300010: "\u6811\u6797_5"
+    21300012: "\u6811\u6797_6"
+    21300014: "\u6811\u6797_7"
+    21300016: "\u6811\u6797_8"
+    21300018: "\u6811\u6797_9"
+    21300020: "\u6811\u6797_10"
+    21300022: "\u6811\u6797_11"
+    21300024: "\u6811\u6797_12"
+    21300026: "\u6811\u6797_13"
+    21300028: "\u6811\u6797_14"
+    21300030: "\u6811\u6797_15"
+    21300032: "\u6811\u6797_16"
+    21300034: "\u6811\u6797_17"
+    21300036: "\u6811\u6797_18"
+    21300038: "\u6811\u6797_19"
+    21300040: "\u6811\u6797_20"
+    21300042: "\u6811\u6797_21"
+    21300044: "\u6811\u6797_22"
+    21300046: "\u6811\u6797_23"
+    21300048: "\u6811\u6797_24"
+    21300050: "\u6811\u6797_26"
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "\u6811\u6797_0"
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 1555
+        width: 2016
+        height: 461
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "\u6811\u6797_2"
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 1088
+        width: 462
+        height: 384
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "\u6811\u6797_3"
+      rect:
+        serializedVersion: 2
+        x: 635
+        y: 1131
+        width: 426
+        height: 299
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "\u6811\u6797_4"
+      rect:
+        serializedVersion: 2
+        x: 1223
+        y: 1204
+        width: 198
+        height: 153
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "\u6811\u6797_5"
+      rect:
+        serializedVersion: 2
+        x: 1560
+        y: 1220
+        width: 217
+        height: 137
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "\u6811\u6797_6"
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 716
+        width: 991
+        height: 307
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "\u6811\u6797_7"
+      rect:
+        serializedVersion: 2
+        x: 1190
+        y: 791
+        width: 266
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "\u6811\u6797_8"
+      rect:
+        serializedVersion: 2
+        x: 1523
+        y: 730
+        width: 509
+        height: 293
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "\u6811\u6797_9"
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 532
+        width: 80
+        height: 125
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "\u6811\u6797_10"
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 532
+        width: 64
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "\u6811\u6797_11"
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 516
+        width: 72
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "\u6811\u6797_12"
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 510
+        width: 56
+        height: 119
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "\u6811\u6797_13"
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 527
+        width: 117
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "\u6811\u6797_14"
+      rect:
+        serializedVersion: 2
+        x: 828
+        y: 531
+        width: 124
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "\u6811\u6797_15"
+      rect:
+        serializedVersion: 2
+        x: 1014
+        y: 508
+        width: 176
+        height: 146
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "\u6811\u6797_16"
+      rect:
+        serializedVersion: 2
+        x: 1420
+        y: 0
+        width: 372
+        height: 685
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "\u6811\u6797_17"
+      rect:
+        serializedVersion: 2
+        x: 1836
+        y: 0
+        width: 144
+        height: 685
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "\u6811\u6797_18"
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 388
+        width: 384
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "\u6811\u6797_19"
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 280
+        width: 360
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "\u6811\u6797_20"
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 386
+        width: 357
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "\u6811\u6797_21"
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 87
+        width: 34
+        height: 257
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "\u6811\u6797_22"
+      rect:
+        serializedVersion: 2
+        x: 1036
+        y: 39
+        width: 286
+        height: 415
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "\u6811\u6797_23"
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 167
+        width: 431
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "\u6811\u6797_24"
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 118
+        width: 84
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "\u6811\u6797_26"
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 55
+        width: 396
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

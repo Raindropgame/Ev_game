@@ -12,7 +12,6 @@ public class CharacterAttribute{
         }
         return instance;
     }
-<<<<<<< HEAD
     public int MaxBreath = 50;
 
     public int HP = 3;  // 生命值
@@ -27,12 +26,5 @@ public class CharacterAttribute{
     public int expend_dash = 10;
     public int expend_shoot = 3;
     public int expend_jumpshoot = 6;
-=======
-
-    public int HP = 3;  // 生命值
-    public int Breath = 50;  //气息值
-    
-
->>>>>>> b64a220a21c50cd46fbf30df9512cd6e88c1bf38
 
 }
