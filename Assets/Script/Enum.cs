@@ -23,3 +23,10 @@ public enum dir
     right
 };
 
+public enum CameraMoveState
+{
+    onlyX,
+    onlyY,
+    both
+}
+

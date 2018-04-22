@@ -6,6 +6,7 @@ public class CameraFollow : MonoBehaviour {
     public float lastTime = 0.5f;
     public float smoothTime = 1;
     public float t = 0.5f;
+    public static CameraFollow instance;
 
     private GameObject character;
     private float tTime = 0;
@@ -13,10 +14,12 @@ public class CameraFollow : MonoBehaviour {
     Vector3 targetPosition;
     private Rigidbody2D charaRig;
     private Vector3 currentV;
+    private CameraMoveState moveState = CameraMoveState.both;
 
 
     private void Awake()
     {
+        instance = this;
         character = GameObject.Find("character");
         charaRig = character.GetComponent<Rigidbody2D>();
         targetPosition = character.transform.position;
@@ -41,7 +44,18 @@ public class CameraFollow : MonoBehaviour {
             {
                 if (isMoving)
                 {
-                    this.transform.position = Vector3.MoveTowards(this.transform.position, targetPosition, charaRig.velocity.magnitude * Time.deltaTime);  // 如果人物在移动则摄像机速度=人物速度
+                    switch(moveState)
+                    {
+                        case CameraMoveState.both:
+                            this.transform.position = Vector3.MoveTowards(this.transform.position, targetPosition, charaRig.velocity.magnitude * Time.deltaTime);  // 如果人物在移动则摄像机速度=人物速度
+                            break;
+                        case CameraMoveState.onlyY:
+                            this.transform.position = new Vector3(this.transform.position.x, Vector3.MoveTowards(this.transform.position, targetPosition, charaRig.velocity.magnitude * Time.deltaTime).y, this.transform.position.z);
+                            break;
+                        case CameraMoveState.onlyX:
+                            this.transform.position = new Vector3(Vector3.MoveTowards(this.transform.position, targetPosition, charaRig.velocity.magnitude * Time.deltaTime).x, this.transform.position.y, this.transform.position.z);
+                            break;
+                    }
                 }
                 else
                 {
@@ -49,7 +63,18 @@ public class CameraFollow : MonoBehaviour {
                     float t = tTime2 / arriveTime;
                     this.transform.position = new Vector3(Mathf.SmoothStep(this.transform.position.x, targetPosition.x, t),this.transform.position.y,targetPosition.z);
                     this.transform.position = new Vector3(this.transform.position.x, Mathf.SmoothStep(this.transform.position.y,targetPosition.y,t), targetPosition.z);*/
-                    this.transform.position = Vector3.SmoothDamp(this.transform.position, targetPosition, ref currentV, smoothTime);
+                    switch (moveState)
+                    {
+                        case CameraMoveState.both:
+                            this.transform.position = Vector3.SmoothDamp(this.transform.position, targetPosition, ref currentV, smoothTime);
+                            break;
+                        case CameraMoveState.onlyY:
+                            this.transform.position = new Vector3(this.transform.position.x, Vector3.SmoothDamp(this.transform.position, targetPosition, ref currentV, smoothTime).y, this.transform.position.z);
+                            break;
+                        case CameraMoveState.onlyX:
+                            this.transform.position = new Vector3(Vector3.SmoothDamp(this.transform.position, targetPosition, ref currentV, smoothTime).x, this.transform.position.y, this.transform.position.z);
+                            break;
+                    }
                 }
             }
         }
@@ -59,5 +84,10 @@ public class CameraFollow : MonoBehaviour {
         }
         targetPosition = character.transform.position;
         targetPosition.z = this.transform.position.z;
+    }
+
+    public void changeMoveState(CameraMoveState t)
+    {
+        moveState = t;
     }
 }

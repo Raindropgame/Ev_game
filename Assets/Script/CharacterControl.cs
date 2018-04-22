@@ -38,6 +38,7 @@ public class CharacterControl : MonoBehaviour
     private float _dashTime = 0;
     private int dashTimes = 0;  //记录空中冲刺次数
     private int JumpShootTimes = 0;  //记录控制射击次数
+    private int layerMask = 1 << 9;  //检测指定层
 
     // Use this for initialization
     void Start()
@@ -455,8 +456,8 @@ public class CharacterControl : MonoBehaviour
             Tdir = 1;
         }
 
-        RaycastHit2D LeftHit = Physics2D.Raycast(LeftHitTrans[Tdir].position, Vector2.down, 0.01f);
-        RaycastHit2D RightHit = Physics2D.Raycast(RightHitTrans[Tdir].position, Vector2.down, 0.01f);
+        RaycastHit2D LeftHit = Physics2D.Raycast(LeftHitTrans[Tdir].position, Vector2.down, 0.01f ,layerMask);
+        RaycastHit2D RightHit = Physics2D.Raycast(RightHitTrans[Tdir].position, Vector2.down, 0.01f,layerMask);
         //Debug.DrawRay(LeftHitTrans[Tdir].position, Vector2.down,Color.red);
         //Debug.DrawRay(RightHitTrans[Tdir].position, Vector2.down,Color.red);
         int i = 0;
@@ -491,7 +492,7 @@ public class CharacterControl : MonoBehaviour
 
     bool AtTop()  //判断头是否顶到墙
     {
-        RaycastHit2D HeadHit = Physics2D.Raycast(HeadHitTrans[Dir == dir.left ? 0 : 1].position, Vector2.up, 0.01f);
+        RaycastHit2D HeadHit = Physics2D.Raycast(HeadHitTrans[Dir == dir.left ? 0 : 1].position, Vector2.up, 0.01f, layerMask);
         if(HeadHit.transform != null)
         {
             if(HeadHit.transform.tag == "map")
