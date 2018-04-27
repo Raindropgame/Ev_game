@@ -69,6 +69,7 @@ public class CharacterControl : MonoBehaviour
                 }
                 if(Input.GetKeyDown(KeyCode.Space) && isEnable[(int)state.jump])
                 {
+                    _jumpTimes++;
                     currentState = state.jump;    //跳跃
                     XJumpSpeed = Walkspeed + 1;
                 }
@@ -98,6 +99,7 @@ public class CharacterControl : MonoBehaviour
                 }
                 if (Input.GetKeyDown(KeyCode.Space) && isEnable[(int)state.jump])
                 {
+                    _jumpTimes++;
                     currentState = state.jump;    //跳跃
                     XJumpSpeed = Walkspeed + 1;
                 }
@@ -152,6 +154,7 @@ public class CharacterControl : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.Space) && isEnable[(int)state.jump])
                 {
+                    _jumpTimes++;
                     currentState = state.jump;    //跳跃
                     XJumpSpeed = RunSpeed + 1;
                 }
@@ -362,6 +365,7 @@ public class CharacterControl : MonoBehaviour
 
         changeAnimation(); //改变当前动画
         lastState = currentState;
+
     }
 
     void changeDir()
@@ -481,7 +485,10 @@ public class CharacterControl : MonoBehaviour
             JumpAccelerateTime = 0;  // 落地 重新计算已加速的时间
             dashTimes = 0;  //空中冲刺次数重新计为0
             JumpShootTimes = 0;  //归零空中射击次数
-            _jumpTimes = 0;  //归零跳跃次数
+            if (lastState == state.fall)
+            {
+                _jumpTimes = 0;  //归零跳跃次数
+            }
             return true;
         }
         else

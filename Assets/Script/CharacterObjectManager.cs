@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CharacterObjectManager : MonoBehaviour {
+public class CharacterObjectManager : MonoBehaviour
+{
 
     public static CharacterObjectManager instance;
     public GameObject _arrow;
@@ -9,7 +10,7 @@ public class CharacterObjectManager : MonoBehaviour {
     public int currentArrowNum;
 
     private GameObject character;
-    private GameObject _attack1_left,_attack1_right,_attack2_left, _attack2_right;
+    private GameObject _attack1_left, _attack1_right, _attack2_left, _attack2_right;
     private GameObject pool_arrow; //对象池
     private ArrayList arrowList;
 
@@ -33,7 +34,7 @@ public class CharacterObjectManager : MonoBehaviour {
         currentArrowNum = MaxArrowNum;  //初始化当前箭的数目
 
         arrowList = new ArrayList();
-        for(int i = 0; i<MaxArrowNum;i++)  //初始化创建箭
+        for (int i = 0; i < MaxArrowNum; i++)  //初始化创建箭
         {
             GameObject t_gameobject = Instantiate(_arrow, pool_arrow.transform) as GameObject;
             t_gameobject.SetActive(false);
@@ -48,16 +49,16 @@ public class CharacterObjectManager : MonoBehaviour {
 
     public void attack1(dir Dir)  //播放刀影动画
     {
-        if(Dir == dir.left)
+        if (Dir == dir.left)
         {
-            if( ! _attack1_left.activeSelf)
+            if (!_attack1_left.activeSelf)
             {
                 _attack1_left.SetActive(true);
             }
         }
         else
         {
-            if(!_attack1_right.activeSelf)
+            if (!_attack1_right.activeSelf)
             {
                 _attack1_right.SetActive(true);
             }

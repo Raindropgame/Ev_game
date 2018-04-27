@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Arrow : MonoBehaviour {
+public class Arrow : MonoBehaviour
+{
 
     public float speed = 20;
 
@@ -26,7 +27,11 @@ public class Arrow : MonoBehaviour {
         boxCol.enabled = true;
         trailRenderer.enabled = true;
 
-        transform.localPosition = CharacterControl.instance.Dir == dir.left ? new Vector3(-1.3f, 1.37f, 9) : new Vector3(1.3f, 1.32f, 9);  //初始化位置
+        Vector3 characterPosition = CharacterControl.instance.transform.position;
+        transform.parent = null; // 防止物体跟随主角
+        transform.localPosition = CharacterControl.instance.Dir == dir.left ? new Vector3(characterPosition.x - 1.3f, characterPosition.y + 1.37f, characterPosition.z + 9) : new Vector3(characterPosition.x + 1.3f, characterPosition.y + 1.32f, characterPosition.z + 9);  //初始化位置
+
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -8,6 +8,7 @@ TagManager:
   - terrain
   - onlyX
   - onlyY
+  - arms_player
   layers:
   - Default
   - TransparentFX
