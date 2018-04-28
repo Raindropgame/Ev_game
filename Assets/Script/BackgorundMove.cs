@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BackgorundMove : MonoBehaviour {
 
-
+    [ExecuteInEditMode]
     private GameObject[] maps = null;
     private Vector3 nowPosition;
 

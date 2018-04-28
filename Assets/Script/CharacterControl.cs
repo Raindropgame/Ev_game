@@ -40,6 +40,11 @@ public class CharacterControl : MonoBehaviour
     private int JumpShootTimes = 0;  //记录控制射击次数
     private int layerMask = 1 << 9;  //检测指定层
 
+    private void Awake()
+    {
+        instance = this;
+    }
+
     // Use this for initialization
     void Start()
     {
@@ -52,7 +57,6 @@ public class CharacterControl : MonoBehaviour
         SpriteRenderer = this.GetComponent<SpriteRenderer>();
         animator = this.GetComponent<Animator>();
         lastState = currentState;
-        instance = this;
     }
 
     private void Update()

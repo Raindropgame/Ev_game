@@ -7,7 +7,7 @@ public class changeMoveState : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.name == "character")
+        if (collision.transform.name == "MainCamera")
         {
             switch (transform.tag)
             {
