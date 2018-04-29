@@ -34,11 +34,11 @@ public class grassSway : MonoBehaviour {
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if(collision.transform.name == "character")
         {
-            if(collision.transform.position.x > transform.position.x)
+            if(collision.transform.position.x < transform.position.x)
             {
                 dir = 1;
             }

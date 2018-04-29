@@ -21,7 +21,6 @@ public class Arrow : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log(CharacterControl.instance == null);
         rig.velocity = new Vector2(CharacterControl.instance.Dir == dir.left ? -speed : speed, 0);
         SRenderer.flipX = CharacterControl.instance.Dir == dir.left ? true : false;
 
