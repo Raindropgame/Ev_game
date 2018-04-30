@@ -8,6 +8,9 @@ Maps ： 放置与地形碰撞体相关的物体
 CameraMoveMode ： 放置摄像机移动方式的碰撞体
 BackGround ： 放置背景
 InteractiveObjects ： 放置可交互的物体
+SceneManager ： 放置出生点与出口
 
 
 Others:  画背景图
+
+每个场景需要在SceneManager里声明出生点与索引值 ， 在出口声明下一个场景与索引值* 
