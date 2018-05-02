@@ -177,9 +177,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0.19519043, y: 0.57100654}
+  m_Offset: {x: -0.016326904, y: -0.001876831}
   serializedVersion: 2
-  m_Size: {x: 1.336112, y: 3.2249603}
+  m_Size: {x: 0.9130643, y: 0.70427513}
 --- !u!81 &81000011588767640
 AudioListener:
   m_ObjectHideFlags: 1
@@ -238,9 +238,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastTime: 0.3
-  smoothTime: 0.6
+  smoothTime: 1
   t: 0.1
   CameraIsMove: 0
+  moveState: 2
 --- !u!114 &114000012733128800
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -252,7 +253,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b9bf2a50ef38114f8e1191fe9e42d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
 --- !u!124 &124000011351689334
 Behaviour:
   m_ObjectHideFlags: 1

@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Arrow : MonoBehaviour
-{
+public class Arrow_2 : MonoBehaviour {
 
     public float speed = 20;
 
@@ -10,9 +9,11 @@ public class Arrow : MonoBehaviour
     private SpriteRenderer SRenderer;
     private BoxCollider2D boxCol;
     private TrailRenderer trailRenderer;
+    private float tan;
 
     private void Awake()
     {
+        tan = Mathf.Tan(transform.localEulerAngles.z * Mathf.Deg2Rad);
         rig = this.GetComponent<Rigidbody2D>();
         SRenderer = this.GetComponent<SpriteRenderer>();
         boxCol = GetComponent<BoxCollider2D>();
@@ -21,17 +22,12 @@ public class Arrow : MonoBehaviour
 
     private void OnEnable()
     {
-        rig.velocity = new Vector2(CharacterControl.instance.Dir == dir.left ? -speed : speed, 0);
-        SRenderer.flipX = CharacterControl.instance.Dir == dir.left ? true : false;
+        rig.velocity = new Vector2(CharacterControl.instance.Dir == dir.left ? -1 : 1, tan) * speed;  //初始速度
 
         boxCol.enabled = true;
         trailRenderer.enabled = true;
 
-        Vector3 characterPosition = CharacterControl.instance.transform.position;
         transform.parent = null; // 防止物体跟随主角
-        transform.localPosition = CharacterControl.instance.Dir == dir.left ? new Vector3(characterPosition.x - 1.3f, characterPosition.y + 1.37f, characterPosition.z - 9) : new Vector3(characterPosition.x + 1.3f, characterPosition.y + 1.32f, characterPosition.z - 9);  //初始化位置
-
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

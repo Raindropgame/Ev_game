@@ -579,6 +579,7 @@ public class CharacterControl : MonoBehaviour
             {
                 if (JumpShootTimes < MaxJumpShootTimes && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_jumpshoot)
                 {
+                    CharacterObjectManager.instance.arrow_2();
                     currentState = state.jumpshoot;
                     YJumpSpeed = 0;
                     rig.velocity = new Vector2(0, 0);  //停滞在空中

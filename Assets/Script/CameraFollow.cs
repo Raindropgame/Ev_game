@@ -14,7 +14,7 @@ public class CameraFollow : MonoBehaviour {
     private bool isMoving = false;
     Vector3 targetPosition;
     private Rigidbody2D charaRig;
-    private Vector3 currentV;
+    private Vector3 currentV = Vector3.zero;
     [HideInInspector]
     public CameraMoveState moveState = CameraMoveState.both;
 
