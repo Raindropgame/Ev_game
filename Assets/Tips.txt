@@ -11,6 +11,9 @@ InteractiveObjects ： 放置可交互的物体
 SceneManager ： 放置出生点与出口
 
 
-Others:  画背景图
+Next:  画背景图 √
+剩余场景摆放
+怪物设计
+人物系统
 
 每个场景需要在SceneManager里声明出生点与索引值 ， 在出口声明下一个场景与索引值* 

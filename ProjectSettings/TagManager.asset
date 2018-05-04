@@ -9,6 +9,7 @@ TagManager:
   - onlyX
   - onlyY
   - arms_player
+  - map_background
   layers:
   - Default
   - TransparentFX
