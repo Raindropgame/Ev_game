@@ -28,6 +28,7 @@ public class CharacterControl : MonoBehaviour
     private float JumpAccelerateTime = 0; //记录跳跃加速的时间  按键越久跳跃越高
     private float XJumpSpeed, YJumpSpeed, Yacceleration;
     private BoxCollider2D _collider;
+    private CircleCollider2D _circleCollider;
     private dir lastDir;  //上一帧的方向
     private SpriteRenderer SpriteRenderer;
     private Animator animator;
@@ -53,6 +54,7 @@ public class CharacterControl : MonoBehaviour
         YJumpSpeed = JumpSpeed;
         Yacceleration = JumpSpeed / MaxJumpTime;
         _collider = this.GetComponent<BoxCollider2D>();
+        _circleCollider = this.GetComponent<CircleCollider2D>();
         lastDir = dir.right;
         SpriteRenderer = this.GetComponent<SpriteRenderer>();
         animator = this.GetComponent<Animator>();
@@ -464,8 +466,8 @@ public class CharacterControl : MonoBehaviour
             Tdir = 1;
         }
 
-        RaycastHit2D LeftHit = Physics2D.Raycast(LeftHitTrans[Tdir].position, Vector2.down, 0.01f ,layerMask);
-        RaycastHit2D RightHit = Physics2D.Raycast(RightHitTrans[Tdir].position, Vector2.down, 0.01f,layerMask);
+        RaycastHit2D LeftHit = Physics2D.Raycast(LeftHitTrans[Tdir].position, Vector2.down, 0.1f ,layerMask);
+        RaycastHit2D RightHit = Physics2D.Raycast(RightHitTrans[Tdir].position, Vector2.down, 0.1f,layerMask);
         //Debug.DrawRay(LeftHitTrans[Tdir].position, Vector2.down,Color.red);
         //Debug.DrawRay(RightHitTrans[Tdir].position, Vector2.down,Color.red);
         int i = 0;
@@ -503,7 +505,7 @@ public class CharacterControl : MonoBehaviour
 
     bool AtTop()  //判断头是否顶到墙
     {
-        RaycastHit2D HeadHit = Physics2D.Raycast(HeadHitTrans[Dir == dir.left ? 0 : 1].position, Vector2.up, 0.01f, layerMask);
+        RaycastHit2D HeadHit = Physics2D.Raycast(HeadHitTrans[Dir == dir.left ? 0 : 1].position, Vector2.up, 0.2f, layerMask);
         if(HeadHit.transform != null)
         {
             if(HeadHit.transform.tag == "map")
@@ -518,15 +520,21 @@ public class CharacterControl : MonoBehaviour
     {
         float[] LeftOffSet = { -0.376f, 1.753f }, RightOffSet = { 0.509f, 1.753f };
         float[] LeftSize = { 1.241f, 3.82f }, RightSize = { 1.645f, 3.82f };
+        float[] RightOffSet_2 = { 0.49f, 1.91f }, LeftOffSet_2 = { -0.37f, 1.82f };
+        float RightRadius = 0.97f, LeftRadius = 0.81f;
         if(Dir == dir.left)
         {
             _collider.offset = new Vector2(LeftOffSet[0], LeftOffSet[1]);
             _collider.size = new Vector2(LeftSize[0], LeftSize[1]);
+            _circleCollider.offset = new Vector2(LeftOffSet_2[0], LeftOffSet_2[1]);
+            _circleCollider.radius = LeftRadius;
         }
         else
         {
             _collider.offset = new Vector2(RightOffSet[0], RightOffSet[1]);
             _collider.size = new Vector2(RightSize[0], RightSize[1]);
+            _circleCollider.offset = new Vector2(RightOffSet_2[0], RightOffSet_2[1]);
+            _circleCollider.radius = RightRadius;
         }
     }
 
