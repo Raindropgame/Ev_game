@@ -1,4 +1,5 @@
 ﻿Tags为map  ：会随着镜头的移动而移动  ,  会被视为地面
+Tags : map_background  : 完全受摄像机影响而移动
 Layer为backGround ：会被虚化
 Layer为terrain ： 则会被射线（用于检测是否落地）检测到
 
@@ -7,8 +8,9 @@ ornament ： 放置不可交互式装饰物
 Maps ： 放置与地形碰撞体相关的物体
 CameraMoveMode ： 放置摄像机移动方式的碰撞体
 BackGround ： 放置背景
-InteractiveObjects ： 放置可交互的物体
-SceneManager ： 放置出生点与出口
+【 InteractiveObjects ： 放置可交互的物体（SceneManager ： 放置出生点与出口
+   ▼出口触发碰撞体（需要挂“enterNextScene”脚本）
+     ▼出生点 】
 
 
 Next:  画背景图 √
