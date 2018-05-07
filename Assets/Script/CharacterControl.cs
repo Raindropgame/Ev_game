@@ -6,20 +6,22 @@ public class CharacterControl : MonoBehaviour
 
     public static CharacterControl instance;
 
-    public float Walkspeed;
-    public float RunSpeed;
+    public float Walkspeed;   //  (依赖外部)
+    public float RunSpeed;    //(依赖外部)
     public float JumpSpeed;  //跳跃 与  最大下落速度
     public float DashSpeed;
     public float DashTime;
     public float MaxJumpTime;
-    public int JumpTimes = 1;
-    public int MaxJumpShootTimes = 1;
+    public float HurtTime;  //受伤僵直时间
+    public int JumpTimes = 1;    //(依赖外部)
+    public int MaxJumpShootTimes = 1;  //(依赖外部)
     public state currentState = state.normal;
     public float DoubleKeySapceTime = 0.5f;
     public dir Dir = dir.right;
     public Transform[] LeftHitTrans, RightHitTrans, HeadHitTrans;  //检测碰地的射线点
     public float DoubleAttackSpaceTime = 0.5f;
-    public bool[] isEnable = new bool[12];  //管理人物某些功能
+    public bool[] isEnable = new bool[12];  //管理人物某些功能   (依赖外部)
+    public bool isHurt = false;  //人物是否处在受伤时期
 
     private Rigidbody2D rig;
     private float LeftKeyDown = 0, RightKeyDown = 0;  //检测是否双击键盘
@@ -40,6 +42,7 @@ public class CharacterControl : MonoBehaviour
     private int dashTimes = 0;  //记录空中冲刺次数
     private int JumpShootTimes = 0;  //记录控制射击次数
     private int layerMask = 1 << 9;  //检测指定层
+    private float _hurtTime = 0; //用于记录受伤时间
 
     private void Awake()
     {
@@ -75,7 +78,6 @@ public class CharacterControl : MonoBehaviour
                 }
                 if(Input.GetKeyDown(KeyCode.Space) && isEnable[(int)state.jump])
                 {
-                    _jumpTimes++;
                     currentState = state.jump;    //跳跃
                     XJumpSpeed = Walkspeed + 1;
                 }
@@ -105,7 +107,6 @@ public class CharacterControl : MonoBehaviour
                 }
                 if (Input.GetKeyDown(KeyCode.Space) && isEnable[(int)state.jump])
                 {
-                    _jumpTimes++;
                     currentState = state.jump;    //跳跃
                     XJumpSpeed = Walkspeed + 1;
                 }
@@ -160,7 +161,6 @@ public class CharacterControl : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.Space) && isEnable[(int)state.jump])
                 {
-                    _jumpTimes++;
                     currentState = state.jump;    //跳跃
                     XJumpSpeed = RunSpeed + 1;
                 }
@@ -293,16 +293,29 @@ public class CharacterControl : MonoBehaviour
                     currentState = state.fall;
                 }
                 break;
-            case state.shoot:
+            case state.shoot:              
                 if(!isPlayAnimation())
                 {
                     currentState = state.normal;
                 }
                 break;
             case state.hurt:
-                if(!isPlayAnimation())
+                int t = 20;
+
+                _hurtTime += Time.deltaTime;
+                rig.velocity = new Vector2((Dir == dir.left ? (-t / HurtTime * _hurtTime + t) : -(-t / HurtTime * _hurtTime + t)), 0);
+
+                YJumpSpeed = YJumpSpeed + Yacceleration * Time.deltaTime;   //为Y轴添加重力
+                if (YJumpSpeed > JumpSpeed)
+                {
+                    YJumpSpeed = JumpSpeed;
+                }
+                rig.velocity = new Vector2(rig.velocity.x, -YJumpSpeed);
+
+                if (_hurtTime > HurtTime)
                 {
                     currentState = isJump == true ? state.fall : state.normal;
+                    _hurtTime = 0;
                 }
                 break;
             case state.fall:
@@ -321,7 +334,7 @@ public class CharacterControl : MonoBehaviour
                     CharacterObjectManager.instance.attack1(Dir);
                 }
 
-                if(Input.GetKeyDown(KeyCode.Space) && _jumpTimes<JumpTimes && isEnable[(int)state.jump])   //连跳
+                if(Input.GetKeyDown(KeyCode.Space) && _jumpTimes < JumpTimes && isEnable[(int)state.jump])   //连跳
                 {
                     currentState = state.jump;
                     JumpAccelerateTime = 0;
@@ -360,6 +373,11 @@ public class CharacterControl : MonoBehaviour
                 isAttack = false;
                 _DoubleAttackSpaceTime = 0;
             }
+        }
+
+        if (isHurt)  //受伤
+        {
+            flash();  // 人物闪烁
         }
 
         if(lastDir != Dir) // 翻转图片  判断减少运算量
@@ -612,6 +630,45 @@ public class CharacterControl : MonoBehaviour
     void arrow()
     {
         CharacterObjectManager.instance.arrow();
+    }
+
+    public bool hurt()  //受伤调用函数
+    {
+        float hurt_contined_time = 1;  //无敌持续时间
+        if(!isHurt)
+        {
+            isHurt = true;
+            currentState = state.hurt;
+            Invoke("end_invincibility", hurt_contined_time);
+            return true;
+        }
+        return false;
+    }
+
+    void end_invincibility()
+    {
+        SpriteRenderer.color = new Color(1, 1, 1, 1);
+        isHurt = false;
+    }
+
+    private float _time2 = 0;  //辅助 闪烁 计时
+    public void flash() //人物闪烁
+    {
+        float spaceTime = 0.1f;  //闪烁间隔
+        _time2 += Time.deltaTime;
+        if (_time2 > spaceTime)
+        {
+            SpriteRenderer.color = SpriteRenderer.color.a < 0.6f ? new Color(1, 1, 1, 1) : new Color(1, 1, 1, 0.5f);  //该处修改闪烁透明度
+            _time2 = 0;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.tag == "enemy")
+        {
+            hurt();
+        }
     }
 
 } 
