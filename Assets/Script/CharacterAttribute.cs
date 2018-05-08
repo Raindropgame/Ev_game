@@ -12,10 +12,11 @@ public class CharacterAttribute{
         }
         return instance;
     }
-    public int MaxBreath = 50;
+    public int MaxBreath = 50;  //最大气息值
+    public float Breath = 50;  //当前气息值
 
-    public int HP = 3;  // 生命值
-    public float Breath = 50;  //气息值
+    public int MaxHP = 3;   //最大生命值
+    public int HP = 3;  // 当前生命值
 
     public float Speed_recover = 15;
 
@@ -34,4 +35,35 @@ public class CharacterAttribute{
     public float RunSpeed;    //奔跑速度
     public int JumpTimes = 1;    //跳跃次数
     public int MaxJumpShootTimes = 1;  //跳射次数
+
+    public int reduce_HP(int damage)  //减血  并返回减少后的血量值
+    {
+        if(damage > HP)
+        {
+            HP = 0;
+        }
+        else
+        {
+            HP -= damage;
+        }
+        return HP;
+    }
+
+    public int add_HP(int num)  //回复体力  并返回当前血量值
+    {
+        if(HP + num >= MaxHP)
+        {
+            HP = MaxHP;
+        }
+        else
+        {
+            HP += num;
+        }
+        return HP;
+    }
+
+    public void add_MaxHP(int num)
+    {
+        MaxHP += num;
+    }
 }

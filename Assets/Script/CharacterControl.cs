@@ -632,11 +632,12 @@ public class CharacterControl : MonoBehaviour
         CharacterObjectManager.instance.arrow();
     }
 
-    public bool hurt()  //受伤调用函数
+    public bool hurt(int Damage)  //受伤调用函数
     {
         float hurt_contined_time = 1;  //无敌持续时间
         if(!isHurt)
         {
+            CharacterAttribute.GetInstance().reduce_HP(Damage);
             isHurt = true;
             currentState = state.hurt;
             Invoke("end_invincibility", hurt_contined_time);
@@ -663,12 +664,5 @@ public class CharacterControl : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if(collision.tag == "enemy")
-        {
-            hurt();
-        }
-    }
 
 } 
