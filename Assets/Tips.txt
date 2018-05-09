@@ -11,6 +11,7 @@ BackGround ： 放置背景
 【 InteractiveObjects ： 放置可交互的物体（SceneManager ： 放置出生点与出口
    ▼出口触发碰撞体（需要挂“enterNextScene”脚本）
      ▼出生点 】
+CharacterBar :  存放人物属性的UI
 
 
 Next:  画背景图 √

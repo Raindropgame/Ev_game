@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class HealthBarManager : MonoBehaviour {
 
@@ -24,7 +25,7 @@ public class HealthBarManager : MonoBehaviour {
         startPoint = GameObject.Find("startPoint").transform;
 
         current_HP = CharacterAttribute.GetInstance().HP;
-        MaxHP = current_HP;
+        MaxHP = CharacterAttribute.GetInstance().MaxHP;
         Icon = new ArrayList();
         for(int i = 0;i<MaxHP;i++)
         {
@@ -32,6 +33,10 @@ public class HealthBarManager : MonoBehaviour {
             t.transform.SetParent(this.transform, true);
             t.transform.localScale = new Vector3(1, 1, 1);  //改回原来的比例
             Icon.Add(t);
+            if(i >= current_HP)  //     对空灵魂槽的操作
+            {
+                t.GetComponent<Image>().color = new Color(1, 1, 1, 0.2f);
+            }
         }
 	}
 	

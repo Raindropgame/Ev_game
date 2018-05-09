@@ -52,6 +52,7 @@ public class CharacterControl : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        //Init();
         rig = this.GetComponent<Rigidbody2D>();
         XJumpSpeed = Walkspeed + 1;
         YJumpSpeed = JumpSpeed;
@@ -380,6 +381,9 @@ public class CharacterControl : MonoBehaviour
             flash();  // 人物闪烁
         }
 
+        rig.velocity += additionalVelocity;  //计算额外的速度
+        additionalVelocity = Vector2.zero;
+
         if(lastDir != Dir) // 翻转图片  判断减少运算量
         {
             SpriteRenderer.flipX = SpriteRenderer.flipX == false ? true : false;
@@ -662,6 +666,21 @@ public class CharacterControl : MonoBehaviour
             SpriteRenderer.color = SpriteRenderer.color.a < 0.6f ? new Color(1, 1, 1, 1) : new Color(1, 1, 1, 0.5f);  //该处修改闪烁透明度
             _time2 = 0;
         }
+    }
+
+    void Init()  //重新读取人物属性
+    {
+        Walkspeed = CharacterAttribute.GetInstance().Walkspeed;
+        RunSpeed = CharacterAttribute.GetInstance().RunSpeed;
+        JumpTimes = CharacterAttribute.GetInstance().JumpTimes;
+        MaxJumpShootTimes = CharacterAttribute.GetInstance().MaxJumpShootTimes;
+        isEnable = CharacterAttribute.GetInstance().isEnable;
+    }
+
+    private Vector2 additionalVelocity = Vector2.zero;
+    public void add_Velocity(Vector2 t)
+    {
+        additionalVelocity = t;
     }
 
 

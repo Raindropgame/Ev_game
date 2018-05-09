@@ -62,7 +62,7 @@ public class CharacterAttribute{
         return HP;
     }
 
-    public void add_MaxHP(int num)
+    public void add_MaxHP(int num)  //增加最大血量值
     {
         MaxHP += num;
     }

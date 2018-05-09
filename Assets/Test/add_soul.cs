@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class add_maxSoul : MonoBehaviour {
+public class add_soul : MonoBehaviour {
 
-    //加最大灵魂值测试脚本
+    //加灵魂值测试脚本
 
     public int add_num = 1;
     private float time = 2;
@@ -33,7 +33,7 @@ public class add_maxSoul : MonoBehaviour {
     {
         if (t == false)
         {
-            CharacterAttribute.GetInstance().add_MaxHP(add_num);
+            CharacterAttribute.GetInstance().add_HP(add_num);
             sRenderer.color = new Color(sRenderer.color.r, sRenderer.color.g, sRenderer.color.b, 0.5f);
             t = true;
         }
