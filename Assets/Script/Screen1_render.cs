@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ScreenBlur : PostEffectsBase
+public class Screen1_Render : PostEffectsBase
 {
-
+    //对相机1的渲染
 
     public Shader BlurShader;
     private Material BlurMaterial = null;

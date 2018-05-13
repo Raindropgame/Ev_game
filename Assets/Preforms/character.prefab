@@ -41,6 +41,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000010953879498
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000012117310696}
+  - 108: {fileID: 108000011276509940}
+  m_Layer: 0
+  m_Name: Light_Character
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000011338272374
 GameObject:
   m_ObjectHideFlags: 1
@@ -181,6 +197,7 @@ Transform:
   m_Children:
   - {fileID: 4000010019320162}
   - {fileID: 4000014182421340}
+  - {fileID: 4000012117310696}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &4000010954682246
@@ -261,6 +278,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000010019320162}
   m_RootOrder: 0
+--- !u!4 &4000012117310696
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010953879498}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.3, y: 1.7, z: -3.9}
+  m_LocalScale: {x: 1.6666666, y: 1.6666666, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000010886374658}
+  m_RootOrder: 2
 --- !u!4 &4000014182421340
 Transform:
   m_ObjectHideFlags: 1
@@ -339,6 +369,40 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!108 &108000011276509940
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010953879498}
+  m_Enabled: 1
+  serializedVersion: 7
+  m_Type: 2
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_Range: 1000
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!114 &114000010143832900
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -10,6 +10,7 @@ TagManager:
   - onlyY
   - arms_player
   - map_background
+  - light
   layers:
   - Default
   - TransparentFX

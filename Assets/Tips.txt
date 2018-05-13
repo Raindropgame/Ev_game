@@ -1,4 +1,4 @@
-﻿Tags为map  ：会随着镜头的移动而移动  ,  会被视为地面
+﻿Tags为map  ：会随着镜头的移动而移动  ,  会被视为地面（如有碰撞体）
 Tags : map_background  : 完全受摄像机影响而移动
 Layer为backGround ：会被虚化
 Layer为terrain ： 则会被射线（用于检测是否落地）检测到
@@ -12,6 +12,8 @@ BackGround ： 放置背景
    ▼出口触发碰撞体（需要挂“enterNextScene”脚本）
      ▼出生点 】
 CharacterBar :  存放人物属性的UI
+【WeatherManagement ： 管理天气
+	▼Masker： 遮罩】
 
 
 Next:  画背景图 √
@@ -22,3 +24,7 @@ Next:  画背景图 √
 每个场景需要在SceneManager里声明出生点与索引值 ， 在出口声明下一个场景与索引值* 
 
 主角最高跳跃：600像素
+
+图层顺序：背景（后层）：-8 ~ -10
+中层： 0 ~ -2
+前层：8 ~ 10

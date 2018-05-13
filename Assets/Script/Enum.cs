@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum state
+public enum state  //人物状态
 {
     normal,
     walk,
@@ -17,16 +17,29 @@ public enum state
     endDash
 };
 
-public enum dir
+public enum dir  //方向
 {
     left,
     right
 };
 
-public enum CameraMoveState
+public enum CameraMoveState   //相机移动状态
 {
     onlyX,
     onlyY,
     both
 }
 
+public enum DayOrNight  //昼夜
+{
+    Day,
+    Night
+} 
+
+public enum weather  //天气
+{
+    Sunny,
+    Rain,
+    Thunder,
+    RainAndThunder
+}

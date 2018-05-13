@@ -17,6 +17,8 @@ namespace UnityStandardAssets.ImageEffects
         [Range(0.0f,1.0f)]
         public float blurSpread = 0.6f;
 
+        public Color nightColor;
+
 
         // --------------------------------------------------------
         // The blur iteration shader.
@@ -25,6 +27,7 @@ namespace UnityStandardAssets.ImageEffects
         // we get a Gaussian blur approximation.
 
         public Shader blurShader = null;
+        public Shader NightShader = null;
 
         static Material m_Material = null;
         protected Material material {
@@ -34,6 +37,20 @@ namespace UnityStandardAssets.ImageEffects
                     m_Material.hideFlags = HideFlags.DontSave;
                 }
                 return m_Material;
+            }
+        }
+
+        Material m_Night_Material = null;
+        Material Night_Material
+        {
+            get
+            {
+                if(m_Night_Material == null)
+                {
+                    m_Night_Material = new Material(NightShader);
+                    m_Night_Material.hideFlags = HideFlags.DontSave;
+                }
+                return m_Night_Material;
             }
         }
 
@@ -88,6 +105,7 @@ namespace UnityStandardAssets.ImageEffects
             int rtW = source.width/4;
             int rtH = source.height/4;
             RenderTexture buffer = RenderTexture.GetTemporary(rtW, rtH, 0);
+            RenderTexture buffer_2 = RenderTexture.GetTemporary(rtW, rtH, 0);
 
             // Copy source to the 4x4 smaller texture.
             DownSample4x (source, buffer);
@@ -100,9 +118,14 @@ namespace UnityStandardAssets.ImageEffects
                 RenderTexture.ReleaseTemporary(buffer);
                 buffer = buffer2;
             }
-            Graphics.Blit(buffer, destination);
+            Graphics.Blit(buffer, buffer_2);
+
+            Night_Material.SetColor("_Color", nightColor);
+
+            Graphics.Blit(buffer_2, destination,m_Night_Material);
 
             RenderTexture.ReleaseTemporary(buffer);
+            RenderTexture.ReleaseTemporary(buffer_2);
         }
     }
 }
