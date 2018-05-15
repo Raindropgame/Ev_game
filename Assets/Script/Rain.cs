@@ -22,7 +22,7 @@ public class Rain : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        this.transform.position = (Vector2)CameraTrans.position + new Vector2(0, 15);  //实时跟随相机
+        this.transform.position = new Vector3(CameraTrans.position.x, CameraTrans.position.y, 0) + new Vector3(0, 15, 100);  //实时跟随相机
 
         if(WeatherData.getIntance().currentWeather == weather.Rain || WeatherData.getIntance().currentWeather == weather.RainAndThunder)
         {

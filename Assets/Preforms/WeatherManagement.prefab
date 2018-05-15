@@ -70,7 +70,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011002553798}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -107.9, y: 12.7, z: 0}
+  m_LocalPosition: {x: -307.7046, y: 17.025028, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -179,11 +179,11 @@ MonoBehaviour:
   DayTime: 60
   TotalTime: 100
   MaskerMaterial: {fileID: 2100000, guid: 00cd77ec71e2b094a85c6fd4e78e1de1, type: 2}
-  Rain_Odds: 0.2
+  Rain_Odds: 0.1
   Thunder_Odds: 0.1
-  RainAndThunder_Odds: 0.1
+  RainAndThunder_Odds: 0.05
   Day_Color: {r: 1, g: 1, b: 1, a: 1}
-  Night_Color: {r: 0.25, g: 0.25, b: 0.25, a: 0.359}
+  Night_Color: {r: 0.25, g: 0.25, b: 0.25, a: 0.434}
 --- !u!198 &198000013946287880
 ParticleSystem:
   m_ObjectHideFlags: 1

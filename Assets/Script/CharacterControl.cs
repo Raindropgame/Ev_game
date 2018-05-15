@@ -240,7 +240,7 @@ public class CharacterControl : MonoBehaviour
                 //  空中攻击移动-----------------
                 if (isJump)
                 {
-                    JumpMove();
+                    //JumpMove();
                     YJumpSpeed = YJumpSpeed + Yacceleration * Time.deltaTime;
                     if (YJumpSpeed > JumpSpeed)
                     {
@@ -266,7 +266,7 @@ public class CharacterControl : MonoBehaviour
                 //  空中攻击移动-----------------
                 if (isJump)
                 {
-                    JumpMove();
+                    //JumpMove();
                     YJumpSpeed = YJumpSpeed + Yacceleration * Time.deltaTime;
                     if (YJumpSpeed > JumpSpeed)
                     {
