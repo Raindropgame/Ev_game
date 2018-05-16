@@ -29,6 +29,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000010966613062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000012776066854}
+  - 114: {fileID: 114000013642810594}
+  m_Layer: 0
+  m_Name: Thunder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000011002553798
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,8 +92,22 @@ Transform:
   m_Children:
   - {fileID: 4000013114433870}
   - {fileID: 4000014157185182}
+  - {fileID: 4000012776066854}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!4 &4000012776066854
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010966613062}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000010779742062}
+  m_RootOrder: 2
 --- !u!4 &4000013114433870
 Transform:
   m_ObjectHideFlags: 1
@@ -165,6 +195,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxRaindropNum: 350
   TransitionScale: 0.2
+--- !u!114 &114000013642810594
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010966613062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 090adcf946e38284c978478da441bb93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Lighting_Odds: 0.1
+  startPoint: {x: -20, y: 17}
+  endPoint: {x: 22, y: 14}
+  lighting: {fileID: 1000010398050656, guid: 4b14470acc377b341a133f3ba229c038, type: 2}
+  GameobjectPoolNum: 15
+  count: 0
+  CameraTrans: {fileID: 0}
 --- !u!114 &114000013650790306
 MonoBehaviour:
   m_ObjectHideFlags: 1

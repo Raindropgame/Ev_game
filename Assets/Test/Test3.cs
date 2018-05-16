@@ -7,13 +7,8 @@ public class Test3 : MonoBehaviour
 {
     public Transform a;
 
-    private MeshFilter MF;
 
 
-    private void Start()
-    {
-        MF = this.GetComponent<MeshFilter>();
-    }
 
     private void OnEnable()
     {

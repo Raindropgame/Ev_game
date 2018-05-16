@@ -7403,6 +7403,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013642810594, guid: aef80900b38974145a81dc7459dc6f2f,
+        type: 2}
+      propertyPath: Lighting_Odds
+      value: 0.003
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aef80900b38974145a81dc7459dc6f2f, type: 2}
   m_IsPrefabParent: 0

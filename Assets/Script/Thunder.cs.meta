@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 090adcf946e38284c978478da441bb93
+timeCreated: 1526484897
+licenseType: Pro
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - lighting: {fileID: 1000010398050656, guid: 4b14470acc377b341a133f3ba229c038, type: 2}
+  - CameraTrans: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
