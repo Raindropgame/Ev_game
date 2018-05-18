@@ -4810,7 +4810,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000012370038772, guid: 3e6162f7e2523b84c8319f4a40d50e39, type: 2}
       propertyPath: m_TagString
-      value: map
+      value: maps
       objectReference: {fileID: 0}
     - target: {fileID: 1000012370038772, guid: 3e6162f7e2523b84c8319f4a40d50e39, type: 2}
       propertyPath: m_Layer

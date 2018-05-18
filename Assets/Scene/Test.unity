@@ -1229,7 +1229,7 @@ GameObject:
   - 61: {fileID: 168003920}
   m_Layer: 0
   m_Name: New Sprite (2)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1486,16 +1486,6 @@ Prefab:
     - target: {fileID: 4000010779742062, guid: aef80900b38974145a81dc7459dc6f2f, type: 2}
       propertyPath: m_RootOrder
       value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013642810594, guid: aef80900b38974145a81dc7459dc6f2f,
-        type: 2}
-      propertyPath: Lighting_Odds
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013642810594, guid: aef80900b38974145a81dc7459dc6f2f,
-        type: 2}
-      propertyPath: GameobjectPoolNum
-      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aef80900b38974145a81dc7459dc6f2f, type: 2}
@@ -1988,7 +1978,7 @@ GameObject:
   - 61: {fileID: 295045385}
   m_Layer: 9
   m_Name: terrian
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2350,7 +2340,7 @@ GameObject:
   - 61: {fileID: 422357011}
   m_Layer: 9
   m_Name: New Sprite (8)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2613,7 +2603,7 @@ GameObject:
   - 61: {fileID: 517680835}
   m_Layer: 9
   m_Name: New Sprite (4)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3691,7 +3681,7 @@ GameObject:
   - 50: {fileID: 859520144}
   m_Layer: 9
   m_Name: New Sprite (9)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4760,7 +4750,7 @@ GameObject:
   - 61: {fileID: 1152836229}
   m_Layer: 9
   m_Name: New Sprite (5)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5008,7 +4998,7 @@ GameObject:
   - 61: {fileID: 1203806307}
   m_Layer: 9
   m_Name: New Sprite (11)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6035,7 +6025,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 927197093
+  randomSeed: 2018998579
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -8214,7 +8204,7 @@ GameObject:
   - 61: {fileID: 1438298505}
   m_Layer: 9
   m_Name: New Sprite (12)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8607,7 +8597,7 @@ GameObject:
   - 61: {fileID: 1463050350}
   m_Layer: 9
   m_Name: New Sprite (6)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9704,11 +9694,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000010886374658, guid: 3616743aa1391fb4aabfec514450b881, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -114.38
+      value: -115.808
       objectReference: {fileID: 0}
     - target: {fileID: 4000010886374658, guid: 3616743aa1391fb4aabfec514450b881, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.66
+      value: 0.107
       objectReference: {fileID: 0}
     - target: {fileID: 4000010886374658, guid: 3616743aa1391fb4aabfec514450b881, type: 2}
       propertyPath: m_LocalPosition.z
@@ -9789,7 +9779,7 @@ GameObject:
   - 61: {fileID: 1736879337}
   m_Layer: 9
   m_Name: New Sprite (7)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11462,7 +11452,7 @@ GameObject:
   - 61: {fileID: 2123704177}
   m_Layer: 9
   m_Name: New Sprite (10)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

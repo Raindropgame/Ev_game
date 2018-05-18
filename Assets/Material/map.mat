@@ -58,6 +58,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
+        name: _NoiseTex
+      second:
+        m_Texture: {fileID: 2800000, guid: a6a31a4127eb1574384f4b9f2c1ea41c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
         name: _OcclusionMap
       second:
         m_Texture: {fileID: 0}
@@ -79,6 +85,12 @@ Material:
     - first:
         name: _BumpScale
       second: 1
+    - first:
+        name: _BurnScale
+      second: 0
+    - first:
+        name: _BurnWidth
+      second: 0.1
     - first:
         name: _Cutoff
       second: 0.412
@@ -128,6 +140,9 @@ Material:
         name: _ZWrite
       second: 1
     m_Colors:
+    - first:
+        name: _BurnColor
+      second: {r: 1, g: 0, b: 0, a: 1}
     - first:
         name: _Color
       second: {r: 1, g: 1, b: 1, a: 1}

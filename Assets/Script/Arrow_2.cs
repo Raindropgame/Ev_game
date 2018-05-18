@@ -32,7 +32,7 @@ public class Arrow_2 : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.tag == "map")
+        if (collision.transform.tag == "maps")
         {
             setFalse(collision);
         }

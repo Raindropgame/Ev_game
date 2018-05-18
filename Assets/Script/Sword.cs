@@ -24,7 +24,7 @@ public class Sword : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.tag == "map")  //碰到地面
+        if(collision.tag == "maps")  //碰到地面
         {
             CharacterControl.instance.add_Velocity(new Vector2(CharacterControl.instance.Dir == dir.left ? Velocity : -Velocity, 0));
         }
@@ -34,9 +34,12 @@ public class Sword : MonoBehaviour {
     {
         Collider.isTrigger = true;  //碰到物体变为触发器
         HitPoint = collision.contacts[0];  //获取碰撞点
-        if (collision.transform.tag == "map")
+        if (collision.transform.tag == "maps")
         {
-            Instantiate(a, position: HitPoint.point, rotation: Quaternion.Euler(0, 0, Random.Range(0, 360)));
+            GameObject t = CharacterObjectManager.instance.getHitPoint();
+            t.SetActive(true);
+            t.transform.position = HitPoint.point;
+            t.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
         }
     }
 

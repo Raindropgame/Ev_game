@@ -86,7 +86,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011002553798}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -307.7046, y: 17.025028, z: 0}
+  m_LocalPosition: {x: -107.9, y: 12.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -206,12 +206,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 090adcf946e38284c978478da441bb93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Lighting_Odds: 0.1
+  Lighting_Odds: 0.003
   startPoint: {x: -20, y: 17}
   endPoint: {x: 22, y: 14}
   lighting: {fileID: 1000010398050656, guid: 4b14470acc377b341a133f3ba229c038, type: 2}
   GameobjectPoolNum: 15
-  count: 0
   CameraTrans: {fileID: 0}
 --- !u!114 &114000013650790306
 MonoBehaviour:

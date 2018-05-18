@@ -461,8 +461,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _arrow: {fileID: 1000013015619956, guid: 93a802fa8efc83a4c8618907feddef77, type: 2}
   _arrow_2: {fileID: 1000011965518448, guid: 372bd3de66b45714085b5ea6be26e89b, type: 2}
+  hitPoint: {fileID: 1000011351122884, guid: 043a8ef88d8c48648bc2f3962fd19512, type: 2}
   MaxArrowNum: 20
   MaxArrow_2Num: 20
+  MaxHitPoint: 4
   currentArrowNum: 0
   currentArrow_2Num: 0
 --- !u!114 &114000012211434208

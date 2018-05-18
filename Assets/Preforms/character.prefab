@@ -191,7 +191,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011722328298}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -386.4, y: -19.9, z: -0.01}
+  m_LocalPosition: {x: -387.24, y: -21.33, z: -0.01}
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -424,7 +424,7 @@ MonoBehaviour:
   JumpTimes: 0
   MaxJumpShootTimes: 1
   currentState: 0
-  DoubleKeySapceTime: 0.5
+  DoubleKeySapceTime: 0.7
   Dir: 1
   LeftHitTrans:
   - {fileID: 4000012049838272}

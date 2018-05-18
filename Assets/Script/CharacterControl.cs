@@ -495,14 +495,14 @@ public class CharacterControl : MonoBehaviour
         int i = 0;
         if (LeftHit.transform != null)
         {
-            if (LeftHit.transform.tag == "map")
+            if (LeftHit.transform.tag == "maps")
             {
                 i++;
             }
         }
         if (RightHit.transform != null)
         {
-            if (RightHit.transform.tag == "map")
+            if (RightHit.transform.tag == "maps")
             {
                 i++;
             }
@@ -530,7 +530,7 @@ public class CharacterControl : MonoBehaviour
         RaycastHit2D HeadHit = Physics2D.Raycast(HeadHitTrans[Dir == dir.left ? 0 : 1].position, Vector2.up, 0.2f, layerMask);
         if(HeadHit.transform != null)
         {
-            if(HeadHit.transform.tag == "map")
+            if(HeadHit.transform.tag == "maps")
             {
                 return true;
             }

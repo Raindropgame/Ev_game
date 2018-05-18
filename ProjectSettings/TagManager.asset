@@ -11,6 +11,7 @@ TagManager:
   - arms_player
   - map_background
   - light
+  - maps
   layers:
   - Default
   - TransparentFX

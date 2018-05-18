@@ -1155,7 +1155,7 @@ GameObject:
   - 61: {fileID: 55682808}
   m_Layer: 9
   m_Name: New Sprite (11)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1385,7 +1385,7 @@ GameObject:
   - 61: {fileID: 74566955}
   m_Layer: 9
   m_Name: New Sprite (27)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2360,7 +2360,7 @@ GameObject:
   - 61: {fileID: 107925561}
   m_Layer: 9
   m_Name: New Sprite (13)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3381,7 +3381,7 @@ GameObject:
   - 61: {fileID: 155944718}
   m_Layer: 9
   m_Name: New Sprite (10)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6294,7 +6294,7 @@ GameObject:
   - 61: {fileID: 284377078}
   m_Layer: 9
   m_Name: New Sprite (26)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6953,7 +6953,7 @@ GameObject:
   - 61: {fileID: 299343419}
   m_Layer: 9
   m_Name: New Sprite (3)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7129,7 +7129,7 @@ GameObject:
   - 68: {fileID: 329096520}
   m_Layer: 9
   m_Name: collider
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7402,11 +7402,6 @@ Prefab:
     - target: {fileID: 4000010779742062, guid: aef80900b38974145a81dc7459dc6f2f, type: 2}
       propertyPath: m_RootOrder
       value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013642810594, guid: aef80900b38974145a81dc7459dc6f2f,
-        type: 2}
-      propertyPath: Lighting_Odds
-      value: 0.003
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aef80900b38974145a81dc7459dc6f2f, type: 2}
@@ -8391,7 +8386,7 @@ GameObject:
   - 61: {fileID: 382488977}
   m_Layer: 9
   m_Name: New Sprite (16)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8930,7 +8925,7 @@ GameObject:
   - 61: {fileID: 406192436}
   m_Layer: 9
   m_Name: New Sprite (4)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14355,7 +14350,7 @@ GameObject:
   - 61: {fileID: 681938964}
   m_Layer: 9
   m_Name: New Sprite (17)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14461,7 +14456,7 @@ GameObject:
   - 61: {fileID: 690149244}
   m_Layer: 9
   m_Name: New Sprite (25)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16382,7 +16377,7 @@ GameObject:
   - 61: {fileID: 768012630}
   m_Layer: 9
   m_Name: New Sprite (19)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24854,7 +24849,7 @@ GameObject:
   - 114: {fileID: 1156172594}
   m_Layer: 9
   m_Name: New Sprite (23)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25704,7 +25699,7 @@ GameObject:
   - 61: {fileID: 1188859831}
   m_Layer: 9
   m_Name: New Sprite (24)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30027,7 +30022,7 @@ GameObject:
   - 114: {fileID: 1351298157}
   m_Layer: 9
   m_Name: New Sprite (7)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30443,7 +30438,7 @@ GameObject:
   - 61: {fileID: 1368907807}
   m_Layer: 9
   m_Name: New Sprite (20)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31392,7 +31387,7 @@ GameObject:
   - 61: {fileID: 1423649387}
   m_Layer: 9
   m_Name: New Sprite
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32990,7 +32985,7 @@ GameObject:
   - 61: {fileID: 1487759228}
   m_Layer: 9
   m_Name: New Sprite (18)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34853,7 +34848,7 @@ GameObject:
   - 61: {fileID: 1554726031}
   m_Layer: 9
   m_Name: New Sprite (5)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35645,7 +35640,7 @@ GameObject:
   - 61: {fileID: 1583564615}
   m_Layer: 9
   m_Name: New Sprite (8)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36033,7 +36028,7 @@ GameObject:
   - 61: {fileID: 1599002427}
   m_Layer: 9
   m_Name: New Sprite (21)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37300,7 +37295,7 @@ GameObject:
   - 61: {fileID: 1675442595}
   m_Layer: 9
   m_Name: New Sprite (14)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37405,7 +37400,7 @@ GameObject:
   - 61: {fileID: 1679997708}
   m_Layer: 9
   m_Name: New Sprite (15)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42696,7 +42691,7 @@ GameObject:
   - 61: {fileID: 1918544222}
   m_Layer: 9
   m_Name: New Sprite (12)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45091,7 +45086,7 @@ GameObject:
   - 61: {fileID: 2035548540}
   m_Layer: 9
   m_Name: New Sprite (9)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45196,7 +45191,7 @@ GameObject:
   - 61: {fileID: 2038865852}
   m_Layer: 9
   m_Name: New Sprite (2)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45301,7 +45296,7 @@ GameObject:
   - 61: {fileID: 2043281342}
   m_Layer: 9
   m_Name: New Sprite (22)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46097,7 +46092,7 @@ GameObject:
   - 61: {fileID: 2093783893}
   m_Layer: 9
   m_Name: New Sprite (1)
-  m_TagString: map
+  m_TagString: maps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

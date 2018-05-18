@@ -14,7 +14,12 @@ public class HitPoint : MonoBehaviour {
         _time += Time.deltaTime;
         if(_time > LiveTime)
         {
-            Destroy(this.gameObject);
+            CharacterObjectManager.instance.recovery_HitPoint(this.gameObject);
         }
 	}
+
+    private void OnEnable()
+    {
+        _time = 0;
+    }
 }

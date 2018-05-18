@@ -5,14 +5,14 @@ public class CharacterObjectManager : MonoBehaviour
 {
 
     public static CharacterObjectManager instance;
-    public GameObject _arrow,_arrow_2;
-    public int MaxArrowNum = 20, MaxArrow_2Num = 20;
+    public GameObject _arrow,_arrow_2,hitPoint;
+    public int MaxArrowNum = 20, MaxArrow_2Num = 20 , MaxHitPoint = 4;
     public int currentArrowNum, currentArrow_2Num;
 
     private GameObject character;
     private GameObject _attack1_left, _attack1_right, _attack2_left, _attack2_right;
     private GameObject pool_arrow; //对象池
-    private ArrayList arrowList, arrow_2List;
+    private ArrayList arrowList, arrow_2List , HitPointList = new ArrayList();
     private Vector3 arrow2_rotation;
 
 
@@ -49,6 +49,12 @@ public class CharacterObjectManager : MonoBehaviour
             GameObject t_gameobject = Instantiate(_arrow_2,position:pool_arrow.transform.position,rotation:_arrow_2.transform.localRotation) as GameObject;
             t_gameobject.SetActive(false);
             arrow_2List.Add(t_gameobject);
+        }
+        for(int i = 0;i<MaxHitPoint;i++)
+        {
+            GameObject t_gameobject = Instantiate(hitPoint, position: Vector3.zero, rotation: new Quaternion(0, 0, 0, 0)) as GameObject;
+            t_gameobject.SetActive(false);
+            HitPointList.Add(t_gameobject); 
         }
 
         arrow2_rotation = new Vector3(0, 0, 900 - 2 * _arrow_2.transform.eulerAngles.z);  //计算方向为左需要旋转的度数
@@ -105,6 +111,8 @@ public class CharacterObjectManager : MonoBehaviour
         getArrow_2().SetActive(true);
     }
 
+    //对象池操作----------
+
     public GameObject getArrow()  //从池中获取箭
     {
         GameObject t_object;
@@ -148,6 +156,21 @@ public class CharacterObjectManager : MonoBehaviour
         return t_object;
     }
 
+    public GameObject getHitPoint()  //从池中获取打击点
+    {
+        GameObject t;
+        if(HitPointList.Count > 0)
+        {
+            t = HitPointList[0] as GameObject;
+            HitPointList.Remove(t);
+        }
+        else
+        {
+            t = Instantiate(hitPoint, position: Vector3.zero, rotation: new Quaternion(0, 0, 0, 0)) as GameObject;
+        }
+        return t;
+    }
+
     public void recoveryArrow(GameObject go)  //回收箭
     {
         if (currentArrowNum >= MaxArrowNum)
@@ -179,4 +202,19 @@ public class CharacterObjectManager : MonoBehaviour
             currentArrow_2Num++;
         }
     }
+
+    public void recovery_HitPoint(GameObject go)  //回收打击点
+    {
+        if(HitPointList.Count >= MaxHitPoint)
+        {
+            Destroy(go);
+        }
+        else
+        {
+            HitPointList.Add(go);
+            go.SetActive(false);
+        }
+    }
+
+    //----------------------------
 }
