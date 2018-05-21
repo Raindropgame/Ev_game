@@ -48,7 +48,7 @@ public class Weather : MonoBehaviour {
             WeatherData.getIntance().Weather_leftTime = WeatherData.getIntance().Weather_duration;
         }
 
-        MaskerMaterial.SetFloat("_Distance", SmoothLerp_distance());  // 更新Masker
+        MaskerMaterial.SetFloat("_Alpha", SmoothLerp_distance());  // 更新Masker
         Script_Blur.nightColor = SmoothLerp_BackgroundCamera();   //更新背景相机
 
 
@@ -65,7 +65,7 @@ public class Weather : MonoBehaviour {
 
     float SmoothLerp_distance()  //获取Masker的distance值
     {
-        float Day_Distance = 200, Night_distance = 18;
+        float Day_Distance = 0, Night_distance = 1;
         float DayScale = 0.2f;  //过渡时间
         float NightTime = TotalTime - DayTime;  //夜晚的时长
         if(WeatherData.getIntance().currentTime < (1 - DayScale) * DayTime && WeatherData.getIntance().currentTime > DayScale * DayTime)  //处于白天

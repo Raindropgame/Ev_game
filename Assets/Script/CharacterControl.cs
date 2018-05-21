@@ -43,6 +43,7 @@ public class CharacterControl : MonoBehaviour
     private int JumpShootTimes = 0;  //记录控制射击次数
     private int layerMask = 1 << 9;  //检测指定层
     private float _hurtTime = 0; //用于记录受伤时间
+    private float jumpshoot_backTime = 0.05f,_time3 = 0;  //跳射后退时间
 
     private void Awake()
     {
@@ -289,8 +290,19 @@ public class CharacterControl : MonoBehaviour
                 }
                 break;
             case state.jumpshoot:
+                _time3 += Time.deltaTime;  //后退效果
+                if (_time3 < jumpshoot_backTime)
+                {
+                    rig.velocity = new Vector2(Dir == dir.left ? 20 : -20, 18);
+                }
+                else
+                {
+                    rig.velocity = Vector2.zero;
+                }
+
                 if (!isPlayAnimation())
                 {
+                    _time3 = 0;
                     currentState = state.fall;
                 }
                 break;

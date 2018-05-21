@@ -15,4 +15,6 @@ public class TheLight : MonoBehaviour {
 	void Update () {
         SR.color = new Color(SR.color.r, SR.color.g, SR.color.b, Weather.instance.SmoothLerp_LightAlpha(Day_Alpha,Night_Alpha));  //随时间变化透明度
 	}
+
+
 }

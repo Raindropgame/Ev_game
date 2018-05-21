@@ -1,13 +1,10 @@
-﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
-
-Shader "Unlit/Transparent/Masker"
+﻿Shader "Unlit/Masker_base"
 {
 	Properties
 	{
-		_MainTex ("Texture", 2D) = "white" {}
-		_Color ("Color",COLOR) = (1,1,1,1)
-		_Distance ("Distance",float) = 10
+		_Alpha ("Alpha",Range(0,1)) = 1
 	}
+
 	SubShader
 	{
 	Tags {"Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent"}
@@ -16,7 +13,7 @@ Shader "Unlit/Transparent/Masker"
 			Tags {"LightMode" = "ForwardBase"}
 
 			ZWrite off
-			Blend SrcAlpha OneMinusSrcAlpha
+			Blend zero one,one zero
 
 			CGPROGRAM
 			#pragma multi_compile_fwdbase
@@ -25,6 +22,10 @@ Shader "Unlit/Transparent/Masker"
 			
 			#include "UnityCG.cginc"
 			#include "AutoLight.cginc"
+
+			sampler2D _MainTex;
+			float4 _MainTex_ST;
+			float _Alpha;
 
 			struct appdata
 			{
@@ -36,25 +37,20 @@ Shader "Unlit/Transparent/Masker"
 			{
 				float2 uv : TEXCOORD0;
 				float4 vertex : SV_POSITION;
-				fixed3 worldPos : TEXCOORD1;
 			};
 
-			sampler2D _MainTex;
-			float4 _MainTex_ST;
-			fixed4 _Color;
 			
 			v2f vert (appdata v)
 			{
 				v2f o;
 				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-				o.worldPos = mul(unity_ObjectToWorld,v.vertex);
 				return o;
 			}
 			
 			fixed4 frag (v2f i) : SV_Target
 			{
-				return _Color;
+				return fixed4(0,0,0,_Alpha);
 			}
 			ENDCG
 		}
@@ -64,7 +60,8 @@ Shader "Unlit/Transparent/Masker"
 			Tags {"LightMode" = "ForwardAdd"}
 
 			ZWrite off
-			Blend SrcAlpha OneMinusSrcAlpha
+			blendop add,min
+			Blend zero one,one one
 
 			CGPROGRAM
 			#pragma multi_compile_fwdadd
@@ -73,6 +70,7 @@ Shader "Unlit/Transparent/Masker"
 			
 			#include "UnityCG.cginc"
 			#include "autoLight.cginc"
+			#include "Lighting.cginc"
 
 			struct appdata
 			{
@@ -89,8 +87,6 @@ Shader "Unlit/Transparent/Masker"
 
 			sampler2D _MainTex;
 			float4 _MainTex_ST;
-			fixed4 _Color;
-			float _Distance;
 			
 			v2f vert (appdata v)
 			{
@@ -103,11 +99,8 @@ Shader "Unlit/Transparent/Masker"
 			
 			fixed4 frag (v2f i) : SV_Target
 			{
-				fixed4 col = tex2D(_MainTex, i.uv);
-				fixed3 worldLightPos = _WorldSpaceLightPos0.xyz;
-				fixed3 Light = worldLightPos - i.worldPos;
-				fixed distance = dot(Light.xy,Light.xy);
-				return fixed4(col.xyz * _Color,smoothstep(0,1,sqrt(distance)/_Distance));
+				UNITY_LIGHT_ATTENUATION(attenuation, i, i.worldPos.xyz);
+				return fixed4(0,0,0,1 - attenuation);
 			}
 			ENDCG
 		} 
