@@ -12,9 +12,7 @@ public class Weather : MonoBehaviour {
 
     public float DayTime,TotalTime;  //昼夜时长
     public Material MaskerMaterial;
-    public float Rain_Odds = 0.2f, Thunder_Odds = 0.1f, RainAndThunder_Odds = 0.1f;   //各种天气的概率
 
-    private GameObject Light_Character = null;
     private Blur Script_Blur;
 
     private void Awake()
@@ -26,7 +24,6 @@ public class Weather : MonoBehaviour {
     {
         //WeatherData.getIntance().getFile();  //初始化
 
-        Light_Character = GameObject.Find("Light_Character");
         Script_Blur = GameObject.Find("BackGroundCamera").GetComponent<Blur>();
 
     }
@@ -163,15 +160,15 @@ public class Weather : MonoBehaviour {
     {
         Random.InitState(Random.Range(1, 100));
         float t = Random.value;
-        if(t < Rain_Odds)
+        if(t < WeatherData.getIntance().Rain_Odds)
         {
             return weather.Rain;
         }
-        if(t < Rain_Odds + Thunder_Odds)
+        if(t < WeatherData.getIntance().Rain_Odds + WeatherData.getIntance().Thunder_Odds)
         {
             return weather.Thunder;
         }
-        if(t < Rain_Odds + Thunder_Odds + RainAndThunder_Odds)
+        if(t < WeatherData.getIntance().Rain_Odds + WeatherData.getIntance().Thunder_Odds + WeatherData.getIntance().RainAndThunder_Odds)
         {
             return weather.RainAndThunder;
         }

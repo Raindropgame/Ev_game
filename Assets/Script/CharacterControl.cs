@@ -53,7 +53,7 @@ public class CharacterControl : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //Init();
+        Init();
         rig = this.GetComponent<Rigidbody2D>();
         XJumpSpeed = Walkspeed + 1;
         YJumpSpeed = JumpSpeed;
@@ -682,8 +682,6 @@ public class CharacterControl : MonoBehaviour
 
     void Init()  //重新读取人物属性
     {
-        Walkspeed = CharacterAttribute.GetInstance().Walkspeed;
-        RunSpeed = CharacterAttribute.GetInstance().RunSpeed;
         JumpTimes = CharacterAttribute.GetInstance().JumpTimes;
         MaxJumpShootTimes = CharacterAttribute.GetInstance().MaxJumpShootTimes;
         isEnable = CharacterAttribute.GetInstance().isEnable;

@@ -62,6 +62,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013077262954}
   - 114: {fileID: 114000011245787474}
+  - 114: {fileID: 114000011967474926}
   m_Layer: 0
   m_Name: characterObject
   m_TagString: Untagged
@@ -467,6 +468,17 @@ MonoBehaviour:
   MaxHitPoint: 4
   currentArrowNum: 0
   currentArrow_2Num: 0
+--- !u!114 &114000011967474926
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011832820280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85370e38761992e4d9f44026f03b73c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000012211434208
 MonoBehaviour:
   m_ObjectHideFlags: 1

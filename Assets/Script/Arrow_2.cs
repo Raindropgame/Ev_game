@@ -6,7 +6,6 @@ public class Arrow_2 : MonoBehaviour {
     public float speed = 20;
 
     private Rigidbody2D rig;
-    private SpriteRenderer SRenderer;
     private BoxCollider2D boxCol;
     private TrailRenderer trailRenderer;
     private float tan;
@@ -15,7 +14,6 @@ public class Arrow_2 : MonoBehaviour {
     {
         tan = Mathf.Tan(transform.localEulerAngles.z * Mathf.Deg2Rad);
         rig = this.GetComponent<Rigidbody2D>();
-        SRenderer = this.GetComponent<SpriteRenderer>();
         boxCol = GetComponent<BoxCollider2D>();
         trailRenderer = GetComponent<TrailRenderer>();
     }

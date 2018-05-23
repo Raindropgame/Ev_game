@@ -8,7 +8,7 @@ public class SceneManager{
     static SceneManager instance;
 
     public string currentScene, nextScene;
-    public int BornPositionNum;
+    public int BornPositionNum = 0;
 
     static public SceneManager getInstance()
     {
@@ -20,10 +20,28 @@ public class SceneManager{
         return instance;
     }
 
+    SceneManager()
+    {
+        Init();
+    }
+
     public void enterNextScene(string _currentScene,string _nextScene,int _BornPositionNum)
     {
         currentScene = _currentScene;
         nextScene = _nextScene;
         BornPositionNum = _BornPositionNum;
+    }
+
+    void Init()  //初始化
+    {
+        //读取存档
+        currentScene = PlayerPrefs.GetString("currentScene", currentScene);
+        BornPositionNum = PlayerPrefs.GetInt("BornPositionNum", BornPositionNum);
+    }
+
+    public void setFile()  //存档
+    {
+        PlayerPrefs.SetString("currentScene", currentScene);
+        PlayerPrefs.SetInt("BornPositionNum", BornPositionNum);
     }
 }
