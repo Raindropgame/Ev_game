@@ -100,7 +100,7 @@
 			fixed4 frag (v2f i) : SV_Target
 			{
 				UNITY_LIGHT_ATTENUATION(attenuation, i, i.worldPos.xyz);
-				return fixed4(0,0,0,1 - attenuation);
+				return fixed4(0,0,0,pow(1 - attenuation,2));
 			}
 			ENDCG
 		} 

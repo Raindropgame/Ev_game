@@ -81,7 +81,7 @@ Material:
       second: 1
     - first:
         name: _Distance
-      second: 10
+      second: 64.03
     - first:
         name: _DstBlend
       second: 0

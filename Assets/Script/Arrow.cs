@@ -10,9 +10,11 @@ public class Arrow : MonoBehaviour
     private SpriteRenderer SRenderer;
     private BoxCollider2D boxCol;
     private TrailRenderer trailRenderer;
+    private ParticleSystem.EmissionModule particle;
 
     private void Awake()
     {
+        particle = GetComponentInChildren<ParticleSystem>().emission;
         rig = this.GetComponent<Rigidbody2D>();
         SRenderer = this.GetComponent<SpriteRenderer>();
         boxCol = GetComponent<BoxCollider2D>();
@@ -26,6 +28,7 @@ public class Arrow : MonoBehaviour
 
         boxCol.enabled = true;
         trailRenderer.enabled = true;
+        particle.enabled = true;
 
         Vector3 characterPosition = CharacterControl.instance.transform.position;
         transform.parent = null; // 防止物体跟随主角
@@ -48,6 +51,6 @@ public class Arrow : MonoBehaviour
         this.transform.parent = collision.transform;
         boxCol.enabled = false;
         trailRenderer.enabled = false;
-
+        particle.enabled = false;
     }
 }

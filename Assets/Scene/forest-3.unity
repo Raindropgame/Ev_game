@@ -4126,6 +4126,76 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 198000013946287880, guid: aef80900b38974145a81dc7459dc6f2f,
+        type: 2}
+      propertyPath: InheritVelocityModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198000013946287880, guid: aef80900b38974145a81dc7459dc6f2f,
+        type: 2}
+      propertyPath: randomSeed
+      value: -83030881
+      objectReference: {fileID: 0}
+    - target: {fileID: 198000013946287880, guid: aef80900b38974145a81dc7459dc6f2f,
+        type: 2}
+      propertyPath: InheritVelocityModule.m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198000013946287880, guid: aef80900b38974145a81dc7459dc6f2f,
+        type: 2}
+      propertyPath: InheritVelocityModule.m_Curve.scalar
+      value: 3.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 198000013946287880, guid: aef80900b38974145a81dc7459dc6f2f,
+        type: 2}
+      propertyPath: ShapeModule.randomDirection
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198000013946287880, guid: aef80900b38974145a81dc7459dc6f2f,
+        type: 2}
+      propertyPath: ShapeModule.boxX
+      value: 216.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 198000013946287880, guid: aef80900b38974145a81dc7459dc6f2f,
+        type: 2}
+      propertyPath: SizeBySpeedModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198000013946287880, guid: aef80900b38974145a81dc7459dc6f2f,
+        type: 2}
+      propertyPath: SizeBySpeedModule.curve.maxCurve.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198000013946287880, guid: aef80900b38974145a81dc7459dc6f2f,
+        type: 2}
+      propertyPath: SizeBySpeedModule.curve.maxCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198000013946287880, guid: aef80900b38974145a81dc7459dc6f2f,
+        type: 2}
+      propertyPath: SizeBySpeedModule.curve.maxCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198000013946287880, guid: aef80900b38974145a81dc7459dc6f2f,
+        type: 2}
+      propertyPath: SizeBySpeedModule.range.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198000013946287880, guid: aef80900b38974145a81dc7459dc6f2f,
+        type: 2}
+      propertyPath: SizeBySpeedModule.separateAxes
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198000013946287880, guid: aef80900b38974145a81dc7459dc6f2f,
+        type: 2}
+      propertyPath: InitialModule.randomizeRotationDirection
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198000013946287880, guid: aef80900b38974145a81dc7459dc6f2f,
+        type: 2}
+      propertyPath: InitialModule.startRotation.scalar
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aef80900b38974145a81dc7459dc6f2f, type: 2}
   m_IsPrefabParent: 0
@@ -26508,6 +26578,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4000012304188956, guid: 96171f232bb36e34e9d7a44ec7e7d6ce,
     type: 2}
   m_PrefabInternal: {fileID: 1197437794}
+--- !u!1 &1199696657 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000011993641026, guid: 3554e088e89fc8b42b1dc48ef90dca51,
+    type: 2}
+  m_PrefabInternal: {fileID: 1479148149}
 --- !u!1001 &1199995778
 Prefab:
   m_ObjectHideFlags: 0
@@ -34541,6 +34616,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010143832900, guid: 3616743aa1391fb4aabfec514450b881,
+        type: 2}
+      propertyPath: shootArrowParticle
+      value: 
+      objectReference: {fileID: 1199696657}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3616743aa1391fb4aabfec514450b881, type: 2}
   m_IsPrefabParent: 0

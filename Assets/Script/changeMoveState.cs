@@ -8,9 +8,11 @@ public class changeMoveState : MonoBehaviour {
 
     public bool isIgnoreInit = true;  //是否忽略初始化时该脚本对相机移动方式的改变
 
+    private bool isCharacterStay = false;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.name == "MainCamera" && (!Scene.instance.isInit || isIgnoreInit == false))
+        if (collision.transform.name == "MainCamera" && (!Scene.instance.isInit || isIgnoreInit == false) && isCharacterStay)
         {
             switch (transform.tag)
             {
@@ -25,6 +27,10 @@ public class changeMoveState : MonoBehaviour {
                     break;
             }
         }
+        if (collision.transform.name == "character" && (!Scene.instance.isInit || isIgnoreInit == false))
+        {
+            isCharacterStay = true;
+        }
     }
 
 
@@ -32,6 +38,7 @@ public class changeMoveState : MonoBehaviour {
     {
         if (collision.transform.name == "character")
         {
+            isCharacterStay = false;
             CameraFollow.instance.changeMoveState(CameraMoveState.both);
         }
     }

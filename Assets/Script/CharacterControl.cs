@@ -87,11 +87,7 @@ public class CharacterControl : MonoBehaviour
                 attack(); // 攻击
                 shoot(); //射击
 
-                if(Input.GetKeyDown(KeyCode.C) && isEnable[(int)state.dash] && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_dash)
-                {
-                    CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_dash;
-                    currentState = state.dash;  //冲刺
-                }
+                dash(); //冲刺
 
                 if(OnGround() == false)
                 {
@@ -113,11 +109,7 @@ public class CharacterControl : MonoBehaviour
                     XJumpSpeed = Walkspeed + 1;
                 }
 
-                if (Input.GetKeyDown(KeyCode.C) && isEnable[(int)state.dash] && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_dash)
-                {
-                    CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_dash;
-                    currentState = state.dash;  //冲刺
-                }
+                dash(); //冲刺
 
                 attack(); // 攻击
                 shoot(); //射击
@@ -155,11 +147,7 @@ public class CharacterControl : MonoBehaviour
                 attack(); // 攻击
                 shoot(); //射击
 
-                if (Input.GetKeyDown(KeyCode.C) && isEnable[(int)state.dash] && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_dash)
-                {
-                    CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_dash;
-                    currentState = state.dash;  //冲刺
-                }
+                dash(); //冲刺
 
                 if (Input.GetKeyDown(KeyCode.Space) && isEnable[(int)state.jump])
                 {
@@ -176,12 +164,14 @@ public class CharacterControl : MonoBehaviour
                 break;
             case state.jump:
                 currentState = state.fall;    //下落
-                if(Input.GetKey(KeyCode.Space) && JumpAccelerateTime < MaxJumpTime * 0.8f && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_jump * Time.deltaTime)
+                if(Input.GetKey(KeyCode.Space) && JumpAccelerateTime < MaxJumpTime && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_jump * Time.deltaTime)
                 {
                     CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_jump * Time.deltaTime;  //气息消耗
                     JumpAccelerateTime += Time.deltaTime;
-                    YJumpSpeed = YJumpSpeed - Yacceleration * Time.deltaTime;
-                    if(YJumpSpeed < 0)
+                    //YJumpSpeed = YJumpSpeed - Mathf.Pow(Yacceleration * Time.deltaTime,3);
+                    YJumpSpeed = (-JumpSpeed / Mathf.Pow(MaxJumpTime,2)) * Mathf.Pow(JumpAccelerateTime,2 )+ JumpSpeed;
+                    
+                    if (YJumpSpeed < 0)
                     {
                         YJumpSpeed = 0;
                     }
@@ -197,10 +187,8 @@ public class CharacterControl : MonoBehaviour
                 }
                 shoot(); //射击
 
-                if (Input.GetKeyDown(KeyCode.C) && dashTimes == 0 && isEnable[(int)state.dash] && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_dash)
+                if(dash())  //冲刺
                 {
-                    CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_dash;
-                    currentState = state.dash;  //冲刺
                     dashTimes = 1;
                 }
 
@@ -340,7 +328,7 @@ public class CharacterControl : MonoBehaviour
                 }
                 rig.velocity = new Vector2(rig.velocity.x, -YJumpSpeed);
 
-                if (Input.GetKeyDown(KeyCode.X) && isEnable[(int)state.attack1] && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_attack)
+                if (Input.GetKeyDown(KeyCode.X) && isEnable[(int)state.attack1] && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_attack)  //攻击
                 {
                     CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_attack;
                     currentState = state.attack1;  //攻击
@@ -358,10 +346,8 @@ public class CharacterControl : MonoBehaviour
 
                 shoot(); //射击
 
-                if (Input.GetKeyDown(KeyCode.C) && dashTimes == 0 && isEnable[(int)state.dash] && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_dash)
+                if (dash())  //冲刺
                 {
-                    CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_dash;
-                    currentState = state.dash;  //冲刺
                     dashTimes = 1;
                 }
 
@@ -621,8 +607,8 @@ public class CharacterControl : MonoBehaviour
             {
                 if (JumpShootTimes < MaxJumpShootTimes && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_jumpshoot)
                 {
-                    CharacterObjectManager.instance.arrow_2();
                     currentState = state.jumpshoot;
+                    CharacterObjectManager.instance.arrow_2();
                     YJumpSpeed = 0;
                     rig.velocity = new Vector2(0, 0);  //停滞在空中
                     JumpShootTimes++;
@@ -638,6 +624,18 @@ public class CharacterControl : MonoBehaviour
                     Invoke("arrow", 0.2f);
                 }
             }
+            return true;
+        }
+        return false;
+    }
+
+    bool dash()
+    {
+        if (Input.GetKeyDown(KeyCode.C) && isEnable[(int)state.dash] && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_dash)
+        {
+            currentState = state.dash;  //冲刺
+            CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_dash;
+            CharacterObjectManager.instance.dash();
             return true;
         }
         return false;

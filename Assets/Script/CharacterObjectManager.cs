@@ -8,18 +8,24 @@ public class CharacterObjectManager : MonoBehaviour
     public GameObject _arrow,_arrow_2,hitPoint;
     public int MaxArrowNum = 20, MaxArrow_2Num = 20 , MaxHitPoint = 4;
     public int currentArrowNum, currentArrow_2Num;
+    public GameObject shootArrowParticleObject;  //射击粒子特效
+    public GameObject dashParticleObject;  //冲刺粒子特效
 
     private GameObject character;
     private GameObject _attack1_left, _attack1_right, _attack2_left, _attack2_right;
     private GameObject pool_arrow; //对象池
     private ArrayList arrowList, arrow_2List , HitPointList = new ArrayList();
     private Vector3 arrow2_rotation;
+    private float shootArrowParticleLifeTime;  //射击粒子特效生命周期
+    private ParticleSystem.EmissionModule dashParticle;  //冲刺粒子系统
 
 
     private void Start()
     {
         instance = this;
         character = GameObject.Find("character");
+        shootArrowParticleLifeTime = shootArrowParticleObject.GetComponent<ParticleSystem>().startLifetime;
+        dashParticle = dashParticleObject.GetComponent<ParticleSystem>().emission;
 
         _attack1_left = GameObject.Find("attack1_left");
         _attack1_right = GameObject.Find("attack1_right");
@@ -103,12 +109,19 @@ public class CharacterObjectManager : MonoBehaviour
 
     public void arrow()
     {
+        StartCoroutine(enableShootParticle());
         getArrow().SetActive(true);
     }
 
     public void arrow_2()
     {
+        StartCoroutine(enableShootParticle());
         getArrow_2().SetActive(true);
+    }
+
+    public void dash()  //冲刺
+    {
+        StartCoroutine(enableDashParticle());
     }
 
     //对象池操作----------
@@ -217,4 +230,21 @@ public class CharacterObjectManager : MonoBehaviour
     }
 
     //----------------------------
+
+    IEnumerator enableShootParticle()  //激活射击粒子特效并自动关闭
+    {
+        shootArrowParticleObject.transform.localScale = CharacterControl.instance.Dir == dir.left ? new Vector3(1, 1, -1) : new Vector3(1, 1, 1);  //改变方向
+        shootArrowParticleObject.transform.localEulerAngles = new Vector3(CharacterControl.instance.currentState == state.jumpshoot ? (CharacterControl.instance.Dir == dir.left ?45:-40) : 0, -90, 90);  //根据跳射改变旋转角度
+        shootArrowParticleObject.SetActive(true);
+        yield return new WaitForSeconds(shootArrowParticleLifeTime);
+        shootArrowParticleObject.SetActive(false);
+    }
+
+    IEnumerator enableDashParticle()   //激活冲刺粒子特效并自动关闭
+    {
+        dashParticleObject.transform.localScale = new Vector3(dashParticleObject.transform.localScale.x, CharacterControl.instance.Dir == dir.left ? 1 : -1, dashParticleObject.transform.localScale.z);  //改变方向
+        dashParticle.enabled = true;
+        yield return new WaitForSeconds(CharacterControl.instance.DashTime);
+        dashParticle.enabled = false;
+    }
 }
