@@ -12,6 +12,7 @@ TagManager:
   - map_background
   - light
   - maps
+  - lighting
   layers:
   - Default
   - TransparentFX

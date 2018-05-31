@@ -36,7 +36,7 @@ public class grassSway : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.transform.name == "character")
+        if(collision.transform.name == "character" || collision.transform.tag != "maps")
         {
             if(collision.transform.position.x < transform.position.x)
             {

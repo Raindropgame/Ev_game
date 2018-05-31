@@ -26,7 +26,7 @@ GameObject:
   - 114: {fileID: 114000013987648022}
   m_Layer: 0
   m_Name: arrow_2
-  m_TagString: Untagged
+  m_TagString: arms_player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
