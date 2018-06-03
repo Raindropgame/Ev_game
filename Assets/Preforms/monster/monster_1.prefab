@@ -28,6 +28,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &1000011718833576
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000010479133764}
+  m_Layer: 0
+  m_Name: rightPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000012812903602
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,11 +90,24 @@ GameObject:
   - 114: {fileID: 114000011963450694}
   m_Layer: 0
   m_Name: monster_1
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4000010479133764
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011718833576}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.38, y: 0.99, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000011343841704}
+  m_RootOrder: 1
 --- !u!4 &4000010495733404
 Transform:
   m_ObjectHideFlags: 1
@@ -99,12 +127,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014007267116}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -358.4, y: -14.34, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -162.42722, y: -15.573875, z: 0}
   m_LocalScale: {x: 0.619945, y: 0.619945, z: 0.619945}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000013259164610}
+  - {fileID: 4000010479133764}
   - {fileID: 4000011956579164}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -121,7 +150,7 @@ Transform:
   m_Children:
   - {fileID: 4000010495733404}
   m_Father: {fileID: 4000011343841704}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!4 &4000013259164610
 Transform:
   m_ObjectHideFlags: 1
@@ -196,6 +225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 2
   leftPoint: {fileID: 4000013259164610}
+  rightPoint: {fileID: 4000010479133764}
   currentState: 0
   Dir: 0
   deadParticle: {fileID: 1000011190052260}
@@ -887,7 +917,7 @@ ParticleSystem:
           rgba: 4294967295
         key1:
           serializedVersion: 2
-          rgba: 16777215
+          rgba: 4294967295
         key2:
           serializedVersion: 2
           rgba: 0
@@ -914,16 +944,16 @@ ParticleSystem:
         ctime5: 0
         ctime6: 0
         ctime7: 0
-        atime0: 51657
-        atime1: 65535
-        atime2: 0
+        atime0: 0
+        atime1: 44140
+        atime2: 65535
         atime3: 0
         atime4: 0
         atime5: 0
         atime6: 0
         atime7: 0
         m_NumColorKeys: 2
-        m_NumAlphaKeys: 2
+        m_NumAlphaKeys: 3
       minGradient:
         key0:
           serializedVersion: 2

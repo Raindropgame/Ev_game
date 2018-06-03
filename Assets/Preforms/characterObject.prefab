@@ -532,6 +532,7 @@ MonoBehaviour:
   currentArrow_2Num: 0
   shootArrowParticleObject: {fileID: 1000011993641026}
   dashParticleObject: {fileID: 1000010900197140}
+  arrow_end: {fileID: 1000014045738482, guid: 28638fccd14a56b4bb449d703872124e, type: 2}
 --- !u!114 &114000011967474926
 MonoBehaviour:
   m_ObjectHideFlags: 1

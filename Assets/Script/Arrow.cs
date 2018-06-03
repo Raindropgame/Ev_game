@@ -37,11 +37,16 @@ public class Arrow : MonoBehaviour
 
     }
 
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.tag == "maps")
         {
-            setFalse(collision);
+            Invoke("TriggerWithEnemy", 0.03f);
+        }
+        if(collision.transform.tag == "enemy")
+        {
+            Invoke("TriggerWithEnemy",0.03f);
         }
     }
 
@@ -53,4 +58,12 @@ public class Arrow : MonoBehaviour
         trailRenderer.enabled = false;
         particle.enabled = false;
     }
+
+    void TriggerWithEnemy()
+    {
+        CharacterObjectManager.instance.recoveryArrow(this.gameObject);
+        Instantiate(CharacterObjectManager.instance.arrow_end, position: transform.position, rotation: new Quaternion(0, 0, 0, 0));
+        this.gameObject.SetActive(false);
+    }
+
 }

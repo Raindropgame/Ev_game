@@ -35,7 +35,11 @@ public class Arrow_2 : MonoBehaviour {
     {
         if (collision.transform.tag == "maps")
         {
-            setFalse(collision);
+            Invoke("TriggerWithEnemy", 0.03f);
+        }
+        if(collision.transform.tag == "enemy")
+        {
+            Invoke("TriggerWithEnemy", 0.03f);
         }
     }
 
@@ -47,5 +51,12 @@ public class Arrow_2 : MonoBehaviour {
         trailRenderer.enabled = false;
         particle.enabled = false;
 
+    }
+
+    void TriggerWithEnemy()  //碰到敌人
+    {
+        CharacterObjectManager.instance.recoveryArrow(this.gameObject);
+        Instantiate(CharacterObjectManager.instance.arrow_end, position: transform.position, rotation: new Quaternion(0, 0, 0, 0));
+        this.gameObject.SetActive(false);
     }
 }

@@ -14,7 +14,7 @@ public class monster_1 : MonoBehaviour {
     }
 
     public float walkSpeed;
-    public Transform leftPoint;
+    public Transform leftPoint,rightPoint;
     [HideInInspector]
     public monster_1_state currentState = monster_1_state.walk;
     [HideInInspector]
@@ -54,7 +54,7 @@ public class monster_1 : MonoBehaviour {
                 break;
             case monster_1_state.walk:
 
-                if( ((Vector2)(transform.position - CharacterControl.instance.transform.position)).sqrMagnitude < Mathf.Pow(5,2) && !isNearEdge())
+                if( isSeePlayer() )  //感知到玩家
                 {
                     rig.velocity = new Vector2(CharacterControl.instance.transform.position.x - transform.position.x > 0 ? walkSpeed : -walkSpeed, rig.velocity.y);  //添加速度
                     Dir = CharacterControl.instance.transform.position.x - transform.position.x > 0 ? dir.right : dir.left;
@@ -103,6 +103,20 @@ public class monster_1 : MonoBehaviour {
         return false;
     }
 
+    bool isSeePlayer()  //是否看到了主角
+    {
+        LayerMask layerMask = 1 << 9;
+        RaycastHit2D HitPoint = Physics2D.Raycast(rightPoint.position, Dir == dir.right ? Vector2.left : Vector2.right, 7f);
+        if (HitPoint.transform != null)
+        {
+            if (HitPoint.transform.tag == "Player")
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if(collision.tag == "arms_player" || collision.tag == "lighting")  
@@ -117,7 +131,7 @@ public class monster_1 : MonoBehaviour {
         deadParticle.SetActive(true);
         GetComponent<SpriteRenderer>().enabled = false;
         Time.timeScale = 0;
-        yield return new WaitForSecondsRealtime(0.07f);  //卡屏
+        yield return new WaitForSecondsRealtime(0.09f);  //卡屏
         Time.timeScale = 1;
         yield return new WaitForSeconds(deadParticle.GetComponent<ParticleSystem>().startLifetime);
         Destroy(this.gameObject);

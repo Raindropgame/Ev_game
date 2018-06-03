@@ -10,6 +10,7 @@ public class CharacterObjectManager : MonoBehaviour
     public int currentArrowNum, currentArrow_2Num;
     public GameObject shootArrowParticleObject;  //射击粒子特效
     public GameObject dashParticleObject;  //冲刺粒子特效
+    public GameObject arrow_end;  //箭的击中特效
 
     private GameObject character;
     private GameObject _attack1_left, _attack1_right, _attack2_left, _attack2_right;
