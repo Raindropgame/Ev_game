@@ -631,8 +631,9 @@ public class CharacterControl : MonoBehaviour
 
     bool dash()
     {
-        if (Input.GetKeyDown(KeyCode.C) && isEnable[(int)state.dash] && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_dash)
+        if (Input.GetKeyDown(KeyCode.C) && isEnable[(int)state.dash] && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_dash && dashTimes < 1)
         {
+            dashTimes++;
             currentState = state.dash;  //冲刺
             CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_dash;
             CharacterObjectManager.instance.dash();

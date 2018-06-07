@@ -17,6 +17,7 @@ public class CameraFollow : MonoBehaviour {
     private Vector3 currentV = Vector3.zero;
     [HideInInspector]
     public CameraMoveState moveState = CameraMoveState.both;
+    private Vector3 currentPosition;
 
 
     private void Awake()
@@ -88,10 +89,43 @@ public class CameraFollow : MonoBehaviour {
         }
         targetPosition = character.transform.position;
         targetPosition.z = this.transform.position.z;
+
+        currentPosition = transform.position;
     }
 
     public void changeMoveState(CameraMoveState t)
     {
         moveState = t;
+    }
+
+    public IEnumerator shakeCamera(float shakeScale,float singleTime, float shakeTime)  //镜头震动效果
+    {
+        float _time0 = 0,_time1 = 0;
+        Vector3 offset = Random.insideUnitCircle * shakeScale;
+        while(true)
+        {
+            _time0 += Time.deltaTime;
+            _time1 += Time.deltaTime;
+            if(_time1 < singleTime / 2)
+            {
+                transform.position = currentPosition + offset * Mathf.Lerp(0, 1, _time1 / singleTime / 2);
+            }
+            if(_time1 > singleTime / 2 && _time1 < singleTime)
+            {
+                transform.position = currentPosition + offset * Mathf.Lerp(1, 0, (_time1 - singleTime / 2) / singleTime / 2);
+            }
+            if(_time1 > singleTime)
+            {
+                _time1 = 0;
+                offset = Random.insideUnitCircle * shakeScale;
+            }
+
+            if(_time0 > shakeTime)
+            {
+                break;
+            }
+            yield return null;
+        }
+        transform.position = currentPosition;
     }
 }

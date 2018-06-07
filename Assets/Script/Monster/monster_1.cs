@@ -105,7 +105,6 @@ public class monster_1 : MonoBehaviour {
 
     bool isSeePlayer()  //是否看到了主角
     {
-        LayerMask layerMask = 1 << 9;
         RaycastHit2D HitPoint = Physics2D.Raycast(rightPoint.position, Dir == dir.right ? Vector2.left : Vector2.right, 7f);
         if (HitPoint.transform != null)
         {
@@ -131,6 +130,7 @@ public class monster_1 : MonoBehaviour {
         deadParticle.SetActive(true);
         GetComponent<SpriteRenderer>().enabled = false;
         Time.timeScale = 0;
+        StartCoroutine(CameraFollow.instance.shakeCamera(0.25f, 0.04f, 0.2f));  //镜头抖动
         yield return new WaitForSecondsRealtime(0.09f);  //卡屏
         Time.timeScale = 1;
         yield return new WaitForSeconds(deadParticle.GetComponent<ParticleSystem>().startLifetime);
