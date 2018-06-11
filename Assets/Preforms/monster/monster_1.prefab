@@ -129,7 +129,7 @@ Transform:
   m_GameObject: {fileID: 1000014007267116}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -162.42722, y: -15.573875, z: 0}
-  m_LocalScale: {x: 0.619945, y: 0.619945, z: 0.619945}
+  m_LocalScale: {x: 0.61995, y: 0.61995, z: 0.61995}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000013259164610}
@@ -223,6 +223,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d660b50f44a2ab947abd0f3612212c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hurtColor: {r: 1, g: 1, b: 1, a: 0}
+  MaxHP: 2
+  currentHP: 0
   walkSpeed: 2
   leftPoint: {fileID: 4000013259164610}
   rightPoint: {fileID: 4000010479133764}
@@ -3718,7 +3721,7 @@ SpriteRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0a6b9630b3560f445869d08f4c414873, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}

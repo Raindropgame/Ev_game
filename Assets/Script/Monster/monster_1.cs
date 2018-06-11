@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class monster_1 : MonoBehaviour {
+public class monster_1 : Monster_base {
 
     //来回徘徊
     //不攻击玩家，无伤害，可被玩家攻击
-    //在一定范围内会向玩家移动
+    //在一定范围内会向玩家移动   
 
 	public enum monster_1_state
     {
@@ -20,16 +20,17 @@ public class monster_1 : MonoBehaviour {
     [HideInInspector]
     public dir Dir = dir.right;
     public GameObject deadParticle;
+    [Header("受伤的颜色")]
+    [HideInInspector]
 
     private Rigidbody2D rig;
     private Animator animator;
-    private int HP = 2;
 
-    private void Start()
+    override public void onStart()
     {
         rig = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-
+        SR = GetComponent<SpriteRenderer>();
     }
 
     private void FixedUpdate()
@@ -116,25 +117,30 @@ public class monster_1 : MonoBehaviour {
         return false;
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if(collision.tag == "arms_player" || collision.tag == "lighting")  
-        {
-            this.GetComponent<BoxCollider2D>().enabled = false;
-            StartCoroutine(die());
-        }
-    }
-
     IEnumerator die()  //死亡
     {
+        this.GetComponent<BoxCollider2D>().enabled = false;
         deadParticle.SetActive(true);
         GetComponent<SpriteRenderer>().enabled = false;
         Time.timeScale = 0;
         StartCoroutine(CameraFollow.instance.shakeCamera(0.25f, 0.04f, 0.2f));  //镜头抖动
-        yield return new WaitForSecondsRealtime(0.09f);  //卡屏
+        yield return new WaitForSecondsRealtime(0.1f);  //卡屏
         Time.timeScale = 1;
         yield return new WaitForSeconds(deadParticle.GetComponent<ParticleSystem>().startLifetime);
         Destroy(this.gameObject);
     }
+
+
+    override public void _getHurt(int damage,Attribute attibute)
+    {
+        currentHP -= damage;
+        if (currentHP <= 0)  //是否死亡
+        {
+            StartCoroutine(die());
+            return;
+        }
+        StartCoroutine(beHurt());
+    }
+
 
 }

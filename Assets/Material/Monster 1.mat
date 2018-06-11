@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Masker_base
-  m_Shader: {fileID: 4800000, guid: fbef04fe9c689a345b3ccc3ed1dedbd7, type: 3}
+  m_Name: Monster 1
+  m_Shader: {fileID: 4800000, guid: 05010ebedad9c494fb78bcca80818037, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -48,7 +48,7 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: a3851da46f8b21a4c87bdfa582caf0b8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -71,8 +71,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - first:
-        name: _Alpha
-      second: 0.14302479
+        name: PixelSnap
+      second: 0
     - first:
         name: _BumpScale
       second: 1
@@ -82,9 +82,6 @@ Material:
     - first:
         name: _DetailNormalMapScale
       second: 1
-    - first:
-        name: _Distance
-      second: 51.67
     - first:
         name: _DstBlend
       second: 0
@@ -124,6 +121,9 @@ Material:
     - first:
         name: _ZWrite
       second: 1
+    - first:
+        name: _isHit
+      second: 0
     m_Colors:
     - first:
         name: _Color
@@ -131,3 +131,6 @@ Material:
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _hitColor
+      second: {r: 1, g: 1, b: 1, a: 1}

@@ -27,6 +27,7 @@ public class CameraFollow : MonoBehaviour {
         charaRig = character.GetComponent<Rigidbody2D>();
         targetPosition = character.transform.position;
         targetPosition.z = this.transform.position.z;
+        currentPosition = transform.position;
     }
 
     private void Update()
@@ -100,32 +101,34 @@ public class CameraFollow : MonoBehaviour {
 
     public IEnumerator shakeCamera(float shakeScale,float singleTime, float shakeTime)  //镜头震动效果
     {
-        float _time0 = 0,_time1 = 0;
-        Vector3 offset = Random.insideUnitCircle * shakeScale;
-        while(true)
+        if (!Scene.instance.isInit)  //初始阶段不能抖动
         {
-            _time0 += Time.deltaTime;
-            _time1 += Time.deltaTime;
-            if(_time1 < singleTime / 2)
+            float _time0 = 0, _time1 = 0;
+            Vector3 offset = Random.insideUnitCircle * shakeScale;
+            while (true)
             {
-                transform.position = currentPosition + offset * Mathf.Lerp(0, 1, _time1 / singleTime / 2);
-            }
-            if(_time1 > singleTime / 2 && _time1 < singleTime)
-            {
-                transform.position = currentPosition + offset * Mathf.Lerp(1, 0, (_time1 - singleTime / 2) / singleTime / 2);
-            }
-            if(_time1 > singleTime)
-            {
-                _time1 = 0;
-                offset = Random.insideUnitCircle * shakeScale;
-            }
+                _time0 += Time.deltaTime;
+                _time1 += Time.deltaTime;
+                if (_time1 < singleTime / 2)
+                {
+                    transform.position = currentPosition + offset * Mathf.Lerp(0, 1, _time1 / singleTime / 2);
+                }
+                if (_time1 > singleTime / 2 && _time1 < singleTime)
+                {
+                    transform.position = currentPosition + offset * Mathf.Lerp(1, 0, (_time1 - singleTime / 2) / singleTime / 2);
+                }
+                if (_time1 > singleTime)
+                {
+                    _time1 = 0;
+                    offset = Random.insideUnitCircle * shakeScale;
+                }
 
-            if(_time0 > shakeTime)
-            {
-                break;
+                if (_time0 > shakeTime)
+                {
+                    break;
+                }
+                yield return null;
             }
-            yield return null;
         }
-        transform.position = currentPosition;
     }
 }

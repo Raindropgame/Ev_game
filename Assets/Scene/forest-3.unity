@@ -4376,76 +4376,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 198000013946287880, guid: aef80900b38974145a81dc7459dc6f2f,
-        type: 2}
-      propertyPath: InheritVelocityModule.enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198000013946287880, guid: aef80900b38974145a81dc7459dc6f2f,
-        type: 2}
-      propertyPath: randomSeed
-      value: -83030881
-      objectReference: {fileID: 0}
-    - target: {fileID: 198000013946287880, guid: aef80900b38974145a81dc7459dc6f2f,
-        type: 2}
-      propertyPath: InheritVelocityModule.m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198000013946287880, guid: aef80900b38974145a81dc7459dc6f2f,
-        type: 2}
-      propertyPath: InheritVelocityModule.m_Curve.scalar
-      value: 3.82
-      objectReference: {fileID: 0}
-    - target: {fileID: 198000013946287880, guid: aef80900b38974145a81dc7459dc6f2f,
-        type: 2}
-      propertyPath: ShapeModule.randomDirection
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198000013946287880, guid: aef80900b38974145a81dc7459dc6f2f,
-        type: 2}
-      propertyPath: ShapeModule.boxX
-      value: 216.42
-      objectReference: {fileID: 0}
-    - target: {fileID: 198000013946287880, guid: aef80900b38974145a81dc7459dc6f2f,
-        type: 2}
-      propertyPath: SizeBySpeedModule.enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198000013946287880, guid: aef80900b38974145a81dc7459dc6f2f,
-        type: 2}
-      propertyPath: SizeBySpeedModule.curve.maxCurve.m_Curve.Array.data[0].time
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198000013946287880, guid: aef80900b38974145a81dc7459dc6f2f,
-        type: 2}
-      propertyPath: SizeBySpeedModule.curve.maxCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198000013946287880, guid: aef80900b38974145a81dc7459dc6f2f,
-        type: 2}
-      propertyPath: SizeBySpeedModule.curve.maxCurve.m_RotationOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198000013946287880, guid: aef80900b38974145a81dc7459dc6f2f,
-        type: 2}
-      propertyPath: SizeBySpeedModule.range.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198000013946287880, guid: aef80900b38974145a81dc7459dc6f2f,
-        type: 2}
-      propertyPath: SizeBySpeedModule.separateAxes
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198000013946287880, guid: aef80900b38974145a81dc7459dc6f2f,
-        type: 2}
-      propertyPath: InitialModule.randomizeRotationDirection
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198000013946287880, guid: aef80900b38974145a81dc7459dc6f2f,
-        type: 2}
-      propertyPath: InitialModule.startRotation.scalar
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aef80900b38974145a81dc7459dc6f2f, type: 2}
   m_IsPrefabParent: 0
@@ -6767,22 +6697,22 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 198000011293187770, guid: 532fe47722d8d7f47a0b7ccec05ef341,
+    - target: {fileID: 198000010201055544, guid: 532fe47722d8d7f47a0b7ccec05ef341,
         type: 2}
       propertyPath: CollisionModule.plane0
       value: 
       objectReference: {fileID: 1274391038}
-    - target: {fileID: 198000011293187770, guid: 532fe47722d8d7f47a0b7ccec05ef341,
+    - target: {fileID: 198000010201055544, guid: 532fe47722d8d7f47a0b7ccec05ef341,
         type: 2}
       propertyPath: TriggerModule.collisionShape0
       value: 
       objectReference: {fileID: 1274391038}
-    - target: {fileID: 198000010201055544, guid: 532fe47722d8d7f47a0b7ccec05ef341,
+    - target: {fileID: 198000011293187770, guid: 532fe47722d8d7f47a0b7ccec05ef341,
         type: 2}
       propertyPath: CollisionModule.plane0
       value: 
       objectReference: {fileID: 1274391038}
-    - target: {fileID: 198000010201055544, guid: 532fe47722d8d7f47a0b7ccec05ef341,
+    - target: {fileID: 198000011293187770, guid: 532fe47722d8d7f47a0b7ccec05ef341,
         type: 2}
       propertyPath: TriggerModule.collisionShape0
       value: 
@@ -6860,7 +6790,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000011291151528, guid: 81d1b3131e43b3a4eb5cdd15c849878f, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -185.57
+      value: -188.18
       objectReference: {fileID: 0}
     - target: {fileID: 4000011291151528, guid: 81d1b3131e43b3a4eb5cdd15c849878f, type: 2}
       propertyPath: m_LocalPosition.y
@@ -29543,11 +29473,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000011343841704, guid: 532fe47722d8d7f47a0b7ccec05ef341, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -188.80722
+      value: -188.84
       objectReference: {fileID: 0}
     - target: {fileID: 4000011343841704, guid: 532fe47722d8d7f47a0b7ccec05ef341, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 33.484123
+      value: 33.64
       objectReference: {fileID: 0}
     - target: {fileID: 4000011343841704, guid: 532fe47722d8d7f47a0b7ccec05ef341, type: 2}
       propertyPath: m_LocalPosition.z
@@ -31943,18 +31873,6 @@ Prefab:
       propertyPath: TriggerModule.collisionShape0
       value: 
       objectReference: {fileID: 1274391038}
-    - target: {fileID: 4000011343841704, guid: 532fe47722d8d7f47a0b7ccec05ef341, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.61995
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011343841704, guid: 532fe47722d8d7f47a0b7ccec05ef341, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.61995
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011343841704, guid: 532fe47722d8d7f47a0b7ccec05ef341, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.61995
-      objectReference: {fileID: 0}
     - target: {fileID: 1000014007267116, guid: 532fe47722d8d7f47a0b7ccec05ef341, type: 2}
       propertyPath: m_Name
       value: monster_1 (2)

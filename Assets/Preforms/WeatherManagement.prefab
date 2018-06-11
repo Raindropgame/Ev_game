@@ -146,9 +146,6 @@ MonoBehaviour:
   DayTime: 60
   TotalTime: 100
   MaskerMaterial: {fileID: 2100000, guid: 7e690b624b9715e48a0cf5bf875bbcf6, type: 2}
-  Rain_Odds: 0.1
-  Thunder_Odds: 0.1
-  RainAndThunder_Odds: 0.05
   Day_Color: {r: 1, g: 1, b: 1, a: 1}
   Night_Color: {r: 0.25, g: 0.25, b: 0.25, a: 0.434}
 --- !u!198 &198000013946287880
@@ -588,7 +585,7 @@ ParticleSystem:
     radius: 1
     angle: 80.89776
     length: 5
-    boxX: 217.31506
+    boxX: 216.42
     boxY: 0
     boxZ: 0
     arc: 360
@@ -1151,9 +1148,9 @@ ParticleSystem:
     inWorldSpace: 1
   InheritVelocityModule:
     enabled: 0
-    m_Mode: 0
+    m_Mode: 1
     m_Curve:
-      scalar: 0
+      scalar: 3.82
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1463,7 +1460,7 @@ ParticleSystem:
           tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       minCurve:
         serializedVersion: 2
         m_Curve:

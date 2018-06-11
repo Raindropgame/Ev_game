@@ -4,10 +4,14 @@ using System.Collections;
 public class CharacterObjectManager : MonoBehaviour
 {
 
+    //委托----
+    public delegate void sendHurtEventHandler(int damage, Attribute attribute, int gameobjectID);
+    public static event sendHurtEventHandler _sendHurt;
+    //-------
+
     public static CharacterObjectManager instance;
     public GameObject _arrow,_arrow_2,hitPoint;
     public int MaxArrowNum = 20, MaxArrow_2Num = 20 , MaxHitPoint = 4;
-    public int currentArrowNum, currentArrow_2Num;
     public GameObject shootArrowParticleObject;  //射击粒子特效
     public GameObject dashParticleObject;  //冲刺粒子特效
     public GameObject arrow_end;  //箭的击中特效
@@ -16,7 +20,6 @@ public class CharacterObjectManager : MonoBehaviour
     private GameObject _attack1_left, _attack1_right, _attack2_left, _attack2_right;
     private GameObject pool_arrow; //对象池
     private ArrayList arrowList, arrow_2List , HitPointList = new ArrayList();
-    private Vector3 arrow2_rotation;
     private float shootArrowParticleLifeTime;  //射击粒子特效生命周期
     private ParticleSystem.EmissionModule dashParticle;  //冲刺粒子系统
 
@@ -38,9 +41,6 @@ public class CharacterObjectManager : MonoBehaviour
         _attack2_right.SetActive(false);
 
         pool_arrow = GameObject.Find("Pool_arrow");
-
-        currentArrowNum = MaxArrowNum;  //初始化当前箭的数目
-        currentArrow_2Num = MaxArrow_2Num;
 
         arrowList = new ArrayList();
         arrow_2List = new ArrayList();
@@ -64,7 +64,6 @@ public class CharacterObjectManager : MonoBehaviour
             HitPointList.Add(t_gameobject); 
         }
 
-        arrow2_rotation = new Vector3(0, 0, 900 - 2 * _arrow_2.transform.eulerAngles.z);  //计算方向为左需要旋转的度数
     }
 
     private void FixedUpdate()
@@ -72,7 +71,7 @@ public class CharacterObjectManager : MonoBehaviour
         this.transform.position = character.transform.position;   //跟随主角
     }
 
-    public void attack1(dir Dir)  //播放刀影动画
+    public void attack1(dir Dir)  //刀影
     {
         if (Dir == dir.left)
         {
@@ -130,17 +129,14 @@ public class CharacterObjectManager : MonoBehaviour
     public GameObject getArrow()  //从池中获取箭
     {
         GameObject t_object;
-        if (currentArrowNum > 0)
+        if (arrowList.Count > 0)
         {
             t_object = arrowList[0] as GameObject;
             arrowList.Remove(t_object);
-            currentArrowNum--;
         }
         else
         {
             t_object = Instantiate(_arrow, pool_arrow.transform) as GameObject;
-            t_object.transform.parent = pool_arrow.transform;  //设置父物体
-            arrowList.Add(t_object);
             t_object.SetActive(false);
         }
         return t_object;
@@ -149,24 +145,18 @@ public class CharacterObjectManager : MonoBehaviour
     public GameObject getArrow_2()  //从池中获取箭2
     {
         GameObject t_object;
-        if (currentArrow_2Num > 0)
+        if (arrow_2List.Count > 0)
         {
             t_object = arrow_2List[0] as GameObject;
             arrow_2List.Remove(t_object);
-            currentArrow_2Num--;
         }
         else
         {
             t_object = Instantiate(_arrow_2, pool_arrow.transform) as GameObject;
-            t_object.transform.parent = pool_arrow.transform;  //设置父物体
-            arrow_2List.Add(t_object);
             t_object.SetActive(false);
         }
         t_object.transform.position = this.transform.position + (CharacterControl.instance.Dir == dir.left ? new Vector3(-0.84f, 0.81f,-9) : new Vector3(0.94f, 0.88f,-9));  //初始化位置   改变z轴，使其在最前面
-        if(CharacterControl.instance.Dir == dir.left)
-        {
-            t_object.transform.Rotate(arrow2_rotation);  //人物方向为左，需要旋转图片
-        }
+        t_object.transform.rotation = Quaternion.Euler(0,0,CharacterControl.instance.Dir == dir.left?-142:-37);
         return t_object;
     }
 
@@ -187,9 +177,8 @@ public class CharacterObjectManager : MonoBehaviour
 
     public void recoveryArrow(GameObject go)  //回收箭
     {
-        if (currentArrowNum >= MaxArrowNum)
+        if (arrowList.Count >= MaxArrowNum)
         {
-            arrowList.Remove(go);
             Destroy(go);
         }
         else
@@ -197,15 +186,13 @@ public class CharacterObjectManager : MonoBehaviour
             go.transform.parent = pool_arrow.transform;
             arrowList.Add(go);
             go.SetActive(false);
-            currentArrowNum++;
         }
     }
 
     public void recoveryArrow_2(GameObject go)  //回收箭2
     {
-        if (currentArrow_2Num >= MaxArrow_2Num)
+        if (arrow_2List.Count >= MaxArrow_2Num)
         {
-            arrow_2List.Remove(go);
             Destroy(go);
         }
         else
@@ -213,7 +200,6 @@ public class CharacterObjectManager : MonoBehaviour
             go.transform.parent = pool_arrow.transform;
             arrow_2List.Add(go);
             go.SetActive(false);
-            currentArrow_2Num++;
         }
     }
 
@@ -247,5 +233,13 @@ public class CharacterObjectManager : MonoBehaviour
         dashParticle.enabled = true;
         yield return new WaitForSeconds(CharacterControl.instance.DashTime);
         dashParticle.enabled = false;
+    }
+
+    public void sendHurt(int damage,Attribute attribute,int gameobejctID)   //玩家发出的伤害
+    {
+        if (_sendHurt != null)  //不为空执行
+        {
+            _sendHurt(damage, attribute, gameobejctID);
+        }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Arrow_2 : MonoBehaviour {
 
+
     public float speed = 20;
 
     private Rigidbody2D rig;
@@ -29,6 +30,7 @@ public class Arrow_2 : MonoBehaviour {
         particle.enabled = true;
 
         transform.parent = null; // 防止物体跟随主角
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -40,23 +42,14 @@ public class Arrow_2 : MonoBehaviour {
         if(collision.transform.tag == "enemy")
         {
             Invoke("TriggerWithEnemy", 0.03f);
+            CharacterObjectManager.instance.sendHurt(CharacterAttribute.GetInstance().jumpArrowAttack, Attribute.normal, collision.gameObject.GetInstanceID());
         }
     }
 
-    void setFalse(Collider2D collision)
-    {
-        rig.velocity = new Vector2(0, 0);   //碰到地形停止
-        this.transform.parent = collision.transform;
-        boxCol.enabled = false;
-        trailRenderer.enabled = false;
-        particle.enabled = false;
-
-    }
 
     void TriggerWithEnemy()  //碰到敌人
     {
-        CharacterObjectManager.instance.recoveryArrow(this.gameObject);
+        CharacterObjectManager.instance.recoveryArrow_2(this.gameObject);
         Instantiate(CharacterObjectManager.instance.arrow_end, position: transform.position, rotation: new Quaternion(0, 0, 0, 0));
-        this.gameObject.SetActive(false);
     }
 }

@@ -86,7 +86,7 @@ public class CharacterControl : MonoBehaviour
 
                 attack(); // 攻击
                 shoot(); //射击
-
+                Throw();  //扔
                 dash(); //冲刺
 
                 if(OnGround() == false)
@@ -110,7 +110,7 @@ public class CharacterControl : MonoBehaviour
                 }
 
                 dash(); //冲刺
-
+                Throw();  //扔
                 attack(); // 攻击
                 shoot(); //射击
 
@@ -146,7 +146,7 @@ public class CharacterControl : MonoBehaviour
 
                 attack(); // 攻击
                 shoot(); //射击
-
+                Throw();  //扔
                 dash(); //冲刺
 
                 if (Input.GetKeyDown(KeyCode.Space) && isEnable[(int)state.jump])
@@ -186,8 +186,13 @@ public class CharacterControl : MonoBehaviour
                     YJumpSpeed = 0;
                 }
                 shoot(); //射击
+                if(Throw())  //扔
+                {
+                    rig.velocity = new Vector2(rig.velocity.x, 0);
+                    YJumpSpeed = 0;
+                }
 
-                if(dash())  //冲刺
+                if (dash())  //冲刺
                 {
                     dashTimes = 1;
                 }
@@ -345,7 +350,8 @@ public class CharacterControl : MonoBehaviour
                 }
 
                 shoot(); //射击
-
+                Throw();  //扔
+                 
                 if (dash())  //冲刺
                 {
                     dashTimes = 1;
@@ -360,6 +366,24 @@ public class CharacterControl : MonoBehaviour
                 if(!isPlayAnimation())
                 {
                     currentState = state.normal;
+                }
+                break;
+            case state.Throw:
+                //  空中移动-----------------
+                if (isJump)
+                {
+                    YJumpSpeed = YJumpSpeed + Yacceleration * Time.deltaTime;
+                    if (YJumpSpeed > JumpSpeed)
+                    {
+                        YJumpSpeed = JumpSpeed;
+                    }
+                    rig.velocity = new Vector2(rig.velocity.x, -YJumpSpeed);
+                }
+                //---------------------------------
+
+                if (!isPlayAnimation())
+                {
+                    currentState = isJump? state.fall:state.normal;
                 }
                 break;
         }
@@ -629,6 +653,17 @@ public class CharacterControl : MonoBehaviour
         return false;
     }
 
+    bool Throw()   //扔
+    {
+        if(Input.GetKeyDown(KeyCode.S) && CharacterAttribute.GetInstance().isEnable[(int)state.Throw] && CharacterAttribute.GetInstance().Breath > CharacterAttribute.GetInstance().expend_throw)
+        {
+            currentState = state.Throw;
+            CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_throw;
+            return true;
+        }
+        return false;
+    }
+
     bool dash()
     {
         if (Input.GetKeyDown(KeyCode.C) && isEnable[(int)state.dash] && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_dash && dashTimes < 1)
@@ -647,7 +682,7 @@ public class CharacterControl : MonoBehaviour
         CharacterObjectManager.instance.arrow();
     }
 
-    public bool hurt(int Damage)  //受伤调用函数
+    public bool hurt(int Damage,Attribute attribute)  //受伤调用函数
     {
         float hurt_contined_time = 1;  //无敌持续时间
         if(!isHurt)
@@ -661,7 +696,7 @@ public class CharacterControl : MonoBehaviour
         return false;
     }
 
-    void end_invincibility()
+    void end_invincibility()  //结束受伤状态
     {
         SpriteRenderer.color = new Color(1, 1, 1, 1);
         isHurt = false;
@@ -691,6 +726,5 @@ public class CharacterControl : MonoBehaviour
     {
         additionalVelocity = t;
     }
-
 
 } 

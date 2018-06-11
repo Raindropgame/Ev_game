@@ -1,0 +1,115 @@
+fileFormatVersion: 2
+guid: 7b821b51e7a4057409eaa793582347b5
+timeCreated: 1528728503
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: swords_fire_0
+    21300002: swords_fire_1
+    21300004: swords_fire_2
+    21300006: swords_fire_3
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: swords_fire_0
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 165
+        width: 145
+        height: 76
+      alignment: 9
+      pivot: {x: 0.027449694, y: 0.96790695}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: swords_fire_1
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 135
+        width: 165
+        height: 107
+      alignment: 9
+      pivot: {x: 0.029534172, y: 0.97014654}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: swords_fire_2
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 56
+        width: 199
+        height: 196
+      alignment: 9
+      pivot: {x: 0.20362248, y: 0.98234683}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: swords_fire_3
+      rect:
+        serializedVersion: 2
+        x: 754
+        y: 36
+        width: 334
+        height: 217
+      alignment: 9
+      pivot: {x: 0.51947606, y: 0.9876286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

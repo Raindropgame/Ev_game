@@ -34,7 +34,6 @@ public class Arrow : MonoBehaviour
         transform.parent = null; // 防止物体跟随主角
         transform.localPosition = CharacterControl.instance.Dir == dir.left ? new Vector3(characterPosition.x - 1.3f, characterPosition.y + 1.37f, characterPosition.z - 9) : new Vector3(characterPosition.x + 1.3f, characterPosition.y + 1.32f, -9);  //初始化位置
 
-
     }
 
 
@@ -47,17 +46,10 @@ public class Arrow : MonoBehaviour
         if(collision.transform.tag == "enemy")
         {
             Invoke("TriggerWithEnemy",0.03f);
+            CharacterObjectManager.instance.sendHurt(CharacterAttribute.GetInstance().jumpArrowAttack, Attribute.normal, collision.gameObject.GetInstanceID());
         }
     }
 
-    void setFalse(Collider2D collision)
-    {
-        rig.velocity = new Vector2(0, 0);   //碰到地形停止
-        this.transform.parent = collision.transform;
-        boxCol.enabled = false;
-        trailRenderer.enabled = false;
-        particle.enabled = false;
-    }
 
     void TriggerWithEnemy()
     {

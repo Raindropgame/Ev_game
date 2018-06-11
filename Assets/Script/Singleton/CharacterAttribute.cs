@@ -32,11 +32,22 @@ public class CharacterAttribute{
     public int expend_dash = 10;
     public int expend_shoot = 10;
     public int expend_jumpshoot = 15;
+    public int expend_throw = 10;
+
+    //攻击力
+    public int swordAttack = 1;  //刀的攻击力
+    public int normalArrowAttack = 1;  //站射攻击力
+    public int jumpArrowAttack = 1;  //跳射攻击力
+
+    //武器属性
+    public Attribute swordAttribte = Attribute.normal;
+    public Attribute arrowAttribute = Attribute.normal;
+    public Attribute jumpArrowAttribute = Attribute.normal;
 
     public int Speed_recovery = 30;  //气息恢复速度
 
     //能力
-    public bool[] isEnable = { true, false, true, false, true, true, false, true, false, true, true, true };
+    public bool[] isEnable = { true, false, true, false, true, true, false, true, false, true, true, true,true };
 
     public int JumpTimes = 1;    //跳跃次数
     public int MaxJumpShootTimes = 1;  //跳射次数
@@ -45,12 +56,14 @@ public class CharacterAttribute{
     {
         MaxBreath = PlayerPrefs.GetInt("MaxBreath", MaxBreath);
         MaxHP = PlayerPrefs.GetInt("MaxHP", MaxHP);
+        HP = MaxHP;
         expend_run = PlayerPrefs.GetInt("expend_run", expend_run);
         expend_attack = PlayerPrefs.GetInt("expend_attack", expend_attack);
         expend_jump = PlayerPrefs.GetInt("expend_jump", expend_jump);
         expend_dash = PlayerPrefs.GetInt("expend_dash", expend_dash);
         expend_shoot = PlayerPrefs.GetInt("expend_shoot", expend_shoot);
         expend_jumpshoot = PlayerPrefs.GetInt("expend_jumpshoot", expend_jumpshoot);
+        PlayerPrefs.GetInt("expend_throw", expend_throw);
         Speed_recovery = PlayerPrefs.GetInt("Speed_recovery", Speed_recovery);
         JumpTimes = PlayerPrefs.GetInt("JumpTimes", JumpTimes);
         MaxJumpShootTimes = PlayerPrefs.GetInt("MaxJumpShootTimes", MaxJumpShootTimes);
@@ -70,6 +83,7 @@ public class CharacterAttribute{
         PlayerPrefs.SetInt("expend_dash", expend_dash);
         PlayerPrefs.SetInt("expend_shoot", expend_shoot);
         PlayerPrefs.SetInt("expend_jumpshoot", expend_jumpshoot);
+        PlayerPrefs.SetInt("expend_throw", expend_throw);
         PlayerPrefs.SetInt("Speed_recovery", Speed_recovery);
         PlayerPrefs.SetInt("JumpTimes", JumpTimes);
         PlayerPrefs.SetInt("MaxJumpShootTimes", MaxJumpShootTimes);

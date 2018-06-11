@@ -4,16 +4,19 @@ using System.Collections;
 public class Sword : MonoBehaviour {
     //刀
 
+
     public float Velocity;
     public GameObject a;
 
     private PolygonCollider2D Collider;
     private Vector2 originPosition;
     private ContactPoint2D HitPoint;
+    private Animator animator;
 
     private void Awake()
     {
         Collider = this.GetComponent<PolygonCollider2D>();
+        animator = GetComponent<Animator>();
         originPosition = this.transform.position;
     }
 
@@ -30,6 +33,14 @@ public class Sword : MonoBehaviour {
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "enemy")  //攻击敌人
+        {
+            CharacterObjectManager.instance.sendHurt(CharacterAttribute.GetInstance().jumpArrowAttack, Attribute.normal, collision.gameObject.GetInstanceID());
+        }
+    }
+
     private void OnCollisionStay2D(Collision2D collision)
     {
         Collider.isTrigger = true;  //碰到物体变为触发器
@@ -41,6 +52,11 @@ public class Sword : MonoBehaviour {
             t.transform.position = HitPoint.point;
             t.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
         }
+    }
+
+    private void OnEnable()
+    {
+        animator.SetTrigger(CharacterAttribute.GetInstance().swordAttribte.ToString());   //根据属性更改动画
     }
 
     private void OnDisable()

@@ -10,6 +10,7 @@ public class Lighting : MonoBehaviour {
     public float Deep;   //闪电的Z轴
     public float Speed;   //闪电播放速度
     public float overClose;  //播放完毕多少秒后关闭闪电
+    public int damage = 2;    //伤害量
 
     private LineRenderer LineRender;
     private Vector3[] Point;
@@ -91,9 +92,9 @@ public class Lighting : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.tag == "Player")
+        if(collision.tag == "Player")  //击中玩家
         {
-            CharacterControl.instance.hurt(2);
+            CharacterControl.instance.hurt(GameData.getInstance().lightningDamage,Attribute.lightning);
         }
     }
 

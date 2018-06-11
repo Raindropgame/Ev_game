@@ -8,7 +8,7 @@ public class hurtBack : MonoBehaviour {
     {
         if(collision.tag == "Player")
         {
-            CharacterControl.instance.hurt(damage);
+            CharacterControl.instance.hurt(damage,Attribute.normal);
         }
     }
 }

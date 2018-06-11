@@ -14,7 +14,8 @@ public enum state  //人物状态
     jumpshoot,
     hurt,
     fall,
-    endDash
+    endDash,
+    Throw
 };
 
 public enum dir  //方向
@@ -42,4 +43,13 @@ public enum weather  //天气
     Rain,
     Thunder,
     RainAndThunder
+}
+
+public enum Attribute  //属性
+{
+    normal,  //中性
+    lightning,  //雷电
+    fire,   //火
+    ice,    //冰
+    wood    //木
 }

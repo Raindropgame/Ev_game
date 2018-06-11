@@ -16,7 +16,7 @@ public class ResetFile : EditorWindow{
     
 
     //人物属性
-    bool[] isEnable = new bool[12];
+    bool[] isEnable = new bool[13];
     int MaxBreath = 0;
     int MaxHP = 0;
     int expend_run = 5;
@@ -25,6 +25,7 @@ public class ResetFile : EditorWindow{
     int expend_dash = 10;
     int expend_shoot = 10;
     int expend_jumpshoot = 15;
+    int expend_throw = 10;
     int Speed_recovery = 30;
     int JumpTimes = 1;
     int MaxJumpShootTimes = 1;
@@ -52,6 +53,7 @@ public class ResetFile : EditorWindow{
         expend_dash = EditorGUILayout.IntField("expend_dash :", expend_dash, GUILayout.Width(250));
         expend_shoot = EditorGUILayout.IntField("expend_shoot :", expend_shoot, GUILayout.Width(250));
         expend_jumpshoot = EditorGUILayout.IntField("expend_jumpshoot :", expend_jumpshoot, GUILayout.Width(250));
+        expend_jumpshoot = EditorGUILayout.IntField("expend_throw :", expend_throw, GUILayout.Width(250));
         Speed_recovery = EditorGUILayout.IntField("Speed_recovery :", Speed_recovery, GUILayout.Width(250));
         JumpTimes = EditorGUILayout.IntField("jumpTimes :", JumpTimes, GUILayout.Width(250));
         MaxJumpShootTimes = EditorGUILayout.IntField("MaxJumpShootTimes :", MaxJumpShootTimes, GUILayout.Width(250));
@@ -114,10 +116,11 @@ public class ResetFile : EditorWindow{
         PlayerPrefs.SetInt("expend_dash", 10);
         PlayerPrefs.SetInt("expend_shoot", 10);
         PlayerPrefs.SetInt("expend_jumpshoot", 15);
+        PlayerPrefs.SetInt("expend_throw", 10);
         PlayerPrefs.SetInt("Speed_recovery", 30);
         PlayerPrefs.SetInt("JumpTimes", 1);
         PlayerPrefs.SetInt("MaxJumpShootTimes", 1);
-        bool[] t_isEnable = { true, true, true, true, true, true, true, true, true, true, true, true };
+        bool[] t_isEnable = { true, true, true, true, true, true, true, true, true, true, true, true,true };
         for (int i = 0; i < isEnable.Length; i++)
         {
             PlayerPrefs.SetInt(((state)i).ToString(), t_isEnable[i] == true ? 1 : 0);  //true:1  false:0
@@ -150,6 +153,7 @@ public class ResetFile : EditorWindow{
         PlayerPrefs.SetInt("expend_dash", expend_dash);
         PlayerPrefs.SetInt("expend_shoot", expend_shoot);
         PlayerPrefs.SetInt("expend_jumpshoot", expend_jumpshoot);
+        PlayerPrefs.SetInt("expend_throw", expend_throw);
         PlayerPrefs.SetInt("Speed_recovery", Speed_recovery);
         PlayerPrefs.SetInt("JumpTimes", JumpTimes);
         PlayerPrefs.SetInt("MaxJumpShootTimes", MaxJumpShootTimes);
@@ -186,6 +190,7 @@ public class ResetFile : EditorWindow{
         expend_dash = PlayerPrefs.GetInt("expend_dash", expend_dash);
         expend_shoot = PlayerPrefs.GetInt("expend_shoot", expend_shoot);
         expend_jumpshoot = PlayerPrefs.GetInt("expend_jumpshoot", expend_jumpshoot);
+        expend_jumpshoot = PlayerPrefs.GetInt("expend_throw", expend_throw);
         Speed_recovery = PlayerPrefs.GetInt("Speed_recovery", Speed_recovery);
         JumpTimes = PlayerPrefs.GetInt("JumpTimes", JumpTimes);
         MaxJumpShootTimes = PlayerPrefs.GetInt("MaxJumpShootTimes", MaxJumpShootTimes);
