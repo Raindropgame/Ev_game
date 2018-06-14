@@ -11,6 +11,7 @@ public class Arrow : MonoBehaviour
     private BoxCollider2D boxCol;
     private TrailRenderer trailRenderer;
     private ParticleSystem.EmissionModule particle;
+    private SpriteRenderer SR;
 
     private void Awake()
     {
@@ -19,6 +20,7 @@ public class Arrow : MonoBehaviour
         SRenderer = this.GetComponent<SpriteRenderer>();
         boxCol = GetComponent<BoxCollider2D>();
         trailRenderer = GetComponent<TrailRenderer>();
+        SR = GetComponent<SpriteRenderer>();
     }
 
     private void OnEnable()
@@ -34,6 +36,9 @@ public class Arrow : MonoBehaviour
         transform.parent = null; // 防止物体跟随主角
         transform.localPosition = CharacterControl.instance.Dir == dir.left ? new Vector3(characterPosition.x - 1.3f, characterPosition.y + 1.37f, characterPosition.z - 9) : new Vector3(characterPosition.x + 1.3f, characterPosition.y + 1.32f, -9);  //初始化位置
 
+        //根据属性改变颜色
+        Material a = trailRenderer.material;
+        
     }
 
 
@@ -46,7 +51,7 @@ public class Arrow : MonoBehaviour
         if(collision.transform.tag == "enemy")
         {
             Invoke("TriggerWithEnemy",0.03f);
-            CharacterObjectManager.instance.sendHurt(CharacterAttribute.GetInstance().jumpArrowAttack, Attribute.normal, collision.gameObject.GetInstanceID());
+            CharacterObjectManager.instance.sendHurt(CharacterAttribute.GetInstance().jumpArrowAttack, CharacterAttribute.GetInstance().arrowAttribute, collision.gameObject.GetInstanceID());
         }
     }
 

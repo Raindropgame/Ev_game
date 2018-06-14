@@ -48,7 +48,7 @@ public enum weather  //天气
 public enum Attribute  //属性
 {
     normal,  //中性
-    lightning,  //雷电
+    lightning,  //电
     fire,   //火
     ice,    //冰
     wood    //木

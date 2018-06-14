@@ -40,7 +40,7 @@ public class CharacterAttribute{
     public int jumpArrowAttack = 1;  //跳射攻击力
 
     //武器属性
-    public Attribute swordAttribte = Attribute.normal;
+    public Attribute swordAttribte = Attribute.ice;
     public Attribute arrowAttribute = Attribute.normal;
     public Attribute jumpArrowAttribute = Attribute.normal;
 
@@ -51,6 +51,11 @@ public class CharacterAttribute{
 
     public int JumpTimes = 1;    //跳跃次数
     public int MaxJumpShootTimes = 1;  //跳射次数
+
+    //武器槽
+    public ArmsGemGroove swordsGemGroove;
+    public ArmsGemGroove arrowGemGroove;
+    public ArmsGemGroove spearGemGroove;
 
     public void Init()  //读取存档
     {

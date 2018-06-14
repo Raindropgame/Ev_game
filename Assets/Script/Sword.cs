@@ -6,7 +6,6 @@ public class Sword : MonoBehaviour {
 
 
     public float Velocity;
-    public GameObject a;
 
     private PolygonCollider2D Collider;
     private Vector2 originPosition;
@@ -37,7 +36,7 @@ public class Sword : MonoBehaviour {
     {
         if (collision.tag == "enemy")  //攻击敌人
         {
-            CharacterObjectManager.instance.sendHurt(CharacterAttribute.GetInstance().jumpArrowAttack, Attribute.normal, collision.gameObject.GetInstanceID());
+            CharacterObjectManager.instance.sendHurt(CharacterAttribute.GetInstance().jumpArrowAttack, CharacterAttribute.GetInstance().swordAttribte, collision.gameObject.GetInstanceID());
         }
     }
 

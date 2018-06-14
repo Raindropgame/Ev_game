@@ -32,6 +32,27 @@ public class Monster_base : MonoBehaviour {
     {
         if(gameobjectID == this.gameObject.GetInstanceID())  //是否是被攻击的对象
         {
+            switch(attribute)   //根据受伤属性改变被攻击的颜色
+            {
+                case Attribute.normal:
+                    hurtColor = Color.white;
+                    break;
+                case Attribute.fire:
+                    hurtColor = GameData.getInstance().fireColor;
+                    break;
+                case Attribute.ice:
+                    hurtColor = GameData.getInstance().iceColor;
+                    break;
+                case Attribute.wood:
+                    hurtColor = GameData.getInstance().woodColor;
+                    break;
+                case Attribute.lightning:
+                    hurtColor = GameData.getInstance().lightningColor;
+                    break;
+                default:
+                    hurtColor = Color.white;
+                    break;
+            }
             _getHurt(damage,attribute);
         }
     }

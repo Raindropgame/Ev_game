@@ -42,7 +42,7 @@ public class Arrow_2 : MonoBehaviour {
         if(collision.transform.tag == "enemy")
         {
             Invoke("TriggerWithEnemy", 0.03f);
-            CharacterObjectManager.instance.sendHurt(CharacterAttribute.GetInstance().jumpArrowAttack, Attribute.normal, collision.gameObject.GetInstanceID());
+            CharacterObjectManager.instance.sendHurt(CharacterAttribute.GetInstance().jumpArrowAttack, CharacterAttribute.GetInstance().jumpArrowAttribute, collision.gameObject.GetInstanceID());
         }
     }
 
