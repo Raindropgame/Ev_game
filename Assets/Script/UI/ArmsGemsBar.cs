@@ -21,14 +21,29 @@ public class ArmsGemsBar : MonoBehaviour {
     public Color backArmsColor;  //在后面的武器的颜色
     [Header("--------武器槽栏属性----------")]
     public GameObject[] GemGroove;
+    public GameObject[] GemGroove_Disable, GemGroove_None, Gem;
+    public Color GemGrooveDisableColor;
+    [Header("--------徽章属性----------")]
+    public float changeScale;
+    public float playTime;
+    public float headShakeScale;
+    public int shakeRatio;
+    public int shakeFrequency;
+    [Header("--------结晶属性----------")]
+    public Image[] GemItem;   //结晶格子
 
     private RectTransform[] point;
     private ArrayList ArmsList = new ArrayList();
     private ArmsInfo[] armsInfo;
     private int currentArms; // 当前选中的武器
+    private Outline headOutline;
+    private Vector3 HeadOriginPos;  //徽章的初始位置
 
     private void Start()
     {
+        headOutline = GameObject.Find("Head").GetComponent<Outline>();
+        HeadOriginPos = headOutline.gameObject.transform.position;
+
         //--初始化
         point = new RectTransform[3];
         point[2] = GameObject.Find("arms_point_left").GetComponent<RectTransform>();
@@ -83,6 +98,8 @@ public class ArmsGemsBar : MonoBehaviour {
                 armsInfo[i].image.color = backArmsColor;
             }
         }
+
+        updateGemGroove();  //更新当前武器槽的显示
     }
 
     private void OnDisable()
@@ -136,6 +153,12 @@ public class ArmsGemsBar : MonoBehaviour {
                 armsInfo[i].image.color = backArmsColor;
             }
         }
+
+        updateGemGroove();  //更新当前武器槽的显示
+
+        headOutline.effectDistance = Vector2.zero;   //初始化徽章的状态
+        isPlayAnimation_0 = false;
+        headOutline.gameObject.transform.position = HeadOriginPos;
     }
 
 
@@ -179,6 +202,8 @@ public class ArmsGemsBar : MonoBehaviour {
             }
             StartCoroutine(moveArms(dir.right));
         }
+
+        updateGemGroove();  //更新当前武器槽的显示
     }
 
     IEnumerator moveArms(dir Dir)  //移动武器到当前位置
@@ -250,7 +275,118 @@ public class ArmsGemsBar : MonoBehaviour {
 
         for(int i = 0;i<GemGroove.Length;i++)
         {
-            //GemGroove[i].
+            if(i < currentGemGroove.currentGemNum)
+            {
+                GemGroove_Disable[i].SetActive(false);  
+                GemGroove[i].GetComponent<Image>().color = Color.white;
+                GemGroove[i].GetComponent<Button>().enabled = false;
+                if (currentGemGroove.GemItem[i] == null)
+                {
+                    GemGroove_None[i].SetActive(true);
+                    Gem[i].SetActive(false);
+                }
+                else//  添加当前所镶嵌宝石的图片
+                {
+
+                }
+            }
+            else
+            {
+                GemGroove_Disable[i].SetActive(true);
+                GemGroove_None[i].SetActive(false);
+                Gem[i].SetActive(false);
+                GemGroove[i].GetComponent<Image>().color = GemGrooveDisableColor;
+                GemGroove[i].GetComponent<Button>().enabled = true;
+            }
         }
     }
+
+    public void opneNewGemGroove(int i)   //开启一个新的武器槽
+    {
+        int currentNum = 0;
+        i -= 1;
+
+        switch(armsInfo[currentArms].name)   //更新人物数据
+        {
+            case "sword":
+                CharacterAttribute.GetInstance().swordsGemGroove.currentGemNum++;
+                currentNum = CharacterAttribute.GetInstance().swordsGemGroove.currentGemNum;
+                break;
+            case "arrow":
+                CharacterAttribute.GetInstance().arrowGemGroove.currentGemNum++;
+                currentNum = CharacterAttribute.GetInstance().arrowGemGroove.currentGemNum;
+                break;
+            case "spear":
+                CharacterAttribute.GetInstance().spearGemGroove.currentGemNum++;
+                currentNum = CharacterAttribute.GetInstance().spearGemGroove.currentGemNum;
+                break;
+        }
+
+        GemGroove[currentNum - 1].GetComponent<Image>().color = Color.white;  //更新显示
+        GemGroove_Disable[currentNum - 1].SetActive(false);
+        GemGroove_None[currentNum - 1].SetActive(true);
+
+        GemGroove[currentNum - 1].GetComponent<Button>().enabled = false;   //禁用按钮
+    }
+
+    private bool isPlayAnimation_0 = false;
+    public void clickHead()  //点头
+    {
+        if(!isPlayAnimation_0)
+        {
+            isPlayAnimation_0 = true;
+            StartCoroutine(HeadAnimation());
+            StartCoroutine(HeadShakeAnimation());
+        }
+    }
+
+    IEnumerator HeadShakeAnimation()
+    {
+        float _time0 = 0;
+        Vector3 originPos = headOutline.gameObject.transform.position;  //原始的位置
+        while (true)
+        {
+            _time0 += Time.deltaTime;
+
+            headOutline.gameObject.transform.position = originPos + (Vector3)Random.insideUnitCircle * headShakeScale;
+            if(_time0 > playTime / shakeRatio)
+            {
+                break;
+            }
+            yield return new WaitForSeconds(playTime / shakeRatio / shakeFrequency);   //摇动次数为6
+        }
+        headOutline.gameObject.transform.position = originPos;
+    }
+
+    IEnumerator HeadAnimation()
+    {
+        float _time0 = 0;
+        while(true)
+        {
+            _time0 += Time.deltaTime;
+
+            if(_time0 < playTime / 2)
+            {
+                headOutline.effectDistance = Vector2.Lerp(Vector2.zero, new Vector2(changeScale, changeScale), _time0 / (playTime / 2));
+            }
+            else
+            {
+                headOutline.effectDistance = Vector2.Lerp(new Vector2(changeScale, changeScale), Vector2.zero, (_time0 - playTime / 2) / (playTime / 2));
+            }
+
+            if(_time0 > playTime)
+            {
+                break;
+            }
+            yield return null;
+        }
+
+        isPlayAnimation_0 = false;
+    }
+
+    void updateGemItemShow()   //更新结晶格子的显示
+    {
+
+    }
+
 }

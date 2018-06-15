@@ -53,3 +53,10 @@ public enum Attribute  //属性
     ice,    //冰
     wood    //木
 }
+
+public enum Arms  //武器
+{
+    swords,
+    arrow,
+    spear
+}

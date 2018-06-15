@@ -53,9 +53,9 @@ public class CharacterAttribute{
     public int MaxJumpShootTimes = 1;  //跳射次数
 
     //武器槽
-    public ArmsGemGroove swordsGemGroove;
-    public ArmsGemGroove arrowGemGroove;
-    public ArmsGemGroove spearGemGroove;
+    public ArmsGemGroove swordsGemGroove = new ArmsGemGroove();
+    public ArmsGemGroove arrowGemGroove = new ArmsGemGroove();
+    public ArmsGemGroove spearGemGroove = new ArmsGemGroove();
 
     public void Init()  //读取存档
     {
