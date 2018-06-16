@@ -34,15 +34,11 @@ public class CharacterAttribute{
     public int expend_jumpshoot = 15;
     public int expend_throw = 10;
 
-    //攻击力
-    public int swordAttack = 1;  //刀的攻击力
-    public int normalArrowAttack = 1;  //站射攻击力
-    public int jumpArrowAttack = 1;  //跳射攻击力
+    //各个武器攻击力
+    public int[] Attack = new int[3] { 1,1,1};
 
     //武器属性
-    public Attribute swordAttribte = Attribute.ice;
-    public Attribute arrowAttribute = Attribute.normal;
-    public Attribute jumpArrowAttribute = Attribute.normal;
+    public Attribute[] ArmsAttribute = new Attribute[3] { Attribute.ice, Attribute.normal, Attribute.normal };
 
     public int Speed_recovery = 30;  //气息恢复速度
 
@@ -53,9 +49,7 @@ public class CharacterAttribute{
     public int MaxJumpShootTimes = 1;  //跳射次数
 
     //武器槽
-    public ArmsGemGroove swordsGemGroove = new ArmsGemGroove();
-    public ArmsGemGroove arrowGemGroove = new ArmsGemGroove();
-    public ArmsGemGroove spearGemGroove = new ArmsGemGroove();
+    public ArmsGemGroove[] ArmsGemGroove = new ArmsGemGroove[3] { new global::ArmsGemGroove(), new global::ArmsGemGroove(), new global::ArmsGemGroove() };
 
     public void Init()  //读取存档
     {

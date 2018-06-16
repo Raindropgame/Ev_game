@@ -100,6 +100,7 @@ public class ArmsGemsBar : MonoBehaviour {
         }
 
         updateGemGroove();  //更新当前武器槽的显示
+        updateGemItemShow(); //更新所携带的结晶
     }
 
     private void OnDisable()
@@ -155,6 +156,7 @@ public class ArmsGemsBar : MonoBehaviour {
         }
 
         updateGemGroove();  //更新当前武器槽的显示
+        updateGemItemShow(); //更新所携带的结晶
 
         headOutline.effectDistance = Vector2.zero;   //初始化徽章的状态
         isPlayAnimation_0 = false;
@@ -259,17 +261,17 @@ public class ArmsGemsBar : MonoBehaviour {
         ArmsGemGroove currentGemGroove;
         switch(armsInfo[currentArms].name)  //获取当前武器槽的信息
         {
-            case "sword":
-                currentGemGroove = CharacterAttribute.GetInstance().swordsGemGroove;
+            case "swords":
+                currentGemGroove = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.swords];
                 break;
             case "arrow":
-                currentGemGroove = CharacterAttribute.GetInstance().arrowGemGroove;
+                currentGemGroove = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.arrow];
                 break;
             case "spear":
-                currentGemGroove = CharacterAttribute.GetInstance().spearGemGroove;
+                currentGemGroove = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.spear];
                 break;
             default:
-                currentGemGroove = CharacterAttribute.GetInstance().swordsGemGroove;
+                currentGemGroove = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.swords];
                 break;
         }
 
@@ -308,17 +310,17 @@ public class ArmsGemsBar : MonoBehaviour {
 
         switch(armsInfo[currentArms].name)   //更新人物数据
         {
-            case "sword":
-                CharacterAttribute.GetInstance().swordsGemGroove.currentGemNum++;
-                currentNum = CharacterAttribute.GetInstance().swordsGemGroove.currentGemNum;
+            case "swords":
+                CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.swords].currentGemNum++;
+                currentNum = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.swords].currentGemNum;
                 break;
             case "arrow":
-                CharacterAttribute.GetInstance().arrowGemGroove.currentGemNum++;
-                currentNum = CharacterAttribute.GetInstance().arrowGemGroove.currentGemNum;
+                CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.arrow].currentGemNum++;
+                currentNum = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.arrow].currentGemNum;
                 break;
             case "spear":
-                CharacterAttribute.GetInstance().spearGemGroove.currentGemNum++;
-                currentNum = CharacterAttribute.GetInstance().spearGemGroove.currentGemNum;
+                CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.spear].currentGemNum++;
+                currentNum = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.spear].currentGemNum;
                 break;
         }
 
@@ -386,7 +388,19 @@ public class ArmsGemsBar : MonoBehaviour {
 
     void updateGemItemShow()   //更新结晶格子的显示
     {
-
+        for(int i = 0;i<GemItem.Length;i++)
+        {
+            if(Bag.getInstance().GemItem[i] == null)  //如果没物品
+            {
+                GemItem[i].sprite = null;
+                GemItem[i].color = new Color(1, 1, 1, 0);
+            }
+            else
+            {
+                GemItem[i].color = Color.white;
+                GemItem[i].sprite = Bag.getInstance().GemItem[i].sprite;
+            }
+        }
     }
 
 }

@@ -11,6 +11,8 @@ public class Arrow_2 : MonoBehaviour {
     private TrailRenderer trailRenderer;
     private ParticleSystem.EmissionModule particle;
     private float tan;
+    private Attribute currentAttribute = Attribute.normal;  //当前的属性
+    private int damage = 1;
 
     private void Awake()
     {
@@ -23,6 +25,8 @@ public class Arrow_2 : MonoBehaviour {
 
     private void OnEnable()
     {
+        CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.spear].GemWork();   //结晶作用
+
         rig.velocity = new Vector2(CharacterControl.instance.Dir == dir.left ? -1 : 1, tan) * speed;  //初始速度
 
         boxCol.enabled = true;
@@ -31,6 +35,8 @@ public class Arrow_2 : MonoBehaviour {
 
         transform.parent = null; // 防止物体跟随主角
 
+        currentAttribute = CharacterAttribute.GetInstance().ArmsAttribute[(int)Arms.spear];  //获取当前属性
+        damage = CharacterAttribute.GetInstance().Attack[(int)Arms.spear];  //获取当前伤害
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -42,7 +48,7 @@ public class Arrow_2 : MonoBehaviour {
         if(collision.transform.tag == "enemy")
         {
             Invoke("TriggerWithEnemy", 0.03f);
-            CharacterObjectManager.instance.sendHurt(CharacterAttribute.GetInstance().jumpArrowAttack, CharacterAttribute.GetInstance().jumpArrowAttribute, collision.gameObject.GetInstanceID());
+            CharacterObjectManager.instance.sendHurt(damage, currentAttribute, collision.gameObject.GetInstanceID());
         }
     }
 

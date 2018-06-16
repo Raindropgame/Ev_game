@@ -38090,6 +38090,10 @@ Prefab:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 1000011989102436, guid: be7e8e1e0f3be724aa039f791f23de31, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: be7e8e1e0f3be724aa039f791f23de31, type: 2}
   m_IsPrefabParent: 0

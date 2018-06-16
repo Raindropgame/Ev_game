@@ -29,7 +29,31 @@ public class ArmsGemGroove //单个武器的武器槽信息
             }
         }
     }
-        
-    
-    public GameObject[] GemItem = new GameObject[3];
+
+
+    public Gem_base[] GemItem = new Gem_base[3] { null, null, null };
+
+    public int getLeftGrooveNum()  //获取当前还剩多少个空槽
+    {
+        int leftNum = 0;
+        for(int i = 0;i<currentGemNum;i++)
+        {
+            if(GemItem[i] == null)
+            {
+                leftNum++;
+            }
+        }
+        return leftNum;
+    }
+
+    public void GemWork()   //调用结晶上的实时运行方法
+    {
+        for(int i = 0;i<currentGemNum;i++)
+        {
+            if (GemItem[i] != null)
+            {
+                GemItem[i].Work();
+            }
+        }
+    }
 }

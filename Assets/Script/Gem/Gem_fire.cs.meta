@@ -1,10 +1,11 @@
 fileFormatVersion: 2
 guid: 5ee4a5380d2ae6a489d3421c81dfedb0
-timeCreated: 1529076200
+timeCreated: 1529149151
 licenseType: Pro
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - sprite: {fileID: 21300008, guid: c058adcfb9639e746bcea4fb13af44ad, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -22,6 +22,7 @@ public class Sword : MonoBehaviour {
     private void Update()
     {
         this.transform.localPosition = originPosition;
+
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -36,7 +37,7 @@ public class Sword : MonoBehaviour {
     {
         if (collision.tag == "enemy")  //攻击敌人
         {
-            CharacterObjectManager.instance.sendHurt(CharacterAttribute.GetInstance().jumpArrowAttack, CharacterAttribute.GetInstance().swordAttribte, collision.gameObject.GetInstanceID());
+            CharacterObjectManager.instance.sendHurt(CharacterAttribute.GetInstance().Attack[(int)Arms.swords], CharacterAttribute.GetInstance().ArmsAttribute[(int)Arms.swords], collision.gameObject.GetInstanceID());
         }
     }
 
@@ -55,7 +56,9 @@ public class Sword : MonoBehaviour {
 
     private void OnEnable()
     {
-        animator.SetTrigger(CharacterAttribute.GetInstance().swordAttribte.ToString());   //根据属性更改动画
+        CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.swords].GemWork();   //结晶作用
+
+        animator.SetTrigger(CharacterAttribute.GetInstance().ArmsAttribute[(int)Arms.swords].ToString());   //根据属性更改动画
     }
 
     private void OnDisable()

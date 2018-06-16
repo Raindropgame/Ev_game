@@ -12,6 +12,8 @@ public class Arrow : MonoBehaviour
     private TrailRenderer trailRenderer;
     private ParticleSystem.EmissionModule particle;
     private SpriteRenderer SR;
+    private Attribute currentAttribute = Attribute.normal;
+    private int damage;
 
     private void Awake()
     {
@@ -25,6 +27,8 @@ public class Arrow : MonoBehaviour
 
     private void OnEnable()
     {
+        CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.arrow].GemWork();   //结晶作用
+
         rig.velocity = new Vector2(CharacterControl.instance.Dir == dir.left ? -speed : speed, 0);
         SRenderer.flipX = CharacterControl.instance.Dir == dir.left ? true : false;
 
@@ -38,7 +42,12 @@ public class Arrow : MonoBehaviour
 
         //根据属性改变颜色
         Material a = trailRenderer.material;
-        
+
+        //获取当前属性和伤害
+        currentAttribute = CharacterAttribute.GetInstance().ArmsAttribute[(int)Arms.arrow];
+        damage = CharacterAttribute.GetInstance().Attack[(int)Arms.arrow];
+
+
     }
 
 
@@ -51,7 +60,7 @@ public class Arrow : MonoBehaviour
         if(collision.transform.tag == "enemy")
         {
             Invoke("TriggerWithEnemy",0.03f);
-            CharacterObjectManager.instance.sendHurt(CharacterAttribute.GetInstance().jumpArrowAttack, CharacterAttribute.GetInstance().arrowAttribute, collision.gameObject.GetInstanceID());
+            CharacterObjectManager.instance.sendHurt(damage, currentAttribute, collision.gameObject.GetInstanceID());
         }
     }
 
