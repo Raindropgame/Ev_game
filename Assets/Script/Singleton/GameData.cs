@@ -25,5 +25,27 @@ public class GameData{
     public Color woodColor = new Color(0.71f, 0.56f, 0.1f);
     public Color lightningColor = new Color(1f, 1f, 0.46f);
 
-
+    public Color Attribute2Color(Attribute t)
+    {
+        Color o = normalColor;
+        switch(t)
+        {
+            case Attribute.fire:
+                o = fireColor;
+                break;
+            case Attribute.ice:
+                o = iceColor;
+                break;
+            case Attribute.lightning:
+                o = lightningColor;
+                break;
+            case Attribute.normal:
+                o = normalColor;
+                break;
+            case Attribute.wood:
+                o = woodColor;
+                break;
+        }
+        return o;
+    }
 }

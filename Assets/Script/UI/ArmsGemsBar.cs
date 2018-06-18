@@ -282,17 +282,30 @@ public class ArmsGemsBar : MonoBehaviour {
                 GemGroove_Disable[i].SetActive(false);  
                 GemGroove[i].GetComponent<Image>().color = Color.white;
                 GemGroove[i].GetComponent<Button>().enabled = false;
-                if (currentGemGroove.GemItem[i] == null)
+                if (currentGemGroove.GemItem[i] == null)  //有格子无物品
                 {
                     GemGroove_None[i].SetActive(true);
                     Gem[i].SetActive(false);
                 }
-                else//  添加当前所镶嵌宝石的图片
+                else//  添加当前所镶嵌宝石的图片    有格子有物品
                 {
-
+                    GemGroove_None[i].SetActive(false);
+                    Gem[i].SetActive(true);
+                    switch (armsInfo[currentArms].name)
+                    {
+                        case "swords":
+                            Gem[i].GetComponent<Image>().sprite = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.swords].GemItem[i].sprite;
+                            break;
+                        case "arrow":
+                            Gem[i].GetComponent<Image>().sprite = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.arrow].GemItem[i].sprite;
+                            break;
+                        case "spear":
+                            Gem[i].GetComponent<Image>().sprite = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.spear].GemItem[i].sprite;
+                            break;
+                    }
                 }
             }
-            else
+            else   //无格子
             {
                 GemGroove_Disable[i].SetActive(true);
                 GemGroove_None[i].SetActive(false);
@@ -401,6 +414,84 @@ public class ArmsGemsBar : MonoBehaviour {
                 GemItem[i].sprite = Bag.getInstance().GemItem[i].sprite;
             }
         }
+    }
+
+    public void putOnGem(int ItemIndex)
+    {
+        if(Bag.getInstance().GemItem[ItemIndex] != null)  //当前格子是否有物品
+        {
+            switch (armsInfo[currentArms].name)   //更新人物数据
+            {
+                case "swords":
+                    if (Bag.getInstance().GemItem[ItemIndex].Take(Arms.swords))
+                    {
+                        CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.swords].takeOn(Bag.getInstance().GemItem[ItemIndex]);  //装备结晶
+                        Bag.getInstance().GemItem[ItemIndex] = null;  //该格子变为空
+
+                        updateGemGroove();  //更新显示
+                        updateGemItemShow();
+                    }
+                    break;
+                case "arrow":
+                    if (Bag.getInstance().GemItem[ItemIndex].Take(Arms.arrow))
+                    {
+                        CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.arrow].takeOn(Bag.getInstance().GemItem[ItemIndex]);   //装备结晶
+                        Bag.getInstance().GemItem[ItemIndex] = null;
+
+                        updateGemGroove();  //更新显示
+                        updateGemItemShow();
+                    }
+                    break;
+                case "spear":
+                    if (Bag.getInstance().GemItem[ItemIndex].Take(Arms.spear))
+                    {
+                        CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.spear].takeOn(Bag.getInstance().GemItem[ItemIndex]);    //装备结晶
+                        Bag.getInstance().GemItem[ItemIndex] = null;
+
+                        updateGemGroove();  //更新显示
+                        updateGemItemShow();
+                    }
+                    break;
+            }
+        }
+    }
+
+    Arms name2type(string t)  //查询武器
+    {
+        Arms o = Arms.swords ;
+        switch (t)   //更新人物数据
+        {
+            case "swords":
+                o = Arms.swords;
+                break;
+            case "arrow":
+                o = Arms.arrow;
+                break;
+            case "spear":
+                o = Arms.spear;
+                break;
+        }
+        return o;
+    }
+
+    public void TakeOffGem(int i)  //卸下结晶
+    {
+        //放入背包
+        //从武器槽脱下
+        //属性重设
+        if(Bag.getInstance().getLeftItem() <= 0)
+        {
+            return;  //背包空间不足
+        }
+        Arms type = name2type(armsInfo[currentArms].name);
+        CharacterAttribute.GetInstance().ArmsGemGroove[(int)type].GemItem[i].TakeOff();
+        Bag.getInstance().putGemIntoBag(CharacterAttribute.GetInstance().ArmsGemGroove[(int)type].GemItem[i]);
+        CharacterAttribute.GetInstance().ArmsGemGroove[(int)type].GemItem[i] = null;
+
+        //更新显示
+        updateGemGroove();
+        updateGemItemShow();
+        return;
     }
 
 }

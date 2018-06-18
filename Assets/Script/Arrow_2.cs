@@ -35,6 +35,10 @@ public class Arrow_2 : MonoBehaviour {
 
         transform.parent = null; // 防止物体跟随主角
 
+        //根据属性改变颜色
+        Material t = trailRenderer.material;
+        t.SetColor("_Color", GameData.getInstance().Attribute2Color(CharacterAttribute.GetInstance().ArmsAttribute[(int)Arms.spear]));  //颜色减淡
+
         currentAttribute = CharacterAttribute.GetInstance().ArmsAttribute[(int)Arms.spear];  //获取当前属性
         damage = CharacterAttribute.GetInstance().Attack[(int)Arms.spear];  //获取当前伤害
     }

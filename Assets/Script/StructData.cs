@@ -3,6 +3,7 @@ using System.Collections;
 
 public class ArmsGemGroove //单个武器的武器槽信息
 {
+
     public ArmsGemGroove(int _currentGemNum)   //初始化槽量个数
     {
         currentGemNum = _currentGemNum;        
@@ -55,5 +56,23 @@ public class ArmsGemGroove //单个武器的武器槽信息
                 GemItem[i].Work();
             }
         }
+    }
+
+    public bool takeOn(Gem_base gem)   //装备结晶
+    {
+        if(getLeftGrooveNum() <= 0)  //无多余的槽
+        {
+            return false;
+        }
+
+        for(int i = 0;i<GemItem.Length;i++)
+        {
+            if(GemItem[i] == null)
+            {
+                GemItem[i] = gem;  //放入
+                return true;
+            }
+        }
+        return false;
     }
 }

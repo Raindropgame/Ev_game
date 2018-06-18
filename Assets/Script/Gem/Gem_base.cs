@@ -9,6 +9,20 @@ public class Gem_base{
     public Sprite sprite;  //手动添加
     public Arms attachArms;  //所镶嵌的装备
 
+    public static Gem_base Index2Gem(int i)  //根据索引号查询结晶
+    {
+        Gem_base o;
+        switch(i)
+        {
+            case 0:
+                o = new Gem_fire();
+                break;
+            default:
+                o = new Gem_base();
+                break;
+        }
+        return o;
+    }
 
     virtual public void OnStart()
     {
@@ -25,7 +39,7 @@ public class Gem_base{
         return true;
     }   //佩戴
 
-    virtual public bool TakeOff(Arms arms)
+    virtual public bool TakeOff()
     {
         return true;
     }

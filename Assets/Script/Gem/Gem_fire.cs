@@ -19,9 +19,9 @@ public class Gem_fire : Gem_base {
         CharacterAttribute.GetInstance().ArmsAttribute[(int)attachArms] = attribute;
     }
 
-    public override bool TakeOff(Arms arms)
+    public override bool TakeOff()
     {
-        if(base.TakeOff(arms) == false)
+        if(base.TakeOff() == false)
         {
             return false;
         }
