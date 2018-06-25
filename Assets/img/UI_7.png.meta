@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: b84f4dce5e1406b47b17d47973948d14
-timeCreated: 1529943252
+guid: 0d580382101bb904d8d35fe1e4e030bf
+timeCreated: 1529938614
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Gem 1_0
-    21300002: Gem 1_1
-    21300004: Gem_0
-    21300006: Gem_1
+    21300000: UI_7_0
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -57,28 +54,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Gem_0
+      name: UI_7_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 4005
-        width: 932
-        height: 1335
+        x: 125
+        y: 224
+        width: 796
+        height: 509
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Gem_1
-      rect:
-        serializedVersion: 2
-        x: 932
-        y: 4005
-        width: 932
-        height: 1335
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

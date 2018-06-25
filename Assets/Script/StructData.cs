@@ -47,6 +47,16 @@ public class ArmsGemGroove //单个武器的武器槽信息
         return leftNum;
     }
 
+    public int getLastGemIndex()
+    {
+        for(int i = 0;i<GemItem.Length;i++)
+        {
+            if (GemItem[i] != null)
+                return i;
+        }
+        return -1;
+    }
+
     public void GemWork()   //调用结晶上的实时运行方法
     {
         for(int i = 0;i<currentGemNum;i++)

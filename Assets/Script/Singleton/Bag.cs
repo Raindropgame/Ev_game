@@ -7,7 +7,7 @@ public class Bag{
 
     Bag()
     {
-        GemItem[0] = new Gem_fire() as Gem_base;  //test
+        GemItem[14] = new Gem_fire() as Gem_base;  //test
     }
 
     private static Bag instance;
