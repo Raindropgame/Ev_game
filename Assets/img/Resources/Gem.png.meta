@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: b84f4dce5e1406b47b17d47973948d14
-timeCreated: 1529943252
+guid: 4d0f190b29314334788cc3ebbcbfd1f3
+timeCreated: 1529995375
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Gem 1_0
-    21300002: Gem 1_1
-    21300004: Gem_0
-    21300006: Gem_1
+    21300000: Gem_0
+    21300002: Gem_1
+    21300004: Gem_2
+    21300006: Gem_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -61,9 +61,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 4005
-        width: 932
-        height: 1335
+        y: 1536
+        width: 357.4
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -73,10 +73,36 @@ TextureImporter:
       name: Gem_1
       rect:
         serializedVersion: 2
-        x: 932
-        y: 4005
-        width: 932
-        height: 1335
+        x: 357
+        y: 1536
+        width: 357.4
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gem_2
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 1536
+        width: 357.4
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Gem_3
+      rect:
+        serializedVersion: 2
+        x: 1071
+        y: 1536
+        width: 357.4
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

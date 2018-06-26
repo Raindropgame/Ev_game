@@ -2,8 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class ArmsGemsBar : MonoBehaviour {
-
+public class ArmsGemsBar : MonoBehaviour
+{
     //武器镶嵌UI管理
 
     public struct ArmsInfo
@@ -21,9 +21,9 @@ public class ArmsGemsBar : MonoBehaviour {
     public Color backArmsColor;  //在后面的武器的颜色
     [Header("--------武器槽栏属性----------")]
     public GameObject[] GemGroove;
-    public GameObject[] GemGroove_Disable, GemGroove_None, Gem;
+    public Image[] GemGroove_Disable, GemGroove_None, Gem;
     public Color GemGrooveDisableColor;
-    public GameObject Dirty;  //穿上粒子特效
+    public GameObject[] Dirty;  //穿上粒子特效
     [Header("--------徽章属性----------")]
     public float changeScale;
     public float playTime;
@@ -175,7 +175,10 @@ public class ArmsGemsBar : MonoBehaviour {
 
         InfoBoxRect.gameObject.SetActive(false);
 
-        Dirty.SetActive(false);  //防止重复播放
+        for (int i = 0; i < Dirty.Length; i++)
+        {
+            Dirty[i].SetActive(false);  //防止重复播放
+        }
     }
 
 
@@ -300,37 +303,38 @@ public class ArmsGemsBar : MonoBehaviour {
         {
             if (i < currentGemGroove.currentGemNum)
             {
-                GemGroove_Disable[i].SetActive(false);
+                GemGroove_Disable[i].gameObject.SetActive(false);
                 GemGroove[i].GetComponent<Image>().color = Color.white;
                 GemGroove[i].GetComponent<Button>().enabled = false;
                 if (currentGemGroove.GemItem[i] == null)  //有格子无物品
                 {
-                    GemGroove_None[i].SetActive(true);
-                    Gem[i].SetActive(false);
+                    GemGroove_None[i].gameObject.SetActive(true);
+                    Gem[i].gameObject.SetActive(false);
                 }
                 else//  添加当前所镶嵌宝石的图片    有格子有物品
                 {
-                    GemGroove_None[i].SetActive(false);
-                    Gem[i].SetActive(true);
+                    Gem[i].color = Color.white;
+                    GemGroove_None[i].gameObject.SetActive(false);
+                    Gem[i].gameObject.SetActive(true);
                     switch (armsInfo[currentArms].name)
                     {
                         case "swords":
-                            Gem[i].GetComponent<Image>().sprite = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.swords].GemItem[i].sprite;
+                            Gem[i].sprite = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.swords].GemItem[i].sprite;
                             break;
                         case "arrow":
-                            Gem[i].GetComponent<Image>().sprite = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.arrow].GemItem[i].sprite;
+                            Gem[i].sprite = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.arrow].GemItem[i].sprite;
                             break;
                         case "spear":
-                            Gem[i].GetComponent<Image>().sprite = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.spear].GemItem[i].sprite;
+                            Gem[i].sprite = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.spear].GemItem[i].sprite;
                             break;
                     }
                 }
             }
             else   //无格子
             {
-                GemGroove_Disable[i].SetActive(true);
-                GemGroove_None[i].SetActive(false);
-                Gem[i].SetActive(false);
+                GemGroove_Disable[i].gameObject.SetActive(true);
+                GemGroove_None[i].gameObject.SetActive(false);
+                Gem[i].gameObject.SetActive(false);
                 GemGroove[i].GetComponent<Image>().color = GemGrooveDisableColor;
                 GemGroove[i].GetComponent<Button>().enabled = true;
             }
@@ -359,8 +363,8 @@ public class ArmsGemsBar : MonoBehaviour {
         }
 
         GemGroove[currentNum - 1].GetComponent<Image>().color = Color.white;  //更新显示
-        GemGroove_Disable[currentNum - 1].SetActive(false);
-        GemGroove_None[currentNum - 1].SetActive(true);
+        GemGroove_Disable[currentNum - 1].gameObject.SetActive(false);
+        GemGroove_None[currentNum - 1].gameObject.SetActive(true);
 
         GemGroove[currentNum - 1].GetComponent<Button>().enabled = false;   //禁用按钮
     }
@@ -527,14 +531,14 @@ public class ArmsGemsBar : MonoBehaviour {
         }
         Arms type = name2type(armsInfo[currentArms].name);
         CharacterAttribute.GetInstance().ArmsGemGroove[(int)type].GemItem[i].TakeOff();
-        Bag.getInstance().putGemIntoBag(CharacterAttribute.GetInstance().ArmsGemGroove[(int)type].GemItem[i]);
+        int t = Bag.getInstance().putGemIntoBag(CharacterAttribute.GetInstance().ArmsGemGroove[(int)type].GemItem[i]);
         CharacterAttribute.GetInstance().ArmsGemGroove[(int)type].GemItem[i] = null;
 
         //更新显示
         updateGemGroove();
         updateGemItemShow();
 
-        StartCoroutine(Animation_putoffGem(i));  //动画
+        StartCoroutine(Animation_putoffGem(t));  //动画
         return;
     }
 
@@ -583,7 +587,7 @@ public class ArmsGemsBar : MonoBehaviour {
         {
             InfoBoxRect.anchoredPosition = new Vector2(400 - InfoBoxRect.sizeDelta.x, InfoBoxRect.anchoredPosition.y);
         }
-        if(InfoBoxRect.anchoredPosition.y - InfoBoxRect.sizeDelta.y < -225)
+        if (InfoBoxRect.anchoredPosition.y - InfoBoxRect.sizeDelta.y < -225)
         {
             InfoBoxRect.anchoredPosition = new Vector2(InfoBoxRect.anchoredPosition.x, -225 + InfoBoxRect.sizeDelta.y);
         }
@@ -603,7 +607,7 @@ public class ArmsGemsBar : MonoBehaviour {
 
             InfoBoxRect.sizeDelta = Vector2.Lerp(Vector2.zero, W_H, _time / showTime);
 
-            if(_time > showTime)
+            if (_time > showTime)
             {
                 InfoBox[0].gameObject.SetActive(true);   //播放完动画才出现文字
                 InfoBox[1].gameObject.SetActive(true);
@@ -613,13 +617,13 @@ public class ArmsGemsBar : MonoBehaviour {
         }
     }
 
-    IEnumerator showInfo(int i,string[] info)  //等待动画完成 添加描述
+    IEnumerator showInfo(int i, string[] info)  //等待动画完成 添加描述
     {
         yield return StartCoroutine(Animation_showInfoBox());
         InfoBox[0].text = info[1];
-        InfoBox[1].text = info[2]; 
+        InfoBox[1].text = info[2];
     }
-        
+
     string[][] readInfo()  //从文件读取结晶的描述 0:序号  1：名字  2：描述
     {
         string[][] o;
@@ -629,7 +633,7 @@ public class ArmsGemsBar : MonoBehaviour {
 
         string[] t = t_text.Split("\n".ToCharArray());
         o = new string[t.Length][];
-        for(int i = 0;i<t.Length;i++)
+        for (int i = 0; i < t.Length; i++)
         {
             o[i] = t[i].Split(" ".ToCharArray());
         }
@@ -641,19 +645,19 @@ public class ArmsGemsBar : MonoBehaviour {
         float time1 = 0.3f, _time1 = 0;
         Vector2 _scale = new Vector2(2f, 2f);
 
-        while(true)   //第一阶段
+        while (true)   //第一阶段
         {
             _time1 += Time.deltaTime;
 
             Gem[i].GetComponent<RectTransform>().localScale = Vector3.Lerp(_scale, new Vector3(1, 1, 1), _time1 / time1);
-            if(_time1 > time1)
+            if (_time1 > time1)
             {
                 break;
             }
             yield return null;
         }
-        Dirty.transform.position = GemGroove[i].transform.position;   //尘土粒子特效
-        Dirty.SetActive(true);
+        Dirty[i].transform.position = GemGroove[i].transform.position;   //尘土粒子特效
+        Dirty[i].SetActive(true);
     }
 
     IEnumerator Animation_putoffGem(int i)   //卸下结晶的特效

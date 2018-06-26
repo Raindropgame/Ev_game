@@ -38,7 +38,7 @@ public class CharacterAttribute{
     public int[] Attack = new int[3] { 1,1,1};
 
     //武器属性
-    public Attribute[] ArmsAttribute = new Attribute[3] { Attribute.ice, Attribute.normal, Attribute.normal };
+    public Attribute[] ArmsAttribute = new Attribute[3] { Attribute.normal, Attribute.normal, Attribute.normal };
 
     public int Speed_recovery = 30;  //气息恢复速度
 

@@ -9,19 +9,26 @@ public class Monster_base : MonoBehaviour {
     public int MaxHP;
     [HideInInspector]
     public int currentHP;
+    public Transform eye;
+
 
     protected Texture texture;
     protected SpriteRenderer SR;
+    protected Animator animator;
+    protected Rigidbody2D rig;
 
     private void Start()  //初始化
     {
+        rig = GetComponent<Rigidbody2D>();
         SR = GetComponent<SpriteRenderer>();
         texture = SR.material.GetTexture("_MainTex"); //获得纹理
         currentHP = MaxHP;
         CharacterObjectManager._sendHurt += getHurt;  //受伤消息(来自玩家)注册
+        animator = GetComponent<Animator>();
 
         onStart();
     }
+
 
     private void OnDestroy()
     {
@@ -93,4 +100,5 @@ public class Monster_base : MonoBehaviour {
     {
 
     }
+
 }

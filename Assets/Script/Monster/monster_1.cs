@@ -20,18 +20,8 @@ public class monster_1 : Monster_base {
     [HideInInspector]
     public dir Dir = dir.right;
     public GameObject deadParticle;
-    [Header("受伤的颜色")]
-    [HideInInspector]
 
-    private Rigidbody2D rig;
-    private Animator animator;
 
-    override public void onStart()
-    {
-        rig = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-        SR = GetComponent<SpriteRenderer>();
-    }
 
     private void FixedUpdate()
     {
