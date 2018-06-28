@@ -5,11 +5,11 @@ public class Monster_base : MonoBehaviour {
 
     //怪物的基类
 
+    [HideInInspector]
     public Color hurtColor;
     public int MaxHP;
     [HideInInspector]
     public int currentHP;
-    public Transform eye;
 
 
     protected Texture texture;
@@ -21,7 +21,7 @@ public class Monster_base : MonoBehaviour {
     {
         rig = GetComponent<Rigidbody2D>();
         SR = GetComponent<SpriteRenderer>();
-        texture = SR.material.GetTexture("_MainTex"); //获得纹理
+        texture = SR.sprite.texture; //获得纹理
         currentHP = MaxHP;
         CharacterObjectManager._sendHurt += getHurt;  //受伤消息(来自玩家)注册
         animator = GetComponent<Animator>();
@@ -78,7 +78,7 @@ public class Monster_base : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "lighting")
+        if(collision.tag == "lighting")   //被雷电击中
         {
             _getHurt(GameData.getInstance().lightningDamage, Attribute.lightning);
         }
@@ -99,6 +99,15 @@ public class Monster_base : MonoBehaviour {
     virtual public void _getHurt(int damage, Attribute attribute)  //受伤虚函数
     {
 
+    }
+
+    protected bool isFinishPlay()  //是否播放完当前动画
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.99f)
+        {
+            return true;
+        }
+        return false;
     }
 
 }
