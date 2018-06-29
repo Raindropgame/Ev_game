@@ -43,6 +43,7 @@ public class monster_2 : Monster_base {
                     {
                         _time0 = 0;
                         currentState = monster_2_state.attack;
+                        animator.SetTrigger("attack");
                     }
                 }
 
@@ -141,12 +142,12 @@ public class monster_2 : Monster_base {
         this.GetComponent<BoxCollider2D>().enabled = false;
         deadParticle.SetActive(true);
         GetComponent<SpriteRenderer>().enabled = false;
+        deadParticle.transform.parent = null;
 
         Time.timeScale = 0;
         StartCoroutine(CameraFollow.instance.shakeCamera(0.25f, 0.04f, 0.2f));  //镜头抖动
         yield return new WaitForSecondsRealtime(0.1f);  //卡屏
         Time.timeScale = 1;
-        yield return new WaitForSeconds(deadParticle.GetComponent<ParticleSystem>().startLifetime);
         Destroy(this.gameObject);
     }
 
