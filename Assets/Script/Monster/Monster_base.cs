@@ -4,13 +4,14 @@ using System.Collections;
 public class Monster_base : MonoBehaviour {
 
     //怪物的基类
+    //死亡、行为、受伤由派生类处理
 
     [HideInInspector]
     public Color hurtColor;
     public int MaxHP;
     [HideInInspector]
     public int currentHP;
-
+    public Collider2D[] colliderID;   //一个怪物提供多个碰撞体
 
     protected Texture texture;
     protected SpriteRenderer SR;
@@ -21,12 +22,13 @@ public class Monster_base : MonoBehaviour {
     {
         rig = GetComponent<Rigidbody2D>();
         SR = GetComponent<SpriteRenderer>();
-        texture = SR.sprite.texture; //获得纹理
         currentHP = MaxHP;
         CharacterObjectManager._sendHurt += getHurt;  //受伤消息(来自玩家)注册
         animator = GetComponent<Animator>();
 
         onStart();
+
+        texture = SR == null ? null : SR.sprite.texture; //获得纹理
     }
 
 
@@ -37,9 +39,18 @@ public class Monster_base : MonoBehaviour {
 
     public void getHurt(int damage, Attribute attribute,int gameobjectID)
     {
-        if(gameobjectID == this.gameObject.GetInstanceID())  //是否是被攻击的对象
+        bool isTrigger = false;
+        for (int i = 0; i < colliderID.Length; i++)
         {
-            switch(attribute)   //根据受伤属性改变被攻击的颜色
+            if (gameobjectID == colliderID[i].gameObject.GetInstanceID())
+            {
+                isTrigger = true;
+            }
+        }
+
+        if (isTrigger)  //是否是被攻击的对象
+        {
+            switch (attribute)   //根据受伤属性改变被攻击的颜色
             {
                 case Attribute.normal:
                     hurtColor = Color.white;
@@ -60,12 +71,13 @@ public class Monster_base : MonoBehaviour {
                     hurtColor = Color.white;
                     break;
             }
-            _getHurt(damage,attribute);
+            _getHurt(damage, attribute);
         }
     }
 
-    public IEnumerator beHurt()  //受伤反馈
+    virtual public IEnumerator beHurt()  //受伤反馈
     {
+        //被攻击时的闪烁
         MaterialPropertyBlock matBlock = new MaterialPropertyBlock();
         matBlock.SetColor("_hitColor", hurtColor);
         matBlock.SetFloat("_isHit", 1);
@@ -74,6 +86,7 @@ public class Monster_base : MonoBehaviour {
         yield return new WaitForSeconds(0.1f);  //变色的时间
         matBlock.SetFloat("_isHit", 0);
         SR.SetPropertyBlock(matBlock);
+        //----------
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -83,10 +96,10 @@ public class Monster_base : MonoBehaviour {
             _getHurt(GameData.getInstance().lightningDamage, Attribute.lightning);
         }
 
-        TriggerEnter();
+        TriggerEnter(collision);
     }
 
-    virtual public void TriggerEnter()   
+    virtual public void TriggerEnter(Collider2D collision)   
     {
 
     }

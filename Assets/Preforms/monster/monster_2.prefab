@@ -196,7 +196,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010978104578}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -173.36722, y: 0.54612434, z: -3.5390625}
+  m_LocalPosition: {x: -373.81055, y: -16.187313, z: -3.5390625}
   m_LocalScale: {x: 1.628298, y: 1.6282979, z: 1.6282979}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -254,7 +254,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010836489786}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.24, y: 0.05, z: 0}
+  m_LocalPosition: {x: -0.72, y: 0.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -381,6 +381,8 @@ MonoBehaviour:
   hurtColor: {r: 1, g: 1, b: 1, a: 0}
   MaxHP: 3
   currentHP: 0
+  colliderID:
+  - {fileID: 61000010400358946}
   currentState: 1
   Dir: 0
   eye: {fileID: 4000013261974494}

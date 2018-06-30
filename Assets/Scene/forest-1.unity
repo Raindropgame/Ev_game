@@ -2053,7 +2053,7 @@ GameObject:
   - 4: {fileID: 193349361}
   - 61: {fileID: 193349363}
   - 114: {fileID: 193349362}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GameObject
   m_TagString: onlyY
   m_Icon: {fileID: 0}
@@ -2729,7 +2729,7 @@ GameObject:
   - 4: {fileID: 247961275}
   - 61: {fileID: 247961277}
   - 114: {fileID: 247961276}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GameObject (1)
   m_TagString: onlyY
   m_Icon: {fileID: 0}
@@ -11701,7 +11701,7 @@ GameObject:
   - 4: {fileID: 986759245}
   - 61: {fileID: 986759246}
   - 114: {fileID: 986759247}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GameObject (2)
   m_TagString: onlyX
   m_Icon: {fileID: 0}

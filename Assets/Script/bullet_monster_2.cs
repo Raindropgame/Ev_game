@@ -39,11 +39,11 @@ public class bullet_monster_2 : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.tag == "Player")
+        if (collision.transform.tag == "Player" && SR.enabled == false)
         {
             CharacterControl.instance.hurt(Damage, Attribute.wood);  //对玩家造成伤害
         }
-        if (collision.transform.tag == "enemy")
+        if (collision.transform.tag == "enemy" && SR.enabled == false)
         {
             collision.transform.GetComponent<Monster_base>().getHurt(Damage, Attribute.wood, collision.gameObject.GetInstanceID());  //对怪物造成伤害
         }      

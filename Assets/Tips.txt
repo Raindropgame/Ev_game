@@ -1,5 +1,5 @@
 ﻿Tags为map  ：会随着镜头的移动而移动
-Tags : maps ： 被视为地面
+Tags : maps ： 被视为地面(用于武器碰撞检测)
 Tags : map_background  : 完全受摄像机影响而移动
 Layer为backGround ：会被虚化
 Layer为terrain ： 则会被射线（用于检测是否落地）检测到

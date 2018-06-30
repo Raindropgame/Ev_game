@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000011702857340}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CameraMoveMode
   m_TagString: Untagged
   m_Icon: {fileID: 0}

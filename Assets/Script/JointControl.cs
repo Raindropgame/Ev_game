@@ -13,9 +13,11 @@ public class JointControl : MonoBehaviour {
 
     private Rigidbody2D rig;
     private float _time0 = 0;
+    private monster_3 monster_3;
 
 	void Start () {
         rig = GetComponent<Rigidbody2D>();
+        monster_3 = transform.parent.GetComponent<monster_3>();
 	}
 
 
@@ -50,4 +52,13 @@ public class JointControl : MonoBehaviour {
             }
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.transform.tag == "Player")
+        {
+            CharacterControl.instance.hurt(1, Attribute.normal);
+        }
+    }
+
 }

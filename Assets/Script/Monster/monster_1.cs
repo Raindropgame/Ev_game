@@ -96,7 +96,8 @@ public class monster_1 : Monster_base {
 
     bool isSeePlayer()  //是否看到了主角
     {
-        RaycastHit2D HitPoint = Physics2D.Raycast(rightPoint.position, Dir == dir.right ? Vector2.left : Vector2.right, 7f);
+        int mask = ~(1 << 10);  //忽略管理层
+        RaycastHit2D HitPoint = Physics2D.Raycast(rightPoint.position, Dir == dir.right ? Vector2.left : Vector2.right, 7f, mask);
         if (HitPoint.transform != null)
         {
             if (HitPoint.transform.tag == "Player")

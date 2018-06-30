@@ -226,6 +226,8 @@ MonoBehaviour:
   hurtColor: {r: 1, g: 1, b: 1, a: 0}
   MaxHP: 2
   currentHP: 0
+  colliderID:
+  - {fileID: 61000012553160998}
   walkSpeed: 2
   leftPoint: {fileID: 4000013259164610}
   rightPoint: {fileID: 4000010479133764}

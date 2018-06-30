@@ -517,17 +517,19 @@ public class CharacterControl : MonoBehaviour
         int i = 0;
         if (LeftHit.transform != null)
         {
-            if (LeftHit.transform.tag == "maps")
+            i++;
+            /*if (LeftHit.transform.tag == "maps")
             {
                 i++;
-            }
+            }*/
         }
         if (RightHit.transform != null)
         {
-            if (RightHit.transform.tag == "maps")
+            i++;
+            /*if (RightHit.transform.tag == "maps")
             {
                 i++;
-            }
+            }*/
         }
         if (i != 0)
         {

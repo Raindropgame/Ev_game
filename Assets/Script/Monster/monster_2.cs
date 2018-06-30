@@ -93,7 +93,8 @@ public class monster_2 : Monster_base {
 
     bool isSeePlayer()  //是否看到了主角
     {
-        RaycastHit2D HitPoint = Physics2D.Raycast(eye.position, Dir == dir.right ? Vector2.right : Vector2.left, 10f);
+        int mask = ~(1 << 10);
+        RaycastHit2D HitPoint = Physics2D.Raycast(eye.position, Dir == dir.right ? Vector2.right : Vector2.left, 15f, mask);
         if (HitPoint.transform != null)
         {
             if (HitPoint.transform.tag == "Player")
@@ -142,16 +143,17 @@ public class monster_2 : Monster_base {
         this.GetComponent<BoxCollider2D>().enabled = false;
         deadParticle.SetActive(true);
         GetComponent<SpriteRenderer>().enabled = false;
-        deadParticle.transform.parent = null;
+        this.enabled = false;
 
         Time.timeScale = 0;
         StartCoroutine(CameraFollow.instance.shakeCamera(0.25f, 0.04f, 0.2f));  //镜头抖动
         yield return new WaitForSecondsRealtime(0.1f);  //卡屏
         Time.timeScale = 1;
+        yield return new WaitForSeconds(deadParticle.GetComponent<ParticleSystem>().startLifetime);
         Destroy(this.gameObject);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision) 
     {
         if(collision.tag == "Player")
         {
