@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class enterNextScene : MonoBehaviour {
 
@@ -11,8 +11,8 @@ public class enterNextScene : MonoBehaviour {
     {
         if(collision.tag == "Player")
         {
-            SceneManager.getInstance().enterNextScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name, NextSceneName, BornPositionNum);
-            EditorSceneManager.LoadScene(NextSceneName);
+            TheSceneManager.getInstance().enterNextScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name, NextSceneName, BornPositionNum);
+            SceneManager.LoadScene(NextSceneName);
         }
     }
 }

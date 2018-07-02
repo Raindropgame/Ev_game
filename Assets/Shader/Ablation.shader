@@ -2,9 +2,9 @@
 {
 	Properties
 	{
-		_MainTex ("Texture", 2D) = "white" {}
+		[PerRendererData] _MainTex ("Texture", 2D) = "white" {}
 		_NoiseTex ("NoiseTex",2D) = "white" {}
-		_BurnScale ("BurnScale",Range(0,1)) = 0
+		[PerRendererData] _BurnScale ("BurnScale",Range(0,1)) = 0
 		_BurnWidth ("BurnWidth",float) = 0
 		_BurnColor ("BurnColor",color) = (1,1,1,1)
 		_Color ("Color",COLOR) = (0,0,0,1)

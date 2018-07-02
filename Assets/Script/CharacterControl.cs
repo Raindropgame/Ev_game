@@ -26,7 +26,8 @@ public class CharacterControl : MonoBehaviour
     private Rigidbody2D rig;
     private float LeftKeyDown = 0, RightKeyDown = 0;  //检测是否双击键盘
     private int LeftOrRight = 0;  //2:右  1:左  ---检测双击所用
-    private int _jumpTimes = 0; //记录跳跃次数
+    [HideInInspector]
+    public int _jumpTimes = 0; //记录跳跃次数
     private float JumpAccelerateTime = 0; //记录跳跃加速的时间  按键越久跳跃越高
     private float XJumpSpeed, YJumpSpeed, Yacceleration;
     private BoxCollider2D _collider;

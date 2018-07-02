@@ -93,7 +93,7 @@ public class monster_2 : Monster_base {
 
     bool isSeePlayer()  //是否看到了主角
     {
-        int mask = ~(1 << 10);
+        int mask = (1 << 0) | (1 << 9);  //检测特定层
         RaycastHit2D HitPoint = Physics2D.Raycast(eye.position, Dir == dir.right ? Vector2.right : Vector2.left, 15f, mask);
         if (HitPoint.transform != null)
         {

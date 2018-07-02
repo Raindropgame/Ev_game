@@ -25,7 +25,7 @@ public class Scene : MonoBehaviour {
 
         character = GameObject.Find("character");
 
-        character.transform.position = new Vector3(BornPosition[SceneManager.getInstance().BornPositionNum].position.x, BornPosition[SceneManager.getInstance().BornPositionNum].position.y , -0.1f); // 更改位置
+        character.transform.position = new Vector3(BornPosition[TheSceneManager.getInstance().BornPositionNum].position.x, BornPosition[TheSceneManager.getInstance().BornPositionNum].position.y , -0.1f); // 更改位置
         character.GetComponent<CharacterControl>().enabled = false;
         black = GameObject.Find("black");
 

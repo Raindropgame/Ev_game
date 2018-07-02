@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class test1 : MonoBehaviour {
 
@@ -17,11 +17,11 @@ public class test1 : MonoBehaviour {
         }
         if(Input.GetKeyDown(KeyCode.X))
         {
-            EditorSceneManager.LoadScene("2");
+            SceneManager.LoadScene("2");
         }
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            EditorSceneManager.LoadScene("1");
+            SceneManager.LoadScene("1");
         }
     }
 }

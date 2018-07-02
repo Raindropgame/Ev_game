@@ -4,4 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scene/Logo.unity
+  - enabled: 1
+    path: Assets/Scene/forest-1.unity
+  - enabled: 1
+    path: Assets/Scene/forest-2.unity
+  - enabled: 1
+    path: Assets/Scene/forest-3.unity
+  - enabled: 1
+    path: Assets/Scene/Test.unity

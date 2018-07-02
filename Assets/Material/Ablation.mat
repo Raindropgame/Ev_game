@@ -61,7 +61,7 @@ Material:
         name: _NoiseTex
       second:
         m_Texture: {fileID: 2800000, guid: a6a31a4127eb1574384f4b9f2c1ea41c, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 3.93, y: 8.8}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _OcclusionMap
@@ -133,7 +133,7 @@ Material:
     m_Colors:
     - first:
         name: _BurnColor
-      second: {r: 1, g: 1, b: 1, a: 1}
+      second: {r: 0.50129765, g: 0, b: 0.5588235, a: 1}
     - first:
         name: _Color
       second: {r: 1, g: 1, b: 1, a: 1}

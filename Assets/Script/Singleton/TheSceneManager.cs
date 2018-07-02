@@ -1,26 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SceneManager{
+public class TheSceneManager{
 
     //用于临时储存一些场景信息
 
-    static SceneManager instance;
+    static TheSceneManager instance;
 
     public string currentScene, nextScene;
     public int BornPositionNum = 0;
 
-    static public SceneManager getInstance()
+    static public TheSceneManager getInstance()
     {
         if(instance == null)
         {
-            instance = new SceneManager();
+            instance = new TheSceneManager();
             return instance;
         }
         return instance;
     }
 
-    SceneManager()
+    TheSceneManager()
     {
         Init();
     }

@@ -124,8 +124,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012801928284}
   - 114: {fileID: 114000011894966354}
-  - 61: {fileID: 61000012271121180}
-  - 114: {fileID: 114000010474343108}
   m_Layer: 9
   m_Name: monster_3
   m_TagString: enemy
@@ -527,20 +525,6 @@ BoxCollider2D:
   m_Offset: {x: -0.05260861, y: -0.0000019073486}
   serializedVersion: 2
   m_Size: {x: 2.9537964, y: 4.8499994}
---- !u!61 &61000012271121180
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012046301704}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_Offset: {x: -5.3835297, y: 0}
-  serializedVersion: 2
-  m_Size: {x: 11.76712, y: 1}
 --- !u!61 &61000013475546260
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -583,17 +567,6 @@ BoxCollider2D:
   m_Offset: {x: -0.012402296, y: 0}
   serializedVersion: 2
   m_Size: {x: 2.2717824, y: 4.2999997}
---- !u!114 &114000010474343108
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012046301704}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 812695cdef38e1b4eb79850b24da0ff5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114000010582456890
 MonoBehaviour:
   m_ObjectHideFlags: 1
