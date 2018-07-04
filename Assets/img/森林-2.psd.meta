@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: f2cebab4aec4efb4688d21a4072068c5
-timeCreated: 1524887324
+timeCreated: 1530606643
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
@@ -10,6 +10,8 @@ TextureImporter:
     21300006: "\u68EE\u6797-2_4"
     21300008: "\u68EE\u6797-2_5"
     21300010: "\u68EE\u6797-2_6"
+    21300012: "\u68EE\u6797-2_1"
+    21300014: "\u68EE\u6797-2_7"
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -67,7 +69,7 @@ TextureImporter:
         width: 1977
         height: 452
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -80,7 +82,7 @@ TextureImporter:
         width: 1492
         height: 820
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -93,7 +95,7 @@ TextureImporter:
         width: 256
         height: 830
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -106,7 +108,7 @@ TextureImporter:
         width: 440
         height: 391
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -119,7 +121,7 @@ TextureImporter:
         width: 385
         height: 469
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -132,7 +134,33 @@ TextureImporter:
         width: 807
         height: 693
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "\u68EE\u6797-2_1"
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 1808
+        width: 1979
+        height: 212
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "\u68EE\u6797-2_7"
+      rect:
+        serializedVersion: 2
+        x: 679
+        y: 1620
+        width: 721
+        height: 400
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
