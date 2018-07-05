@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: magicforest_halo
-  m_Shader: {fileID: 10750, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: Water
+  m_Shader: {fileID: 4800000, guid: 34dfc0ae9a4081345a4112236d427d1b, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -48,9 +48,9 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: a5551d8c9412842478b5d5a7b5e03398, type: 3}
+        m_Texture: {fileID: 2800000, guid: df57b84f471514845ba3ac7ea3129d71, type: 3}
         m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 640.4327, y: 0}
+        m_Offset: {x: 0, y: 0}
     - first:
         name: _MetallicGlossMap
       second:
@@ -70,6 +70,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - first:
+        name: PixelSnap
+      second: 0
+    - first:
+        name: _Alpha
+      second: 0.406
     - first:
         name: _BumpScale
       second: 1
@@ -92,9 +98,6 @@ Material:
         name: _GlossyReflections
       second: 1
     - first:
-        name: _InvFade
-      second: 1
-    - first:
         name: _Metallic
       second: 0
     - first:
@@ -107,27 +110,48 @@ Material:
         name: _Parallax
       second: 0.02
     - first:
+        name: _Range
+      second: 0.51
+    - first:
         name: _SmoothnessTextureChannel
       second: 0
     - first:
         name: _SpecularHighlights
       second: 1
     - first:
+        name: _Speed
+      second: 3.6
+    - first:
         name: _SrcBlend
       second: 1
+    - first:
+        name: _Surface
+      second: -1.02
     - first:
         name: _UVSec
       second: 0
     - first:
+        name: _Wavelength
+      second: 7.18
+    - first:
+        name: _Width
+      second: 1
+    - first:
         name: _ZWrite
       second: 1
+    - first:
+        name: _isHit
+      second: 0
     m_Colors:
     - first:
         name: _Color
-      second: {r: 1, g: 1, b: 1, a: 1}
+      second: {r: 0, g: 0.59472334, b: 0.8088235, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
-        name: _TintColor
-      second: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+        name: _OutlineCol
+      second: {r: 1, g: 1, b: 1, a: 1}
+    - first:
+        name: _hitColor
+      second: {r: 1, g: 1, b: 1, a: 1}
