@@ -164,6 +164,7 @@ public class CharacterControl : MonoBehaviour
                 }
                 break;
             case state.jump:
+                isDoubleKeyDown();  //计时
                 currentState = state.fall;    //下落
                 if(Input.GetKey(KeyCode.Space) && JumpAccelerateTime < MaxJumpTime && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_jump * Time.deltaTime)
                 {
@@ -211,7 +212,8 @@ public class CharacterControl : MonoBehaviour
 
                 break;
             case state.dash:
-                if(attack()) //攻击
+                isDoubleKeyDown();  //计时
+                if (attack()) //攻击
                 {
                     YJumpSpeed = 0;
                     _dashTime = 0;
@@ -326,6 +328,7 @@ public class CharacterControl : MonoBehaviour
                 }
                 break;
             case state.fall:
+                isDoubleKeyDown();  //计时
                 JumpMove();
                 YJumpSpeed = YJumpSpeed + Yacceleration * Time.deltaTime;
                 if(YJumpSpeed > JumpSpeed)

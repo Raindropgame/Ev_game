@@ -89,6 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4936822c630d4ea45b507ce0c51a74c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spray: {fileID: 1000011166405350}
   tex: {fileID: 2800000, guid: 492eb458d373df640b49cfe51d9b7b5a, type: 3}
   color: {r: 0, g: 0.5043254, b: 0.7794118, a: 1}
   Alpha: 0.458
@@ -96,3 +97,4 @@ MonoBehaviour:
   wavelength: 7.1
   speed: 3.6
   surface: -1
+  changeScale: 1.4
