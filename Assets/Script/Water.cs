@@ -6,11 +6,10 @@ public class Water : MonoBehaviour {
     //管理水面的动画
 
     public GameObject spray;  //水花
+    public Transform surfacePos;  //水面的位置
 
     public Texture2D tex;
     public Color color;
-    [Range(0,1)]
-    public float Alpha = 0.4f;
     public float range = 0.51f;
     public float wavelength = 7.1f;
     public float speed = 3.6f;
@@ -32,7 +31,6 @@ public class Water : MonoBehaviour {
 
         MaterialPropertyBlock t = new MaterialPropertyBlock();
         t.SetColor("_Color", color);
-        t.SetFloat("_Alpha", Alpha);
         t.SetFloat("_Range", range);
         t.SetFloat("_Wavelength", wavelength);
         t.SetFloat("_Speed", speed);
@@ -45,7 +43,6 @@ public class Water : MonoBehaviour {
     {
         MaterialPropertyBlock t = new MaterialPropertyBlock();
         t.SetColor("_Color", color);
-        t.SetFloat("_Alpha", Alpha);
         t.SetFloat("_Range", range);
         t.SetFloat("_Wavelength", wavelength);
         t.SetFloat("_Speed", speed);
@@ -81,13 +78,13 @@ public class Water : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        GameObject t = Instantiate(spray, position: collision.transform.position, rotation: new Quaternion(0, 0, 0, 0)) as GameObject;
+        GameObject t = Instantiate(spray, position: new Vector3(collision.transform.position.x,surfacePos.position.y,transform.position.z), rotation: new Quaternion(0, 0, 0, 0)) as GameObject;
         StartCoroutine(destroySpray(t));
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        GameObject t = Instantiate(spray, position:new Vector3(collision.transform.position.x, collision.transform.position.y,transform.position.y), rotation: new Quaternion(0, 0, 0, 0)) as GameObject;
+        GameObject t = Instantiate(spray, position: new Vector3(collision.transform.position.x, surfacePos.position.y, transform.position.z), rotation: new Quaternion(0, 0, 0, 0)) as GameObject;
         StartCoroutine(destroySpray(t));
     }
 

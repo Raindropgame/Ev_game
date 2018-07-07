@@ -1,11 +1,10 @@
 fileFormatVersion: 2
-guid: 2ecf15a3001dfdd40a983527572d6912
-timeCreated: 1530970623
+guid: f40ce5a84d9b6a14da78a6406cf79276
+timeCreated: 1530932911
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
-    21300000: butterfly_big_0
-    21300002: butterfly_big_1
+    21300000: halo_0
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -55,28 +54,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: butterfly_big_0
+      name: halo_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 200
-        width: 231
-        height: 140
-      alignment: 9
-      pivot: {x: 0.50890917, y: 0.45883942}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: butterfly_big_1
-      rect:
-        serializedVersion: 2
-        x: 11
-        y: 17
-        width: 219
-        height: 157
-      alignment: 9
-      pivot: {x: 0.5206743, y: 0.42397076}
+        x: 19
+        y: 15
+        width: 488
+        height: 487
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
