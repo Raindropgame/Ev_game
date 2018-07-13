@@ -25,50 +25,53 @@ public class monster_1 : Monster_base {
 
     private void FixedUpdate()
     {
-        switch(currentState)
+        if (isEnable)
         {
-            case monster_1_state.idle:
+            switch (currentState)
+            {
+                case monster_1_state.idle:
 
-                if(!animator.GetCurrentAnimatorStateInfo(0).IsName("Base.monster_1_idle_2"))
-                {
-                    if(Random.value < 0.01f)
+                    if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Base.monster_1_idle_2"))
                     {
-                        animator.SetTrigger("idle_2");
+                        if (Random.value < 0.01f)
+                        {
+                            animator.SetTrigger("idle_2");
+                        }
                     }
-                }
 
-                if (((Vector2)(transform.position - CharacterControl.instance.transform.position)).sqrMagnitude > 1)  //玩家离开变为行走
-                {
-                    currentState = monster_1_state.walk;
-                    animator.SetTrigger("walk");
-                }
-                break;
-            case monster_1_state.walk:
+                    if (((Vector2)(transform.position - CharacterControl.instance.transform.position)).sqrMagnitude > 1)  //玩家离开变为行走
+                    {
+                        currentState = monster_1_state.walk;
+                        animator.SetTrigger("walk");
+                    }
+                    break;
+                case monster_1_state.walk:
 
-                if( isSeePlayer() )  //感知到玩家
-                {
-                    rig.velocity = new Vector2(CharacterControl.instance.transform.position.x - transform.position.x > 0 ? walkSpeed : -walkSpeed, rig.velocity.y);  //添加速度
-                    Dir = CharacterControl.instance.transform.position.x - transform.position.x > 0 ? dir.right : dir.left;
-                }
-                else
-                {
-                    rig.velocity = new Vector2(Dir == dir.left ? -walkSpeed : walkSpeed, rig.velocity.y);  //添加速度
-                }
+                    if (isSeePlayer())  //感知到玩家
+                    {
+                        rig.velocity = new Vector2(CharacterControl.instance.transform.position.x - transform.position.x > 0 ? walkSpeed : -walkSpeed, rig.velocity.y);  //添加速度
+                        Dir = CharacterControl.instance.transform.position.x - transform.position.x > 0 ? dir.right : dir.left;
+                    }
+                    else
+                    {
+                        rig.velocity = new Vector2(Dir == dir.left ? -walkSpeed : walkSpeed, rig.velocity.y);  //添加速度
+                    }
 
-                if ( ((Vector2)(transform.position - CharacterControl.instance.transform.position)).sqrMagnitude < 1)  //在玩家旁边就改变状态为闲置
-                {
-                    currentState = monster_1_state.idle;
-                    animator.SetTrigger("idle_1");
-                    rig.velocity = Vector2.zero;
-                }
-                break;
-        }
+                    if (((Vector2)(transform.position - CharacterControl.instance.transform.position)).sqrMagnitude < 1)  //在玩家旁边就改变状态为闲置
+                    {
+                        currentState = monster_1_state.idle;
+                        animator.SetTrigger("idle_1");
+                        rig.velocity = Vector2.zero;
+                    }
+                    break;
+            }
 
-        transform.localScale = new Vector3(Dir == dir.left ? Mathf.Abs(transform.localScale.x) : -Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);  //改变动画方向
+            transform.localScale = new Vector3(Dir == dir.left ? Mathf.Abs(transform.localScale.x) : -Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);  //改变动画方向
 
-        if(isNearEdge() || NearWall() < 0.3f) //临近边或者靠近墙就改变方向
-        {
-            Dir = Dir == dir.left ? dir.right : dir.left;
+            if (isNearEdge() || NearWall() < 0.3f) //临近边或者靠近墙就改变方向
+            {
+                Dir = Dir == dir.left ? dir.right : dir.left;
+            }
         }
     }
 
@@ -122,13 +125,18 @@ public class monster_1 : Monster_base {
     }
 
 
-    override public void _getHurt(int damage,Attribute attibute)
+    override public void _getHurt(int damage,Attribute attribute)
     {
         currentHP -= damage;
         if (currentHP <= 0)  //是否死亡
         {
             StartCoroutine(die());
             return;
+        }
+
+        if (attribute == Attribute.ice)
+        {
+            StartCoroutine(frozen());
         }
         StartCoroutine(beHurt());
     }

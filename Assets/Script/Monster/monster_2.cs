@@ -31,58 +31,61 @@ public class monster_2 : Monster_base {
     private float _time0 = 0;
     private void FixedUpdate()
     {
-        switch(currentState)
+        if (isEnable)
         {
-            case monster_2_state.idle:
+            switch (currentState)
+            {
+                case monster_2_state.idle:
 
-                _time0 += Time.deltaTime;
+                    _time0 += Time.deltaTime;
 
-                if(isSeePlayer() && _time0 > idleTime / 2)
-                {
-                    if (bullet.gameObject.activeSelf == false)
+                    if (isSeePlayer() && _time0 > idleTime / 2)
+                    {
+                        if (bullet.gameObject.activeSelf == false)
+                        {
+                            _time0 = 0;
+                            currentState = monster_2_state.attack;
+                            animator.SetTrigger("attack");
+                        }
+                    }
+
+                    if (_time0 > idleTime)
                     {
                         _time0 = 0;
-                        currentState = monster_2_state.attack;
-                        animator.SetTrigger("attack");
+                        currentState = monster_2_state.walk;
+                        animator.SetTrigger("walk");
                     }
-                }
+                    break;
+                case monster_2_state.attack:
+                    if (isFinishPlay())
+                    {
+                        currentState = monster_2_state.idle;
+                        animator.SetTrigger("idle");
 
-                if(_time0 > idleTime)
-                {
-                    _time0 = 0;
-                    currentState = monster_2_state.walk;
-                    animator.SetTrigger("walk");
-                }
-                break;
-            case monster_2_state.attack:
-                if(isFinishPlay())
-                {
-                    currentState = monster_2_state.idle;
-                    animator.SetTrigger("idle");
+                        bullet.gameObject.SetActive(true);
 
-                    bullet.gameObject.SetActive(true);
+                        bullet.gameObject.transform.position = ShootPos.position;
+                        bullet.gameObject.transform.parent = null;
+                        bullet.velocity = new Vector2(bulletSpeed.x * (Dir == dir.left ? -1 : 1), bulletSpeed.y);
+                    }
+                    break;
+                case monster_2_state.walk:
+                    rig.velocity = walkSpeed * (Dir == dir.left ? -1 : 1);  //徘徊
 
-                    bullet.gameObject.transform.position = ShootPos.position;
-                    bullet.gameObject.transform.parent = null;
-                    bullet.velocity = new Vector2(bulletSpeed.x * (Dir == dir.left ? -1 : 1), bulletSpeed.y);
-                }
-                break;
-            case monster_2_state.walk:
-                rig.velocity = walkSpeed * (Dir == dir.left ? -1 : 1);  //徘徊
+                    if (isSeePlayer())
+                    {
+                        rig.velocity = Vector2.zero;
+                        currentState = monster_2_state.idle;
+                        animator.SetTrigger("idle");
+                    }
+                    break;
+            }
 
-                if(isSeePlayer())
-                {
-                    rig.velocity = Vector2.zero;
-                    currentState = monster_2_state.idle;
-                    animator.SetTrigger("idle");
-                }
-                break;
-        }
-
-        if (isNearEdge() || NearWall() < 0.2f)  //转换方向
-        {
-            Dir = (Dir == dir.left ? dir.right : dir.left);
-            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+            if (isNearEdge() || NearWall() < 0.2f)  //转换方向
+            {
+                Dir = (Dir == dir.left ? dir.right : dir.left);
+                transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+            }
         }
     }
 
@@ -127,13 +130,19 @@ public class monster_2 : Monster_base {
         return HitPoint.distance;
     }
 
-    override public void _getHurt(int damage, Attribute attibute)
+    override public void _getHurt(int damage, Attribute attribute)
     {
         currentHP -= damage;
+
         if (currentHP <= 0)  //是否死亡
         {
             StartCoroutine(die());
             return;
+        }
+
+        if (attribute == Attribute.ice)  //冰冻
+        {
+            StartCoroutine(frozen());
         }
         StartCoroutine(beHurt());
     }

@@ -2084,7 +2084,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 310640836558d59468f73d2ed697aff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isIgnoreInit: 0
+  isCharacterStay: 0
+  isCameraStay: 0
 --- !u!61 &193349363
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2096,9 +2097,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: -21.99054, y: 10.295925}
+  m_Offset: {x: -21.203415, y: 10.295925}
   serializedVersion: 2
-  m_Size: {x: 48.446487, y: 29.004875}
+  m_Size: {x: 50.02074, y: 29.004875}
 --- !u!1 &195895131
 GameObject:
   m_ObjectHideFlags: 0
@@ -2760,7 +2761,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 310640836558d59468f73d2ed697aff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isIgnoreInit: 0
+  isCharacterStay: 0
+  isCameraStay: 0
 --- !u!61 &247961277
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2875,6 +2877,10 @@ Prefab:
     - target: {fileID: 4000010611237946, guid: d399f9bd0339ab549b2c33af00efce2e, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010341890682, guid: d399f9bd0339ab549b2c33af00efce2e, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d399f9bd0339ab549b2c33af00efce2e, type: 2}
@@ -11732,9 +11738,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 24.594757, y: 3.1135097}
+  m_Offset: {x: 52.095123, y: 10.841778}
   serializedVersion: 2
-  m_Size: {x: 34.17752, y: 10.623566}
+  m_Size: {x: 91.09378, y: 26.080101}
 --- !u!114 &986759247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11746,7 +11752,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 310640836558d59468f73d2ed697aff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isIgnoreInit: 1
+  isCharacterStay: 0
+  isCameraStay: 0
 --- !u!1 &1001022280
 GameObject:
   m_ObjectHideFlags: 0

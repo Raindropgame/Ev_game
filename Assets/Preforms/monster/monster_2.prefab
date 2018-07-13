@@ -25,7 +25,7 @@ GameObject:
   - 114: {fileID: 114000011222462624}
   m_Layer: 0
   m_Name: bullet
-  m_TagString: enemy
+  m_TagString: damage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -196,7 +196,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010978104578}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -373.81055, y: -16.187313, z: -3.5390625}
+  m_LocalPosition: {x: -31.84, y: 45.48, z: -3.5390625}
   m_LocalScale: {x: 1.628298, y: 1.6282979, z: 1.6282979}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -7413,7 +7413,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b485f0185fcfd4d4db5f256acadc6cdc, type: 3}
+  m_Sprite: {fileID: 21300006, guid: b485f0185fcfd4d4db5f256acadc6cdc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -48,6 +48,7 @@ public class Arrow_2 : MonoBehaviour {
         if (collision.transform.tag == "maps")
         {
             Invoke("TriggerWithEnemy", 0.03f);
+            CharacterObjectManager.instance.sendHurt(damage, currentAttribute, collision.gameObject.GetInstanceID());
         }
         if(collision.transform.tag == "enemy")
         {

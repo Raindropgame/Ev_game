@@ -60,3 +60,8 @@ public enum Arms  //武器
     arrow,
     spear
 }
+
+public enum AbnormalState  //异常状态
+{
+    frozen,  //冰冻
+}

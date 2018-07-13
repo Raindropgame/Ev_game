@@ -14,6 +14,7 @@ TagManager:
   - maps
   - lighting
   - enemy
+  - damage
   layers:
   - Default
   - TransparentFX

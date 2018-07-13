@@ -20,6 +20,7 @@ public class monster_3 : Monster_base {
         {
             _texture[i] = _SR[i].sprite.texture;
         }
+
     }
 
     private float lastTime = 0;

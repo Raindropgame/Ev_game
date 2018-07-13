@@ -17,6 +17,8 @@ public class Monster_base : MonoBehaviour {
     protected SpriteRenderer SR;
     protected Animator animator;
     protected Rigidbody2D rig;
+    protected ArrayList abnormalState = new ArrayList();
+    protected bool isEnable = true;  //是否运行fixedupdate
 
     private void Start()  //初始化
     {
@@ -27,10 +29,9 @@ public class Monster_base : MonoBehaviour {
         animator = GetComponent<Animator>();
 
         onStart();
-
+        
         texture = SR == null ? null : SR.sprite.texture; //获得纹理
     }
-
 
     private void OnDestroy()
     {
@@ -123,4 +124,79 @@ public class Monster_base : MonoBehaviour {
         return false;
     }
 
+    protected IEnumerator frozen()  //冰冻
+    {
+        float frozenTime = 1;
+        if(abnormalState.Contains(AbnormalState.frozen))  //是否已经被冰冻
+        {
+            yield break;
+        }
+        abnormalState.Add(AbnormalState.frozen);  
+        GameObject iceFrag = Resources.Load<GameObject>("iceFrag");  //加载粒子效果  
+        //---添加图层
+        GameObject t = new GameObject();
+        SpriteRenderer t_SR = t.AddComponent<SpriteRenderer>();
+        if (SR.bounds.extents.x > SR.bounds.extents.y)  //选择图片
+        {
+            t_SR.sprite = Resources.LoadAll<Sprite>("iceCube")[1];
+        }
+        else
+        {
+            t_SR.sprite = Resources.LoadAll<Sprite>("iceCube")[0];
+        }
+
+        Bounds t_bounds = SR.bounds,bounds = t_SR.bounds;
+        t.transform.position = t_bounds.center + new Vector3(0,0,-0.01f);
+        Vector2 scale = Vector2.zero;
+        if(t_bounds.extents.x > t_bounds.extents.y)  //宽大于高
+        {
+            float _scale = t_bounds.extents.x / (bounds.extents.x * 0.41f);
+            scale.x = _scale;
+            scale.y = _scale;
+        }
+        else   //高大于宽
+        {
+            float _scale = t_bounds.extents.x / (bounds.extents.x * 0.41f);
+            scale.x = _scale;
+            scale.y = _scale;
+        }
+        t.transform.localScale = scale;
+        t.transform.parent = transform;
+        //----
+        animator.enabled = false;
+        isEnable = false;
+        rig.velocity = Vector2.zero;
+
+        float _time1 = 0;
+        int _currentHP = currentHP;
+        while(_time1<frozenTime)  //被攻击提前碎掉
+        {
+            _time1 += Time.deltaTime;
+
+            if(_currentHP != currentHP)
+            {
+                animator.enabled = true;
+                isEnable = true;
+                abnormalState.Remove(AbnormalState.frozen);
+                GameObject _t_iceFrag = Instantiate(iceFrag, position: t.transform.position, rotation: Quaternion.Euler(0, 0, 0)) as GameObject;
+                _t_iceFrag.transform.parent = transform;
+                _t_iceFrag.transform.localScale = Vector3.one;
+                Destroy(t);
+                yield return new WaitForSeconds(_t_iceFrag.GetComponent<ParticleSystem>().duration);
+                Destroy(_t_iceFrag);
+                yield break;
+            }
+            yield return null;
+        }
+
+        animator.enabled = true;
+        isEnable = true;
+        abnormalState.Remove(AbnormalState.frozen);
+        GameObject t_iceFrag = Instantiate(iceFrag, position: t.transform.position, rotation: Quaternion.Euler(0, 0, 0)) as GameObject;
+        t_iceFrag.transform.parent = transform;
+        t_iceFrag.transform.localScale = Vector3.one;
+        Destroy(t);
+        yield return new WaitForSeconds(t_iceFrag.GetComponent<ParticleSystem>().duration);
+        Destroy(t_iceFrag);
+    }
 }
