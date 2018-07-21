@@ -1,10 +1,11 @@
 fileFormatVersion: 2
 guid: 66e6ac891a82cd1458960019636617fe
-timeCreated: 1528636908
+timeCreated: 1532082669
 licenseType: Pro
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - stone_material: {fileID: 2100000, guid: 1194977b0042ca34bb70428bb56406ef, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

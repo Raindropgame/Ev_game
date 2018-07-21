@@ -35,6 +35,7 @@ public class Arrow : MonoBehaviour
         boxCol.enabled = true;
         trailRenderer.enabled = true;
         particle.enabled = true;
+        isTrigger = false;
 
         Vector3 characterPosition = CharacterControl.instance.transform.position;
         transform.parent = null; // 防止物体跟随主角
@@ -43,6 +44,7 @@ public class Arrow : MonoBehaviour
         //根据属性改变颜色
         Material a = trailRenderer.material;
         a.SetColor("_Color", GameData.getInstance().Attribute2Color(CharacterAttribute.GetInstance().ArmsAttribute[(int)Arms.arrow]));  //颜色减淡
+        SR.color = GameData.getInstance().Attribute2Color(CharacterAttribute.GetInstance().ArmsAttribute[(int)Arms.arrow]);
 
         //获取当前属性和伤害
         currentAttribute = CharacterAttribute.GetInstance().ArmsAttribute[(int)Arms.arrow];
@@ -51,18 +53,23 @@ public class Arrow : MonoBehaviour
 
     }
 
-
+    private bool isTrigger = false;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.tag == "maps")
+        if (!isTrigger)
         {
-            Invoke("TriggerWithEnemy", 0.03f);
-            CharacterObjectManager.instance.sendHurt(damage, currentAttribute, collision.gameObject.GetInstanceID());
-        }
-        if(collision.transform.tag == "enemy")
-        {
-            Invoke("TriggerWithEnemy",0.03f);
-            CharacterObjectManager.instance.sendHurt(damage, currentAttribute, collision.gameObject.GetInstanceID());
+            if (collision.transform.tag == "maps")
+            {
+                isTrigger = true;
+                Invoke("TriggerWithEnemy", 0.03f);
+                CharacterObjectManager.instance.sendHurt(damage, currentAttribute, collision.gameObject.GetInstanceID());
+            }
+            if (collision.transform.tag == "enemy")
+            {
+                isTrigger = true;
+                Invoke("TriggerWithEnemy", 0.03f);
+                CharacterObjectManager.instance.sendHurt(damage, currentAttribute, collision.gameObject.GetInstanceID());
+            }
         }
     }
 
@@ -70,8 +77,8 @@ public class Arrow : MonoBehaviour
     void TriggerWithEnemy()
     {
         CharacterObjectManager.instance.recoveryArrow(this.gameObject);
-        Instantiate(CharacterObjectManager.instance.arrow_end, position: transform.position, rotation: new Quaternion(0, 0, 0, 0));
+        Instantiate(CharacterObjectManager.instance.arrow_end, position: transform.position, rotation: Quaternion.Euler(0,0,0));
         this.gameObject.SetActive(false);
-    }
+    } 
 
 }

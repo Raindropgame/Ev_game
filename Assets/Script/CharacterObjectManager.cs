@@ -179,6 +179,7 @@ public class CharacterObjectManager : MonoBehaviour
     {
         if (arrowList.Count >= MaxArrowNum)
         {
+            Debug.Log(arrowList.Count);
             Destroy(go);
         }
         else

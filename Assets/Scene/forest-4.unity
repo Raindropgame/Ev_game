@@ -15618,6 +15618,26 @@ Prefab:
       propertyPath: MaxHP
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 212000010724840144, guid: 532fe47722d8d7f47a0b7ccec05ef341,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0a6b9630b3560f445869d08f4c414873, type: 2}
+    - target: {fileID: 50000013798232156, guid: 532fe47722d8d7f47a0b7ccec05ef341,
+        type: 2}
+      propertyPath: m_Mass
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 50000013798232156, guid: 532fe47722d8d7f47a0b7ccec05ef341,
+        type: 2}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50000013798232156, guid: 532fe47722d8d7f47a0b7ccec05ef341,
+        type: 2}
+      propertyPath: m_GravityScale
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 532fe47722d8d7f47a0b7ccec05ef341, type: 2}
   m_IsPrefabParent: 0
@@ -33957,6 +33977,10 @@ Prefab:
     - target: {fileID: 4000011343841704, guid: 532fe47722d8d7f47a0b7ccec05ef341, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000014007267116, guid: 532fe47722d8d7f47a0b7ccec05ef341, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 532fe47722d8d7f47a0b7ccec05ef341, type: 2}

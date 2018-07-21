@@ -12,6 +12,9 @@ public class Monster_base : MonoBehaviour {
     [HideInInspector]
     public int currentHP;
     public Collider2D[] colliderID;   //一个怪物提供多个碰撞体
+    [Header("是否为陆地行走生物")]
+    public bool isLand = false;
+    public Transform foot;
 
     protected Texture texture;
     protected SpriteRenderer SR;
@@ -32,6 +35,18 @@ public class Monster_base : MonoBehaviour {
         
         texture = SR == null ? null : SR.sprite.texture; //获得纹理
     }
+
+    private void FixedUpdate()
+    {
+
+        if (isEnable)
+        {
+            _FixedUpdate();
+        }
+    }
+
+    virtual protected void _FixedUpdate()
+    {    }
 
     private void OnDestroy()
     {
@@ -124,6 +139,17 @@ public class Monster_base : MonoBehaviour {
         return false;
     }
 
+    protected bool isGround()  //是否落地
+    {
+        LayerMask layerMask = 1 << 9;
+        RaycastHit2D HitPoint = Physics2D.Raycast(foot.position, Vector2.down, 2f, layerMask);
+        if (HitPoint.distance <= 0.15f && (HitPoint.transform != null))
+        {
+            return true;
+        }
+        return false;
+    }
+
     protected IEnumerator frozen()  //冰冻
     {
         float frozenTime = 1;
@@ -131,6 +157,7 @@ public class Monster_base : MonoBehaviour {
         {
             yield break;
         }
+
         abnormalState.Add(AbnormalState.frozen);  
         GameObject iceFrag = Resources.Load<GameObject>("iceFrag");  //加载粒子效果  
         //---添加图层
@@ -177,6 +204,10 @@ public class Monster_base : MonoBehaviour {
             {
                 animator.enabled = true;
                 isEnable = true;
+                if (abnormalState.Contains(AbnormalState.stone))  //是否被石化
+                {
+                    animator.enabled = false;
+                }
                 abnormalState.Remove(AbnormalState.frozen);
                 GameObject _t_iceFrag = Instantiate(iceFrag, position: t.transform.position, rotation: Quaternion.Euler(0, 0, 0)) as GameObject;
                 _t_iceFrag.transform.parent = transform;
@@ -191,6 +222,10 @@ public class Monster_base : MonoBehaviour {
 
         animator.enabled = true;
         isEnable = true;
+        if (abnormalState.Contains(AbnormalState.stone))  //是否被石化
+        {
+            animator.enabled = false;
+        }
         abnormalState.Remove(AbnormalState.frozen);
         GameObject t_iceFrag = Instantiate(iceFrag, position: t.transform.position, rotation: Quaternion.Euler(0, 0, 0)) as GameObject;
         t_iceFrag.transform.parent = transform;
@@ -198,5 +233,58 @@ public class Monster_base : MonoBehaviour {
         Destroy(t);
         yield return new WaitForSeconds(t_iceFrag.GetComponent<ParticleSystem>().duration);
         Destroy(t_iceFrag);
+    }
+
+    protected IEnumerator petrochemical()  //石化
+    {
+        if(abnormalState.Contains(AbnormalState.stone))
+        {
+            yield break;
+        }
+        abnormalState.Add(AbnormalState.stone);
+
+        float originGravity = rig.gravityScale;
+        float originDrag = rig.drag;
+
+        Material stone_material = Resources.Load<Material>("Petrochemical");
+        Material originMaterial = SR.material;
+
+        rig.velocity = Vector2.zero;
+        SR.material = stone_material;
+        this.enabled = false;
+        animator.enabled = false;
+        for(int i = 0;i<colliderID.Length;i++)
+        {
+            colliderID[i].isTrigger = false;
+        }
+        this.gameObject.tag = "maps";
+        this.gameObject.layer = LayerMask.NameToLayer("terrain");
+        //重力与摩擦力
+        rig.gravityScale = GameData.getInstance().gravityScale_stone;
+        rig.drag = GameData.getInstance().dragScale_stone;
+        //-----
+
+        yield return new WaitForSeconds(5);
+
+        SR.material = originMaterial;
+        this.enabled = true;
+        animator.enabled = true;
+        if (abnormalState.Contains(AbnormalState.frozen))
+        {
+            this.enabled = false;
+            animator.enabled = false;
+        }
+        for (int i = 0; i < colliderID.Length; i++)
+        {
+            colliderID[i].isTrigger = true;
+        }
+        this.gameObject.tag = "enemy";
+        this.gameObject.layer = LayerMask.NameToLayer("Default");
+        //重力与摩擦力 
+        rig.gravityScale = originGravity;
+        rig.drag = originDrag;
+        //-----
+
+        abnormalState.Remove(AbnormalState.stone);
     }
 }

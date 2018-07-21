@@ -29,58 +29,64 @@ public class monster_2 : Monster_base {
     public GameObject deadParticle;
 
     private float _time0 = 0;
-    private void FixedUpdate()
+    private Vector2 _walkSpeed;
+
+    protected override void _FixedUpdate()
     {
-        if (isEnable)
+        base._FixedUpdate();
+
+        switch (currentState)
         {
-            switch (currentState)
-            {
-                case monster_2_state.idle:
+            case monster_2_state.idle:
 
-                    _time0 += Time.deltaTime;
+                _time0 += Time.deltaTime;
 
-                    if (isSeePlayer() && _time0 > idleTime / 2)
-                    {
-                        if (bullet.gameObject.activeSelf == false)
-                        {
-                            _time0 = 0;
-                            currentState = monster_2_state.attack;
-                            animator.SetTrigger("attack");
-                        }
-                    }
-
-                    if (_time0 > idleTime)
+                if (isSeePlayer() && _time0 > idleTime / 2)
+                {
+                    if (bullet.gameObject.activeSelf == false)
                     {
                         _time0 = 0;
-                        currentState = monster_2_state.walk;
-                        animator.SetTrigger("walk");
+                        currentState = monster_2_state.attack;
+                        animator.SetTrigger("attack");
                     }
-                    break;
-                case monster_2_state.attack:
-                    if (isFinishPlay())
-                    {
-                        currentState = monster_2_state.idle;
-                        animator.SetTrigger("idle");
+                }
 
-                        bullet.gameObject.SetActive(true);
+                if (_time0 > idleTime)
+                {
+                    _time0 = 0;
+                    currentState = monster_2_state.walk;
+                    animator.SetTrigger("walk");
+                }
+                break;
+            case monster_2_state.attack:
+                if (isFinishPlay())
+                {
+                    currentState = monster_2_state.idle;
+                    animator.SetTrigger("idle");
 
-                        bullet.gameObject.transform.position = ShootPos.position;
-                        bullet.gameObject.transform.parent = null;
-                        bullet.velocity = new Vector2(bulletSpeed.x * (Dir == dir.left ? -1 : 1), bulletSpeed.y);
-                    }
-                    break;
-                case monster_2_state.walk:
-                    rig.velocity = walkSpeed * (Dir == dir.left ? -1 : 1);  //徘徊
+                    bullet.gameObject.SetActive(true);
 
-                    if (isSeePlayer())
-                    {
-                        rig.velocity = Vector2.zero;
-                        currentState = monster_2_state.idle;
-                        animator.SetTrigger("idle");
-                    }
-                    break;
-            }
+                    bullet.gameObject.transform.position = ShootPos.position;
+                    bullet.gameObject.transform.parent = null;
+                    bullet.velocity = new Vector2(bulletSpeed.x * (Dir == dir.left ? -1 : 1), bulletSpeed.y);
+                }
+                break;
+            case monster_2_state.walk:
+                _walkSpeed.x = walkSpeed.x * (Dir == dir.left ? -1 : 1);
+                _walkSpeed.y = rig.velocity.y;
+                rig.velocity = _walkSpeed;  //徘徊
 
+                if (isSeePlayer())
+                {
+                    rig.velocity = Vector2.zero;
+                    currentState = monster_2_state.idle;
+                    animator.SetTrigger("idle");
+                }
+                break;
+        }
+
+        if (isGround())
+        {
             if (isNearEdge() || NearWall() < 0.2f)  //转换方向
             {
                 Dir = (Dir == dir.left ? dir.right : dir.left);
@@ -89,10 +95,6 @@ public class monster_2 : Monster_base {
         }
     }
 
-    void attack()  //攻击
-    {
-
-    }
 
     bool isSeePlayer()  //是否看到了主角
     {
@@ -143,6 +145,10 @@ public class monster_2 : Monster_base {
         if (attribute == Attribute.ice)  //冰冻
         {
             StartCoroutine(frozen());
+        }
+        if(attribute == Attribute.wood)
+        {
+            StartCoroutine(petrochemical());
         }
         StartCoroutine(beHurt());
     }

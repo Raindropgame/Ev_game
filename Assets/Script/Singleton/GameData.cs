@@ -25,6 +25,10 @@ public class GameData{
     public Color woodColor = new Color(0.71f, 0.56f, 0.1f);
     public Color lightningColor = new Color(1f, 1f, 0.46f);
 
+    //异常状态各种数据
+    public float gravityScale_stone = 5;
+    public float dragScale_stone = 2;
+
     public Color Attribute2Color(Attribute t)
     {
         Color o = normalColor;

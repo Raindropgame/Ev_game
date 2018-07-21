@@ -64,4 +64,5 @@ public enum Arms  //武器
 public enum AbnormalState  //异常状态
 {
     frozen,  //冰冻
+    stone,  //石化
 }

@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: magicforest_halo
-  m_Shader: {fileID: 10750, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: Petrochemical
+  m_Shader: {fileID: 4800000, guid: 03169ad698c395e40949c3c1b4597e21, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -48,9 +48,9 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: a5551d8c9412842478b5d5a7b5e03398, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 684.3994, y: 0}
+        m_Offset: {x: 0, y: 0}
     - first:
         name: _MetallicGlossMap
       second:
@@ -69,6 +69,12 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - first:
+        name: _Tex_stone
+      second:
+        m_Texture: {fileID: 2800000, guid: cb7965650583f214d92cbef4f6520384, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - first:
         name: _BumpScale
@@ -76,6 +82,9 @@ Material:
     - first:
         name: _Cutoff
       second: 0.5
+    - first:
+        name: _DarkScale
+      second: 0.8
     - first:
         name: _DetailNormalMapScale
       second: 1
@@ -92,9 +101,6 @@ Material:
         name: _GlossyReflections
       second: 1
     - first:
-        name: _InvFade
-      second: 1
-    - first:
         name: _Metallic
       second: 0
     - first:
@@ -106,6 +112,9 @@ Material:
     - first:
         name: _Parallax
       second: 0.02
+    - first:
+        name: _Scale
+      second: 0.08
     - first:
         name: _SmoothnessTextureChannel
       second: 0
@@ -129,5 +138,5 @@ Material:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
-        name: _TintColor
-      second: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+        name: _LineColor
+      second: {r: 0.22794116, g: 0.20259252, b: 0.12654664, a: 0}
