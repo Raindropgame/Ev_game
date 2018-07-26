@@ -1,68 +1,83 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Screen1_Render : PostEffectsBase
+public class Screen1_render : PostEffectsBase
 {
     //对相机1的渲染
 
-    public Shader BlurShader;
-    private Material BlurMaterial = null;
-    public Material blurMaterial
+    static public Screen1_render instance;
+
+    private Camera _camera;
+
+    public Shader CameraWaveShader;
+    private Material CameraWaveMaterial = null;
+    public Material cameraWaveMaterial
     {
         get
         {
-            BlurMaterial = CheckShaderAndCreateMaterial(BlurShader, BlurMaterial);
-            return BlurMaterial;
+            CameraWaveMaterial = CheckShaderAndCreateMaterial(CameraWaveShader, CameraWaveMaterial);
+            return CameraWaveMaterial;
         }
     }
 
-    public Shader CameraBlurShader;
-    private Material CameraBlurMaterial = null;
-    public Material cameraBlurMaterial
+    private void Awake()
     {
-        get
-        {
-            CameraBlurMaterial = CheckShaderAndCreateMaterial(CameraBlurShader, CameraBlurMaterial);
-            return CameraBlurMaterial;
-        }
+        instance = this;
     }
 
-    [Range(1, 20)]
-    public int downSample = 1;
-    [Range(0, 1)]
-    public float focus = 0.5f;
-
-    public Color BGColor;
-    
     private void OnEnable()
     {
+        _camera = this.GetComponent<Camera>();
         GetComponent<Camera>().depthTextureMode |= DepthTextureMode.Depth;
     }
 
-    [ImageEffectOpaque]
+    
+    public float offset = 1;
+    private float pivot_x = 0.5f;
+    private float pivot_y = 0.5f;
+    public float scale;
+
+    private bool isWave = false;
+
+    //[ImageEffectOpaque]
     void OnRenderImage(RenderTexture src, RenderTexture dest)
     {
-        if (blurMaterial != null && cameraBlurMaterial != null)
+        if (cameraWaveMaterial != null && isWave)
         {
-            RenderTexture tTex = RenderTexture.GetTemporary(src.width / downSample, src.height / downSample, 0);
-            RenderTexture BlurTex = RenderTexture.GetTemporary(src.width / downSample, src.height / downSample, 0);
-            RenderTexture DepthTex = RenderTexture.GetTemporary(src.width, src.height, 0);
-            tTex.filterMode = FilterMode.Bilinear;
-            BlurTex.filterMode = FilterMode.Bilinear;
-            Graphics.Blit(src, tTex, blurMaterial,0);
-            Graphics.Blit(tTex, BlurTex, blurMaterial, 1);
-            cameraBlurMaterial.SetTexture("_BlurTex", BlurTex);
-            cameraBlurMaterial.SetFloat("focus", focus);
-            cameraBlurMaterial.SetColor("_Color", BGColor);
-            Graphics.Blit(src, dest, cameraBlurMaterial);
-
-            RenderTexture.ReleaseTemporary(tTex);//释放纹理内存
-            RenderTexture.ReleaseTemporary(BlurTex);
-            RenderTexture.ReleaseTemporary(DepthTex);
+            cameraWaveMaterial.SetFloat("_Pivot_x", pivot_x);
+            cameraWaveMaterial.SetFloat("_Pivot_y", pivot_y);
+            cameraWaveMaterial.SetFloat("_Offset", offset);
+            cameraWaveMaterial.SetFloat("_Scale", scale);
+            Graphics.Blit(src, dest, cameraWaveMaterial, 0);
         }
         else
         {
             Graphics.Blit(src, dest);
         }
+    }
+
+    public void Wave(Vector2 pos,float time)
+    {
+        if (!isWave)
+        {
+            Vector2 pivot = _camera.WorldToScreenPoint(pos);
+            pivot_x = pivot.x / _camera.pixelWidth;
+            pivot_y = pivot.y / _camera.pixelHeight;
+            StartCoroutine(startWave(pivot, time));
+        }
+    }
+
+    IEnumerator startWave(Vector2 pivot,float time)
+    {
+        isWave = true;
+        float _time = 0;
+        while(_time < time)
+        {
+            _time += Time.deltaTime;
+
+            cameraWaveMaterial.SetFloat("_limit", Mathf.Lerp(0,2,_time / time));
+            yield return null;
+        }
+        isWave = false;
     }
 }

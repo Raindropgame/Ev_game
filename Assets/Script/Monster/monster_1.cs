@@ -129,6 +129,20 @@ public class monster_1 : Monster_base {
     override public void _getHurt(int damage,Attribute attribute)
     {
         currentHP -= damage;
+
+        if (attribute == Attribute.fire)
+        {
+            if (abnormalState.Contains(AbnormalState.frozen))
+            {
+                CameraFollow.instance.Stop(GameData.fire_boom_stopTime);  //屏幕特效
+                Screen1_render.instance.Wave(this.transform.position, 0.5f);
+                StartCoroutine(CameraFollow.instance.shakeCamera(0.25f, 0.04f, 0.2f));  //镜头抖动
+                GameObject t = Resources.Load<GameObject>("fire");
+                Instantiate(t, position: SR.bounds.center, rotation: Quaternion.Euler(0, 0, 0));
+                currentHP -= damage;  //双倍伤害
+            }
+        }
+
         if (currentHP <= 0)  //是否死亡
         {
             StartCoroutine(die());

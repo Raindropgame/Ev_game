@@ -52,7 +52,7 @@ public class Sword : MonoBehaviour {
             t.transform.position = HitPoint.point;
             t.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
 
-            CharacterObjectManager.instance.sendHurt(CharacterAttribute.GetInstance().Attack[(int)Arms.swords], CharacterAttribute.GetInstance().ArmsAttribute[(int)Arms.swords], collision.gameObject.GetInstanceID());
+            CharacterObjectManager.instance.sendHurt(0, CharacterAttribute.GetInstance().ArmsAttribute[(int)Arms.swords], collision.gameObject.GetInstanceID());
         }
     }
 

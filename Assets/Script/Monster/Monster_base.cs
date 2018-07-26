@@ -12,8 +12,6 @@ public class Monster_base : MonoBehaviour {
     [HideInInspector]
     public int currentHP;
     public Collider2D[] colliderID;   //一个怪物提供多个碰撞体
-    [Header("是否为陆地行走生物")]
-    public bool isLand = false;
     public Transform foot;
 
     protected Texture texture;
@@ -72,16 +70,16 @@ public class Monster_base : MonoBehaviour {
                     hurtColor = Color.white;
                     break;
                 case Attribute.fire:
-                    hurtColor = GameData.getInstance().fireColor;
+                    hurtColor = GameData.fireColor;
                     break;
                 case Attribute.ice:
-                    hurtColor = GameData.getInstance().iceColor;
+                    hurtColor = GameData.iceColor;
                     break;
                 case Attribute.wood:
-                    hurtColor = GameData.getInstance().woodColor;
+                    hurtColor = GameData.woodColor;
                     break;
                 case Attribute.lightning:
-                    hurtColor = GameData.getInstance().lightningColor;
+                    hurtColor = GameData.lightningColor;
                     break;
                 default:
                     hurtColor = Color.white;
@@ -109,7 +107,7 @@ public class Monster_base : MonoBehaviour {
     {
         if(collision.tag == "lighting")   //被雷电击中
         {
-            _getHurt(GameData.getInstance().lightningDamage, Attribute.lightning);
+            _getHurt(GameData.lightningDamage, Attribute.lightning);
         }
 
         TriggerEnter(collision);
@@ -152,7 +150,6 @@ public class Monster_base : MonoBehaviour {
 
     protected IEnumerator frozen()  //冰冻
     {
-        float frozenTime = 1;
         if(abnormalState.Contains(AbnormalState.frozen))  //是否已经被冰冻
         {
             yield break;
@@ -196,7 +193,7 @@ public class Monster_base : MonoBehaviour {
 
         float _time1 = 0;
         int _currentHP = currentHP;
-        while(_time1<frozenTime)  //被攻击提前碎掉
+        while(_time1<GameData.frozenTime)  //被攻击提前碎掉
         {
             _time1 += Time.deltaTime;
 
@@ -260,11 +257,11 @@ public class Monster_base : MonoBehaviour {
         this.gameObject.tag = "maps";
         this.gameObject.layer = LayerMask.NameToLayer("terrain");
         //重力与摩擦力
-        rig.gravityScale = GameData.getInstance().gravityScale_stone;
-        rig.drag = GameData.getInstance().dragScale_stone;
+        rig.gravityScale = GameData.gravityScale_stone;
+        rig.drag = GameData.dragScale_stone;
         //-----
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(GameData.stoneTime);
 
         SR.material = originMaterial;
         this.enabled = true;
@@ -284,6 +281,9 @@ public class Monster_base : MonoBehaviour {
         rig.gravityScale = originGravity;
         rig.drag = originDrag;
         //-----
+        GameObject stone_piece = Resources.Load<GameObject>("stone_piece");
+        Instantiate(stone_piece, position: SR.sprite.bounds.center, rotation: Quaternion.Euler(0, 0, 0));
+        Resources.UnloadUnusedAssets();
 
         abnormalState.Remove(AbnormalState.stone);
     }

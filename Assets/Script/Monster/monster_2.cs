@@ -17,7 +17,7 @@ public class monster_2 : Monster_base {
     }
 
     [HideInInspector]
-    public monster_2_state currentState = monster_2_state.idle;
+    public monster_2_state currentState = monster_2_state.walk;
     [HideInInspector]
     public dir Dir = dir.left;
     public Transform eye;
@@ -113,8 +113,8 @@ public class monster_2 : Monster_base {
     bool isNearEdge()   //是否在边上
     {
         LayerMask layerMask = 1 << 9;
-        RaycastHit2D HitPoint = Physics2D.Raycast(eye.position, Vector2.down, 2f, layerMask);
-        if (HitPoint.distance <= 0)
+        RaycastHit2D HitPoint = Physics2D.Raycast(eye.position, Vector2.down, 1f, layerMask);
+        if (HitPoint.transform == null)
         {
             return true;
         }
@@ -135,6 +135,18 @@ public class monster_2 : Monster_base {
     override public void _getHurt(int damage, Attribute attribute)
     {
         currentHP -= damage;
+
+        if (attribute == Attribute.fire)
+        {
+            if (abnormalState.Contains(AbnormalState.frozen))
+            {
+                CameraFollow.instance.Stop(0.17f);  //屏幕特效
+                StartCoroutine(CameraFollow.instance.shakeCamera(0.25f, 0.04f, 0.2f));  //镜头抖动
+                GameObject t = Resources.Load<GameObject>("fire");
+                Instantiate(t, position: SR.bounds.center, rotation: Quaternion.Euler(0, 0, 0));
+                currentHP -= damage;  //双倍伤害
+            }
+        }
 
         if (currentHP <= 0)  //是否死亡
         {

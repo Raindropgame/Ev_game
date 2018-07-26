@@ -50,7 +50,7 @@ public class CameraFollow : MonoBehaviour {
             {
                 if (isMoving)
                 {
-                    switch(moveState)
+                    switch (moveState)
                     {
                         case CameraMoveState.both:
                             this.transform.position = Vector3.MoveTowards(this.transform.position, targetPosition, charaRig.velocity.magnitude * Time.deltaTime);  // 如果人物在移动则摄像机速度=人物速度
@@ -99,7 +99,7 @@ public class CameraFollow : MonoBehaviour {
         moveState = t;
     }
 
-    public IEnumerator shakeCamera(float shakeScale,float singleTime, float shakeTime)  //镜头震动效果
+    public IEnumerator shakeCamera(float shakeScale, float singleTime, float shakeTime)  //镜头震动效果
     {
         if (!Scene.instance.isInit)  //初始阶段不能抖动
         {
@@ -130,5 +130,23 @@ public class CameraFollow : MonoBehaviour {
                 yield return null;
             }
         }
+    }
+
+    private bool isStop = false;
+    public void Stop(float time)  //卡顿
+    {
+        if (!isStop)
+        {
+            StartCoroutine(_stop(time));
+        }
+    }
+
+    IEnumerator _stop(float time)
+    {
+        isStop = true;
+        Time.timeScale = 0;
+        yield return new WaitForSecondsRealtime(time);
+        Time.timeScale = 1;
+        isStop = false;
     }
 }

@@ -40,8 +40,8 @@ public class Arrow_2 : MonoBehaviour {
 
         //根据属性改变颜色
         Material t = trailRenderer.material;
-        t.SetColor("_Color", GameData.getInstance().Attribute2Color(CharacterAttribute.GetInstance().ArmsAttribute[(int)Arms.spear]));  //颜色减淡
-        SR.color = GameData.getInstance().Attribute2Color(CharacterAttribute.GetInstance().ArmsAttribute[(int)Arms.spear]);
+        t.SetColor("_Color", GameData.Attribute2Color(CharacterAttribute.GetInstance().ArmsAttribute[(int)Arms.spear]));  //颜色减淡
+        SR.color = GameData.Attribute2Color(CharacterAttribute.GetInstance().ArmsAttribute[(int)Arms.spear]);
 
         currentAttribute = CharacterAttribute.GetInstance().ArmsAttribute[(int)Arms.spear];  //获取当前属性
         damage = CharacterAttribute.GetInstance().Attack[(int)Arms.spear];  //获取当前伤害

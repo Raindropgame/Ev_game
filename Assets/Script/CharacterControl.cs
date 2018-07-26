@@ -212,6 +212,7 @@ public class CharacterControl : MonoBehaviour
 
                 break;
             case state.dash:
+
                 isDoubleKeyDown();  //计时
                 if (attack()) //攻击
                 {
