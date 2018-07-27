@@ -39,7 +39,7 @@ public class monster_3 : Monster_base {
         lastTime = Time.time;
     }
 
-    IEnumerator die()  //死亡
+    override protected IEnumerator die()  //死亡
     {
         boom_particle.SetActive(true);
         foreach(Collider2D t in colliderID)

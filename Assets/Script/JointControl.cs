@@ -13,11 +13,9 @@ public class JointControl : MonoBehaviour {
 
     private Rigidbody2D rig;
     private float _time0 = 0;
-    private monster_3 monster_3;
 
 	void Start () {
         rig = GetComponent<Rigidbody2D>();
-        monster_3 = transform.parent.GetComponent<monster_3>();
 	}
 
 

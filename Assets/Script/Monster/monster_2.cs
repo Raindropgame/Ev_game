@@ -148,11 +148,7 @@ public class monster_2 : Monster_base {
             }
         }
 
-        if (currentHP <= 0)  //是否死亡
-        {
-            StartCoroutine(die());
-            return;
-        }
+        base._getHurt(damage, attribute);
 
         if (attribute == Attribute.ice)  //冰冻
         {
@@ -162,10 +158,20 @@ public class monster_2 : Monster_base {
         {
             StartCoroutine(petrochemical());
         }
+        if (attribute == Attribute.fire)
+        {
+            if (Random.value < GameData.burning_proba)  //计算概率
+            {
+                if (!abnormalState.Contains(AbnormalState.burning) && !abnormalState.Contains(AbnormalState.stone) && !abnormalState.Contains(AbnormalState.frozen))   //是否可以被灼烧
+                {
+                    StartCoroutine(burning());  //灼烧
+                }
+            }
+        }
         StartCoroutine(beHurt());
     }
 
-    IEnumerator die()  //死亡
+    override protected IEnumerator die()  //死亡
     {
         this.GetComponent<BoxCollider2D>().enabled = false;
         deadParticle.SetActive(true);

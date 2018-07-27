@@ -19,6 +19,10 @@ public class GameData{
     static public float dragScale_stone = 2;
     static public float frozenTime = 2;
     static public float stoneTime = 5;
+    static public float burningTime = 5;
+    static public float burningSpaceTime = 2;
+    static public int burningDamage = 1;
+    static public float burning_proba = 1;
 
 
     static public float fire_boom_stopTime = 0.12f;  //火焰爆炸的卡顿时间

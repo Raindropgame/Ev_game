@@ -51,7 +51,7 @@ public class Monster_base : MonoBehaviour {
         CharacterObjectManager._sendHurt -= getHurt;  //解除绑定
     }
 
-    public void getHurt(int damage, Attribute attribute,int gameobjectID)
+    public void getHurt(int damage, Attribute attribute,int gameobjectID)   //接口
     {
         bool isTrigger = false;
         for (int i = 0; i < colliderID.Length; i++)
@@ -125,7 +125,16 @@ public class Monster_base : MonoBehaviour {
 
     virtual public void _getHurt(int damage, Attribute attribute)  //受伤虚函数
     {
+        if (currentHP <= 0)  //是否死亡
+        {
+            StartCoroutine(die());
+            return;
+        }
+    }
 
+    virtual protected IEnumerator die()
+    {
+        yield return null;
     }
 
     protected bool isFinishPlay()  //是否播放完当前动画
@@ -282,9 +291,51 @@ public class Monster_base : MonoBehaviour {
         rig.drag = originDrag;
         //-----
         GameObject stone_piece = Resources.Load<GameObject>("stone_piece");
-        Instantiate(stone_piece, position: SR.sprite.bounds.center, rotation: Quaternion.Euler(0, 0, 0));
+        Instantiate(stone_piece, position: SR.bounds.center + new Vector3(0,0,-1), rotation: Quaternion.Euler(0, 0, 0));
         Resources.UnloadUnusedAssets();
 
         abnormalState.Remove(AbnormalState.stone);
+    }
+
+    protected IEnumerator burning()   //灼烧
+    {
+        if(abnormalState.Contains(AbnormalState.burning))
+        {
+            yield break;
+        }
+
+        abnormalState.Add(AbnormalState.burning);
+        float burnTime = GameData.burningTime;
+        float burnSpaceTime = GameData.burningSpaceTime;
+        GameObject burningEffect = Resources.Load<GameObject>("fire_burning");
+
+        float _time1 = 0, _time2 = 0;
+        while(_time1 < burnTime)  //灼烧循环
+        {
+            _time1 += Time.deltaTime;
+            _time2 += Time.deltaTime;
+
+            if(abnormalState.Contains(AbnormalState.stone) || abnormalState.Contains(AbnormalState.frozen))
+            {
+                break;
+            }
+            else
+            {
+                if(_time2 > burnSpaceTime)
+                {
+                    Instantiate(burningEffect, position: SR.bounds.center + new Vector3(0, 0, -1), rotation: Quaternion.Euler(0, 0, 0));
+                    getHurt(GameData.burningDamage, Attribute.fire, this.gameObject.GetInstanceID());
+                    _time2 = 0;
+
+                    if(currentHP <= 0)
+                    {
+                        break;
+                    }
+                }
+            }
+            yield return null;
+        }
+
+        abnormalState.Remove(AbnormalState.burning); //移去异常状态
     }
 }
