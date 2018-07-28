@@ -126,7 +126,7 @@ public class monster_1 : Monster_base {
     }
 
 
-    override public void _getHurt(int damage,Attribute attribute)
+    override public void _getHurt(int damage, Attribute attribute)
     {
         currentHP -= damage;
 
@@ -143,13 +143,17 @@ public class monster_1 : Monster_base {
             }
         }
 
-        base._getHurt(damage,attribute);
+        base._getHurt(damage, attribute);
+        if(currentHP <= 0)
+        {
+            return;
+        }
 
         if (attribute == Attribute.ice)
         {
             StartCoroutine(frozen());
         }
-        if(attribute == Attribute.wood)
+        if (attribute == Attribute.wood)
         {
             StartCoroutine(petrochemical());
         }
@@ -161,6 +165,13 @@ public class monster_1 : Monster_base {
                 {
                     StartCoroutine(burning());  //灼烧
                 }
+            }
+        }
+        if (attribute == Attribute.lightning)
+        {
+            if(!abnormalState.Contains(AbnormalState.stone))
+            {
+                StartCoroutine(electricShock());
             }
         }
         StartCoroutine(beHurt());

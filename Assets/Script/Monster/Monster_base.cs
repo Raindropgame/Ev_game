@@ -21,6 +21,96 @@ public class Monster_base : MonoBehaviour {
     protected ArrayList abnormalState = new ArrayList();
     protected bool isEnable = true;  //是否运行fixedupdate
 
+    //资源----
+    static private GameObject m_effect_lightning = null;
+    static protected GameObject effect_lightning
+    {
+        get
+        {
+            if(m_effect_lightning == null)
+            {
+                m_effect_lightning = Resources.Load<GameObject>("Effect_Lightning");
+                Debug.Log("add");
+                Resources.UnloadUnusedAssets();
+            }
+            return m_effect_lightning;
+        }
+    }
+
+    static private GameObject m_burningEffect = null;
+    static protected GameObject burningEffect
+    {
+        get
+        {
+            if(m_burningEffect == null)
+            {
+                m_burningEffect = Resources.Load<GameObject>("fire_burning");
+                Resources.UnloadUnusedAssets();
+            }
+            return m_burningEffect;
+        }
+    }
+
+    static private Material m_stone_material = null;
+    static protected Material stone_material
+    {
+        get
+        {
+            if(m_stone_material == null)
+            {
+                m_stone_material = Resources.Load<Material>("Petrochemical");
+                Resources.UnloadUnusedAssets();
+            }
+            return m_stone_material;
+        }
+    }
+
+    static private GameObject m_stone_piece = null;
+    static protected GameObject stone_piece
+    {
+        get
+        {
+            if(m_stone_piece == null)
+            {
+                m_stone_piece = Resources.Load<GameObject>("stone_piece");
+                Resources.UnloadUnusedAssets();
+            }
+            return m_stone_piece;
+        }
+    }
+
+    static private GameObject m_iceFrag = null;
+    static protected GameObject iceFrag
+    {
+        get
+        {
+            if(m_iceFrag == null)
+            {
+                m_iceFrag = Resources.Load<GameObject>("iceFrag");
+                Resources.UnloadUnusedAssets();
+            }
+            return m_iceFrag;
+        }
+    }
+
+    static private Sprite[] m_iceCube = new Sprite[2] { null, null };
+    static protected Sprite[] iceCube
+    {
+        get
+        {
+            if(m_iceCube[0] == null)
+            {
+                m_iceCube[0] = Resources.LoadAll<Sprite>("iceCube")[0];
+            }
+            if(m_iceCube[1] == null)
+            {
+                m_iceCube[1] = Resources.LoadAll<Sprite>("iceCube")[1];
+            }
+            return m_iceCube;
+        }
+    }
+    //--------
+
     private void Start()  //初始化
     {
         rig = GetComponent<Rigidbody2D>();
@@ -165,17 +255,16 @@ public class Monster_base : MonoBehaviour {
         }
 
         abnormalState.Add(AbnormalState.frozen);  
-        GameObject iceFrag = Resources.Load<GameObject>("iceFrag");  //加载粒子效果  
         //---添加图层
         GameObject t = new GameObject();
         SpriteRenderer t_SR = t.AddComponent<SpriteRenderer>();
         if (SR.bounds.extents.x > SR.bounds.extents.y)  //选择图片
         {
-            t_SR.sprite = Resources.LoadAll<Sprite>("iceCube")[1];
+            t_SR.sprite = iceCube[1];
         }
         else
         {
-            t_SR.sprite = Resources.LoadAll<Sprite>("iceCube")[0];
+            t_SR.sprite = iceCube[0];
         }
 
         Bounds t_bounds = SR.bounds,bounds = t_SR.bounds;
@@ -252,7 +341,6 @@ public class Monster_base : MonoBehaviour {
         float originGravity = rig.gravityScale;
         float originDrag = rig.drag;
 
-        Material stone_material = Resources.Load<Material>("Petrochemical");
         Material originMaterial = SR.material;
 
         rig.velocity = Vector2.zero;
@@ -290,9 +378,7 @@ public class Monster_base : MonoBehaviour {
         rig.gravityScale = originGravity;
         rig.drag = originDrag;
         //-----
-        GameObject stone_piece = Resources.Load<GameObject>("stone_piece");
         Instantiate(stone_piece, position: SR.bounds.center + new Vector3(0,0,-1), rotation: Quaternion.Euler(0, 0, 0));
-        Resources.UnloadUnusedAssets();
 
         abnormalState.Remove(AbnormalState.stone);
     }
@@ -307,7 +393,6 @@ public class Monster_base : MonoBehaviour {
         abnormalState.Add(AbnormalState.burning);
         float burnTime = GameData.burningTime;
         float burnSpaceTime = GameData.burningSpaceTime;
-        GameObject burningEffect = Resources.Load<GameObject>("fire_burning");
 
         float _time1 = 0, _time2 = 0;
         while(_time1 < burnTime)  //灼烧循环
@@ -337,5 +422,19 @@ public class Monster_base : MonoBehaviour {
         }
 
         abnormalState.Remove(AbnormalState.burning); //移去异常状态
+    }
+
+    protected IEnumerator electricShock()  //感电
+    {
+        if(abnormalState.Contains(AbnormalState.electric))
+        {
+            yield break;
+        }
+        abnormalState.Add(AbnormalState.electric);
+
+        Instantiate(effect_lightning, position: SR.bounds.center, rotation: Quaternion.Euler(0, 0, 0));
+        yield return null;
+
+        abnormalState.Remove(AbnormalState.electric);
     }
 }

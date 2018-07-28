@@ -149,6 +149,10 @@ public class monster_2 : Monster_base {
         }
 
         base._getHurt(damage, attribute);
+        if (currentHP <= 0)
+        {
+            return;
+        }
 
         if (attribute == Attribute.ice)  //冰冻
         {
@@ -166,6 +170,13 @@ public class monster_2 : Monster_base {
                 {
                     StartCoroutine(burning());  //灼烧
                 }
+            }
+        }
+        if (attribute == Attribute.lightning)
+        {
+            if (!abnormalState.Contains(AbnormalState.stone))
+            {
+                StartCoroutine(electricShock());
             }
         }
         StartCoroutine(beHurt());

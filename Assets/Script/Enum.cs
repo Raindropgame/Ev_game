@@ -66,4 +66,5 @@ public enum AbnormalState  //异常状态
     frozen,  //冰冻
     stone,  //石化
     burning,  //灼烧
+    electric,  //感电
 }
