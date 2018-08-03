@@ -23,6 +23,10 @@ public class GameData{
     static public float burningSpaceTime = 2;
     static public int burningDamage = 1;
     static public float burning_proba = 1;
+    static public float lightningTime = 5;  //感电时间
+    static public float lightningSpace = 1;
+    static public float lightning_Odds = 1;
+    static public int lightning_Damage = 1;
 
 
     static public float fire_boom_stopTime = 0.12f;  //火焰爆炸的卡顿时间

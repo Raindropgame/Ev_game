@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013438698350}
   - 114: {fileID: 114000011223234268}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SceneManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,3 +52,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BornPosition: []
+  isInit: 1

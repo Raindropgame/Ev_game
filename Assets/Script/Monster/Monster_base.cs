@@ -30,7 +30,6 @@ public class Monster_base : MonoBehaviour {
             if(m_effect_lightning == null)
             {
                 m_effect_lightning = Resources.Load<GameObject>("Effect_Lightning");
-                Debug.Log("add");
                 Resources.UnloadUnusedAssets();
             }
             return m_effect_lightning;
@@ -107,6 +106,20 @@ public class Monster_base : MonoBehaviour {
                 m_iceCube[1] = Resources.LoadAll<Sprite>("iceCube")[1];
             }
             return m_iceCube;
+        }
+    }
+
+    static private GameObject m_state_lightning = null;
+    static protected GameObject state_lightning
+    {
+        get
+        {
+            if(m_state_lightning == null)
+            {
+                m_state_lightning = Resources.Load<GameObject>("state_lightning");
+                Resources.UnloadUnusedAssets();
+            }
+            return m_state_lightning;
         }
     }
     //--------
@@ -432,8 +445,45 @@ public class Monster_base : MonoBehaviour {
         }
         abnormalState.Add(AbnormalState.electric);
 
-        Instantiate(effect_lightning, position: SR.bounds.center, rotation: Quaternion.Euler(0, 0, 0));
-        yield return null;
+        GameObject t_state_lightning = Instantiate(state_lightning, position: SR.bounds.center + new Vector3(0, SR.bounds.size.y * 0.7f, 0), rotation: Quaternion.Euler(0, 0, 0)) as GameObject;
+        t_state_lightning.transform.SetParent(transform, true);
+        GameObject t_effect_lightning = Instantiate(effect_lightning, position: SR.bounds.center, rotation: Quaternion.Euler(0, 0, 0)) as GameObject;
+        t_effect_lightning.SetActive(false);
+
+        //获取数据
+        float lightningTime = GameData.lightningTime;
+        float _time1 = 0,_time2 = 0;
+        float lightning_Space_Time = GameData.lightningSpace;
+        float odds = GameData.lightning_Odds;
+        int damage = GameData.lightning_Damage;
+
+        while(_time1 < lightningTime)
+        {
+            _time1 += Time.deltaTime;
+            _time2 += Time.deltaTime;
+
+            if(currentHP <= 0)
+            {
+                break;
+            }
+
+            if(_time2 > lightning_Space_Time)
+            {
+                Random.InitState(Time.frameCount);
+                if(Random.value < odds)
+                {
+                    t_effect_lightning.SetActive(true);
+                    t_effect_lightning.transform.position = SR.bounds.center + new Vector3(0,0,-0.1f);
+                }
+
+                _time2 = 0;
+            }
+
+            yield return null;
+        }
+
+        Destroy(t_effect_lightning);
+        Destroy(t_state_lightning);
 
         abnormalState.Remove(AbnormalState.electric);
     }

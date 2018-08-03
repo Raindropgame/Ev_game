@@ -243,4 +243,12 @@ public class CharacterObjectManager : MonoBehaviour
             _sendHurt(damage, attribute, gameobejctID);
         }
     }
+
+    public void sendHurt_other(int damage, Attribute attribute, int gameobejctID)   //其他发出的伤害
+    {
+        if (_sendHurt != null)  //不为空执行
+        {
+            _sendHurt(damage, attribute, gameobejctID);
+        }
+    }
 }

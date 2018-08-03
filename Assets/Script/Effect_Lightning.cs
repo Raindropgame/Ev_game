@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[ExecuteInEditMode]
 public class Effect_Lightning : MonoBehaviour {
 
     public float scale = 0;
@@ -19,8 +20,9 @@ public class Effect_Lightning : MonoBehaviour {
         SR.SetPropertyBlock(block);
 	}
 
-    void _destroy()
+    void setFalse()
     {
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
+        scale = 0;
     }
 }

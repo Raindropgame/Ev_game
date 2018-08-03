@@ -510,7 +510,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Velocity: 20
-  a: {fileID: 1000011351122884, guid: 043a8ef88d8c48648bc2f3962fd19512, type: 2}
 --- !u!114 &114000011245787474
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -528,8 +527,6 @@ MonoBehaviour:
   MaxArrowNum: 20
   MaxArrow_2Num: 20
   MaxHitPoint: 4
-  currentArrowNum: 0
-  currentArrow_2Num: 0
   shootArrowParticleObject: {fileID: 1000011993641026}
   dashParticleObject: {fileID: 1000010900197140}
   arrow_end: {fileID: 1000014045738482, guid: 28638fccd14a56b4bb449d703872124e, type: 2}
@@ -567,7 +564,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Velocity: 20
-  a: {fileID: 1000011351122884, guid: 043a8ef88d8c48648bc2f3962fd19512, type: 2}
 --- !u!114 &114000013730235232
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -602,7 +598,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Velocity: 20
-  a: {fileID: 1000011351122884, guid: 043a8ef88d8c48648bc2f3962fd19512, type: 2}
 --- !u!114 &114000014275187724
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -615,7 +610,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Velocity: 20
-  a: {fileID: 1000011351122884, guid: 043a8ef88d8c48648bc2f3962fd19512, type: 2}
 --- !u!198 &198000013699818394
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -15,6 +15,7 @@ TagManager:
   - lighting
   - enemy
   - damage
+  - conductor
   layers:
   - Default
   - TransparentFX
