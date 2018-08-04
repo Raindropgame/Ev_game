@@ -3,6 +3,7 @@ using System.Collections;
 
 public class stone : MonoBehaviour {
 
+    [Header("雨天减少的摩擦力度")]
     public float Scale = 0.6f;
 
     private Rigidbody2D rig;
