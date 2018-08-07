@@ -26807,11 +26807,15 @@ Prefab:
       objectReference: {fileID: 710780671}
     - target: {fileID: 1000011166405350, guid: c8b471595ebd5414fbc64a5d42e067da, type: 2}
       propertyPath: m_Layer
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1000011166405350, guid: c8b471595ebd5414fbc64a5d42e067da, type: 2}
       propertyPath: m_TagString
       value: conductor
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000012479039450, guid: c8b471595ebd5414fbc64a5d42e067da, type: 2}
+      propertyPath: m_Layer
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c8b471595ebd5414fbc64a5d42e067da, type: 2}
@@ -28658,7 +28662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad9b14cf9305117469d9fbc0c4bb3e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextSceneName: forest-1
+  NextSceneName: forest-6
   BornPositionNum: 0
 --- !u!1001 &1506405984
 Prefab:

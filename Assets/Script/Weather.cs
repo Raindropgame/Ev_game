@@ -12,6 +12,8 @@ public class Weather : MonoBehaviour {
 
     public float DayTime,TotalTime;  //昼夜时长
     public Material MaskerMaterial;
+    [Header("是否时间影响遮罩")]
+    public bool isMasker = true;
 
     private Blur Script_Blur;
 
@@ -45,7 +47,10 @@ public class Weather : MonoBehaviour {
             WeatherData.getIntance().Weather_leftTime = WeatherData.getIntance().Weather_duration;
         }
 
-        MaskerMaterial.SetFloat("_Alpha", SmoothLerp_distance());  // 更新Masker
+        if (isMasker)
+        {
+            MaskerMaterial.SetFloat("_Alpha", SmoothLerp_distance());  // 更新Masker
+        }
         Script_Blur.nightColor = SmoothLerp_BackgroundCamera();   //更新背景相机
 
 

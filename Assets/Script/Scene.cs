@@ -8,6 +8,7 @@ public class Scene : MonoBehaviour {
     static public Scene instance;
 
     public Transform[] BornPosition;
+    [HideInInspector]
     public bool isInit = true;
 
     private GameObject character;
