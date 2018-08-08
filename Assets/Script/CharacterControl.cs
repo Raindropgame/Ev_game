@@ -23,7 +23,8 @@ public class CharacterControl : MonoBehaviour
     public bool[] isEnable = new bool[12];  //管理人物某些功能   (依赖外部)
     public bool isHurt = false;  //人物是否处在受伤时期
 
-    private Rigidbody2D rig;
+    [HideInInspector]
+    public Rigidbody2D rig;
     private float LeftKeyDown = 0, RightKeyDown = 0;  //检测是否双击键盘
     private int LeftOrRight = 0;  //2:右  1:左  ---检测双击所用
     [HideInInspector]
@@ -60,7 +61,7 @@ public class CharacterControl : MonoBehaviour
         YJumpSpeed = JumpSpeed;
         Yacceleration = JumpSpeed / MaxJumpTime;
         _collider = this.GetComponent<BoxCollider2D>();
-        _circleCollider = this.GetComponent<CircleCollider2D>();
+        _circleCollider = GetComponentInChildren<CircleCollider2D>();
         lastDir = dir.right;
         SpriteRenderer = this.GetComponent<SpriteRenderer>();
         animator = this.GetComponent<Animator>();
@@ -336,7 +337,11 @@ public class CharacterControl : MonoBehaviour
                 {
                     YJumpSpeed = JumpSpeed;
                 }
-                rig.velocity = new Vector2(rig.velocity.x, -YJumpSpeed);
+
+                if (!isBounce)
+                {
+                    rig.velocity = new Vector2(rig.velocity.x, -YJumpSpeed);
+                }
 
                 if (Input.GetKeyDown(KeyCode.X) && isEnable[(int)state.attack1] && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_attack)  //攻击
                 {
@@ -519,7 +524,7 @@ public class CharacterControl : MonoBehaviour
         RaycastHit2D RightHit = Physics2D.Raycast(RightHitTrans[Tdir].position, Vector2.down, 0.1f,layerMask);
         //Debug.DrawRay(LeftHitTrans[Tdir].position, Vector2.down,Color.red);
         //Debug.DrawRay(RightHitTrans[Tdir].position, Vector2.down,Color.red);
-        int i = 0;
+        int i = 0;  //射线发生碰撞的个数
         if (LeftHit.transform != null)
         {
             i++;
@@ -545,6 +550,7 @@ public class CharacterControl : MonoBehaviour
             if (lastState == state.fall)
             {
                 _jumpTimes = 0;  //归零跳跃次数
+                isBounce = false;
             }
             return true;
         }
@@ -731,7 +737,52 @@ public class CharacterControl : MonoBehaviour
     private Vector2 additionalVelocity = Vector2.zero;
     public void add_Velocity(Vector2 t)
     {
-        additionalVelocity = t;
+        additionalVelocity += t;
+    }
+
+    //被弹开
+    private bool isBounce = false;
+    private float _time_bounce = 0;
+    public void bounce(float time,float speed)
+    {
+        if(!isBounce)
+        {
+            StartCoroutine(_Bounce(time, speed));
+        }
+        else
+        {
+            _time_bounce = 0;
+        }
+    }
+
+    IEnumerator _Bounce(float time,float speed)
+    {
+        isBounce = true;
+        Vector2 v = Vector2.zero;
+        float a = -(speed / (time * time));
+        while (_time_bounce < time)
+        {
+            if(isBounce == false && _time_bounce > 0.1f)
+            {
+                break;
+            }
+
+            _time_bounce += Time.deltaTime;
+
+            v.y = a * Mathf.Pow(_time_bounce, 2) + speed;
+            if(v.y < 0)
+            {
+                v.y = 0;
+            }
+            Debug.Log(v + "  " + _time_bounce);
+
+            add_Velocity(v);
+
+            yield return null;
+        }
+        _time_bounce = 0;
+        isBounce = false;
+        YJumpSpeed = 0;
     }
 
 } 

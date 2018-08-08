@@ -1,24 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class stone : MonoBehaviour {
+public class stone : MonoBehaviour
+{
 
     [Header("雨天减少的摩擦力度")]
     public float Scale = 0.6f;
+    public float reactionForce = 2000;
+    public float speed,time;
 
     private Rigidbody2D rig;
-    private float drag,mass;
+    private float drag, mass;
     private bool isFrozen = false;
     private SpriteRenderer SR;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         CharacterObjectManager._sendHurt += getHurt;  //受伤消息(来自玩家)注册
         rig = GetComponent<Rigidbody2D>();
         SR = GetComponent<SpriteRenderer>();
         drag = rig.drag;
         mass = rig.mass;
-	}
+    }
 
     private void OnDestroy()
     {
@@ -27,14 +31,14 @@ public class stone : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        if(WeatherData.getIntance().currentWeather == weather.Rain || WeatherData.getIntance().currentWeather == weather.RainAndThunder)   //下雨减少摩擦
+        if (WeatherData.getIntance().currentWeather == weather.Rain || WeatherData.getIntance().currentWeather == weather.RainAndThunder)   //下雨减少摩擦
         {
             rig.drag = Scale * drag;
             rig.mass = Scale * mass;
         }
         else
         {
-            if(isFrozen)
+            if (isFrozen)
             {
                 rig.drag = Scale * drag;
                 rig.mass = Scale * mass;
@@ -112,7 +116,7 @@ public class stone : MonoBehaviour {
 
         Scale = originScale;
         isFrozen = false;
-        GameObject t_iceFrag = Instantiate(iceFrag, position: t.transform.position+ new Vector3(0,2,0), rotation: Quaternion.Euler(0, 0, 0)) as GameObject;
+        GameObject t_iceFrag = Instantiate(iceFrag, position: t.transform.position + new Vector3(0, 2, 0), rotation: Quaternion.Euler(0, 0, 0)) as GameObject;
         t_iceFrag.transform.parent = transform;
         t_iceFrag.transform.localScale = Vector3.one;
         Destroy(t);
@@ -122,18 +126,55 @@ public class stone : MonoBehaviour {
 
     public void getHurt(int damage, Attribute attribute, int gameobjectID)
     {
-        if(gameobjectID == gameObject.GetInstanceID())
+        if (gameobjectID == gameObject.GetInstanceID())
         {
             if (isFrozen)
             {
                 isFrozen = false;
                 return;
             }
-            if (attribute == Attribute.ice)  
+            if (attribute == Attribute.ice)
             {
-                StartCoroutine(frozen());         
+                StartCoroutine(frozen());
             }
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        string tag = collision.transform.tag;
+        if (collision.transform.tag == "arms_player")  //是否为武器
+        {
+            int t_dir = CharacterControl.instance.transform.position.x >= SR.bounds.center.x ? -1 : 1;
+            rig.AddForce(new Vector2(reactionForce * t_dir, 0));
+        }
+
+        if(collision.transform.tag == "Player")
+        {
+            Debug.Log(2);
+            CharacterControl.instance.bounce(time, speed);
+        }
+    }
+
+    /*private bool isMove = false;
+    private float _time1 = 0;
+    IEnumerator reaction(dir Dir)
+    {
+        isMove = true;
+        Vector2 v = Vector2.zero;
+        float a = -(reactionSpeed/(reactionTime * reactionTime));
+        while(_time1 < reactionTime)
+        {
+            _time1 += Time.deltaTime;
+            rig.velocity -= v;
+
+            v.x = a * Mathf.Pow(_time1, 2) + reactionSpeed * (Dir == dir.left?-1:1);
+
+            rig.velocity += v;
+            yield return null;
+        }
+        _time1 = 0;
+        isMove = false;
+    }*/
 
 }

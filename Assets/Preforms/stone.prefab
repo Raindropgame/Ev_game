@@ -30,6 +30,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000011299837152
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000014013320968}
+  - 61: {fileID: 61000012131822372}
+  m_Layer: 13
+  m_Name: collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &4000011325053330
 Transform:
   m_ObjectHideFlags: 1
@@ -37,11 +53,25 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011117643628}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -52.29, y: -6.97, z: 0}
+  m_LocalPosition: {x: -14, y: -6.9, z: 0}
   m_LocalScale: {x: 2.089313, y: 2.089313, z: 2.089313}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
+  m_Children:
+  - {fileID: 4000014013320968}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!4 &4000014013320968
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011299837152}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000011325053330}
   m_RootOrder: 0
 --- !u!50 &50000010135828940
 Rigidbody2D:
@@ -74,6 +104,20 @@ BoxCollider2D:
   m_Offset: {x: 0.042915348, y: -0.12987202}
   serializedVersion: 2
   m_Size: {x: 0.98781353, y: 0.7011766}
+--- !u!61 &61000012131822372
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011299837152}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: ffe1917866e2e544a832fc984f897af1, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.008727391, y: -0.01308949}
+  serializedVersion: 2
+  m_Size: {x: 1.1396241, y: 0.3280801}
 --- !u!114 &114000011207517010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -86,6 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Scale: 0.6
+  reactionForce: 5000
 --- !u!212 &212000012042930324
 SpriteRenderer:
   m_ObjectHideFlags: 1
