@@ -21,7 +21,9 @@ public enum state  //人物状态
 public enum dir  //方向
 {
     left,
-    right
+    right,
+    top,
+    down
 };
 
 public enum CameraMoveState   //相机移动状态

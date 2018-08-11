@@ -6,6 +6,7 @@ public class stone : MonoBehaviour
 
     [Header("雨天减少的摩擦力度")]
     public float Scale = 0.6f;
+    [Header("弹开玩家")]
     public float reactionForce = 2000;
     public float speed,time;
 
@@ -149,32 +150,7 @@ public class stone : MonoBehaviour
             rig.AddForce(new Vector2(reactionForce * t_dir, 0));
         }
 
-        if(collision.transform.tag == "Player")
-        {
-            Debug.Log(2);
-            CharacterControl.instance.bounce(time, speed);
-        }
     }
 
-    /*private bool isMove = false;
-    private float _time1 = 0;
-    IEnumerator reaction(dir Dir)
-    {
-        isMove = true;
-        Vector2 v = Vector2.zero;
-        float a = -(reactionSpeed/(reactionTime * reactionTime));
-        while(_time1 < reactionTime)
-        {
-            _time1 += Time.deltaTime;
-            rig.velocity -= v;
-
-            v.x = a * Mathf.Pow(_time1, 2) + reactionSpeed * (Dir == dir.left?-1:1);
-
-            rig.velocity += v;
-            yield return null;
-        }
-        _time1 = 0;
-        isMove = false;
-    }*/
 
 }

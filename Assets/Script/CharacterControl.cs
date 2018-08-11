@@ -71,7 +71,14 @@ public class CharacterControl : MonoBehaviour
     private void Update()
     {
         isJump = !OnGround();  //测试
-        rig.velocity = new Vector2(0, rig.velocity.y);
+        if (!isBounce)
+        {
+            rig.velocity = new Vector2(0, rig.velocity.y);
+        }
+        else
+        {
+            rig.velocity = new Vector2(rig.velocity.x, rig.velocity.y);
+        }
         switch (currentState)
         {
             case state.normal:
@@ -342,6 +349,11 @@ public class CharacterControl : MonoBehaviour
                 {
                     rig.velocity = new Vector2(rig.velocity.x, -YJumpSpeed);
                 }
+                
+                if(isBounce)
+                {
+                    AtTop();
+                }
 
                 if (Input.GetKeyDown(KeyCode.X) && isEnable[(int)state.attack1] && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_attack)  //攻击
                 {
@@ -565,10 +577,12 @@ public class CharacterControl : MonoBehaviour
         RaycastHit2D HeadHit = Physics2D.Raycast(HeadHitTrans[Dir == dir.left ? 0 : 1].position, Vector2.up, 0.2f, layerMask);
         if(HeadHit.transform != null)
         {
-            if(HeadHit.transform.tag == "maps")
-            {
-                return true;
-            }
+            //--------
+            isBounce = false;
+            //--------
+
+
+            return true;
         }
         return false;
     }
@@ -742,24 +756,42 @@ public class CharacterControl : MonoBehaviour
 
     //被弹开
     private bool isBounce = false;
-    private float _time_bounce = 0;
-    public void bounce(float time,float speed)
+    //private float _time_bounce = 0;
+    public void bounce(float time,float speed,dir dir)
     {
         if(!isBounce)
         {
-            StartCoroutine(_Bounce(time, speed));
+            StartCoroutine(_Bounce(time, speed,dir));
         }
         else
         {
-            _time_bounce = 0;
+            StartCoroutine(_Bounce(time, speed, dir));
         }
     }
 
-    IEnumerator _Bounce(float time,float speed)
+    IEnumerator _Bounce(float time,float speed,dir _dir)
     {
-        isBounce = true;
+        float _time_bounce = 0;
         Vector2 v = Vector2.zero;
-        float a = -(speed / (time * time));
+        switch (_dir)
+        {
+            case dir.down:
+                v = new Vector2(0, -1);
+                break;
+            case dir.left:
+                v = new Vector2(-1, 0);
+                break;
+            case dir.right:
+                v = new Vector2(1, 0);
+                break;
+            case dir.top:
+                v = new Vector2(0, 1);
+                break;
+        }
+        isBounce = true;
+
+        add_Velocity(v * speed);
+        Vector2 _v = Vector2.zero;
         while (_time_bounce < time)
         {
             if(isBounce == false && _time_bounce > 0.1f)
@@ -769,14 +801,10 @@ public class CharacterControl : MonoBehaviour
 
             _time_bounce += Time.deltaTime;
 
-            v.y = a * Mathf.Pow(_time_bounce, 2) + speed;
-            if(v.y < 0)
-            {
-                v.y = 0;
-            }
-            Debug.Log(v + "  " + _time_bounce);
+            _v = speed / time * Time.deltaTime * v; 
 
-            add_Velocity(v);
+            add_Velocity(-_v);
+
 
             yield return null;
         }

@@ -131,6 +131,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Scale: 0.6
   reactionForce: 5000
+  speed: 40
+  time: 0.4
 --- !u!212 &212000012042930324
 SpriteRenderer:
   m_ObjectHideFlags: 1

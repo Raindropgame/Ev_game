@@ -22,7 +22,7 @@ public class PlatformMove : MonoBehaviour {
             rig.freezeRotation = true;
             rig.isKinematic = false;
         }
-        startPosition = this.transform.position;
+        startPosition = this.transform.localPosition;
         rig.velocity = new Vector2(0, this.transform.position.y > targetPosition.y ? -speed : speed);
 	}
 	
@@ -30,7 +30,7 @@ public class PlatformMove : MonoBehaviour {
         if(!t)  //起始到终点
         {
             //this.transform.position = Vector2.MoveTowards(this.transform.position, targetPosition, speed * Time.deltaTime);
-            if(Mathf.Abs(this.transform.position.y - targetPosition.y) < 0.5f)
+            if(Mathf.Abs(this.transform.localPosition.y - targetPosition.y) < 0.5f)
             {
                 rig.velocity = new Vector2(0, this.transform.position.y > startPosition.y ? -speed : speed);
                 t = !t;
@@ -39,7 +39,7 @@ public class PlatformMove : MonoBehaviour {
         else   //终点到起始
         {
             //this.transform.position = Vector2.MoveTowards(this.transform.position, startPosition, speed * Time.deltaTime);
-            if (Mathf.Abs(this.transform.position.y - startPosition.y) < 0.1f)
+            if (Mathf.Abs(this.transform.localPosition.y - startPosition.y) < 0.1f)
             {
                 rig.velocity = new Vector2(0, this.transform.position.y > targetPosition.y ? -speed : speed);
                 t = !t;

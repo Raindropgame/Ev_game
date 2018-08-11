@@ -2635,7 +2635,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012553029848, guid: 390eb6ae1f7d6ef4d8301656d2a028a5, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: 4000012553029848, guid: 390eb6ae1f7d6ef4d8301656d2a028a5, type: 2}
       propertyPath: m_LocalRotation.x
@@ -10560,7 +10560,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012553029848, guid: 390eb6ae1f7d6ef4d8301656d2a028a5, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.09
       objectReference: {fileID: 0}
     - target: {fileID: 4000012553029848, guid: 390eb6ae1f7d6ef4d8301656d2a028a5, type: 2}
       propertyPath: m_LocalRotation.x
@@ -15468,7 +15468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad9b14cf9305117469d9fbc0c4bb3e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextSceneName: forest-6
+  NextSceneName: forest-7
   BornPositionNum: 0
 --- !u!1001 &698592353
 Prefab:
