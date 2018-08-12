@@ -3,17 +3,27 @@ using System.Collections;
 
 public class test6 : MonoBehaviour {
 
-    SpriteRenderer sr;
+    Coroutine t = null;
 
-	// Use this for initialization
-	void Start () {
-        sr = GetComponent<SpriteRenderer>();
-        Debug.Log(sr.bounds);
-	}
+    private void Start()
+    {
+        t = StartCoroutine(tt(5));       
+    }
 
     private void Update()
     {
-        Debug.Log(sr.sprite.border);
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            StopCoroutine(t);
+        }
     }
 
+    IEnumerator tt(int a)
+    {
+        while(true)
+        {
+            Debug.Log(Time.frameCount + "   " + a);
+            yield return null;
+        }
+    }
 }

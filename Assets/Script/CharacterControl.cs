@@ -71,14 +71,15 @@ public class CharacterControl : MonoBehaviour
     private void Update()
     {
         isJump = !OnGround();  //测试
-        if (!isBounce)
-        {
-            rig.velocity = new Vector2(0, rig.velocity.y);
-        }
-        else
+        if (isHorizontalBounce)
         {
             rig.velocity = new Vector2(rig.velocity.x, rig.velocity.y);
         }
+        else
+        {
+            rig.velocity = new Vector2(0, rig.velocity.y);
+        }
+
         switch (currentState)
         {
             case state.normal:
@@ -338,7 +339,10 @@ public class CharacterControl : MonoBehaviour
                 break;
             case state.fall:
                 isDoubleKeyDown();  //计时
-                JumpMove();
+                if(!isHorizontalBounce)
+                {
+                    JumpMove();  //水平弹飞中不能移动
+                }
                 YJumpSpeed = YJumpSpeed + Yacceleration * Time.deltaTime;
                 if(YJumpSpeed > JumpSpeed)
                 {
@@ -562,7 +566,7 @@ public class CharacterControl : MonoBehaviour
             if (lastState == state.fall)
             {
                 _jumpTimes = 0;  //归零跳跃次数
-                isBounce = false;
+                stopBounce();
             }
             return true;
         }
@@ -578,7 +582,7 @@ public class CharacterControl : MonoBehaviour
         if(HeadHit.transform != null)
         {
             //--------
-            isBounce = false;
+            stopBounce();
             //--------
 
 
@@ -755,17 +759,18 @@ public class CharacterControl : MonoBehaviour
     }
 
     //被弹开
-    private bool isBounce = false;
-    //private float _time_bounce = 0;
+    private bool isBounce = false,isHorizontalBounce = false;
+    private Coroutine bounce_c = null;
     public void bounce(float time,float speed,dir dir)
     {
         if(!isBounce)
         {
-            StartCoroutine(_Bounce(time, speed,dir));
+            bounce_c = StartCoroutine(_Bounce(time, speed,dir));
         }
         else
         {
-            StartCoroutine(_Bounce(time, speed, dir));
+            stopBounce();
+            bounce_c = StartCoroutine(_Bounce(time, speed, dir));
         }
     }
 
@@ -780,9 +785,11 @@ public class CharacterControl : MonoBehaviour
                 break;
             case dir.left:
                 v = new Vector2(-1, 0);
+                isHorizontalBounce = true;
                 break;
             case dir.right:
                 v = new Vector2(1, 0);
+                isHorizontalBounce = true;
                 break;
             case dir.top:
                 v = new Vector2(0, 1);
@@ -790,11 +797,18 @@ public class CharacterControl : MonoBehaviour
         }
         isBounce = true;
 
+        currentState = state.fall;
         add_Velocity(v * speed);
+        rig.velocity = Vector2.zero;
         Vector2 _v = Vector2.zero;
         while (_time_bounce < time)
         {
-            if(isBounce == false && _time_bounce > 0.1f)
+
+            if(rig.velocity.x > 0 && _dir == dir.left)
+            {
+                break;
+            }
+            if (rig.velocity.x < 0 && _dir == dir.right)
             {
                 break;
             }
@@ -811,6 +825,17 @@ public class CharacterControl : MonoBehaviour
         _time_bounce = 0;
         isBounce = false;
         YJumpSpeed = 0;
+        isHorizontalBounce = false;
+    }
+
+    void stopBounce()  //停止弹跳协程
+    {
+        if(isBounce)
+        {
+            StopCoroutine(bounce_c);
+            isBounce = false;
+            isHorizontalBounce = false;
+        }
     }
 
 } 
