@@ -17,7 +17,6 @@ public class platform_frozen : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.transform.tag);
         if(collision.transform.tag.Substring(0,4) == "arms")
         {
             Instantiate(particleEffect, position: collision.contacts[0].point, rotation: Quaternion.Euler(0, 0, 0));

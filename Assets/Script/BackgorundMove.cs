@@ -21,18 +21,27 @@ public class BackgorundMove : MonoBehaviour {
     {
         if (test.isEditor)  //编辑模式下运行该函数
         {
-            //  背景z轴不可超过10
-            Vector3 tVector = nowPosition - this.transform.position;
-            tVector.z = 0;
-            for (int i = 0; i < maps.Length; i++)
+            try
             {
-                maps[i].transform.position = new Vector3((maps[i].transform.position - tVector * (maps[i].transform.position.z * 0.1f)).x, (maps[i].transform.position - 0.2f * tVector * (maps[i].transform.position.z * 0.1f)).y, maps[i].transform.position.z);
+                //  背景z轴不可超过10
+                Vector3 tVector = nowPosition - this.transform.position;
+                tVector.z = 0;
+                for (int i = 0; i < maps.Length; i++)
+                {
+                    maps[i].transform.position = new Vector3((maps[i].transform.position - tVector * (maps[i].transform.position.z * 0.1f)).x, (maps[i].transform.position - 0.2f * tVector * (maps[i].transform.position.z * 0.1f)).y, maps[i].transform.position.z);
+                }
+                for (int i = 0; i < background.Length; i++)
+                {
+                    background[i].transform.position = background[i].transform.position - tVector * (background[i].transform.position.z * 0.1f);
+                }
+                nowPosition = this.transform.position;
             }
-            for (int i = 0; i < background.Length; i++)
+            catch
             {
-                background[i].transform.position = background[i].transform.position - tVector * (background[i].transform.position.z * 0.1f);
+                maps = GameObject.FindGameObjectsWithTag("map");
+                background = GameObject.FindGameObjectsWithTag("map_background");
+                nowPosition = this.transform.position;
             }
-            nowPosition = this.transform.position;
         }
     }
 

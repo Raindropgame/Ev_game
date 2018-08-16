@@ -23,23 +23,23 @@ public class PlatformMove : MonoBehaviour {
             rig.isKinematic = false;
         }
         startPosition = this.transform.localPosition;
-        rig.velocity = new Vector2(0, this.transform.position.y > targetPosition.y ? -speed : speed);
+        rig.velocity = new Vector2(0, this.transform.localPosition.y > targetPosition.y ? -speed : speed);
 	}
 	
 	void Update () {
         if(!t)  //起始到终点
         {
-            if((this.transform.position.y < startPosition.y && this.transform.position.y < targetPosition.y ) || (this.transform.position.y > startPosition.y && this.transform.position.y > targetPosition.y))
+            if((this.transform.localPosition.y < startPosition.y && this.transform.localPosition.y < targetPosition.y ) || (this.transform.localPosition.y > startPosition.y && this.transform.localPosition.y > targetPosition.y))
             {
-                rig.velocity = new Vector2(0, this.transform.position.y > startPosition.y ? -speed : speed);
+                rig.velocity = new Vector2(0, this.transform.localPosition.y > startPosition.y ? -speed : speed);
                 t = !t;
             }
         }
         else   //终点到起始
         {
-            if ((this.transform.position.y < startPosition.y && this.transform.position.y < targetPosition.y) || (this.transform.position.y > startPosition.y && this.transform.position.y > targetPosition.y))
+            if ((this.transform.localPosition.y < startPosition.y && this.transform.localPosition.y < targetPosition.y) || (this.transform.localPosition.y > startPosition.y && this.transform.localPosition.y > targetPosition.y))
             {
-                rig.velocity = new Vector2(0, this.transform.position.y > targetPosition.y ? -speed : speed);
+                rig.velocity = new Vector2(0, this.transform.localPosition.y > targetPosition.y ? -speed : speed);
                 t = !t;
             }
         }
