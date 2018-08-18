@@ -455,7 +455,6 @@ public class Monster_base : MonoBehaviour {
         float _time1 = 0,_time2 = 0;
         float lightning_Space_Time = GameData.lightningSpace;
         float odds = GameData.lightning_Odds;
-        int damage = GameData.lightning_Damage;
 
         while(_time1 < lightningTime)
         {

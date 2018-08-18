@@ -143,7 +143,6 @@ public class stone : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        string tag = collision.transform.tag;
         if (collision.transform.tag == "arms_player")  //是否为武器
         {
             int t_dir = CharacterControl.instance.transform.position.x >= SR.bounds.center.x ? -1 : 1;
