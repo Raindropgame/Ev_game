@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: a0d45a32cd417df409d1588714014444
-timeCreated: 1534659844
+timeCreated: 1534756733
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
@@ -11,6 +11,8 @@ TextureImporter:
     21300008: terrain_sprite_4
     21300010: terrain_sprite_5
     21300012: terrain_sprite_6
+    21300014: terrain_sprite_7
+    21300016: terrain_sprite_8
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -145,6 +147,32 @@ TextureImporter:
         y: 931
         width: 380
         height: 398
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: terrain_sprite_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1333
+        width: 651
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: terrain_sprite_8
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 337
+        width: 623
+        height: 337
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
