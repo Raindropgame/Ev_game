@@ -3862,6 +3862,10 @@ Prefab:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1000013293294210, guid: 72b7d7bd01cd7a84085eb49024c7862c, type: 2}
+      propertyPath: m_TagString
+      value: map
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 72b7d7bd01cd7a84085eb49024c7862c, type: 2}
   m_IsPrefabParent: 0
@@ -4156,6 +4160,10 @@ Prefab:
     - target: {fileID: 1000013293294210, guid: 72b7d7bd01cd7a84085eb49024c7862c, type: 2}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013293294210, guid: 72b7d7bd01cd7a84085eb49024c7862c, type: 2}
+      propertyPath: m_TagString
+      value: map
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 72b7d7bd01cd7a84085eb49024c7862c, type: 2}
@@ -7296,6 +7304,10 @@ Prefab:
         type: 2}
       propertyPath: m_SortingOrder
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013293294210, guid: 72b7d7bd01cd7a84085eb49024c7862c, type: 2}
+      propertyPath: m_TagString
+      value: map
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 72b7d7bd01cd7a84085eb49024c7862c, type: 2}
@@ -23391,6 +23403,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 4.068398
       objectReference: {fileID: 0}
+    - target: {fileID: 1000013293294210, guid: 72b7d7bd01cd7a84085eb49024c7862c, type: 2}
+      propertyPath: m_TagString
+      value: map
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 72b7d7bd01cd7a84085eb49024c7862c, type: 2}
   m_IsPrefabParent: 0
@@ -32571,6 +32587,10 @@ Prefab:
     - target: {fileID: 1000013293294210, guid: 72b7d7bd01cd7a84085eb49024c7862c, type: 2}
       propertyPath: m_Name
       value: stone (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013293294210, guid: 72b7d7bd01cd7a84085eb49024c7862c, type: 2}
+      propertyPath: m_TagString
+      value: map
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 72b7d7bd01cd7a84085eb49024c7862c, type: 2}
@@ -59662,6 +59682,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 4.068398
       objectReference: {fileID: 0}
+    - target: {fileID: 1000013293294210, guid: 72b7d7bd01cd7a84085eb49024c7862c, type: 2}
+      propertyPath: m_TagString
+      value: map
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 72b7d7bd01cd7a84085eb49024c7862c, type: 2}
   m_IsPrefabParent: 0
@@ -66807,6 +66831,10 @@ Prefab:
       propertyPath: _dir
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4000014135042594, guid: be8c2fb73865c384fb2dcb15872e3ef0, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: be8c2fb73865c384fb2dcb15872e3ef0, type: 2}
   m_IsPrefabParent: 0
@@ -67559,6 +67587,10 @@ Prefab:
         type: 2}
       propertyPath: _dir
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000014135042594, guid: be8c2fb73865c384fb2dcb15872e3ef0, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: be8c2fb73865c384fb2dcb15872e3ef0, type: 2}
@@ -71896,6 +71928,10 @@ Prefab:
       propertyPath: m_SortingOrder
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 1000013293294210, guid: 72b7d7bd01cd7a84085eb49024c7862c, type: 2}
+      propertyPath: m_TagString
+      value: map
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 72b7d7bd01cd7a84085eb49024c7862c, type: 2}
   m_IsPrefabParent: 0
@@ -74316,6 +74352,10 @@ Prefab:
     - target: {fileID: 1000013293294210, guid: 72b7d7bd01cd7a84085eb49024c7862c, type: 2}
       propertyPath: m_Name
       value: stone (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013293294210, guid: 72b7d7bd01cd7a84085eb49024c7862c, type: 2}
+      propertyPath: m_TagString
+      value: map
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 72b7d7bd01cd7a84085eb49024c7862c, type: 2}
