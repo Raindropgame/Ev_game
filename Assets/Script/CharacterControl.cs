@@ -46,6 +46,7 @@ public class CharacterControl : MonoBehaviour
     private int layerMask = 1 << 9;  //检测指定层
     private float _hurtTime = 0; //用于记录受伤时间
     private float jumpshoot_backTime = 0.05f,_time3 = 0;  //跳射后退时间
+    private bool isJumpShootBack = false; //是否开始跳射后退
 
     private void Awake()
     {
@@ -296,20 +297,24 @@ public class CharacterControl : MonoBehaviour
                 }
                 break;
             case state.jumpshoot:
-                _time3 += Time.deltaTime;  //后退效果
-                if (_time3 < jumpshoot_backTime)
+                if (isJumpShootBack)
                 {
-                    rig.velocity = new Vector2(Dir == dir.left ? 20 : -20, 18);
-                }
-                else
-                {
-                    rig.velocity = Vector2.zero;
-                }
+                    _time3 += Time.deltaTime;  //后退效果
+                    if (_time3 < jumpshoot_backTime)
+                    {
+                        rig.velocity = new Vector2(Dir == dir.left ? 20 : -20, 18);
+                    }
+                    else
+                    {
+                        rig.velocity = Vector2.zero;
+                    }
 
-                if (!isPlayAnimation())
-                {
-                    _time3 = 0;
-                    currentState = state.fall;
+                    if (!isPlayAnimation())
+                    {
+                        isJumpShootBack = false;
+                        _time3 = 0;
+                        currentState = state.fall;
+                    }
                 }
                 break;
             case state.shoot:              
@@ -663,7 +668,7 @@ public class CharacterControl : MonoBehaviour
                 if (JumpShootTimes < MaxJumpShootTimes && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_jumpshoot)
                 {
                     currentState = state.jumpshoot;
-                    CharacterObjectManager.instance.arrow_2();
+                    //CharacterObjectManager.instance.arrow_2();
                     YJumpSpeed = 0;
                     rig.velocity = new Vector2(0, 0);  //停滞在空中
                     JumpShootTimes++;
@@ -836,6 +841,12 @@ public class CharacterControl : MonoBehaviour
             isBounce = false;
             isHorizontalBounce = false;
         }
+    }
+
+    public void startJumpShootBack()
+    {
+        CharacterObjectManager.instance.arrow_2();
+        isJumpShootBack = true;
     }
 
 } 
