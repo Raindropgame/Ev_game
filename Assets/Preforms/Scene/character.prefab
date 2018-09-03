@@ -398,7 +398,7 @@ Light:
   m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 32768
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -439,6 +439,7 @@ MonoBehaviour:
   DoubleAttackSpaceTime: 1
   isEnable: 010101010101010101010101
   isHurt: 0
+  rig: {fileID: 0}
   _jumpTimes: 0
 --- !u!114 &114000010639649552
 MonoBehaviour:

@@ -22,7 +22,7 @@ GameObject:
   - 33: {fileID: 33000010734874900}
   - 64: {fileID: 64000010231745946}
   - 23: {fileID: 23000012780359758}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Masker_above
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000011173686186}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Masker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,7 +155,7 @@ GameObject:
   - 33: {fileID: 33000013242121284}
   - 64: {fileID: 64000013718643798}
   - 23: {fileID: 23000011440649014}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Masker_base
   m_TagString: Untagged
   m_Icon: {fileID: 0}

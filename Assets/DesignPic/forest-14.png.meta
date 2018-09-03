@@ -1,12 +1,9 @@
 fileFormatVersion: 2
-guid: e7b5585889b37d444a2b3856897d6f21
-timeCreated: 1535334336
+guid: 2bea7f4893c96724f97ac1312d4dab1f
+timeCreated: 1535333675
 licenseType: Pro
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: forest-1_0
-    21300002: forest-1_1
-    21300004: forest-1_2
+  fileIDToRecycleName: {}
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -33,7 +30,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: 16
+    aniso: -1
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -41,7 +38,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,46 +51,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: forest-1_0
-      rect:
-        serializedVersion: 2
-        x: 383
-        y: 292
-        width: 356
-        height: 455
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: forest-1_1
-      rect:
-        serializedVersion: 2
-        x: 37
-        y: 51
-        width: 1160
-        height: 194
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: forest-1_2
-      rect:
-        serializedVersion: 2
-        x: 74
-        y: 51
-        width: 1051
-        height: 198
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
+    sprites: []
     outline: []
   spritePackingTag: 
   userData: 
