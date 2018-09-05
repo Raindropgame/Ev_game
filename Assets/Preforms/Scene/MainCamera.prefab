@@ -47,6 +47,7 @@ GameObject:
   - 61: {fileID: 61000010584019000}
   - 114: {fileID: 114000012733128800}
   - 114: {fileID: 114000011656852680}
+  - 114: {fileID: 114000013790748638}
   m_Layer: 12
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -266,7 +267,7 @@ GameObject:
   - 114: {fileID: 114000012008123182}
   m_Layer: 0
   m_Name: BackGroundCamera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -398,7 +399,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010341890682}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -330.98, y: -84.85, z: 0}
+  m_LocalPosition: {x: -216.54, y: 16.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -708,7 +709,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.834, g: 1, b: 1, a: 1}
+  m_BackGroundColor: {r: 0.834, g: 1, b: 0.97802943, a: 1}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -999,6 +1000,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b9bf2a50ef38114f8e1191fe9e42d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114000013790748638
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010341890682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be8924f04b49dcd47a302bb5e28a0dea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CameraWaveShader: {fileID: 4800000, guid: de740d49bba38034193b0e288a9f3b73, type: 3}
+  offset: 0.02
+  scale: 52
 --- !u!124 &124000011351689334
 Behaviour:
   m_ObjectHideFlags: 1
