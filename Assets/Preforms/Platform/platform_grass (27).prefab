@@ -85,6 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fec5c93eb6c31904f81f94a15d7e8df7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  horizontal_or_vertical: 1
   targetPosition: {x: -12, y: 44}
   time: 4
 --- !u!212 &212000011523721876
