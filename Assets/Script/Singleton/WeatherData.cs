@@ -14,7 +14,7 @@ public class WeatherData{
     {
         if(instance == null)
         {
-            instance = new WeatherData();
+            instance = new WeatherData();           
         }
         return instance;
     } 
@@ -22,6 +22,7 @@ public class WeatherData{
     WeatherData()
     {
         Init();
+        currentTime = Weather.instance.TotalTime * 0.2f;
     }
 
     public void Init()  //获取存档

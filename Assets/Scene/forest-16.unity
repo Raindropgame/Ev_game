@@ -5988,7 +5988,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 2.0927963, y: 0.2616005}
   serializedVersion: 2
@@ -6004,7 +6004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad9b14cf9305117469d9fbc0c4bb3e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextSceneName: forest-16
+  NextSceneName: forest-17
   BornPositionNum: 0
 --- !u!1 &384009779
 GameObject:
@@ -20322,7 +20322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad9b14cf9305117469d9fbc0c4bb3e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextSceneName: forest-16
+  NextSceneName: forest-18
   BornPositionNum: 0
 --- !u!1 &1591898871
 GameObject:

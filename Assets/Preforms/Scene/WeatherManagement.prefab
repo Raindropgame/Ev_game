@@ -188,9 +188,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3088ce93f9414954ab7261a849e774b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DayTime: 60
-  TotalTime: 100
+  DayTime: 200
+  TotalTime: 300
   MaskerMaterial: {fileID: 2100000, guid: 7e690b624b9715e48a0cf5bf875bbcf6, type: 2}
+  isMasker: 1
   Day_Color: {r: 1, g: 1, b: 1, a: 1}
   Night_Color: {r: 0.25, g: 0.25, b: 0.25, a: 0.434}
 --- !u!198 &198000013342479738
