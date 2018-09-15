@@ -10527,7 +10527,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013466836266, guid: be8c2fb73865c384fb2dcb15872e3ef0, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4000013466836266, guid: be8c2fb73865c384fb2dcb15872e3ef0, type: 2}
       propertyPath: m_LocalRotation.x
@@ -19715,8 +19715,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad9b14cf9305117469d9fbc0c4bb3e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextSceneName: forest-15
-  BornPositionNum: 0
+  NextSceneName: forest-20
+  BornPositionNum: 1
 --- !u!1 &1179155164
 GameObject:
   m_ObjectHideFlags: 0

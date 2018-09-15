@@ -17,7 +17,7 @@ public class PlatformMove : MonoBehaviour {
 	void Start () {
         if (horizontal_or_vertical == 1)
         {
-            speed = Mathf.Abs(targetPosition.y - this.transform.position.y) / time;
+            speed = Mathf.Abs(targetPosition.y - this.transform.localPosition.y) / time;
             targetPosition.x = this.transform.position.x;
             rig = this.GetComponent<Rigidbody2D>();
             if (rig == null)  //如果改物体上没有该组件
@@ -32,7 +32,7 @@ public class PlatformMove : MonoBehaviour {
         }
         else
         {
-            speed = Mathf.Abs(targetPosition.y - this.transform.position.y) / time;
+            speed = Mathf.Abs(targetPosition.x - this.transform.localPosition.x) / time;
             targetPosition.y = this.transform.position.y;
             rig = this.GetComponent<Rigidbody2D>();
             if (rig == null)  //如果改物体上没有该组件
