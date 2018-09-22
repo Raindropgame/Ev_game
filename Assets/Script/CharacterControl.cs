@@ -802,7 +802,9 @@ public class CharacterControl : MonoBehaviour
         }
         isBounce = true;
 
+
         currentState = state.fall;
+        _dashTime = 0;   //防止弹球BUG
         add_Velocity(v * speed);
         rig.velocity = Vector2.zero;
         Vector2 _v = Vector2.zero;
