@@ -54107,8 +54107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad9b14cf9305117469d9fbc0c4bb3e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextSceneName: forest-7
-  BornPositionNum: 2
+  NextSceneName: forest-25
+  BornPositionNum: 0
 --- !u!4 &1529011294 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000012304188956, guid: 96171f232bb36e34e9d7a44ec7e7d6ce,
