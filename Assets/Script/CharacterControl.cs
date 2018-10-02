@@ -726,6 +726,7 @@ public class CharacterControl : MonoBehaviour
             CharacterAttribute.GetInstance().reduce_HP(Damage);
             isHurt = true;
             currentState = state.hurt;
+            _dashTime = 0;
             Invoke("end_invincibility", hurt_contined_time);
             return true;
         }
