@@ -50,7 +50,7 @@ public class waterFall : MonoBehaviour
 
     private void FixedUpdate()
     {
-
+        apply();
         if (WeatherData.getIntance().currentWeather == weather.Rain || WeatherData.getIntance().currentWeather == weather.RainAndThunder)
         {
             if (WeatherData.getIntance().Weather_leftTime > 0.8f * WeatherData.getIntance().Weather_duration)  //开始阶段
