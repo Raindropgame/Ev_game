@@ -3366,6 +3366,10 @@ Prefab:
       propertyPath: m_Name
       value: butterfly (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4000013089181612, guid: 73e774cf604386b40815124fe423292f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 73e774cf604386b40815124fe423292f, type: 2}
   m_IsPrefabParent: 0
@@ -29094,6 +29098,10 @@ Prefab:
     - target: {fileID: 1000010028531046, guid: 73e774cf604386b40815124fe423292f, type: 2}
       propertyPath: m_Name
       value: butterfly (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013089181612, guid: 73e774cf604386b40815124fe423292f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 73e774cf604386b40815124fe423292f, type: 2}
@@ -64451,6 +64459,10 @@ Prefab:
       propertyPath: m_Name
       value: butterfly (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4000013089181612, guid: 73e774cf604386b40815124fe423292f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 73e774cf604386b40815124fe423292f, type: 2}
   m_IsPrefabParent: 0
@@ -72842,6 +72854,10 @@ Prefab:
     - target: {fileID: 1000010028531046, guid: 73e774cf604386b40815124fe423292f, type: 2}
       propertyPath: m_Name
       value: butterfly (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013089181612, guid: 73e774cf604386b40815124fe423292f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 73e774cf604386b40815124fe423292f, type: 2}

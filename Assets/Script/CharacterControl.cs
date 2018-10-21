@@ -47,6 +47,9 @@ public class CharacterControl : MonoBehaviour
     private float _hurtTime = 0; //用于记录受伤时间
     private float jumpshoot_backTime = 0.05f,_time3 = 0;  //跳射后退时间
     private bool isJumpShootBack = false; //是否开始跳射后退
+    private bool isInShelter = false;  //是否在避雨的区域中
+    //[HideInInspector]
+    public bool isInRain = false;
 
     private void Awake()
     {
@@ -72,6 +75,8 @@ public class CharacterControl : MonoBehaviour
     private void Update()
     {
         isJump = !OnGround();  //测试
+        isInRain = checkIsInRain(); //是否在雨中
+
         if (isHorizontalBounce)
         {
             rig.velocity = new Vector2(rig.velocity.x, rig.velocity.y);
@@ -445,6 +450,7 @@ public class CharacterControl : MonoBehaviour
         lastDir = Dir;
 
         changeAnimation(); //改变当前动画
+        CharacterObjectManager.instance.changeDustParticle(currentState, lastState, isJump, isInRain, Dir);  //改变尘土粒子效果
         lastState = currentState;
 
     }
@@ -809,6 +815,8 @@ public class CharacterControl : MonoBehaviour
         add_Velocity(v * speed);
         rig.velocity = Vector2.zero;
         Vector2 _v = Vector2.zero;
+        int origin_jumpTimes = JumpTimes;
+        JumpTimes = 1;
         while (_time_bounce < time)
         {
 
@@ -830,6 +838,7 @@ public class CharacterControl : MonoBehaviour
 
             yield return null;
         }
+        JumpTimes = origin_jumpTimes;
         _time_bounce = 0;
         isBounce = false;
         YJumpSpeed = 0;
@@ -852,4 +861,31 @@ public class CharacterControl : MonoBehaviour
         isJumpShootBack = true;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.layer == LayerMask.NameToLayer("shelter"))
+        {
+            isInShelter = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.gameObject.layer == LayerMask.NameToLayer("shelter"))
+        {
+            isInShelter = false;
+        }
+    }
+
+    bool checkIsInRain()  //检查是否在雨中
+    {       
+        if (!isInShelter)
+        {
+            if (WeatherData.getIntance().currentWeather == weather.Rain || WeatherData.getIntance().currentWeather == weather.RainAndThunder)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 } 

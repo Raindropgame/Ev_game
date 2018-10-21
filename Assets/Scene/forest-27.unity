@@ -8852,12 +8852,16 @@ Prefab:
     - target: {fileID: 114000011088849132, guid: be8c2fb73865c384fb2dcb15872e3ef0,
         type: 2}
       propertyPath: speed
-      value: 60
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 114000011088849132, guid: be8c2fb73865c384fb2dcb15872e3ef0,
         type: 2}
       propertyPath: time
-      value: 0.5
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000011275227836, guid: be8c2fb73865c384fb2dcb15872e3ef0, type: 2}
+      propertyPath: m_TagString
+      value: maps
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: be8c2fb73865c384fb2dcb15872e3ef0, type: 2}
@@ -24203,8 +24207,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad9b14cf9305117469d9fbc0c4bb3e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextSceneName: forest-27
-  BornPositionNum: 0
+  NextSceneName: forest-28
+  BornPositionNum: 1
 --- !u!1 &1502285160
 GameObject:
   m_ObjectHideFlags: 0

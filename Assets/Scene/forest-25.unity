@@ -23143,6 +23143,21 @@ Prefab:
       propertyPath: time
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 212000010914312252, guid: be8c2fb73865c384fb2dcb15872e3ef0,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000010914312252, guid: be8c2fb73865c384fb2dcb15872e3ef0,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000010914312252, guid: be8c2fb73865c384fb2dcb15872e3ef0,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: be8c2fb73865c384fb2dcb15872e3ef0, type: 2}
   m_IsPrefabParent: 0
@@ -30982,8 +30997,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad9b14cf9305117469d9fbc0c4bb3e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextSceneName: forest-25
-  BornPositionNum: 2
+  NextSceneName: forest-27
+  BornPositionNum: 0
 --- !u!1 &1168543109
 GameObject:
   m_ObjectHideFlags: 0

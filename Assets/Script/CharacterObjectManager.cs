@@ -15,6 +15,9 @@ public class CharacterObjectManager : MonoBehaviour
     public GameObject shootArrowParticleObject;  //射击粒子特效
     public GameObject dashParticleObject;  //冲刺粒子特效
     public GameObject arrow_end;  //箭的击中特效
+    public ParticleSystem WalkDust,WalkDust_rain;
+    public ParticleSystem JumpDust,JumpDust_rain;
+    public ParticleSystem FallDust, FallDust_rain;
 
     private GameObject character;
     private GameObject _attack1_left, _attack1_right, _attack2_left, _attack2_right;
@@ -22,6 +25,7 @@ public class CharacterObjectManager : MonoBehaviour
     private ArrayList arrowList, arrow_2List , HitPointList = new ArrayList();
     private float shootArrowParticleLifeTime;  //射击粒子特效生命周期
     private ParticleSystem.EmissionModule dashParticle;  //冲刺粒子系统
+    private ParticleSystem.EmissionModule WalkDustEmission, WalkDustEmission_rain;
 
 
     private void Start()
@@ -30,6 +34,8 @@ public class CharacterObjectManager : MonoBehaviour
         character = GameObject.Find("character");
         shootArrowParticleLifeTime = shootArrowParticleObject.GetComponent<ParticleSystem>().startLifetime;
         dashParticle = dashParticleObject.GetComponent<ParticleSystem>().emission;
+        WalkDustEmission = WalkDust.emission;
+        WalkDustEmission_rain = WalkDust_rain.emission;
 
         _attack1_left = GameObject.Find("attack1_left");
         _attack1_right = GameObject.Find("attack1_right");
@@ -249,6 +255,120 @@ public class CharacterObjectManager : MonoBehaviour
         if (_sendHurt != null)  //不为空执行
         {
             _sendHurt(damage, attribute, gameobejctID);
+        }
+    }
+
+    public void changeDustParticle(state currentState, state lastState, bool isSky, bool isInRain, dir Dir)
+    {
+        const int walkParticleNum = 3;
+        const int runParticleNum = 10;
+        const int walkParticleNum_rain = 10;
+        const int runParticleNum_rain = 20;
+        if(lastState == currentState)  //未改变
+        {
+            if(isInRain)  //根据是否在雨中来改变粒子效果
+            {
+                switch(currentState)
+                {
+                    case state.run:
+                        WalkDustEmission_rain.rate = runParticleNum_rain;
+                        WalkDustEmission.rate = 0;
+                        break;
+                    case state.walk:
+                        WalkDustEmission_rain.rate = walkParticleNum_rain;
+                        WalkDustEmission.rate = 0;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                switch (currentState)
+                {
+                    case state.run:
+                        WalkDustEmission_rain.rate = 0;
+                        WalkDustEmission.rate = runParticleNum;
+                        break;
+                    case state.walk:
+                        WalkDustEmission_rain.rate = 0;
+                        WalkDustEmission.rate = walkParticleNum;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }       
+        else  //已改变
+        {
+            if (currentState == state.run || currentState == state.walk)
+            {
+                if(lastState != state.run && lastState != state.walk)  //打开粒子
+                {
+                    switch(currentState)  //根据状态改变粒子尘土数量
+                    {
+                        case state.run:
+                            if (isInRain)  //判断是否在雨中
+                            {
+                                WalkDustEmission_rain.rate = runParticleNum_rain;
+                            }
+                            else
+                            {
+                                WalkDustEmission.rate = runParticleNum;
+                            }
+                            break;
+                        case state.walk:
+                            if (isInRain)  //判断是否在雨中
+                            {
+                                WalkDustEmission_rain.rate = walkParticleNum_rain;
+                            }
+                            else
+                            {
+                                WalkDustEmission.rate = walkParticleNum;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            else
+            {
+                if(lastState == state.run || lastState == state.walk)  //关闭粒子
+                {
+                    WalkDustEmission.rate = 0;
+                    WalkDustEmission_rain.rate = 0;
+                }
+
+                if(currentState == state.jump && !isSky)  //起跳粒子
+                {
+                    if (!isInRain)
+                    {
+                        JumpDust.Stop();
+                        JumpDust.Play();
+                    }
+                    else
+                    {
+                        JumpDust_rain.Stop();
+                        JumpDust_rain.Play();
+                    }
+                }
+
+                if(lastState == state.fall && !isSky)   //落地粒子
+                {
+                    if (!isInRain)  //判断是否在雨中
+                    {
+                        FallDust.Stop();
+                        FallDust.Play();
+                    }
+                    else
+                    {
+                        FallDust_rain.Stop();
+                        FallDust_rain.Play();
+                    }
+                }
+            }
+
         }
     }
 }

@@ -9033,7 +9033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad9b14cf9305117469d9fbc0c4bb3e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextSceneName: forest-23
+  NextSceneName: forest-28
   BornPositionNum: 0
 --- !u!1 &599899821
 GameObject:
@@ -13841,6 +13841,11 @@ Prefab:
         type: 2}
       propertyPath: targetPosition.y
       value: -45.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013468189150, guid: 5c3b619e29c69674092286cb00f4b4b3,
+        type: 2}
+      propertyPath: horizontal_or_vertical
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5c3b619e29c69674092286cb00f4b4b3, type: 2}
