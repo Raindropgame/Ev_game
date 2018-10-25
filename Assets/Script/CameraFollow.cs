@@ -133,18 +133,18 @@ public class CameraFollow : MonoBehaviour {
     }
 
     private bool isStop = false;
-    public void Stop(float time)  //卡顿
+    public void Stop(float time,float scale)  //卡顿
     {
         if (!isStop)
         {
-            StartCoroutine(_stop(time));
+            StartCoroutine(_stop(time,scale));
         }
     }
 
-    IEnumerator _stop(float time)
+    IEnumerator _stop(float time,float scale)
     {
         isStop = true;
-        Time.timeScale = 0;
+        Time.timeScale = scale;
         yield return new WaitForSecondsRealtime(time);
         Time.timeScale = 1;
         isStop = false;

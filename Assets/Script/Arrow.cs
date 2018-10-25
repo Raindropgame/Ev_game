@@ -62,13 +62,13 @@ public class Arrow : MonoBehaviour
             {
                 isTrigger = true;
                 Invoke("TriggerWithEnemy", 0.03f);
-                CharacterObjectManager.instance.sendHurt(damage, currentAttribute, collision.gameObject.GetInstanceID());
+                CharacterObjectManager.instance.sendHurt(damage, currentAttribute, collision.gameObject.GetInstanceID(),boxCol.bounds.center);
             }
             if (collision.transform.tag == "enemy")
             {
                 isTrigger = true;
                 Invoke("TriggerWithEnemy", 0.03f);
-                CharacterObjectManager.instance.sendHurt(damage, currentAttribute, collision.gameObject.GetInstanceID());
+                CharacterObjectManager.instance.sendHurt(damage, currentAttribute, collision.gameObject.GetInstanceID(),boxCol.bounds.center);
             }
         }
     }

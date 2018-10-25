@@ -10,40 +10,70 @@ public class platform_jump : MonoBehaviour {
     public float scale;
     public float speed;
     public Light _light;
+    public float nearRange = 1;
+    public float maxDistanceDelta;
 
     private bool Rest = false;
     private SpriteRenderer SR;
     private Vector3 originPos;  //原点
     private float randomTime1,randomTime2;  //随机的预先时间
     private float light_rest_range = 4,origin_range;
+    private bool isCharacterIn = false;
 
 	// Use this for initialization
 	void Start () {
         origin_range = _light.range;
         originPos = transform.position;
         SR = GetComponent<SpriteRenderer>();
-        randomTime1 = Random.Range(1, 100);
-        randomTime2 = Random.Range(1, 100);
+        Random.InitState((int)transform.position.x);
+        randomTime1 = Random.value * 10;
+        randomTime2 = Random.value * 10;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        transform.position = new Vector3(scale * Mathf.Sin(speed * Time.time + randomTime1) + originPos.x, scale * Mathf.Sin(speed * Time.time + randomTime2) + originPos.y, originPos.z);
+
+        if(((Vector2)(originPos - CharacterControl.instance.transform.position)).sqrMagnitude < Mathf.Pow(nearRange,2) && !Rest) //是否在靠近的范围内
+        {
+            transform.position = Vector2.MoveTowards(transform.position, CharacterControl.instance.transform.position, maxDistanceDelta);
+        }
+        else
+        {
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(scale * Mathf.Sin(speed * Time.time + randomTime1) + originPos.x, scale * Mathf.Sin(speed * Time.time + randomTime2) + originPos.y), maxDistanceDelta * 0.6f);
+        }
+
+        if(isCharacterIn)
+        {
+            if (!Rest)
+            {
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    CharacterControl.instance._jumpTimes--;
+                    Rest = true;
+                    particle.gameObject.SetActive(true);
+                    Invoke("reset", restTime);
+                    SR.color = disableColor;
+                    _light.range = light_rest_range;
+                }
+            }
+        }
+
+        transform.position = new Vector3(transform.position.x, transform.position.y, originPos.z);   //纠正Z值
 	}
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player" && !Rest)
+        if(collision.tag == "Player")
+        {         
+            isCharacterIn = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.tag == "Player")
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                CharacterControl.instance._jumpTimes--;
-                Rest = true;
-                particle.gameObject.SetActive(true);
-                Invoke("reset", restTime);
-                SR.color = disableColor;
-                _light.range = light_rest_range;
-            }
+            isCharacterIn = false;
         }
     }
 

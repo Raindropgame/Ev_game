@@ -79,13 +79,13 @@ public class Water : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        GameObject t = Instantiate(spray, position: new Vector3(collision.transform.position.x,surfacePos.position.y,transform.position.z), rotation: new Quaternion(0, 0, 0, 0)) as GameObject;
+        GameObject t = Instantiate(spray, position: new Vector3(collision.transform.position.x,surfacePos.position.y,transform.position.z - 5), rotation: new Quaternion(0, 0, 0, 0)) as GameObject;
         StartCoroutine(destroySpray(t));
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        GameObject t = Instantiate(spray, position: new Vector3(collision.transform.position.x, surfacePos.position.y, transform.position.z), rotation: new Quaternion(0, 0, 0, 0)) as GameObject;
+        GameObject t = Instantiate(spray, position: new Vector3(collision.transform.position.x, surfacePos.position.y, transform.position.z - 5), rotation: new Quaternion(0, 0, 0, 0)) as GameObject;
         StartCoroutine(destroySpray(t));
     }
 

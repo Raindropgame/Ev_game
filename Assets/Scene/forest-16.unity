@@ -8548,7 +8548,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: 4fcd1e0807ba78e49abaee6a8e32bd6d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fdb0c577545de824aaaa13bfea0af6b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -25100,6 +25100,10 @@ Prefab:
       propertyPath: m_LocalScale.x
       value: 0.522718
       objectReference: {fileID: 0}
+    - target: {fileID: 4000011126309688, guid: 5c3b619e29c69674092286cb00f4b4b3, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5c3b619e29c69674092286cb00f4b4b3, type: 2}
   m_IsPrefabParent: 0
@@ -27636,6 +27640,10 @@ Prefab:
     - target: {fileID: 1000011557944900, guid: 5c3b619e29c69674092286cb00f4b4b3, type: 2}
       propertyPath: m_Name
       value: platform_grass (28)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011126309688, guid: 5c3b619e29c69674092286cb00f4b4b3, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5c3b619e29c69674092286cb00f4b4b3, type: 2}

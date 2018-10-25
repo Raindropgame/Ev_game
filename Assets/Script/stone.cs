@@ -14,6 +14,8 @@ public class stone : MonoBehaviour
     private float drag, mass;
     private bool isFrozen = false;
     private SpriteRenderer SR;
+    public bool isInShelter = false;
+    public bool isInRain = false;
 
     // Use this for initialization
     void Start()
@@ -32,7 +34,9 @@ public class stone : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (WeatherData.getIntance().currentWeather == weather.Rain || WeatherData.getIntance().currentWeather == weather.RainAndThunder)   //下雨减少摩擦
+        isInRain = checkIsInRain();  //检查是否在雨中
+
+        if (isInRain)   //下雨减少摩擦
         {
             rig.drag = Scale * drag;
             rig.mass = Scale * mass;
@@ -125,7 +129,7 @@ public class stone : MonoBehaviour
         Destroy(t_iceFrag);
     }
 
-    public void getHurt(int damage, Attribute attribute, int gameobjectID)
+    public void getHurt(int damage, Attribute attribute, int gameobjectID,Vector2 ColliderPos)
     {
         if (gameobjectID == gameObject.GetInstanceID())
         {
@@ -148,7 +152,38 @@ public class stone : MonoBehaviour
             int t_dir = CharacterControl.instance.transform.position.x >= SR.bounds.center.x ? -1 : 1;
             rig.AddForce(new Vector2(reactionForce * t_dir, 0));
         }
+    }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("shelter"))  //
+        {
+            isInShelter = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.gameObject.layer == LayerMask.NameToLayer("shelter"))
+        {
+            isInShelter = false;
+        }
+    }
+
+    bool checkIsInRain()
+    {
+        if(isInShelter)
+        {
+            
+        }
+        else
+        {
+            if(Weather.instance.isRain())
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
 

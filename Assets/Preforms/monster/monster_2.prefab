@@ -346,7 +346,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 10
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.6
   m_GravityScale: 5
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -456,10 +456,11 @@ MonoBehaviour:
   currentHP: 0
   colliderID:
   - {fileID: 61000010400358946}
-  isLand: 0
   foot: {fileID: 4000010211039046}
+  isUseHitBack: 1
+  backVelocity: {x: 5, y: 0}
+  backTime: 0.05
   currentState: 1
-  Dir: 0
   eye: {fileID: 4000013261974494}
   walkSpeed: {x: 6, y: 0}
   bullet: {fileID: 50000011237771096}

@@ -113,6 +113,9 @@ Material:
         name: _Range
       second: 0.5
     - first:
+        name: _RelativeSpeed
+      second: 0.7
+    - first:
         name: _SmoothnessTextureChannel
       second: 0
     - first:
@@ -139,6 +142,9 @@ Material:
     - first:
         name: _fallSpeed
       second: 0
+    - first:
+        name: test
+      second: 0.784
     m_Colors:
     - first:
         name: _Color

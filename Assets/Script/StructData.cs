@@ -76,11 +76,11 @@ public class ArmsGemGroove //单个武器的武器槽信息
         }
     }
 
-    public bool takeOn(Gem_base gem)   //装备结晶
+    public int takeOn(Gem_base gem)   //装备结晶
     {
         if(getLeftGrooveNum() <= 0)  //无多余的槽
         {
-            return false;
+            return -1;
         }
 
         for(int i = 0;i<GemItem.Length;i++)
@@ -88,9 +88,9 @@ public class ArmsGemGroove //单个武器的武器槽信息
             if(GemItem[i] == null)
             {
                 GemItem[i] = gem;  //放入
-                return true;
+                return i;
             }
         }
-        return false;
+        return -1;
     }
 }

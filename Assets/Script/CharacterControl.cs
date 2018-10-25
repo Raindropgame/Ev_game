@@ -48,7 +48,7 @@ public class CharacterControl : MonoBehaviour
     private float jumpshoot_backTime = 0.05f,_time3 = 0;  //跳射后退时间
     private bool isJumpShootBack = false; //是否开始跳射后退
     private bool isInShelter = false;  //是否在避雨的区域中
-    //[HideInInspector]
+    [HideInInspector]
     public bool isInRain = false;
 
     private void Awake()
@@ -815,8 +815,7 @@ public class CharacterControl : MonoBehaviour
         add_Velocity(v * speed);
         rig.velocity = Vector2.zero;
         Vector2 _v = Vector2.zero;
-        int origin_jumpTimes = JumpTimes;
-        JumpTimes = 1;
+        _jumpTimes = -1;
         while (_time_bounce < time)
         {
 
@@ -838,7 +837,7 @@ public class CharacterControl : MonoBehaviour
 
             yield return null;
         }
-        JumpTimes = origin_jumpTimes;
+        _jumpTimes = 0;
         _time_bounce = 0;
         isBounce = false;
         YJumpSpeed = 0;
@@ -852,6 +851,7 @@ public class CharacterControl : MonoBehaviour
             StopCoroutine(bounce_c);
             isBounce = false;
             isHorizontalBounce = false;
+            _jumpTimes = 0;
         }
     }
 

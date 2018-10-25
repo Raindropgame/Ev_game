@@ -17,10 +17,7 @@ public class monster_1 : Monster_base {
     public Transform leftPoint,rightPoint;
     [HideInInspector]
     public monster_1_state currentState = monster_1_state.walk;
-    [HideInInspector]
-    public dir Dir = dir.right;
     public GameObject deadParticle;
-
 
     protected override void _FixedUpdate()
     {
@@ -126,7 +123,7 @@ public class monster_1 : Monster_base {
     }
 
 
-    override public void _getHurt(int damage, Attribute attribute)
+    override public void _getHurt(int damage, Attribute attribute, Vector2 ColliderPos)
     {
         currentHP -= damage;
 
@@ -134,16 +131,17 @@ public class monster_1 : Monster_base {
         {
             if (abnormalState.Contains(AbnormalState.frozen))
             {
-                CameraFollow.instance.Stop(GameData.fire_boom_stopTime);  //屏幕特效
+                CameraFollow.instance.Stop(GameData.fire_boom_stopTime,0.1f);  //屏幕特效
                 Screen1_render.instance.Wave(this.transform.position, 0.5f);
-                StartCoroutine(CameraFollow.instance.shakeCamera(0.25f, 0.04f, 0.2f));  //镜头抖动
+                StartCoroutine(CameraFollow.instance.shakeCamera(0.2f, 0.03f, 0.3f));  //镜头抖动
                 GameObject t = Resources.Load<GameObject>("fire");
                 Instantiate(t, position: SR.bounds.center, rotation: Quaternion.Euler(0, 0, 0));
                 currentHP -= damage;  //双倍伤害
             }
         }
 
-        base._getHurt(damage, attribute);
+        base._getHurt(damage, attribute,ColliderPos);
+
         if(currentHP <= 0)
         {
             return;

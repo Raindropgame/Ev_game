@@ -441,6 +441,7 @@ MonoBehaviour:
   isHurt: 0
   rig: {fileID: 0}
   _jumpTimes: 0
+  isInRain: 0
 --- !u!114 &114000010639649552
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -485,6 +486,6 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1ecc0267a08eeaa4e857dda4c5b4bbbf, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9117647, g: 0.9117647, b: 0.9117647, a: 1}
   m_FlipX: 0
   m_FlipY: 0

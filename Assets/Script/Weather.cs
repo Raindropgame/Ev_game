@@ -183,4 +183,13 @@ public class Weather : MonoBehaviour {
         }
     }
 
+    public bool isRain()  //当前天气是否为下雨
+    {
+        if(WeatherData.getIntance().currentWeather == weather.Rain || WeatherData.getIntance().currentWeather == weather.RainAndThunder)
+        {
+            return true;
+        }
+        return false;
+    }
+
 }

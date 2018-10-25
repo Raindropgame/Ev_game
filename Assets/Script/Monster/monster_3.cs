@@ -24,7 +24,7 @@ public class monster_3 : Monster_base {
     }
 
     private float lastTime = 0;
-    override public void _getHurt(int damage, Attribute attibute)
+    override public void _getHurt(int damage, Attribute attibute, Vector2 ColliderPos)
     {
         if (lastTime + 0.05f < Time.time)  //防止多个碰撞体重复计算伤害
         {

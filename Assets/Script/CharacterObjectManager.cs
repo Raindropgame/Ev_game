@@ -5,7 +5,7 @@ public class CharacterObjectManager : MonoBehaviour
 {
 
     //委托----
-    public delegate void sendHurtEventHandler(int damage, Attribute attribute, int gameobjectID);
+    public delegate void sendHurtEventHandler(int damage, Attribute attribute, int gameobjectID, Vector2 ColliderPos);
     public static event sendHurtEventHandler _sendHurt;
     //-------
 
@@ -242,19 +242,19 @@ public class CharacterObjectManager : MonoBehaviour
         dashParticle.enabled = false;
     }
 
-    public void sendHurt(int damage,Attribute attribute,int gameobejctID)   //玩家发出的伤害
+    public void sendHurt(int damage,Attribute attribute,int gameobejctID, Vector2 ColliderPos)   //玩家发出的伤害
     {
         if (_sendHurt != null)  //不为空执行
         {
-            _sendHurt(damage, attribute, gameobejctID);
+            _sendHurt(damage, attribute, gameobejctID,ColliderPos);
         }
     }
 
-    public void sendHurt_other(int damage, Attribute attribute, int gameobejctID)   //其他发出的伤害
+    public void sendHurt_other(int damage, Attribute attribute, int gameobejctID,Vector2 ColliderPos)   //其他发出的伤害
     {
         if (_sendHurt != null)  //不为空执行
         {
-            _sendHurt(damage, attribute, gameobejctID);
+            _sendHurt(damage, attribute, gameobejctID,ColliderPos);
         }
     }
 

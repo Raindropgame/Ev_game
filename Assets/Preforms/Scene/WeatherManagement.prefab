@@ -128,7 +128,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010057068052}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.00001589457, y: 0, z: 0}
+  m_LocalPosition: {x: 0.00001589457, y: 0, z: 10}
   m_LocalScale: {x: 0.3, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_Children: []
@@ -147,6 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxRaindropNum: 250
   TransitionScale: 0.2
+  depth: 0.1
 --- !u!114 &114000011852710642
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -160,6 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxRaindropNum: 200
   TransitionScale: 0.2
+  depth: 10
 --- !u!114 &114000013642810594
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -244,7 +246,7 @@ ParticleSystem:
   moveWithTransform: 0
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -401141721
+  randomSeed: 1532564803
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -407,7 +409,7 @@ ParticleSystem:
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 0.78431374}
       minMaxState: 0
     startSize:
       scalar: 1
@@ -1968,7 +1970,7 @@ ParticleSystem:
   moveWithTransform: 0
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 1091516624
+  randomSeed: -933159190
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -2131,7 +2133,7 @@ ParticleSystem:
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 0.7294118}
       minMaxState: 0
     startSize:
       scalar: 0.7
@@ -3494,7 +3496,7 @@ ParticleSystem:
       minMaxState: 1
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 3
     type: 1
     collisionMode: 1
@@ -3670,7 +3672,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0

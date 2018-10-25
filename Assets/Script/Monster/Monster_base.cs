@@ -13,6 +13,11 @@ public class Monster_base : MonoBehaviour {
     public int currentHP;
     public Collider2D[] colliderID;   //一个怪物提供多个碰撞体
     public Transform foot;
+    [Header("是否打开击退效果")]
+    public bool isUseHitBack = false;
+    public Vector2 backVelocity;
+    public float backTime;
+    [Header("---------------")]
 
     protected Texture texture;
     protected SpriteRenderer SR;
@@ -20,6 +25,9 @@ public class Monster_base : MonoBehaviour {
     protected Rigidbody2D rig;
     protected ArrayList abnormalState = new ArrayList();
     protected bool isEnable = true;  //是否运行fixedupdate
+    protected Vector2 additionalVelocity = Vector2.zero;
+    [HideInInspector]
+    public dir Dir = dir.left;
 
     //资源----
     static private GameObject m_effect_lightning = null;
@@ -143,6 +151,8 @@ public class Monster_base : MonoBehaviour {
         if (isEnable)
         {
             _FixedUpdate();
+
+            CalAdditionalVelocity();  //计算额外速度
         }
     }
 
@@ -154,10 +164,10 @@ public class Monster_base : MonoBehaviour {
         CharacterObjectManager._sendHurt -= getHurt;  //解除绑定
     }
 
-    public void getHurt(int damage, Attribute attribute,int gameobjectID)   //接口
+    public void getHurt(int damage, Attribute attribute,int gameobjectID, Vector2 ColliderPos)   //接口
     {
         bool isTrigger = false;
-        for (int i = 0; i < colliderID.Length; i++)
+        for (int i = 0; i < colliderID.Length; i++)  //有多个碰撞体
         {
             if (gameobjectID == colliderID[i].gameObject.GetInstanceID())
             {
@@ -188,7 +198,7 @@ public class Monster_base : MonoBehaviour {
                     hurtColor = Color.white;
                     break;
             }
-            _getHurt(damage, attribute);
+            _getHurt(damage, attribute,ColliderPos);
         }
     }
 
@@ -210,7 +220,7 @@ public class Monster_base : MonoBehaviour {
     {
         if(collision.tag == "lighting")   //被雷电击中
         {
-            _getHurt(GameData.lightningDamage, Attribute.lightning);
+            _getHurt(GameData.lightningDamage, Attribute.lightning,Vector2.zero);
         }
 
         TriggerEnter(collision);
@@ -226,12 +236,30 @@ public class Monster_base : MonoBehaviour {
 
     }
 
-    virtual public void _getHurt(int damage, Attribute attribute)  //受伤虚函数
+    virtual public void _getHurt(int damage, Attribute attribute, Vector2 ColliderPos)  //受伤虚函数
     {
         if (currentHP <= 0)  //是否死亡
         {
+            StopAllCoroutines();  //死亡后停止所有协程
             StartCoroutine(die());
             return;
+        }
+
+        if(isUseHitBack)  //被击退效果
+        {
+            if(ColliderPos == Vector2.zero)  //判断方向
+            {
+
+            }
+            else
+            {
+                Vector2 direction = Vector2.zero;
+                for (int i = 0;i<colliderID.Length;i++)
+                {
+                    direction += ((Vector2)colliderID[i].bounds.center - ColliderPos);  //攻击物指向被攻击物
+                }
+                StartCoroutine(hitBack(backTime,direction));
+            }
         }
     }
 
@@ -422,7 +450,7 @@ public class Monster_base : MonoBehaviour {
                 if(_time2 > burnSpaceTime)
                 {
                     Instantiate(burningEffect, position: SR.bounds.center + new Vector3(0, 0, -1), rotation: Quaternion.Euler(0, 0, 0));
-                    getHurt(GameData.burningDamage, Attribute.fire, this.gameObject.GetInstanceID());
+                    getHurt(GameData.burningDamage, Attribute.fire, this.gameObject.GetInstanceID(), Dir == dir.left?(Vector2)colliderID[0].bounds.center - Vector2.one: (Vector2)colliderID[0].bounds.center + Vector2.one);
                     _time2 = 0;
 
                     if(currentHP <= 0)
@@ -486,4 +514,39 @@ public class Monster_base : MonoBehaviour {
 
         abnormalState.Remove(AbnormalState.electric);
     }
+
+    public void addVelocity(Vector2 velocity)
+    {
+        additionalVelocity += velocity;
+    }
+
+    void CalAdditionalVelocity()
+    {
+        if (rig != null)
+        {
+            rig.velocity += additionalVelocity;
+            additionalVelocity = Vector2.zero;
+        }
+    }
+
+    IEnumerator hitBack(float time, Vector2 direction)
+    {
+        float _time = 0;
+        while (_time < time)
+        {
+            _time += Time.deltaTime;
+
+            if (direction.x < 0)
+            {
+                additionalVelocity = -backVelocity;
+            }
+            else
+            {
+                additionalVelocity = backVelocity;
+            }
+            yield return null;
+        }
+    }
+
+
 }

@@ -6,6 +6,8 @@ public class Sword : MonoBehaviour {
 
 
     public float Velocity;
+    public float backVelocity_enemy;
+
 
     private PolygonCollider2D Collider;
     private Vector2 originPosition;
@@ -37,7 +39,13 @@ public class Sword : MonoBehaviour {
     {
         if (collision.tag == "enemy")  //攻击敌人
         {
-            CharacterObjectManager.instance.sendHurt(CharacterAttribute.GetInstance().Attack[(int)Arms.swords], CharacterAttribute.GetInstance().ArmsAttribute[(int)Arms.swords], collision.gameObject.GetInstanceID());
+            CharacterControl.instance.add_Velocity(new Vector2(CharacterControl.instance.Dir == dir.left ?  backVelocity_enemy: -backVelocity_enemy, 0));  //击退并加特效
+            GameObject t = CharacterObjectManager.instance.getHitPoint();
+            t.SetActive(true);
+            t.transform.position = collision.bounds.center;
+            t.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+
+            CharacterObjectManager.instance.sendHurt(CharacterAttribute.GetInstance().Attack[(int)Arms.swords], CharacterAttribute.GetInstance().ArmsAttribute[(int)Arms.swords], collision.gameObject.GetInstanceID(),Collider.bounds.center);
         }
     }
 
@@ -52,7 +60,7 @@ public class Sword : MonoBehaviour {
             t.transform.position = HitPoint.point;
             t.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
 
-            CharacterObjectManager.instance.sendHurt(0, CharacterAttribute.GetInstance().ArmsAttribute[(int)Arms.swords], collision.gameObject.GetInstanceID());
+            CharacterObjectManager.instance.sendHurt(0, CharacterAttribute.GetInstance().ArmsAttribute[(int)Arms.swords], collision.gameObject.GetInstanceID(),Vector2.zero);
         }
     }
 

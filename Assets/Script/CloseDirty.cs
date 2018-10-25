@@ -15,12 +15,15 @@ public class CloseDirty : MonoBehaviour {
 
     private void Update()
     {
-        _time += Time.deltaTime;
-
-        if(_time > closeTime)
+        if (isUseUpdate)
         {
-            _time = 0;
-            this.gameObject.SetActive(false);
+            _time += Time.deltaTime;
+
+            if (_time > closeTime)
+            {
+                _time = 0;
+                this.gameObject.SetActive(false);
+            }
         }
     }
 }

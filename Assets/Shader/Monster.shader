@@ -50,7 +50,7 @@
 			fixed4 frag (v2f i) : SV_Target
 			{
 				fixed4 col = tex2D(_MainTex, i.uv);
-				col.rgb = lerp(col.rgb,_hitColor.rgb,_isHit);
+				col.rgb = lerp(col.rgb,_hitColor * 0.7 + 0.3 * col.rgb.rgb,_isHit);
 				return col;
 			}
 			ENDCG

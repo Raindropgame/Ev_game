@@ -7,6 +7,7 @@ public class Rain : MonoBehaviour {
 
     public int MaxRaindropNum = 350;
     public float TransitionScale = 0.2f;
+    public float depth = 0;
 
     private ParticleSystem ParticleSys;
     private Transform CameraTrans;
@@ -22,7 +23,7 @@ public class Rain : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        this.transform.position = new Vector3(CameraTrans.position.x, CameraTrans.position.y, 0) + new Vector3(0, 15, 100);  //实时跟随相机
+        this.transform.position = new Vector3(CameraTrans.position.x, CameraTrans.position.y, 0) + new Vector3(0, 15, depth);  //实时跟随相机
 
         if(WeatherData.getIntance().currentWeather == weather.Rain || WeatherData.getIntance().currentWeather == weather.RainAndThunder)
         {

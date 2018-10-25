@@ -76,6 +76,7 @@ MonoBehaviour:
   Deep: 5
   Speed: 0.003
   overClose: 0.1
+  damage: 2
 --- !u!120 &120000010330230710
 LineRenderer:
   m_ObjectHideFlags: 1

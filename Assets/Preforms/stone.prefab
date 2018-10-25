@@ -23,6 +23,7 @@ GameObject:
   - 61: {fileID: 61000011571607252}
   - 50: {fileID: 50000010135828940}
   - 114: {fileID: 114000011207517010}
+  - 61: {fileID: 61000010858719880}
   m_Layer: 9
   m_Name: stone
   m_TagString: maps
@@ -81,8 +82,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011117643628}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -36.91, y: -7.22, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -47.510086, y: -14.502481, z: 0}
   m_LocalScale: {x: 2.089313, y: 2.089313, z: 2.089313}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -120,6 +121,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!61 &61000010858719880
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011117643628}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.042915348, y: -0.12987202}
+  serializedVersion: 2
+  m_Size: {x: 0.98781353, y: 0.7011766}
 --- !u!61 &61000011571607252
 BoxCollider2D:
   m_ObjectHideFlags: 1

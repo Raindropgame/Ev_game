@@ -454,14 +454,13 @@ public class ArmsGemsBar : MonoBehaviour
                 case "swords":
                     if (Bag.getInstance().GemItem[ItemIndex].Take(Arms.swords))
                     {
-                        CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.swords].takeOn(Bag.getInstance().GemItem[ItemIndex]);  //装备结晶
+                        int i = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.swords].takeOn(Bag.getInstance().GemItem[ItemIndex]);  //装备结晶
                         Bag.getInstance().GemItem[ItemIndex] = null;  //该格子变为空
 
                         updateGemGroove();  //更新显示
                         updateGemItemShow();
                         InfoBoxRect.gameObject.SetActive(false);
 
-                        int i = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.swords].getLastGemIndex();
                         StartCoroutine(Animation_putonGem(i));
                         return;
                     }
@@ -469,14 +468,13 @@ public class ArmsGemsBar : MonoBehaviour
                 case "arrow":
                     if (Bag.getInstance().GemItem[ItemIndex].Take(Arms.arrow))
                     {
-                        CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.arrow].takeOn(Bag.getInstance().GemItem[ItemIndex]);   //装备结晶
+                        int i = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.arrow].takeOn(Bag.getInstance().GemItem[ItemIndex]);   //装备结晶
                         Bag.getInstance().GemItem[ItemIndex] = null;
 
                         updateGemGroove();  //更新显示
                         updateGemItemShow();
                         InfoBoxRect.gameObject.SetActive(false);
 
-                        int i = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.arrow].getLastGemIndex();
                         StartCoroutine(Animation_putonGem(i));
                         return;
                     }
@@ -484,14 +482,13 @@ public class ArmsGemsBar : MonoBehaviour
                 case "spear":
                     if (Bag.getInstance().GemItem[ItemIndex].Take(Arms.spear))
                     {
-                        CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.spear].takeOn(Bag.getInstance().GemItem[ItemIndex]);    //装备结晶
+                        int i = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.spear].takeOn(Bag.getInstance().GemItem[ItemIndex]);    //装备结晶
                         Bag.getInstance().GemItem[ItemIndex] = null;
 
                         updateGemGroove();  //更新显示
                         updateGemItemShow();
                         InfoBoxRect.gameObject.SetActive(false);
 
-                        int i = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.spear].getLastGemIndex();
                         StartCoroutine(Animation_putonGem(i));
                         return;
                     }

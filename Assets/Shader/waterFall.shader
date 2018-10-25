@@ -10,6 +10,7 @@
 		[PerRendererData] _Surface ("Surface", float) = 0.5
 		[PerRendererData] _fallSpeed ("fallSpeed",float) = 0
 		_NormalMap ("NormalMap", 2D) = "white" {}
+		_RelativeSpeed ("RelativeSpeed",Range(0,1)) = 1
 	}
 	SubShader
 	{
@@ -37,7 +38,8 @@
 
 			struct v2f
 			{
-				float2 uv : TEXCOORD0;
+				float2 uv : TEXCOORD1;
+				float2 uv2 : TEXCOORD2;
 				float4 pos : POSITION1;
 				float4 pos2 : POSITION2;
 				float4 vertex : SV_POSITION;
@@ -54,6 +56,7 @@
 			sampler2D _BGTex2;			
 			float4 _BGTex_TexelSize;
 			float _fallSpeed;
+			float _RelativeSpeed;
 			
 			v2f vert (appdata v)
 			{
@@ -63,6 +66,7 @@
 
 				o.vertex = UnityObjectToClipPos(_vertex);
 				o.uv = TRANSFORM_TEX(v.uv, _MainTex) + frac(float2(_fallSpeed, 0.0) * _Time.y);
+				o.uv2 = TRANSFORM_TEX(v.uv, _MainTex) + frac(float2(_fallSpeed, 0.0) * _Time.y * 0.5);
 				o.pos = v.vertex;
 				o.pos2 = ComputeGrabScreenPos(o.vertex);
 				return o;
@@ -73,7 +77,7 @@
 				fixed3 bump = UnpackNormal(tex2D(_NormalMap,i.uv));
 				fixed2 offset = bump.xy * _BGTex_TexelSize.xy * 20;
 				fixed3 BGCol = tex2D(_BGTex2,i.pos2 + offset);
-				fixed4 col = tex2D(_MainTex, i.uv + offset) * _Color;
+				fixed4 col = (tex2D(_MainTex, i.uv + offset) * _RelativeSpeed + tex2D(_MainTex, i.uv2 + offset) * (1 - _RelativeSpeed)) * _Color;
 				return fixed4(BGCol * 0.2 + col.rgb * 0.8,col.a);
 			}
 			ENDCG

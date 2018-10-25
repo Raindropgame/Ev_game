@@ -50,7 +50,7 @@ public class bullet_monster_2 : MonoBehaviour {
             {
                 t = collision.GetComponentInParent<Monster_base>();
             }
-            t.getHurt(Damage, Attribute.wood, collision.gameObject.GetInstanceID());
+            t.getHurt(Damage, Attribute.wood, collision.gameObject.GetInstanceID(),coll.bounds.center);
         }      
     }
 

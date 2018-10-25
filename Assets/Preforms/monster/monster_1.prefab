@@ -301,13 +301,14 @@ MonoBehaviour:
   currentHP: 0
   colliderID:
   - {fileID: 61000012553160998}
-  isLand: 0
   foot: {fileID: 4000014095800266}
+  isUseHitBack: 1
+  backVelocity: {x: 8, y: 0}
+  backTime: 0.05
   walkSpeed: 2
   leftPoint: {fileID: 4000013259164610}
   rightPoint: {fileID: 4000010479133764}
   currentState: 0
-  Dir: 0
   deadParticle: {fileID: 1000011190052260}
 --- !u!198 &198000010201055544
 ParticleSystem:

@@ -18,8 +18,6 @@ public class monster_2 : Monster_base {
 
     [HideInInspector]
     public monster_2_state currentState = monster_2_state.walk;
-    [HideInInspector]
-    public dir Dir = dir.left;
     public Transform eye;
     public Vector2 walkSpeed;
     public Rigidbody2D bullet;  //子弹
@@ -132,7 +130,7 @@ public class monster_2 : Monster_base {
         return HitPoint.distance;
     }
 
-    override public void _getHurt(int damage, Attribute attribute)
+    override public void _getHurt(int damage, Attribute attribute, Vector2 ColliderPos)
     {
         currentHP -= damage;
 
@@ -140,7 +138,7 @@ public class monster_2 : Monster_base {
         {
             if (abnormalState.Contains(AbnormalState.frozen))
             {
-                CameraFollow.instance.Stop(0.17f);  //屏幕特效
+                CameraFollow.instance.Stop(0.17f,0.1f);  //屏幕特效
                 StartCoroutine(CameraFollow.instance.shakeCamera(0.25f, 0.04f, 0.2f));  //镜头抖动
                 GameObject t = Resources.Load<GameObject>("fire");
                 Instantiate(t, position: SR.bounds.center, rotation: Quaternion.Euler(0, 0, 0));
@@ -148,7 +146,7 @@ public class monster_2 : Monster_base {
             }
         }
 
-        base._getHurt(damage, attribute);
+        base._getHurt(damage, attribute,ColliderPos);
         if (currentHP <= 0)
         {
             return;
@@ -204,4 +202,5 @@ public class monster_2 : Monster_base {
             CharacterControl.instance.hurt(1, Attribute.normal);
         }
     }
+
 }

@@ -56,7 +56,14 @@ public class BackgorundMove : MonoBehaviour {
         }
         for (int i = 0; i < background.Length; i++)
         {
-            background[i].transform.position = background[i].transform.position - tVector * (background[i].transform.position.z * 0.1f);
+            if (Mathf.Abs(background[i].transform.position.z - 10) < 0.05f)  //减少背景抖动
+            {
+                background[i].transform.position = background[i].transform.position - tVector;
+            }
+            else
+            {
+                background[i].transform.position = background[i].transform.position - tVector * (background[i].transform.position.z * 0.1f);
+            }
         }
         nowPosition = this.transform.position;
     }
