@@ -2,6 +2,7 @@
 {
 	Properties
 	{
+		_MainTex ("MainTex",2D) = "white" {}
 		_Alpha ("Alpha",Range(0,1)) = 1
 	}
 

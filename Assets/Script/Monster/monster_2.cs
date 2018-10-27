@@ -17,7 +17,7 @@ public class monster_2 : Monster_base {
     }
 
     [HideInInspector]
-    public monster_2_state currentState = monster_2_state.walk;
+    public monster_2_state currentState;
     public Transform eye;
     public Vector2 walkSpeed;
     public Rigidbody2D bullet;  //子弹
@@ -28,6 +28,13 @@ public class monster_2 : Monster_base {
 
     private float _time0 = 0;
     private Vector2 _walkSpeed;
+
+    public override void onStart()
+    {
+        base.onStart();
+
+        currentState = monster_2_state.walk;
+    }
 
     protected override void _FixedUpdate()
     {

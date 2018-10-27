@@ -240,7 +240,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010978104578}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -61.37, y: 24.75, z: -3.5390625}
+  m_LocalPosition: {x: -373.81055, y: -16.187313, z: -3.5390625}
   m_LocalScale: {x: 1.628298, y: 1.6282979, z: 1.6282979}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -406,9 +406,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0.05118443, y: 1.1246303}
+  m_Offset: {x: 0.05118443, y: 1.1868461}
   serializedVersion: 2
-  m_Size: {x: 1.1608075, y: 2.4353883}
+  m_Size: {x: 1.1608075, y: 2.310958}
 --- !u!95 &95000013740126314
 Animator:
   serializedVersion: 3
@@ -460,6 +460,7 @@ MonoBehaviour:
   isUseHitBack: 1
   backVelocity: {x: 5, y: 0}
   backTime: 0.05
+  Dir: 0
   currentState: 1
   eye: {fileID: 4000013261974494}
   walkSpeed: {x: 6, y: 0}

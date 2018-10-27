@@ -19,6 +19,7 @@ public class Scene : MonoBehaviour {
 
     private void Awake()
     {
+
         script1 = GameObject.Find("MainCamera").GetComponent<CameraFollow>();
         script2 = GameObject.Find("MainCamera").GetComponent<CameraFollow_Start>();
 

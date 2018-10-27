@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: New Material
-  m_Shader: {fileID: 10750, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: Vine
+  m_Shader: {fileID: 4800000, guid: 6f920d6e49e929f43b777b5917af39cf, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -48,9 +48,9 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: 9bc0dbeabf1061c4dba7533c4001242d, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 328.02182}
+        m_Offset: {x: 0, y: 0}
     - first:
         name: _MetallicGlossMap
       second:
@@ -71,14 +71,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - first:
-        name: PixelSnap
-      second: 0
-    - first:
         name: _BumpScale
       second: 1
     - first:
         name: _Cutoff
-      second: 1
+      second: 0.5
     - first:
         name: _DetailNormalMapScale
       second: 1
@@ -107,6 +104,9 @@ Material:
         name: _Parallax
       second: 0.02
     - first:
+        name: _Scale
+      second: 0.678
+    - first:
         name: _SmoothnessTextureChannel
       second: 0
     - first:
@@ -115,6 +115,9 @@ Material:
     - first:
         name: _SrcBlend
       second: 1
+    - first:
+        name: _Total
+      second: 0.78
     - first:
         name: _UVSec
       second: 0
