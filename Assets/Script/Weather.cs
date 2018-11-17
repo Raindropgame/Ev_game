@@ -8,6 +8,11 @@ public class Weather : MonoBehaviour {
     // 白天 黑夜  
     //  晴天 雷天   雨天  雷雨天
 
+    //---委托
+    public delegate void OnWeatherChange();
+    public static event OnWeatherChange onWeatherChange;
+    //------
+
     public static Weather instance;  //单例模式
 
     public float DayTime,TotalTime;  //昼夜时长
@@ -16,6 +21,7 @@ public class Weather : MonoBehaviour {
     public bool isMasker = true;
 
     private Blur Script_Blur;
+    private Bloom Bloom_script;
 
     private void Awake()
     {
@@ -27,7 +33,7 @@ public class Weather : MonoBehaviour {
         //WeatherData.getIntance().getFile();  //初始化
 
         Script_Blur = GameObject.Find("BackGroundCamera").GetComponent<Blur>();
-
+        Bloom_script = Screen1_render.instance.GetComponent<Bloom>();
     }
 
     private void FixedUpdate()
@@ -45,6 +51,11 @@ public class Weather : MonoBehaviour {
             WeatherData.getIntance().currentWeather = getNextWeather();
             WeatherData.getIntance().Weather_duration = TotalTime * Random.Range(0.1f, 0.7f);
             WeatherData.getIntance().Weather_leftTime = WeatherData.getIntance().Weather_duration;
+
+            if (onWeatherChange != null)
+            {
+                onWeatherChange();
+            }
         }
 
         if (isMasker)
@@ -53,7 +64,7 @@ public class Weather : MonoBehaviour {
         }
         Script_Blur.nightColor = SmoothLerp_BackgroundCamera();   //更新背景相机
 
-
+        changeCameraThreshold();
     }
 
     public DayOrNight getDayState()  //获得当前昼夜情况
@@ -190,6 +201,30 @@ public class Weather : MonoBehaviour {
             return true;
         }
         return false;
+    }
+
+    void changeCameraThreshold()
+    {
+        const float originThreshold = 0.5f;
+        const float scale = 0.6f;
+        if(WeatherData.getIntance().currentWeather == weather.Rain || WeatherData.getIntance().currentWeather == weather.RainAndThunder)
+        {
+            if(WeatherData.getIntance().Weather_leftTime > 0.8f)  //开始
+            {
+                Bloom_script.bloomIntensity = originThreshold *  Mathf.Lerp(1, scale, (WeatherData.getIntance().Weather_duration - WeatherData.getIntance().Weather_leftTime) / (0.2f * WeatherData.getIntance().Weather_duration));
+            }
+            else
+            {
+                if(WeatherData.getIntance().Weather_leftTime < 0.2f)  //结束
+                {
+                    Bloom_script.bloomIntensity = originThreshold * Mathf.Lerp(scale, 1, (WeatherData.getIntance().Weather_leftTime) / (0.2f * WeatherData.getIntance().Weather_duration));
+                }
+                else   //持续
+                {
+                    Bloom_script.bloomIntensity = originThreshold * scale;
+                }
+            }
+        }
     }
 
 }

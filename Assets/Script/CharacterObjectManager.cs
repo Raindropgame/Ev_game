@@ -18,6 +18,7 @@ public class CharacterObjectManager : MonoBehaviour
     public ParticleSystem WalkDust,WalkDust_rain;
     public ParticleSystem JumpDust,JumpDust_rain;
     public ParticleSystem FallDust, FallDust_rain;
+    public GameObject BeHurt_BG;   
 
     private GameObject character;
     private GameObject _attack1_left, _attack1_right, _attack2_left, _attack2_right;
@@ -26,6 +27,7 @@ public class CharacterObjectManager : MonoBehaviour
     private float shootArrowParticleLifeTime;  //射击粒子特效生命周期
     private ParticleSystem.EmissionModule dashParticle;  //冲刺粒子系统
     private ParticleSystem.EmissionModule WalkDustEmission, WalkDustEmission_rain;
+    private bool isBeHurt = false;
 
 
     private void Start()
@@ -370,5 +372,28 @@ public class CharacterObjectManager : MonoBehaviour
             }
 
         }
+    }
+
+    public void BeHurt()  //管理受伤时的动画
+    {
+        if(!isBeHurt)
+        {
+            StartCoroutine(IE_BeHurt());
+        }
+    }
+
+    IEnumerator IE_BeHurt()
+    {
+        const float BeHurt_duration = 0.1f;
+        isBeHurt = true;
+        float _time0 = 0;
+        BeHurt_BG.SetActive(true);
+        while(_time0 < BeHurt_duration)
+        {
+            _time0 += Time.deltaTime;
+            yield return null;
+        }
+        BeHurt_BG.SetActive(false);
+        isBeHurt = false;
     }
 }

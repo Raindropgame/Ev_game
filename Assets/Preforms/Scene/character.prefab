@@ -26,6 +26,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000010775799944
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000012414888816}
+  m_Layer: 0
+  m_Name: HeadHit_left
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000010892324082
 GameObject:
   m_ObjectHideFlags: 1
@@ -35,7 +50,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011403925666}
   m_Layer: 0
-  m_Name: HeadHit
+  m_Name: HeadHit_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,6 +139,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000013445453170
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000012208656212}
+  m_Layer: 0
+  m_Name: HeadHit_left
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000013725920214
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,7 +178,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011442530852}
   m_Layer: 0
-  m_Name: HeadHit
+  m_Name: HeadHit_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -182,6 +212,7 @@ Transform:
   m_Children:
   - {fileID: 4000012049838272}
   - {fileID: 4000011780196892}
+  - {fileID: 4000012208656212}
   - {fileID: 4000011403925666}
   m_Father: {fileID: 4000010886374658}
   m_RootOrder: 0
@@ -233,13 +264,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010892324082}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.31, y: 3.639, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.27, y: 3.687, z: 0}
+  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000010019320162}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!4 &4000011442530852
 Transform:
   m_ObjectHideFlags: 1
@@ -247,12 +278,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013985802094}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.51299965, y: 3.631, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 1.361, y: 3.677, z: 0}
+  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000014182421340}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!4 &4000011780196892
 Transform:
   m_ObjectHideFlags: 1
@@ -292,6 +323,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000010886374658}
   m_RootOrder: 2
+--- !u!4 &4000012208656212
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013445453170}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.96, y: 3.73, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000010019320162}
+  m_RootOrder: 2
+--- !u!4 &4000012414888816
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010775799944}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.348, y: 3.675, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000014182421340}
+  m_RootOrder: 2
 --- !u!4 &4000014182421340
 Transform:
   m_ObjectHideFlags: 1
@@ -305,6 +362,7 @@ Transform:
   m_Children:
   - {fileID: 4000010954682246}
   - {fileID: 4000011260943514}
+  - {fileID: 4000012414888816}
   - {fileID: 4000011442530852}
   m_Father: {fileID: 4000010886374658}
   m_RootOrder: 1
@@ -434,7 +492,9 @@ MonoBehaviour:
   - {fileID: 4000011780196892}
   - {fileID: 4000011260943514}
   HeadHitTrans:
+  - {fileID: 4000012208656212}
   - {fileID: 4000011403925666}
+  - {fileID: 4000012414888816}
   - {fileID: 4000011442530852}
   DoubleAttackSpaceTime: 1
   isEnable: 010101010101010101010101

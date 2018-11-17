@@ -240,7 +240,7 @@ public class Monster_base : MonoBehaviour {
     {
         if (currentHP <= 0)  //是否死亡
         {
-            StopAllCoroutines();  //死亡后停止所有协程
+            //StopAllCoroutines();  //死亡后停止所有协程
             StartCoroutine(die());
             return;
         }
@@ -353,6 +353,10 @@ public class Monster_base : MonoBehaviour {
                 Destroy(_t_iceFrag);
                 yield break;
             }
+
+            if (currentHP <= 0)  //已死亡
+                break;
+
             yield return null;
         }
 
@@ -475,7 +479,7 @@ public class Monster_base : MonoBehaviour {
 
         GameObject t_state_lightning = Instantiate(state_lightning, position: SR.bounds.center + new Vector3(0, SR.bounds.size.y * 0.7f, 0), rotation: Quaternion.Euler(0, 0, 0)) as GameObject;
         t_state_lightning.transform.SetParent(transform, true);
-        GameObject t_effect_lightning = Instantiate(effect_lightning, position: SR.bounds.center, rotation: Quaternion.Euler(0, 0, 0)) as GameObject;
+        GameObject t_effect_lightning = Instantiate(effect_lightning, position: SR.bounds.center, rotation: Quaternion.Euler(0, 0, Random.Range(0,360))) as GameObject;
         t_effect_lightning.SetActive(false);
 
         //获取数据
@@ -547,6 +551,5 @@ public class Monster_base : MonoBehaviour {
             yield return null;
         }
     }
-
 
 }

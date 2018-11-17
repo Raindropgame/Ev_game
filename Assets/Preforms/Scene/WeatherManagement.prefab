@@ -195,7 +195,7 @@ MonoBehaviour:
   MaskerMaterial: {fileID: 2100000, guid: 7e690b624b9715e48a0cf5bf875bbcf6, type: 2}
   isMasker: 1
   Day_Color: {r: 1, g: 1, b: 1, a: 1}
-  Night_Color: {r: 0.25, g: 0.25, b: 0.25, a: 0.434}
+  Night_Color: {r: 0.06352832, g: 0.14649583, b: 0.30882353, a: 0.434}
 --- !u!198 &198000013342479738
 ParticleSystem:
   m_ObjectHideFlags: 1

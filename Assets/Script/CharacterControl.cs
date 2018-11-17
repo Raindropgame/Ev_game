@@ -18,7 +18,7 @@ public class CharacterControl : MonoBehaviour
     public state currentState = state.normal;
     public float DoubleKeySapceTime = 0.5f;
     public dir Dir = dir.right;
-    public Transform[] LeftHitTrans, RightHitTrans, HeadHitTrans;  //检测碰地的射线点
+    public Transform[] LeftHitTrans, RightHitTrans, HeadHitTrans;  //检测碰地的射线点  头：左面（左右）右面(左右）
     public float DoubleAttackSpaceTime = 0.5f;
     public bool[] isEnable = new bool[12];  //管理人物某些功能   (依赖外部)
     public bool isHurt = false;  //人物是否处在受伤时期
@@ -50,6 +50,7 @@ public class CharacterControl : MonoBehaviour
     private bool isInShelter = false;  //是否在避雨的区域中
     [HideInInspector]
     public bool isInRain = false;
+    private bool isGetInput = true;
 
     private void Awake()
     {
@@ -74,6 +75,11 @@ public class CharacterControl : MonoBehaviour
 
     private void Update()
     {
+        if(!isGetInput)
+        {
+            Input.ResetInputAxes();
+        }
+
         isJump = !OnGround();  //测试
         isInRain = checkIsInRain(); //是否在雨中
 
@@ -589,8 +595,34 @@ public class CharacterControl : MonoBehaviour
 
     bool AtTop()  //判断头是否顶到墙
     {
-        RaycastHit2D HeadHit = Physics2D.Raycast(HeadHitTrans[Dir == dir.left ? 0 : 1].position, Vector2.up, 0.2f, layerMask);
-        if(HeadHit.transform != null)
+        //判断是否发生碰撞
+        int collideTimes = 0;
+        if(Dir == dir.left)
+        {
+            for(int i = 0;i<2;i++)
+            {
+                RaycastHit2D HitPoint = Physics2D.Raycast(HeadHitTrans[i].position, Vector2.up, 0.2f, layerMask);
+                if(HitPoint.transform != null)
+                {
+                    collideTimes++;
+                    break;
+                }
+            }
+        }
+        else
+        {
+            for (int i = 2; i < 4; i++)
+            {
+                RaycastHit2D HitPoint = Physics2D.Raycast(HeadHitTrans[i].position, Vector2.up, 0.2f, layerMask);
+                if (HitPoint.transform != null)
+                {
+                    collideTimes++;
+                    break;
+                }
+            }
+        }
+
+        if(collideTimes != 0)
         {
             //--------
             stopBounce();
@@ -734,6 +766,7 @@ public class CharacterControl : MonoBehaviour
             currentState = state.hurt;
             _dashTime = 0;
             Invoke("end_invincibility", hurt_contined_time);
+            CharacterObjectManager.instance.BeHurt();  //开启图片动画
             return true;
         }
         return false;
@@ -887,5 +920,15 @@ public class CharacterControl : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public void setInputNone()
+    {
+        isGetInput = false;
+    }
+
+    public void getInput()
+    {
+        isGetInput = true;
     }
 } 

@@ -45,19 +45,25 @@ public class bullet_monster_2 : MonoBehaviour {
         }
         if (collision.transform.tag == "enemy" && SR.enabled == false)
         {
-            Monster_base t = collision.transform.GetComponent<Monster_base>();  //对怪物造成伤害
-            if (t == null)  //防止一些碰撞体在子物体上
+            try
             {
-                t = collision.GetComponentInParent<Monster_base>();
+                Monster_base t = collision.transform.GetComponent<Monster_base>();  //对怪物造成伤害
+                if (t == null)  //防止一些碰撞体在子物体上
+                {
+                    t = collision.GetComponentInParent<Monster_base>();
+                }
+                t.getHurt(Damage, Attribute.wood, collision.gameObject.GetInstanceID(), coll.bounds.center);
             }
-            t.getHurt(Damage, Attribute.wood, collision.gameObject.GetInstanceID(),coll.bounds.center);
+            catch
+            {
+
+            }
         }      
     }
 
     void boom()  //爆炸
     {
         SR.enabled = false;
-        coll.enabled = false;
         BoomEffect.SetActive(true);
         Invoke("setFalse", 1);  //播放完特效后关闭
     }
@@ -67,6 +73,7 @@ public class bullet_monster_2 : MonoBehaviour {
         BoomEffect.SetActive(false);
         this.gameObject.SetActive(false);
         CancelInvoke("boom");
+        coll.enabled = false;
     }
 
 }

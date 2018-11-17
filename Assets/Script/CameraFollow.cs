@@ -14,7 +14,7 @@ public class CameraFollow : MonoBehaviour {
     private bool isMoving = false;
     Vector3 targetPosition;
     private Rigidbody2D charaRig;
-    private Vector3 currentV = Vector3.zero;
+    private Vector2 currentV = Vector2.zero;
     [HideInInspector]
     public CameraMoveState moveState = CameraMoveState.both;
     private Vector3 currentPosition;
@@ -72,7 +72,7 @@ public class CameraFollow : MonoBehaviour {
                     switch (moveState)
                     {
                         case CameraMoveState.both:
-                            this.transform.position = Vector3.SmoothDamp(this.transform.position, targetPosition, ref currentV, smoothTime);
+                            this.transform.position = Vector2.SmoothDamp(this.transform.position, targetPosition, ref currentV, smoothTime);
                             break;
                         case CameraMoveState.onlyY:
                             this.transform.position = new Vector3(this.transform.position.x, Mathf.SmoothDamp(this.transform.position.y, targetPosition.y, ref currentV.y, smoothTime), this.transform.position.z);

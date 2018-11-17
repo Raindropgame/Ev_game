@@ -12,7 +12,7 @@ namespace UnityStandardAssets.ImageEffects
         {
             Ghosting = 0,
             Anamorphic = 1,
-            Combined = 2,
+            Combined = 2,           
         }
 
         public enum TweakMode
