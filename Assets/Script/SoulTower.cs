@@ -11,7 +11,7 @@ public class SoulTower : MonoBehaviour {
     public float second_animation_duration;
     public float third_animation_duration;
 
-    private GameObject Soul, Halo, Bloom, Eye, Eye2,Particle,Light,Aperture;
+    private GameObject Soul, Halo, Bloom, Eye, Eye2,Particle,Aperture;
     private Animator animator;
     private Vector3 originPos;
     private bool isTrigger = false;
@@ -36,9 +36,6 @@ public class SoulTower : MonoBehaviour {
                     break;
                 case "Eye2":
                     Eye2 = t.gameObject;
-                    break;
-                case "Light":
-                    Light = t.gameObject;
                     break;
                 case "Particle":
                     Particle = t.gameObject;
@@ -143,11 +140,13 @@ public class SoulTower : MonoBehaviour {
             float _time0 = 0;
             Vector3 t_originPos = Halo.transform.position;
             Vector3 p1, p2;
-            Vector3 dir = Halo.transform.position - CharacterControl.instance.transform.position;
-            Vector3 dir_2 = Vector3.Cross(dir, Vector3.back);
+            Vector3 _dir = Halo.transform.position - CharacterControl.instance.transform.position;
+            Vector3 _dir_2 = Vector3.Cross(_dir, Vector3.back);
             Halo.GetComponent<TrailRenderer>().time *= 0.3f;
-            p1 = Halo.transform.position + dir * 0.8f;
-            p2 = (CharacterControl.instance.transform.position + Halo.transform.position) / 2.0f + dir_2 * 0.7f;
+            _dir.z = 0;
+            _dir_2.z = 0;
+            p1 = Halo.transform.position + _dir * 0.8f;
+            p2 = (CharacterControl.instance.transform.position + Halo.transform.position) / 2.0f + _dir_2 * 0.7f;
             p1.z = 0;
             p2.z = 0;
             while (_time0 < second_animation_duration)

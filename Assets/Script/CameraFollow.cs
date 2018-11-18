@@ -8,6 +8,7 @@ public class CameraFollow : MonoBehaviour {
     public float t = 0.5f;
     public static CameraFollow instance;
     public bool CameraIsMove;
+    public Vector3 targetPos_offset;
 
     private GameObject character;
     private float tTime = 0;
@@ -25,7 +26,7 @@ public class CameraFollow : MonoBehaviour {
         instance = this;
         character = GameObject.Find("character");
         charaRig = character.GetComponent<Rigidbody2D>();
-        targetPosition = character.transform.position;
+        targetPosition = character.transform.position + targetPos_offset;
         targetPosition.z = this.transform.position.z;
         currentPosition = transform.position;
     }
@@ -33,11 +34,11 @@ public class CameraFollow : MonoBehaviour {
     private void Update()
     {
         CameraIsMove = false;
-        Vector3 temp = this.transform.position - character.transform.position;
+        Vector3 temp = this.transform.position - (character.transform.position + targetPos_offset);
         if (Mathf.Abs(temp.x) > t || Mathf.Abs(temp.y) > t) // 判断摄像机是否在角色附近
         {
             CameraIsMove = true;
-            if ((Vector2)character.transform.position != (Vector2)targetPosition)
+            if ((Vector2)character.transform.position + (Vector2)targetPos_offset!= (Vector2)targetPosition)
             {
                 isMoving = true;
             }
@@ -88,7 +89,7 @@ public class CameraFollow : MonoBehaviour {
         {
             tTime = 0;
         }
-        targetPosition = character.transform.position;
+        targetPosition = character.transform.position + targetPos_offset;
         targetPosition.z = this.transform.position.z;
 
         currentPosition = transform.position;
@@ -129,6 +130,7 @@ public class CameraFollow : MonoBehaviour {
                 }
                 yield return null;
             }
+
         }
     }
 

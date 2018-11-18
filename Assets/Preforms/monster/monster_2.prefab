@@ -172,7 +172,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000011459570096}
-  - 61: {fileID: 61000010791725840}
+  - 61: {fileID: 61000012693177426}
   m_Layer: 13
   m_Name: Gravity
   m_TagString: Untagged
@@ -240,7 +240,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010978104578}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -373.81055, y: -16.187313, z: -3.5390625}
+  m_LocalPosition: {x: -177.83777, y: -17.421188, z: -3.53125}
   m_LocalScale: {x: 1.628298, y: 1.6282979, z: 1.6282979}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -395,7 +395,7 @@ BoxCollider2D:
   m_Offset: {x: 0.05118443, y: 1.1246303}
   serializedVersion: 2
   m_Size: {x: 1.1608075, y: 2.4353883}
---- !u!61 &61000010791725840
+--- !u!61 &61000012693177426
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -406,9 +406,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0.05118443, y: 1.1868461}
+  m_Offset: {x: 0.05118443, y: 1.1724112}
   serializedVersion: 2
-  m_Size: {x: 1.1608075, y: 2.310958}
+  m_Size: {x: 1.1608075, y: 2.3398278}
 --- !u!95 &95000013740126314
 Animator:
   serializedVersion: 3

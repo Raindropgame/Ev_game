@@ -552,4 +552,5 @@ public class Monster_base : MonoBehaviour {
         }
     }
 
+
 }

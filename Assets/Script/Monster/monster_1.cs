@@ -19,9 +19,24 @@ public class monster_1 : Monster_base {
     public monster_1_state currentState = monster_1_state.walk;
     public GameObject deadParticle;
 
+    private bool _isSeePlayer = false;
+    private bool _isNearEdge = false;
+    private float CollHeight;
+
+    public override void onStart()
+    {
+        base.onStart();
+
+        CollHeight = colliderID[0].bounds.extents.y * 2;
+        leftPoint.transform.position = GameFunction.GetGameObjectInChildrenByName(this.gameObject,"Gravity").GetComponent<BoxCollider2D>().bounds.min + new Vector3(Dir == dir.left ? -0.01f : 0.01f, 0.01f, 0);
+    }
+
     protected override void _FixedUpdate()
     {
         base._FixedUpdate();
+
+        _isSeePlayer = isSeePlayer();
+        _isNearEdge = isNearEdge();
 
         switch (currentState)
         {
@@ -37,13 +52,16 @@ public class monster_1 : Monster_base {
 
                 if (((Vector2)(transform.position - CharacterControl.instance.transform.position)).sqrMagnitude > 1)  //玩家离开变为行走
                 {
-                    currentState = monster_1_state.walk;
-                    animator.SetTrigger("walk");
+                    if (!(_isSeePlayer && _isNearEdge))  
+                    {
+                        currentState = monster_1_state.walk;
+                        animator.SetTrigger("walk");
+                    }
                 }
                 break;
             case monster_1_state.walk:
 
-                if (isSeePlayer())  //感知到玩家
+                if (_isSeePlayer)  //感知到玩家
                 {
                     rig.velocity = new Vector2(CharacterControl.instance.transform.position.x - transform.position.x > 0 ? walkSpeed : -walkSpeed, rig.velocity.y);  //添加速度
                     Dir = CharacterControl.instance.transform.position.x - transform.position.x > 0 ? dir.right : dir.left;
@@ -59,24 +77,32 @@ public class monster_1 : Monster_base {
                     animator.SetTrigger("idle_1");
                     rig.velocity = Vector2.zero;
                 }
+                if(_isSeePlayer && _isNearEdge)  //当看到玩家在悬崖下变为闲置
+                {
+                    currentState = monster_1_state.idle;
+                    animator.SetTrigger("idle_1");
+                    rig.velocity = Vector2.zero;
+                }
                 break;
         }
 
-        transform.localScale = new Vector3(Dir == dir.left ? Mathf.Abs(transform.localScale.x) : -Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);  //改变动画方向
-
         if (isGround())
         {
-            if (isNearEdge() || NearWall() < 0.3f) //临近边或者靠近墙就改变方向
+            if (_isNearEdge || NearWall() < 0.3f) //临近边或者靠近墙就改变方向
             {
-                Dir = Dir == dir.left ? dir.right : dir.left;
+                if (!(_isSeePlayer && _isNearEdge))
+                {
+                    Dir = Dir == dir.left ? dir.right : dir.left;
+                }
             }
         }
+        transform.localScale = new Vector3(Dir == dir.left ? Mathf.Abs(transform.localScale.x) : -Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);  //改变动画方向
     }
 
     float NearWall()  //检测离墙的距离
     {
         LayerMask layerMask = 1<<9;
-        RaycastHit2D HitPoint = Physics2D.Raycast(leftPoint.position, Dir == dir.left ? Vector2.left : Vector2.right, 1f, layerMask);
+        RaycastHit2D HitPoint = Physics2D.Raycast(leftPoint.position, Vector2.up, CollHeight, layerMask);
         if(HitPoint.transform == null)
         {
             return 1000f;
@@ -99,9 +125,17 @@ public class monster_1 : Monster_base {
     {
         int mask = (1 << 0) | (1 << 9);  //检测特定层
         RaycastHit2D HitPoint = Physics2D.Raycast(rightPoint.position, Dir == dir.right ? Vector2.left : Vector2.right, 7f, mask);
+        RaycastHit2D HitPoint_2 = Physics2D.Raycast(leftPoint.position, Dir == dir.left ? Vector2.left : Vector2.right, 7f, mask);
         if (HitPoint.transform != null)
         {
             if (HitPoint.transform.tag == "Player")
+            {
+                return true;
+            }
+        }
+        if (HitPoint_2.transform != null)
+        {
+            if (HitPoint_2.transform.tag == "Player")
             {
                 return true;
             }

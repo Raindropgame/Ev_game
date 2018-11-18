@@ -28,12 +28,15 @@ public class monster_2 : Monster_base {
 
     private float _time0 = 0;
     private Vector2 _walkSpeed;
+    private float CollHeight;
 
     public override void onStart()
     {
         base.onStart();
 
         currentState = monster_2_state.walk;
+        CollHeight = colliderID[0].bounds.extents.y * 2;
+        eye.transform.position = GameFunction.GetGameObjectInChildrenByName(this.gameObject, "Gravity").GetComponent<BoxCollider2D>().bounds.min + new Vector3(Dir == dir.left ? -0.01f : 0.01f, 0.01f, 0);
     }
 
     protected override void _FixedUpdate()
@@ -129,12 +132,12 @@ public class monster_2 : Monster_base {
     float NearWall()  //检测离墙的距离
     {
         LayerMask layerMask = 1 << 9;
-        RaycastHit2D HitPoint = Physics2D.Raycast(eye.position, Dir == dir.left ? Vector2.left : Vector2.right, 1f, layerMask);
+        RaycastHit2D HitPoint = Physics2D.Raycast(eye.position,Vector2.up, CollHeight, layerMask);
         if (HitPoint.transform == null)
         {
             return 1000f;
         }
-        return HitPoint.distance;
+        return 0;
     }
 
     override public void _getHurt(int damage, Attribute attribute, Vector2 ColliderPos)

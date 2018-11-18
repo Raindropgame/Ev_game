@@ -13,9 +13,12 @@ public class Thunder : MonoBehaviour {
     public GameObject lighting;
     public int GameobjectPoolNum;
     public ArrayList LightingPool;
+    public float spaceTime = 2;
 
     [HideInInspector]
     public Transform CameraTrans;
+    private float LeftTime = 0;
+    private bool isCooling = false;
 
 
     private void Awake()
@@ -34,12 +37,28 @@ public class Thunder : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        if (WeatherData.getIntance().currentWeather == weather.Thunder || WeatherData.getIntance().currentWeather == weather.RainAndThunder)
+        if (!Scene.instance.isInit)  //当没有在初始化
         {
-            if (Random.value < Lighting_Odds)
+            if (WeatherData.getIntance().currentWeather == weather.Thunder || WeatherData.getIntance().currentWeather == weather.RainAndThunder)
             {
-                getLighting().SetActive(true);
-                StartCoroutine(CameraFollow.instance.shakeCamera(0.25f, 0.06f, 0.3f));  //出现闪电时镜头抖动
+                if (!isCooling)
+                {
+                    if (Random.value < Lighting_Odds)
+                    {
+                        getLighting().SetActive(true);
+                        StartCoroutine(CameraFollow.instance.shakeCamera(0.25f, 0.06f, 0.3f));  //出现闪电时镜头抖动
+                        isCooling = true;
+                        LeftTime = 0;
+                    }
+                }
+                else
+                {
+                    LeftTime += Time.deltaTime;
+                    if (LeftTime > spaceTime)
+                    {
+                        isCooling = false;
+                    }
+                }
             }
         }
     }

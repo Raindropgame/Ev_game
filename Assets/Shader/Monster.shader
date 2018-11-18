@@ -12,7 +12,7 @@
 
 		Pass
 		{
-			ZWrite off
+			ZWrite on
 			Cull off
 			blend SrcAlpha OneMinusSrcAlpha
 
