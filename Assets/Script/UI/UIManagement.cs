@@ -15,10 +15,12 @@ public class UIManagement : MonoBehaviour
             if (ArmsGemsBar.activeSelf)
             {
                 ArmsGemsBar.SetActive(false);
+                CharacterControl.instance.getInput();
             }
             else
             {
                 ArmsGemsBar.SetActive(true);
+                CharacterControl.instance.setInputNone();
             }
         }
 

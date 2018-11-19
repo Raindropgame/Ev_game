@@ -24,7 +24,7 @@ public class GameFunction{
     }
 
     //贝塞尔曲线
-    Vector3 BezierLine(Vector3 from, Vector3 to, Vector3 p1, Vector3 p2, float t)
+    static public Vector3 BezierLine(Vector3 from, Vector3 to, Vector3 p1, Vector3 p2, float t)
     {
         Vector3 t1, t2, t3, t4, t5;
         t1 = Vector3.Lerp(from, p1, t);

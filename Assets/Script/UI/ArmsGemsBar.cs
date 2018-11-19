@@ -39,6 +39,9 @@ public class ArmsGemsBar : MonoBehaviour
     public Text[] InfoBox;  //0:名字  1：描述
     public float showTime;
     public Vector2 W_H;  //长和高
+    [Header("--------武器碎片属性---------")]
+    public Text armsFrag_Text;
+    public int PerGrooveFragNum = 1;  //开一个槽所需的碎片数
 
     private RectTransform[] point;
     private ArrayList ArmsList = new ArrayList();
@@ -47,6 +50,7 @@ public class ArmsGemsBar : MonoBehaviour
     private Outline headOutline;
     private Vector3 HeadOriginPos;  //徽章的初始位置
     private string[][] GemInfo;  //结晶的描述信息
+    private bool isInt = false;
 
     private void Start()
     {
@@ -112,72 +116,83 @@ public class ArmsGemsBar : MonoBehaviour
 
         updateGemGroove();  //更新当前武器槽的显示
         updateGemItemShow(); //更新所携带的结晶
+        updateArmsFragNum();  //更新武器槽碎片数量
     }
 
-    private void OnDisable()
+    private void OnEnable()
     {
-        ArmsList.Clear();
-        //初始化各个武器的位置
-        if (CharacterAttribute.GetInstance().isEnable[(int)state.attack1])  //检查当前有哪些武器
+        if (isInt)
         {
-            ArmsList.Add(sword);
-        }
-        else
-        {
-            sword.gameObject.SetActive(false);
-        }
-        if (CharacterAttribute.GetInstance().isEnable[(int)state.shoot])
-        {
-            ArmsList.Add(arrow);
-        }
-        else
-        {
-            arrow.gameObject.SetActive(false);
-        }
-        if (CharacterAttribute.GetInstance().isEnable[(int)state.jumpshoot])
-        {
-            ArmsList.Add(spear);
-        }
-        else
-        {
-            spear.gameObject.SetActive(false);
-        }
-        armsInfo = new ArmsInfo[ArmsList.Count];
-        for (int i = 0; i < ArmsList.Count; i++)
-        {
-            ((RectTransform)ArmsList[i]).position = point[i].position;
 
-            armsInfo[i].rectTrans = ((RectTransform)ArmsList[i]);
-            armsInfo[i].name = ((RectTransform)ArmsList[i]).name;
-            armsInfo[i].pos = i;
-            armsInfo[i].image = ((RectTransform)ArmsList[i]).gameObject.GetComponent<Image>();
-
-            if (i == 0)   //改变样式
+            ArmsList.Clear();
+            //初始化各个武器的位置
+            if (CharacterAttribute.GetInstance().isEnable[(int)state.attack1])  //检查当前有哪些武器
             {
-                ((RectTransform)ArmsList[i]).localScale = new Vector2(maxArmsScale, maxArmsScale);
-                armsInfo[i].image.color = Color.white;
-
-                currentArms = i;
+                ArmsList.Add(sword);
             }
             else
             {
-                ((RectTransform)ArmsList[i]).localScale = new Vector2(1, 1);
-                armsInfo[i].image.color = backArmsColor;
+                sword.gameObject.SetActive(false);
             }
+            if (CharacterAttribute.GetInstance().isEnable[(int)state.shoot])
+            {
+                ArmsList.Add(arrow);
+            }
+            else
+            {
+                arrow.gameObject.SetActive(false);
+            }
+            if (CharacterAttribute.GetInstance().isEnable[(int)state.jumpshoot])
+            {
+                ArmsList.Add(spear);
+            }
+            else
+            {
+                spear.gameObject.SetActive(false);
+            }
+            armsInfo = new ArmsInfo[ArmsList.Count];
+            for (int i = 0; i < ArmsList.Count; i++)
+            {
+                ((RectTransform)ArmsList[i]).position = point[i].position;
+
+                armsInfo[i].rectTrans = ((RectTransform)ArmsList[i]);
+                armsInfo[i].name = ((RectTransform)ArmsList[i]).name;
+                armsInfo[i].pos = i;
+                armsInfo[i].image = ((RectTransform)ArmsList[i]).gameObject.GetComponent<Image>();
+
+                if (i == 0)   //改变样式
+                {
+                    ((RectTransform)ArmsList[i]).localScale = new Vector2(maxArmsScale, maxArmsScale);
+                    armsInfo[i].image.color = Color.white;
+
+                    currentArms = i;
+                }
+                else
+                {
+                    ((RectTransform)ArmsList[i]).localScale = new Vector2(1, 1);
+                    armsInfo[i].image.color = backArmsColor;
+                }
+            }
+
+
+            headOutline.effectDistance = Vector2.zero;   //初始化徽章的状态
+            isPlayAnimation_0 = false;
+            headOutline.gameObject.transform.position = HeadOriginPos;
+
+            InfoBoxRect.gameObject.SetActive(false);
+
+            for (int i = 0; i < Dirty.Length; i++)
+            {
+                Dirty[i].SetActive(false);  //防止重复播放
+            }
+
+            updateGemGroove();  //更新当前武器槽的显示
+            updateGemItemShow(); //更新所携带的结晶
+            updateArmsFragNum();  //更新武器槽碎片数量
         }
-
-        updateGemGroove();  //更新当前武器槽的显示
-        updateGemItemShow(); //更新所携带的结晶
-
-        headOutline.effectDistance = Vector2.zero;   //初始化徽章的状态
-        isPlayAnimation_0 = false;
-        headOutline.gameObject.transform.position = HeadOriginPos;
-
-        InfoBoxRect.gameObject.SetActive(false);
-
-        for (int i = 0; i < Dirty.Length; i++)
+        else
         {
-            Dirty[i].SetActive(false);  //防止重复播放
+            isInt = true;
         }
     }
 
@@ -343,30 +358,36 @@ public class ArmsGemsBar : MonoBehaviour
 
     public void opneNewGemGroove(int i)   //开启一个新的武器槽
     {
-        int currentNum = 0;
-        i -= 1;
-
-        switch (armsInfo[currentArms].name)   //更新人物数据
+        if (Bag.getInstance().getArmsFragment() >= PerGrooveFragNum)  //碎片是否足够
         {
-            case "swords":
-                CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.swords].currentGemNum++;
-                currentNum = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.swords].currentGemNum;
-                break;
-            case "arrow":
-                CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.arrow].currentGemNum++;
-                currentNum = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.arrow].currentGemNum;
-                break;
-            case "spear":
-                CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.spear].currentGemNum++;
-                currentNum = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.spear].currentGemNum;
-                break;
+            int currentNum = 0;
+            i -= 1;
+
+            switch (armsInfo[currentArms].name)   //更新人物数据
+            {
+                case "swords":
+                    CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.swords].currentGemNum++;
+                    currentNum = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.swords].currentGemNum;
+                    break;
+                case "arrow":
+                    CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.arrow].currentGemNum++;
+                    currentNum = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.arrow].currentGemNum;
+                    break;
+                case "spear":
+                    CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.spear].currentGemNum++;
+                    currentNum = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.spear].currentGemNum;
+                    break;
+            }
+
+            GemGroove[currentNum - 1].GetComponent<Image>().color = Color.white;  //更新显示
+            GemGroove_Disable[currentNum - 1].gameObject.SetActive(false);
+            GemGroove_None[currentNum - 1].gameObject.SetActive(true);
+            updateArmsFragNum();
+
+            GemGroove[currentNum - 1].GetComponent<Button>().enabled = false;   //禁用按钮
+
+            Bag.getInstance().ConsumeFragment(PerGrooveFragNum);  //消耗碎片
         }
-
-        GemGroove[currentNum - 1].GetComponent<Image>().color = Color.white;  //更新显示
-        GemGroove_Disable[currentNum - 1].gameObject.SetActive(false);
-        GemGroove_None[currentNum - 1].gameObject.SetActive(true);
-
-        GemGroove[currentNum - 1].GetComponent<Button>().enabled = false;   //禁用按钮
     }
 
     private bool isPlayAnimation_0 = false;
@@ -674,5 +695,10 @@ public class ArmsGemsBar : MonoBehaviour
             yield return null;
         }
 
+    }
+
+    void updateArmsFragNum()
+    {
+        armsFrag_Text.text = Bag.getInstance().getArmsFragment().ToString();
     }
 }

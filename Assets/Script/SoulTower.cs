@@ -73,21 +73,27 @@ public class SoulTower : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.name.Substring(0,6).CompareTo("attack") == 0)  //被击中
+        if (collision.name.Length >= 6)
         {
-            if (!isAnimation && !isNone)
+            if (collision.name.Substring(0, 6).CompareTo("attack") == 0)  //被击中
             {
-                StartCoroutine(IE_getNewSoul());
+                if (!isAnimation && !isNone)
+                {
+                    StartCoroutine(IE_getNewSoul());
+                }
             }
         }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.name.Substring(0, 6).CompareTo("attack") == 0 && this.enabled)
+        if (collision.name.Length >= 6)
         {
-            this.transform.position = originPos + (Vector3)Random.insideUnitCircle * shakeScale;
-            isTrigger = true;
+            if (collision.name.Substring(0, 6).CompareTo("attack") == 0 && this.enabled)
+            {
+                this.transform.position = originPos + (Vector3)Random.insideUnitCircle * shakeScale;
+                isTrigger = true;
+            }
         }
     }
 

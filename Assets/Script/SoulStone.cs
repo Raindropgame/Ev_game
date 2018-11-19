@@ -59,21 +59,27 @@ public class SoulStone : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.name.Substring(0, 6).CompareTo("attack") == 0)  //被击中
+        if (collision.name.Length >= 6)
         {
-            if (!isNone)
+            if (collision.name.Substring(0, 6).CompareTo("attack") == 0)  //被击中
             {
-                StartCoroutine(IE_getSoul());
+                if (!isNone)
+                {
+                    StartCoroutine(IE_getSoul());
+                }
             }
         }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.name.Substring(0, 6).CompareTo("attack") == 0 && this.enabled)
+        if (collision.name.Length >= 6)
         {
-            this.transform.position = originPos + (Vector3)Random.insideUnitCircle * shakeScale;
-            isTrigger = true;
+            if (collision.name.Substring(0, 6).CompareTo("attack") == 0 && this.enabled)
+            {
+                this.transform.position = originPos + (Vector3)Random.insideUnitCircle * shakeScale;
+                isTrigger = true;
+            }
         }
     }
 

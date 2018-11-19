@@ -56,4 +56,27 @@ public class Bag{
         }
         return -1;
     }
+
+
+    //武器槽碎片
+    private int Arms_fragment = 0;
+
+    public int getArmsFragment()
+    {
+        return Arms_fragment;
+    }
+
+    public void AddArmsFragment(int num)
+    {
+        Arms_fragment += num;
+    }
+
+    public void ConsumeFragment(int num)
+    {
+        if(num > Arms_fragment)
+        {
+            return;
+        }
+        Arms_fragment -= num;
+    }
 }
