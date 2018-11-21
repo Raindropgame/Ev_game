@@ -28,7 +28,7 @@ public class monster_1 : Monster_base {
         base.onStart();
 
         CollHeight = colliderID[0].bounds.extents.y * 2;
-        leftPoint.transform.position = GameFunction.GetGameObjectInChildrenByName(this.gameObject,"Gravity").GetComponent<BoxCollider2D>().bounds.min + new Vector3(Dir == dir.left ? -0.01f : 0.01f, 0.01f, 0);
+        leftPoint.transform.position = GameFunction.GetGameObjectInChildrenByName(this.gameObject,"Gravity").GetComponent<BoxCollider2D>().bounds.min + new Vector3(Dir == dir.left ? -0.05f : 0.05f, 0.01f, 0);
     }
 
     protected override void _FixedUpdate()

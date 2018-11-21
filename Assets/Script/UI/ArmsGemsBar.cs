@@ -42,6 +42,11 @@ public class ArmsGemsBar : MonoBehaviour
     [Header("--------武器碎片属性---------")]
     public Text armsFrag_Text;
     public int PerGrooveFragNum = 1;  //开一个槽所需的碎片数
+    public GameObject[] Frags;
+    public GameObject Frag_icon;
+    public float openGroove_first_animation_duration;
+    public float openGroove_second_animation_duration;
+    public GameObject OpenNewGroove_MessageBox;
 
     private RectTransform[] point;
     private ArrayList ArmsList = new ArrayList();
@@ -51,6 +56,8 @@ public class ArmsGemsBar : MonoBehaviour
     private Vector3 HeadOriginPos;  //徽章的初始位置
     private string[][] GemInfo;  //结晶的描述信息
     private bool isInt = false;
+    private GameObject GrooveMessageBox_select = null;
+    private int currentSelectGemGrooveID;
 
     private void Start()
     {
@@ -185,6 +192,20 @@ public class ArmsGemsBar : MonoBehaviour
             {
                 Dirty[i].SetActive(false);  //防止重复播放
             }
+
+            //初始化开启武器槽动画
+            for(int i = 0;i<Frags.Length;i++)
+            {
+                Frags[i].transform.position = Frag_icon.transform.position;
+                Frags[i].SetActive(false);
+            }
+            Frags[0].GetComponent<TrailRenderer>().enabled = true;
+            Frags[0].transform.GetChild(0).gameObject.SetActive(true);
+            Frags[0].transform.localScale = Frags[1].transform.localScale;
+
+            //提示框隐藏
+            OpenNewGroove_MessageBox.SetActive(false);
+            isAnimation_openGroove = false;
 
             updateGemGroove();  //更新当前武器槽的显示
             updateGemItemShow(); //更新所携带的结晶
@@ -356,38 +377,33 @@ public class ArmsGemsBar : MonoBehaviour
         }
     }
 
-    public void opneNewGemGroove(int i)   //开启一个新的武器槽
+    private void opneNewGemGroove(int i)   //开启一个新的武器槽
     {
-        if (Bag.getInstance().getArmsFragment() >= PerGrooveFragNum)  //碎片是否足够
+        int currentNum = 0;
+        i -= 1;
+
+        switch (armsInfo[currentArms].name)   //更新人物数据
         {
-            int currentNum = 0;
-            i -= 1;
-
-            switch (armsInfo[currentArms].name)   //更新人物数据
-            {
-                case "swords":
-                    CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.swords].currentGemNum++;
-                    currentNum = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.swords].currentGemNum;
-                    break;
-                case "arrow":
-                    CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.arrow].currentGemNum++;
-                    currentNum = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.arrow].currentGemNum;
-                    break;
-                case "spear":
-                    CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.spear].currentGemNum++;
-                    currentNum = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.spear].currentGemNum;
-                    break;
-            }
-
-            GemGroove[currentNum - 1].GetComponent<Image>().color = Color.white;  //更新显示
-            GemGroove_Disable[currentNum - 1].gameObject.SetActive(false);
-            GemGroove_None[currentNum - 1].gameObject.SetActive(true);
-            updateArmsFragNum();
-
-            GemGroove[currentNum - 1].GetComponent<Button>().enabled = false;   //禁用按钮
-
-            Bag.getInstance().ConsumeFragment(PerGrooveFragNum);  //消耗碎片
+            case "swords":
+                CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.swords].currentGemNum++;
+                currentNum = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.swords].currentGemNum;
+                break;
+            case "arrow":
+                CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.arrow].currentGemNum++;
+                currentNum = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.arrow].currentGemNum;
+                break;
+            case "spear":
+                CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.spear].currentGemNum++;
+                currentNum = CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.spear].currentGemNum;
+                break;
         }
+
+        StartCoroutine(IE_openNewGroove(currentNum - 1));
+
+        GemGroove[currentNum - 1].GetComponent<Button>().enabled = false;   //禁用按钮
+
+        Bag.getInstance().ConsumeFragment(PerGrooveFragNum);  //消耗碎片
+        
     }
 
     private bool isPlayAnimation_0 = false;
@@ -667,7 +683,7 @@ public class ArmsGemsBar : MonoBehaviour
         {
             _time1 += Time.deltaTime;
 
-            Gem[i].GetComponent<RectTransform>().localScale = Vector3.Lerp(_scale, new Vector3(1, 1, 1), _time1 / time1);
+            Gem[i].GetComponent<RectTransform>().localScale = Vector3.Lerp(_scale, Vector3.one, _time1 / time1);
             if (_time1 > time1)
             {
                 break;
@@ -687,7 +703,7 @@ public class ArmsGemsBar : MonoBehaviour
         {
             _time1 += Time.deltaTime;
 
-            GemItem[i].GetComponent<RectTransform>().localScale = Vector3.Lerp(_scale, new Vector3(1, 1, 1), _time1 / time1);
+            GemItem[i].GetComponent<RectTransform>().localScale = Vector3.Lerp(_scale, Vector3.one, _time1 / time1);
             if (_time1 > time1)
             {
                 break;
@@ -700,5 +716,171 @@ public class ArmsGemsBar : MonoBehaviour
     void updateArmsFragNum()
     {
         armsFrag_Text.text = Bag.getInstance().getArmsFragment().ToString();
+    }
+
+    IEnumerator IE_openNewGroove(int GrooveID)
+    {
+        //第一段动画
+        {
+            for(int i = 0;i<Frags.Length;i++)
+            {
+                Frags[i].SetActive(true);
+            }
+
+            float _time0 = 0;
+
+            Vector3 originScale_FragIcon = Frag_icon.transform.localScale;
+            Vector3[] originPos_Frags = new Vector3[Frags.Length];
+            Vector3 _dir, _dir_2;
+            Vector3 p1;
+            Vector3[] p2 = new Vector3[Frags.Length];
+            _dir = Frags[0].transform.position - Gem[GrooveID].transform.position;
+            _dir_2 = Vector3.Cross(_dir, Vector3.back);
+            p1 = Frags[0].transform.position + _dir * 0.5f;
+            for(int i = 0;i<Frags.Length;i++)
+            {
+                p2[i] = Frags[0].transform.position + _dir_2 * (0.5f - i * 0.1f) * (i % 2 == 0 ? 1 : -1);
+                originPos_Frags[i] = Frags[i].transform.position;
+            }
+
+            updateArmsFragNum();
+            while (_time0 < openGroove_first_animation_duration)
+            {
+                _time0 += Time.deltaTime;
+                float t = _time0 / openGroove_first_animation_duration;
+                Frag_icon.transform.localScale = Vector3.Lerp(Vector3.one * 0.5f, originScale_FragIcon, t * 8);
+                for(int i = 0;i<Frags.Length;i++)
+                {
+                    Frags[i].transform.position = GameFunction.BezierLine(originPos_Frags[i], Gem[GrooveID].transform.position, p1, p2[i], t);
+                }
+
+                yield return null;
+            }
+        }
+
+        for(int i = 1;i<Frags.Length;i++)
+        {
+            Frags[i].SetActive(false);
+            Frags[i].transform.position = Frag_icon.transform.position;
+        }
+
+        //第二段动画
+        { 
+            Frags[0].GetComponent<TrailRenderer>().enabled = false;
+            Frags[0].transform.GetChild(0).gameObject.SetActive(false);
+            float _time0 = 0;
+
+            Image img_frag = Frags[0].GetComponent<Image>();
+            Color originColor_frag = img_frag.color;
+            Vector3 originScale_Frag = Frags[0].transform.localScale;
+            bool isUpdate = false;
+            while(_time0 < openGroove_second_animation_duration)
+            {
+                _time0 += Time.deltaTime;
+                float t = _time0 / openGroove_second_animation_duration;
+                Frags[0].transform.localScale = Vector3.Lerp(originScale_Frag, Vector3.one * 33f, t);
+                img_frag.color = Color.Lerp(originColor_frag, originColor_frag * GameFunction.Transparent, t);
+
+                if(!isUpdate && _time0 > 0.3f * openGroove_second_animation_duration)
+                {
+                    GemGroove[GrooveID].GetComponent<Image>().color = Color.white;  //更新显示
+                    GemGroove_Disable[GrooveID].gameObject.SetActive(false);
+                    GemGroove_None[GrooveID].gameObject.SetActive(true);
+                }
+
+                yield return null;
+            }
+            Frags[0].GetComponent<TrailRenderer>().enabled = true;
+            Frags[0].transform.localScale = originScale_Frag;
+            Frags[0].transform.position = Frag_icon.transform.position;
+            img_frag.color = originColor_frag;
+            Frags[0].SetActive(false);
+            Frags[0].transform.GetChild(0).gameObject.SetActive(true);
+        }
+
+    }
+
+    private bool isAnimation_openGroove = false;
+    public void OpenNewGroove_MessageBox_show(int i)
+    {
+        if (Bag.getInstance().getArmsFragment() >= PerGrooveFragNum)
+        {
+            if(!isAnimation_openGroove)
+            {
+                StartCoroutine(IE_TipBox_Move(i));
+            }
+        }
+    }  //打开提示消息框
+
+    public void OpenGroove_Button_mouseEnter(Transform t)
+    {
+        if(GrooveMessageBox_select.activeSelf == false)
+        {
+            GrooveMessageBox_select.SetActive(true);
+        }
+        GrooveMessageBox_select.transform.position = t.position;
+    }
+
+    public void OpenGroove_Button_mouseExit()
+    {
+        if (GrooveMessageBox_select.activeSelf == false)
+        {
+            return;
+        }
+        GrooveMessageBox_select.SetActive(false);
+    }
+
+    public void getGrooveMessageBoxBotton(int i)
+    {
+        if(i == 1)
+        {
+            opneNewGemGroove(currentSelectGemGrooveID);
+        }
+        OpenNewGroove_MessageBox.SetActive(false);
+    }
+
+    IEnumerator IE_TipBox_Move(int i)
+    {
+        isAnimation_openGroove = true;
+
+        currentSelectGemGrooveID = i;
+        OpenNewGroove_MessageBox.SetActive(true);
+        GameFunction.GetGameObjectInChildrenByName(OpenNewGroove_MessageBox, "Text").GetComponent<Text>().text = string.Format("是否消耗<color=red>{0}</color>个碎片开启新的宝石槽？", PerGrooveFragNum);
+
+        if (GrooveMessageBox_select == null)
+        {
+            GrooveMessageBox_select = GameFunction.GetGameObjectInChildrenByName(OpenNewGroove_MessageBox, "Select");
+        }
+
+        GrooveMessageBox_select.SetActive(false);
+
+        const float first_animation_duration = 0.2f;
+        RectTransform t_rect = OpenNewGroove_MessageBox.GetComponent<RectTransform>();
+        {
+            float _time0 = 0;           
+            while(_time0 < first_animation_duration)
+            {
+                _time0 += Time.deltaTime;
+                float t = _time0 / first_animation_duration;
+                t_rect.anchoredPosition = Vector3.Lerp(Vector3.left * 710, Vector3.zero, t);
+
+                yield return null;
+            }
+        }
+
+        const float second_animation_duration = 0.3f;
+        {
+            float _time0 = 0;
+            while(_time0 < second_animation_duration)
+            {
+                _time0 += Time.deltaTime;
+                float t = _time0 / second_animation_duration;
+                t_rect.anchoredPosition = Vector3.zero + Vector3.right * Mathf.Sin(Mathf.Lerp(0, 360, t) * Mathf.Deg2Rad) * Mathf.Lerp(50,30,t);
+
+                yield return null;
+            }
+        }
+
+        isAnimation_openGroove = false;
     }
 }

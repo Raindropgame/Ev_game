@@ -159,7 +159,7 @@ public class SoulTower : MonoBehaviour {
             {
                 _time0 += (Time.deltaTime * (_time0 + 0.4f * second_animation_duration) / second_animation_duration);
                 float t = _time0 / second_animation_duration;
-                Halo.transform.position = BezierLine(t_originPos, CharacterControl.instance.transform.position, p1, p2, t);
+                Halo.transform.position = BezierLine(t_originPos, CharacterControl.instance.transform.position + Vector3.up, p1, p2, t);
 
                 yield return null;
             }            

@@ -104,7 +104,7 @@ public class SoulStone : MonoBehaviour {
         {
             _time0 += Time.deltaTime;
             float t = _time0 / animation_duration;
-            Halo.transform.position = BezierLine(t_originPos_Halo, CharacterControl.instance.transform.position, p1, p2, t);
+            Halo.transform.position = BezierLine(t_originPos_Halo, CharacterControl.instance.transform.position + Vector3.up, p1, p2, t);
 
             yield return null;
         }

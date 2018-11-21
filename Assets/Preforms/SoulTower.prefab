@@ -137,6 +137,7 @@ GameObject:
   - 4: {fileID: 4000013257797096}
   - 212: {fileID: 212000013967172990}
   - 96: {fileID: 96000011410308354}
+  - 114: {fileID: 114000011045047200}
   m_Layer: 0
   m_Name: Halo
   m_TagString: Untagged
@@ -639,6 +640,19 @@ Light:
   m_BounceIntensity: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114000011045047200
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011539745618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f41576fee2bb4549b85e376aa2f370c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortingLayerName: 
+  SortingOrder: 1
 --- !u!114 &114000012704861056
 MonoBehaviour:
   m_ObjectHideFlags: 1

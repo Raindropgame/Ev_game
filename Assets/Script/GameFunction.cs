@@ -3,6 +3,9 @@ using System.Collections;
 
 public class GameFunction{
 
+    //原色透明
+    static public Color Transparent = new Color(1,1,1,0);
+
     //在指定物体下寻找目标名字的物体
 	static public GameObject GetGameObjectInChildrenByName(GameObject obj,string name)
     {

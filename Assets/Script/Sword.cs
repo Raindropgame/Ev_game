@@ -13,18 +13,28 @@ public class Sword : MonoBehaviour {
     private Vector2 originPosition;
     private ContactPoint2D HitPoint;
     private Animator animator;
+    private Element ElementTrigger = null;
 
     private void Awake()
     {
         Collider = this.GetComponent<PolygonCollider2D>();
         animator = GetComponent<Animator>();
         originPosition = this.transform.position;
+
+        try
+        {
+            ElementTrigger = GetComponentInChildren<Element>();
+        }
+        catch
+        {
+
+        }
+
     }
 
     private void Update()
     {
         this.transform.localPosition = originPosition;
-
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -67,7 +77,14 @@ public class Sword : MonoBehaviour {
     private void OnEnable()
     {
         CharacterAttribute.GetInstance().ArmsGemGroove[(int)Arms.swords].GemWork();   //结晶作用
+        try
+        {
+            ElementTrigger.element = CharacterAttribute.GetInstance().ArmsAttribute[(int)Arms.swords];
+        }
+        catch
+        {
 
+        }
         animator.SetTrigger(CharacterAttribute.GetInstance().ArmsAttribute[(int)Arms.swords].ToString());   //根据属性更改动画
     }
 

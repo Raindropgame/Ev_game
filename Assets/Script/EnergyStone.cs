@@ -120,7 +120,7 @@ public class EnergyStone : MonoBehaviour {
             {
                 _time0 += Time.deltaTime;
                 float t = _time0 / first_animation_duration;
-                Halo.transform.position = GameFunction.BezierLine(Halo.transform.position, CharacterControl.instance.transform.position + Vector3.up * 0.2f, p1, p2, t);
+                Halo.transform.position = GameFunction.BezierLine(Halo.transform.position, CharacterControl.instance.transform.position + Vector3.up * 1, p1, p2, t);
 
                 yield return null;
             }
@@ -144,7 +144,7 @@ public class EnergyStone : MonoBehaviour {
                 Halo.transform.localScale = Vector3.Lerp(originScale_Halo, Vector3.one * 10f, t);
                 SR_Halo.color = Color.Lerp(SR_Halo.color, new Color(1, 1, 1, 0), t);
                 SR_BG.color = Color.Lerp(originColor_BG, Color.black, t);
-                SR_Stone.color = Color.Lerp(originColor_Stone, new Color(1, 1, 1, 0), t);
+                SR_Stone.color = Color.Lerp(originColor_Stone, Color.black, t);
 
                 yield return null;
             }

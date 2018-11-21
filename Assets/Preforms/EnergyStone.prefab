@@ -118,6 +118,7 @@ GameObject:
   - 4: {fileID: 4000011933825706}
   - 212: {fileID: 212000012981933106}
   - 96: {fileID: 96000013021673766}
+  - 114: {fileID: 114000012853588528}
   m_Layer: 0
   m_Name: Halo
   m_TagString: Untagged
@@ -265,8 +266,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012516211916}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -394.71, y: 57.33, z: 0.01}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -198.73721, y: 56.096127, z: 0.01}
   m_LocalScale: {x: 0.8318971, y: 0.8318971, z: 0.8318971}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -298,7 +299,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012551906216}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.05, y: -1.13, z: 0.009}
+  m_LocalPosition: {x: -0.05, y: -1.13, z: 0.02}
   m_LocalScale: {x: 2.188873, y: 3.4254365, z: 1.2160136}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -457,6 +458,19 @@ MonoBehaviour:
   Stone_scale_scale: 0.1
   first_animation_duration: 0.8
   second_animation_duration: 0.4
+--- !u!114 &114000012853588528
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012832273074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f41576fee2bb4549b85e376aa2f370c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortingLayerName: Default
+  SortingOrder: 1
 --- !u!198 &198000010124215648
 ParticleSystem:
   m_ObjectHideFlags: 1

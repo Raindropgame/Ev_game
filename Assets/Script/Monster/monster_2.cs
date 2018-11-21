@@ -36,7 +36,7 @@ public class monster_2 : Monster_base {
 
         currentState = monster_2_state.walk;
         CollHeight = colliderID[0].bounds.extents.y * 2;
-        eye.transform.position = GameFunction.GetGameObjectInChildrenByName(this.gameObject, "Gravity").GetComponent<BoxCollider2D>().bounds.min + new Vector3(Dir == dir.left ? -0.01f : 0.01f, 0.01f, 0);
+        eye.transform.position = GameFunction.GetGameObjectInChildrenByName(this.gameObject, "Gravity").GetComponent<BoxCollider2D>().bounds.min + new Vector3(Dir == dir.left ? -0.05f : 0.05f, 0.01f, 0);
     }
 
     protected override void _FixedUpdate()
