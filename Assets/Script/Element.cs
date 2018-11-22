@@ -3,7 +3,8 @@ using System.Collections;
 
 public class Element : MonoBehaviour {
 
-    public bool isDebug = false;
+    //检测不连续
+
     public bool isAddRig = false;
     public Attribute element;
     [HideInInspector]
@@ -31,37 +32,24 @@ public class Element : MonoBehaviour {
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void FixedUpdate()
     {
-        if (!isLock)
+        if (TriggerElement.Count > 0)
+        {
+            TriggerElement.Clear();
+            isTrigger = false;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(!isLock)
         {
             isTrigger = true;
             TriggerElement.Add(collision.GetComponent<Element>().element);
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (!isLock)
-        {
-            isTrigger = false;
-            TriggerElement.Remove(collision.GetComponent<Element>().element);
-        }
-    }
-
-    string s;
-    private void Update()
-    {
-        if (isDebug)
-        {
-            s = null;
-            for (int i = 0; i < TriggerElement.Count; i++)
-            {
-                s += TriggerElement[i].ToString();
-            }
-            Debug.Log(s);
-        }
-    }
 
     //是否含有该元素
     public bool isContainElement(Attribute e)
