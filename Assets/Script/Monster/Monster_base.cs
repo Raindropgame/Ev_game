@@ -309,7 +309,7 @@ public class Monster_base : MonoBehaviour {
         }
 
         Bounds t_bounds = SR.bounds,bounds = t_SR.bounds;
-        t.transform.position = t_bounds.center + new Vector3(0,0,-0.01f);
+        t.transform.position = t_bounds.center + Vector3.back * 0.01f ;
         Vector2 scale = Vector2.zero;
         if(t_bounds.extents.x > t_bounds.extents.y)  //宽大于高
         {
@@ -325,6 +325,7 @@ public class Monster_base : MonoBehaviour {
         }
         t.transform.localScale = scale;
         t.transform.parent = transform;
+        t.transform.Rotate(transform.rotation.eulerAngles);
         //----
         animator.enabled = false;
         isEnable = false;

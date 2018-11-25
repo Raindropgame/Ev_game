@@ -37,6 +37,8 @@ public class Water : MonoBehaviour {
         t.SetFloat("_Surface", surface);
         t.SetTexture("_MainTex", tex);   
         meshRenderer.SetPropertyBlock(t);
+
+        setElementBoxTrigger();
     }
 
     public void apply()
@@ -93,5 +95,13 @@ public class Water : MonoBehaviour {
     {
         yield return new WaitForSeconds(sprayDuration);
         Destroy(t);
+    }
+
+    void setElementBoxTrigger()
+    {
+        BoxCollider2D t = GetComponent<BoxCollider2D>();
+        BoxCollider2D t2 = GameFunction.GetGameObjectInChildrenByName(this.gameObject, "Element").GetComponent<BoxCollider2D>();
+        t2.offset = t.offset;
+        t2.size = t.size;
     }
 }

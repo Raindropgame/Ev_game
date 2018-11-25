@@ -120,7 +120,7 @@ Material:
       second: 1
     - first:
         name: _Speed
-      second: 0.54
+      second: 0.87
     - first:
         name: _SrcBlend
       second: 1

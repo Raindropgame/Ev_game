@@ -34,6 +34,8 @@ public class Weather : MonoBehaviour {
 
         Script_Blur = GameObject.Find("BackGroundCamera").GetComponent<Blur>();
         Bloom_script = Screen1_render.instance.GetComponent<Bloom>();
+
+        
     }
 
     private void FixedUpdate()
@@ -174,7 +176,7 @@ public class Weather : MonoBehaviour {
 
     weather getNextWeather()   //随机下一个天气
     {
-        Random.InitState(Random.Range(1, 100));
+        Random.InitState(System.DateTime.Now.Millisecond);
         float t = Random.value;
         if(t < WeatherData.getIntance().Rain_Odds)
         {

@@ -25,7 +25,7 @@ GameObject:
   - 61: {fileID: 61000011062873818}
   m_Layer: 4
   m_Name: water
-  m_TagString: Untagged
+  m_TagString: conductor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,8 +38,25 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000011466238156}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: surface
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1000014242304158
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000013112236156}
+  - 114: {fileID: 114000012387959104}
+  - 61: {fileID: 61000011419385828}
+  m_Layer: 16
+  m_Name: Element
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,8 +87,22 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000011466238156}
+  - {fileID: 4000013112236156}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!4 &4000013112236156
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014242304158}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000012572870486}
+  m_RootOrder: 1
 --- !u!23 &23000010354140444
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -122,6 +153,20 @@ BoxCollider2D:
   m_Offset: {x: 24.500002, y: -13.193307}
   serializedVersion: 2
   m_Size: {x: 49.000008, y: 26.386644}
+--- !u!61 &61000011419385828
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014242304158}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
 --- !u!114 &114000011665723092
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -142,3 +187,18 @@ MonoBehaviour:
   speed: 3.6
   surface: -1
   changeScale: 1.4
+--- !u!114 &114000012387959104
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014242304158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb10afe613c5a5e4d97101b3bba6578e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAddRig: 0
+  element: 3
+  isTrigger: 0
+  isLock: 0

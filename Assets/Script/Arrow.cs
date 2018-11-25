@@ -14,6 +14,7 @@ public class Arrow : MonoBehaviour
     private SpriteRenderer SR;
     private Attribute currentAttribute = Attribute.normal;
     private int damage;
+    private Element ElementTrigger;
 
     private void Awake()
     {
@@ -23,6 +24,7 @@ public class Arrow : MonoBehaviour
         boxCol = GetComponent<BoxCollider2D>();
         trailRenderer = GetComponent<TrailRenderer>();
         SR = GetComponent<SpriteRenderer>();
+        ElementTrigger = GetComponentInChildren<Element>();
     }
 
     private void OnEnable()
@@ -50,6 +52,7 @@ public class Arrow : MonoBehaviour
         currentAttribute = CharacterAttribute.GetInstance().ArmsAttribute[(int)Arms.arrow];
         damage = CharacterAttribute.GetInstance().Attack[(int)Arms.arrow];
 
+        ElementTrigger.element = currentAttribute;
 
     }
 

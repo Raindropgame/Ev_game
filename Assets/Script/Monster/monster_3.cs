@@ -75,5 +75,15 @@ public class monster_3 : Monster_base {
         //----------
     }
 
+    private void OnBecameVisible()
+    {
+        this.enabled = true;
+    }
+
+    private void OnBecameInvisible()
+    {
+        this.enabled = false;
+    }
+
 
 }

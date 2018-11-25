@@ -11,6 +11,23 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1000013376025428}
   m_IsPrefabParent: 1
+--- !u!1 &1000013081922678
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000012536744628}
+  - 61: {fileID: 61000011954122174}
+  - 114: {fileID: 114000013525581076}
+  m_Layer: 16
+  m_Name: Element
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000013376025428
 GameObject:
   m_ObjectHideFlags: 0
@@ -38,12 +55,40 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013376025428}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -262.23, y: -2.6367092, z: -3.53125}
+  m_LocalPosition: {x: -238.83978, y: -2.9865928, z: -3.53125}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
+  m_Children:
+  - {fileID: 4000012536744628}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!4 &4000012536744628
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013081922678}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000011632432578}
+  m_RootOrder: 0
+--- !u!61 &61000011954122174
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013081922678}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.12572479, y: -0.02993393}
+  serializedVersion: 2
+  m_Size: {x: 2.6164186, y: 2.4727411}
 --- !u!61 &61000014179698896
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -98,6 +143,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scale: 13.49
+--- !u!114 &114000013525581076
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013081922678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb10afe613c5a5e4d97101b3bba6578e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAddRig: 0
+  element: 1
+  isTrigger: 0
+  isLock: 0
 --- !u!212 &212000010509188888
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -53,7 +53,8 @@ public enum Attribute  //属性
     lightning,  //电
     fire,   //火
     ice,    //冰
-    wood    //木
+    wood,    //木
+    conductor,  //导体
 }
 
 public enum Arms  //武器

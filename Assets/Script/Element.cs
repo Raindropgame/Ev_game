@@ -56,9 +56,12 @@ public class Element : MonoBehaviour {
     {
         if (TriggerElement.Count > 0)
         {
-            if (TriggerElement.Contains(e))
+            if (isTrigger)
             {
-                return true;
+                if (TriggerElement.Contains(e))
+                {
+                    return true;
+                }
             }
         }
         return false;

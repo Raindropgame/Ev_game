@@ -14,6 +14,7 @@ public class Arrow_2 : MonoBehaviour {
     private float tan;
     private Attribute currentAttribute = Attribute.normal;  //当前的属性
     private int damage = 1;
+    private Element ElementTrigger;
 
     private void Awake()
     {
@@ -23,6 +24,7 @@ public class Arrow_2 : MonoBehaviour {
         trailRenderer = GetComponent<TrailRenderer>();
         particle = GetComponentInChildren<ParticleSystem>().emission;
         SR = GetComponent<SpriteRenderer>();
+        ElementTrigger = GetComponentInChildren<Element>();
     }
 
     private void OnEnable()
@@ -45,6 +47,8 @@ public class Arrow_2 : MonoBehaviour {
 
         currentAttribute = CharacterAttribute.GetInstance().ArmsAttribute[(int)Arms.spear];  //获取当前属性
         damage = CharacterAttribute.GetInstance().Attack[(int)Arms.spear];  //获取当前伤害
+
+        ElementTrigger.element = currentAttribute;
     }
 
 
