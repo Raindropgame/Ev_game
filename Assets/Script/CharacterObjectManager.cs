@@ -374,6 +374,18 @@ public class CharacterObjectManager : MonoBehaviour
         }
     }
 
+    public void PlayFallParticle(bool isInRain)
+    {
+        if(isInRain)
+        {
+            FallDust_rain.Play();
+        }
+        else
+        {
+            FallDust.Play();
+        }
+    }
+
     public void BeHurt()  //管理受伤时的动画
     {
         if(!isBeHurt)

@@ -20,12 +20,16 @@ public class monster_4_Water : Monster_base
     public float walkSpeed;
     public float eyeDistance;
     public GameObject deadParticle;
+    public float speedUpTime = 0.7f;
+    public float floatScale = 0.1f;
+    public float floatCycle = 0.2f;
 
     private monster_4_Ground_state currentState = monster_4_Ground_state.idle;
     private bool _isSeePlayer = false;
     private bool _isNearWall = false;
     private float _time0 = 0;
     private float motionDuration = 3f;
+    private float _Timer_inertia = 0;
 
     protected override void _FixedUpdate()
     {
@@ -37,6 +41,8 @@ public class monster_4_Water : Monster_base
         switch (currentState)
         {
             case monster_4_Ground_state.idle:
+                //在水面浮动
+                rig.velocity = (Mathf.Sin(Time.time * 1 / floatCycle) * Vector2.up * floatScale);
 
                 if (_isSeePlayer)
                 {
@@ -53,13 +59,19 @@ public class monster_4_Water : Monster_base
                         currentState = monster_4_Ground_state.walk;
                         animator.SetTrigger("walk");
                         _time0 = 0;
+                        _Timer_inertia = 0;
                     }
                 }
                 break;
 
 
             case monster_4_Ground_state.walk:
-                rig.velocity = (Dir == dir.left?Vector2.left:Vector2.right) * walkSpeed;
+                _Timer_inertia += Time.deltaTime;
+                float t = _Timer_inertia / speedUpTime;
+
+                rig.velocity = (Dir == dir.left?Vector2.left:Vector2.right) * Mathf.Lerp(0,walkSpeed,t);
+                //在水面浮动
+                rig.velocity += (Mathf.Sin(Time.time * 1 / floatCycle) * Vector2.up * floatScale);
                 _time0 += Time.deltaTime;
 
                 if (_isNearWall)
@@ -77,7 +89,7 @@ public class monster_4_Water : Monster_base
                     rig.velocity = Vector2.zero;
                 }
                 break;
-        }
+        }       
     }
 
     bool isSeePlayer()

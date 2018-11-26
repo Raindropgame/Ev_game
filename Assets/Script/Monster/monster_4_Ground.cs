@@ -20,6 +20,7 @@ public class monster_4_Ground : Monster_base {
     public float walkSpeed;
     public float eyeDistance;
     public GameObject deadParticle;
+    public float speedUpTime = 1f;
 
     private monster_4_Ground_state currentState = monster_4_Ground_state.idle;
     private bool _isSeePlayer = false;
@@ -27,6 +28,7 @@ public class monster_4_Ground : Monster_base {
     private bool _isNearWall = false;
     private float _time0 = 0;
     private float motionDuration = 1.5f;
+    private float _Timer_speed = 0;
 
     protected override void _FixedUpdate()
     {
@@ -60,19 +62,25 @@ public class monster_4_Ground : Monster_base {
                         currentState = monster_4_Ground_state.walk;
                         animator.SetTrigger("walk");
                         _time0 = 0;
+                        _Timer_speed = 0;
                     }
                     else
                     {
                         currentState = monster_4_Ground_state.back;
                         animator.SetTrigger("back");
                         _time0 = 0;
+                        _Timer_speed = 0;
                     }
                 }
                 break;
 
 
             case monster_4_Ground_state.back:
-                rig.velocity = Vector2.down * walkSpeed;
+                //惯性
+                _Timer_speed += Time.deltaTime;
+                float t = _Timer_speed / speedUpTime;
+                rig.velocity = Vector2.down * Mathf.Lerp(0, walkSpeed, t);
+
                 _time0 += Time.deltaTime;
 
                 if (_isNearEdge || _isNearWall)
@@ -92,7 +100,10 @@ public class monster_4_Ground : Monster_base {
 
 
             case monster_4_Ground_state.walk:
-                rig.velocity = Vector2.up * walkSpeed;
+                _Timer_speed += Time.deltaTime;
+                float t1 = _Timer_speed / speedUpTime;
+
+                rig.velocity = Vector2.up * Mathf.Lerp(0, walkSpeed, t1);
                 _time0 += Time.deltaTime;
 
                 if(_isNearEdge || _isNearWall)

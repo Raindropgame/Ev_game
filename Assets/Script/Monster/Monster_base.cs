@@ -400,7 +400,10 @@ public class Monster_base : MonoBehaviour {
         this.gameObject.tag = "maps";
         this.gameObject.layer = LayerMask.NameToLayer("terrain");
         //重力与摩擦力
-        rig.gravityScale = GameData.gravityScale_stone;
+        if (originGravity != 0)
+        {
+            rig.gravityScale = GameData.gravityScale_stone;
+        }
         rig.drag = GameData.dragScale_stone;
         //-----
 

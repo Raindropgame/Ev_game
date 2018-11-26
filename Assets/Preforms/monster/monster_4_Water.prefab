@@ -382,7 +382,7 @@ MonoBehaviour:
   - {fileID: 61000010886030882}
   foot: {fileID: 0}
   isUseHitBack: 1
-  backVelocity: {x: 1, y: 0}
+  backVelocity: {x: 0.1, y: 0}
   backTime: 0.4
   Dir: 0
   eye: {fileID: 4000014043054602}
@@ -391,6 +391,7 @@ MonoBehaviour:
   walkSpeed: 3
   eyeDistance: 5
   deadParticle: {fileID: 1000010007974244}
+  speedUpTime: 1
 --- !u!198 &198000013821977112
 ParticleSystem:
   m_ObjectHideFlags: 1

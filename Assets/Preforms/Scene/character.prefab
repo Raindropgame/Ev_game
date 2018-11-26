@@ -240,7 +240,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011722328298}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -363.97, y: -14.01, z: -0.01}
+  m_LocalPosition: {x: -618.2, y: 5.1, z: -0.01}
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -544,6 +544,9 @@ MonoBehaviour:
   DoubleAttackSpaceTime: 1
   isEnable: 010101010101010101010101
   isHurt: 0
+  DashInertiaTime: 0.23
+  jumpScale: {x: 0.5, y: 0.8, z: 1}
+  jumpScale_Time: 0.3
   rig: {fileID: 0}
   _jumpTimes: 0
   isInRain: 0

@@ -22,6 +22,9 @@ public class CharacterControl : MonoBehaviour
     public float DoubleAttackSpaceTime = 0.5f;
     public bool[] isEnable = new bool[12];  //管理人物某些功能   (依赖外部)
     public bool isHurt = false;  //人物是否处在受伤时期
+    public float DashInertiaTime = 0.1f;
+    public Vector3 jumpScale;
+    public float jumpScale_Time = 0.2f;
 
     [HideInInspector]
     public Rigidbody2D rig;
@@ -51,6 +54,9 @@ public class CharacterControl : MonoBehaviour
     [HideInInspector]
     public bool isInRain = false;
     private bool isGetInput = true;
+    private float _Timer_dash = 0;
+    private float _Timer_JumpScale;
+    private Vector3 originScale;
 
     private void Awake()
     {
@@ -71,6 +77,7 @@ public class CharacterControl : MonoBehaviour
         SpriteRenderer = this.GetComponent<SpriteRenderer>();
         animator = this.GetComponent<Animator>();
         lastState = currentState;
+        originScale = transform.localScale;
     }
 
     private void Update()
@@ -181,14 +188,19 @@ public class CharacterControl : MonoBehaviour
                 }
                 break;
             case state.jump:
+                if(JumpAccelerateTime < 0.01f)
+                {
+                    _Timer_JumpScale = 0;
+                }
+
                 isDoubleKeyDown();  //计时
                 currentState = state.fall;    //下落
-                if(Input.GetKey(KeyCode.Space) && JumpAccelerateTime < MaxJumpTime && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_jump * Time.deltaTime && isGetInput)
+                if(Input.GetKey(KeyCode.Space) && JumpAccelerateTime < MaxJumpTime * (XJumpSpeed < RunSpeed ? 0.8f : 1) && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_jump * Time.deltaTime && isGetInput)
                 {
                     CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_jump * Time.deltaTime;  //气息消耗
                     JumpAccelerateTime += Time.deltaTime;
                     //YJumpSpeed = YJumpSpeed - Mathf.Pow(Yacceleration * Time.deltaTime,3);
-                    YJumpSpeed = (-JumpSpeed / Mathf.Pow(MaxJumpTime,2)) * Mathf.Pow(JumpAccelerateTime,2 )+ JumpSpeed;
+                    YJumpSpeed = ((-JumpSpeed / Mathf.Pow(MaxJumpTime * (XJumpSpeed < RunSpeed ? 0.8f : 1), 2)) * Mathf.Pow(JumpAccelerateTime, 2) + JumpSpeed);
                     
                     if (YJumpSpeed < 0)
                     {
@@ -198,6 +210,11 @@ public class CharacterControl : MonoBehaviour
                     currentState = state.jump;
                 }
                 JumpMove(); //跳跃时移动
+
+                //跳跃形变
+                _Timer_JumpScale += Time.deltaTime;
+                float t_jumpScale = _Timer_JumpScale / (jumpScale_Time);
+                transform.localScale = Vector3.Lerp(jumpScale, originScale, t_jumpScale);
 
                 if(attack())  //攻击
                 {
@@ -249,6 +266,16 @@ public class CharacterControl : MonoBehaviour
                     currentState = isJump ? state.fall : state.endDash;
                     YJumpSpeed = 0;
                     _dashTime = 0;
+
+                    //完全冲刺后产生惯性
+                    if(isJump)
+                    {
+                        StartCoroutine(IE_dashInertia());
+                    }
+                    else
+                    {
+                        _Timer_dash = 0;
+                    }
                 }
                 break;
             case state.attack1:
@@ -401,9 +428,19 @@ public class CharacterControl : MonoBehaviour
                 }
                 break;
             case state.endDash:
-                if(!isPlayAnimation())
+                //惯性
+                _Timer_dash += Time.deltaTime;
+                float t_endDash = _Timer_dash / DashInertiaTime;
+                rig.velocity = Vector2.Lerp((Dir == dir.left ? Vector2.left : Vector2.right) * DashSpeed, Vector2.zero, t_endDash);
+
+                if(_Timer_dash > DashInertiaTime)
                 {
                     currentState = state.normal;
+                    //播放粒子特效
+                    if (!isJump)
+                    {
+                        CharacterObjectManager.instance.PlayFallParticle(isInRain);
+                    }
                 }
                 break;
             case state.Throw:
@@ -453,6 +490,7 @@ public class CharacterControl : MonoBehaviour
 
         changeAnimation(); //改变当前动画
         CharacterObjectManager.instance.changeDustParticle(currentState, lastState, isJump, isInRain, Dir);  //改变尘土粒子效果
+        correctJumpScale();  //修正跳跃形变
         lastState = currentState;
 
     }
@@ -926,5 +964,32 @@ public class CharacterControl : MonoBehaviour
     public void getInput()
     {
         isGetInput = true;
+    }
+
+    //冲刺后的惯性
+    IEnumerator IE_dashInertia()
+    {
+        float _timer0 = 0;
+        float originSpeed = Mathf.Abs(rig.velocity.x);
+        setInputNone();
+        while(_timer0 < DashInertiaTime && currentState == state.fall)
+        {
+            _timer0 += Time.deltaTime;
+            float t = _timer0 / DashInertiaTime;
+            add_Velocity(Vector2.Lerp((Dir == dir.left ? Vector2.left : Vector2.right) * originSpeed, Vector2.zero, t));
+
+            yield return null;
+        }
+
+        getInput();
+    }
+
+    //修正跳跃产生的形变
+    void correctJumpScale()
+    {
+        if(currentState != state.jump && lastState == state.jump)
+        {
+            transform.localScale = originScale;
+        }
     }
 } 
