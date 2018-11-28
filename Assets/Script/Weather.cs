@@ -11,6 +11,7 @@ public class Weather : MonoBehaviour {
     //---委托
     public delegate void OnWeatherChange();
     public static event OnWeatherChange onWeatherChange;
+    public static event OnWeatherChange becomeDay, becomeNight;
     //------
 
     public static Weather instance;  //单例模式
@@ -22,6 +23,7 @@ public class Weather : MonoBehaviour {
 
     private Blur Script_Blur;
     private Bloom Bloom_script;
+    private DayOrNight currentState;
 
     private void Awake()
     {
@@ -34,7 +36,11 @@ public class Weather : MonoBehaviour {
 
         Script_Blur = GameObject.Find("BackGroundCamera").GetComponent<Blur>();
         Bloom_script = Screen1_render.instance.GetComponent<Bloom>();
-
+        
+        if(WeatherData.getIntance().currentTime < DayTime)
+        {
+            currentState = DayOrNight.Day;
+        }
         
     }
 
@@ -67,11 +73,35 @@ public class Weather : MonoBehaviour {
         Script_Blur.nightColor = SmoothLerp_BackgroundCamera();   //更新背景相机
 
         changeCameraThreshold();
+
+        //昼夜情况
+        if(WeatherData.getIntance().currentTime < DayTime)
+        {
+            if(currentState == DayOrNight.Night)
+            {
+                currentState = DayOrNight.Day;
+                if(becomeDay != null)
+                {
+                    becomeDay();
+                }
+            }
+        }
+        else
+        {
+            if(currentState == DayOrNight.Day)
+            {
+                currentState = DayOrNight.Night;
+                if(becomeNight != null)
+                {
+                    becomeNight();
+                }
+            }
+        }
     }
 
     public DayOrNight getDayState()  //获得当前昼夜情况
     {
-        if(WeatherData.getIntance().currentTime < DayTime)
+        if (WeatherData.getIntance().currentTime < DayTime)
         {
             return DayOrNight.Day;
         }

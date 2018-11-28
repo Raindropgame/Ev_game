@@ -1,0 +1,171 @@
+fileFormatVersion: 2
+guid: b03ab96f8353d51448d3833996917ca3
+timeCreated: 1543381082
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: monster_5_0
+    21300002: monster_5_1
+    21300004: monster_5_2
+    21300006: monster_5_3
+    21300008: monster_5_4
+    21300010: monster_5_5
+    21300012: monster_5_6
+    21300014: monster_5_7
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: monster_5_0
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 806
+        width: 360
+        height: 182
+      alignment: 9
+      pivot: {x: 0.56717646, y: 0.03176813}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: monster_5_1
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 800
+        width: 360
+        height: 181
+      alignment: 9
+      pivot: {x: 0.56717646, y: 0.035543706}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: monster_5_2
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 548
+        width: 359
+        height: 202
+      alignment: 9
+      pivot: {x: 0.5673636, y: 0.038221}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: monster_5_3
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 524
+        width: 438
+        height: 187
+      alignment: 9
+      pivot: {x: 0.5309391, y: 0.036431786}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: monster_5_4
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 282
+        width: 440
+        height: 182
+      alignment: 9
+      pivot: {x: 0.5320613, y: 0.03493525}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: monster_5_5
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 271
+        width: 438
+        height: 181
+      alignment: 9
+      pivot: {x: 0.519991, y: 0.061928935}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: monster_5_6
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 27
+        width: 383
+        height: 170
+      alignment: 9
+      pivot: {x: 0.54572344, y: 0.027860204}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: monster_5_7
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 23
+        width: 362
+        height: 175
+      alignment: 9
+      pivot: {x: 0.57525146, y: 0.030231366}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

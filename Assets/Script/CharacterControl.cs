@@ -195,12 +195,12 @@ public class CharacterControl : MonoBehaviour
 
                 isDoubleKeyDown();  //计时
                 currentState = state.fall;    //下落
-                if(Input.GetKey(KeyCode.Space) && JumpAccelerateTime < MaxJumpTime * (XJumpSpeed < RunSpeed ? 0.8f : 1) && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_jump * Time.deltaTime && isGetInput)
+                if(Input.GetKey(KeyCode.Space) && JumpAccelerateTime < MaxJumpTime * (XJumpSpeed < RunSpeed ? 0.92f : 1.0f) && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_jump * Time.deltaTime && isGetInput)
                 {
                     CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_jump * Time.deltaTime;  //气息消耗
                     JumpAccelerateTime += Time.deltaTime;
                     //YJumpSpeed = YJumpSpeed - Mathf.Pow(Yacceleration * Time.deltaTime,3);
-                    YJumpSpeed = ((-JumpSpeed / Mathf.Pow(MaxJumpTime * (XJumpSpeed < RunSpeed ? 0.8f : 1), 2)) * Mathf.Pow(JumpAccelerateTime, 2) + JumpSpeed);
+                    YJumpSpeed = ((-JumpSpeed / Mathf.Pow(MaxJumpTime * (XJumpSpeed < RunSpeed ? 0.92f : 1.0f), 2)) * Mathf.Pow(JumpAccelerateTime, 2) + JumpSpeed);
                     
                     if (YJumpSpeed < 0)
                     {

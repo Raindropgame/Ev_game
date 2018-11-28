@@ -54,6 +54,7 @@
 			{
 				fixed4 col = tex2D(_MainTex, i.uv) * i.color;
 				col.rgb = lerp(col.rgb,_hitColor * 0.7 + 0.3 * col.rgb.rgb,_isHit);
+				clip(col.a - 0.001);
 				return col;
 			}
 			ENDCG

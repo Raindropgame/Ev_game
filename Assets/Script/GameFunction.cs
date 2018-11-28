@@ -39,4 +39,13 @@ public class GameFunction{
 
         return Vector3.Lerp(t4, t5, t);
     }
+
+    //vector3
+    static public Vector3 t_Vector3 = Vector3.zero;
+
+    static public Vector3 getVector3(float x,float y,float z)
+    {
+        t_Vector3.Set(x, y, z);
+        return t_Vector3;
+    }
 }

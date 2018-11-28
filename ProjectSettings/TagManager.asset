@@ -56,3 +56,6 @@ TagManager:
   - name: map
     uniqueID: 2450203575
     locked: 0
+  - name: Effect
+    uniqueID: 3314353711
+    locked: 0
