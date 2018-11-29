@@ -103,7 +103,7 @@ GameObject:
   - 114: {fileID: 114000010143832900}
   - 58: {fileID: 58000011781998852}
   - 61: {fileID: 61000012013794392}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: character
   m_TagString: Player
   m_Icon: {fileID: 0}

@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 4dbd45665b983024f95a86b37dd46eba
-timeCreated: 1543475950
+guid: 56e29e443c2ebde49a466edc9f702f92
+timeCreated: 1543503910
 licenseType: Pro
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: Material_3_0
+  fileIDToRecycleName: {}
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -33,39 +32,26 @@ TextureImporter:
     filterMode: -1
     aniso: 16
     mipBias: -1
-    wrapMode: 1
-  nPOTScale: 0
+    wrapMode: 0
+  nPOTScale: 1
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 2
+  spriteMode: 0
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
-  alphaIsTransparency: 1
+  alphaIsTransparency: 0
   spriteTessellationDetail: -1
-  textureType: 8
+  textureType: 0
   buildTargetSettings: []
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Material_3_0
-      rect:
-        serializedVersion: 2
-        x: 381
-        y: 28
-        width: 257
-        height: 988
-      alignment: 9
-      pivot: {x: 0.3834961, y: 0.08388648}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
+    sprites: []
     outline: []
   spritePackingTag: 
   userData: 

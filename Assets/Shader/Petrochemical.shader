@@ -14,7 +14,7 @@
 
 		Pass
 		{
-			ZWrite off
+			ZWrite on
 			Cull off
 			blend SrcAlpha OneMinusSrcAlpha
 
@@ -58,6 +58,7 @@
 				fixed4 col_stone = tex2D(_Tex_stone,i.uv);
 				fixed4 finalCol = fixed4((col.rgb * 0.2 + col_stone.rgb * 0.8) * _DarkScale,col.a);
 				finalCol.rgb = lerp(_LineColor.rgb ,finalCol.rgb ,step(_Scale,col.r + col.g + col.b));
+				clip(finalCol.a - 0.001f);
 				return finalCol;
 			}
 			ENDCG

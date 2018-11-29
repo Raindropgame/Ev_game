@@ -341,7 +341,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -392,6 +392,8 @@ MonoBehaviour:
   eyeDistance: 5
   deadParticle: {fileID: 1000010007974244}
   speedUpTime: 1
+  floatScale: 0.1
+  floatCycle: 0.2
 --- !u!198 &198000013821977112
 ParticleSystem:
   m_ObjectHideFlags: 1

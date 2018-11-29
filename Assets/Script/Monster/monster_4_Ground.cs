@@ -124,7 +124,7 @@ public class monster_4_Ground : Monster_base {
 
     bool isSeePlayer()
     {
-        int mask = (1 << 0) | (1 << 9);  //检测特定层
+        int mask = (1 << 17) | (1 << 9);  //检测特定层
         Vector2 rayDir = eye.position.x > colliderID[0].bounds.center.x ? Vector2.right : Vector2.left;
         RaycastHit2D hitPoint = Physics2D.Raycast(eye.position, rayDir, eyeDistance, mask);
         if(hitPoint.transform != null)

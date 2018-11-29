@@ -3,19 +3,18 @@ using System.Collections;
 
 public class Element : MonoBehaviour {
 
-    //检测不连续
-
-    public bool isAddRig = false;
+    public bool isAddRig = false;  //是否可接受事件
     public Attribute element;
-    [HideInInspector]
-    public bool isTrigger = false;
     [HideInInspector]
     public ArrayList TriggerElement = new ArrayList();
     [HideInInspector]
     public bool isLock = false;
 
+    private BoxCollider2D BoxColl;
+
     private void Start()
     {
+        BoxColl = GetComponent<BoxCollider2D>();
         if(isAddRig)
         {
             Rigidbody2D t;
@@ -32,39 +31,33 @@ public class Element : MonoBehaviour {
         }
     }
 
-    private void FixedUpdate()
-    {
-        if (TriggerElement.Count > 0)
-        {
-            TriggerElement.Clear();
-            isTrigger = false;
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if(!isLock)
-        {
-            isTrigger = true;
-            TriggerElement.Add(collision.GetComponent<Element>().element);
-        }
-    }
-
 
     //是否含有该元素
     public bool isContainElement(Attribute e)
     {
+        getElements();
         if (TriggerElement.Count > 0)
         {
-            if (isTrigger)
+            if (TriggerElement.Contains(e))
             {
-                if (TriggerElement.Contains(e))
-                {
-                    return true;
-                }
-            }
+                return true;
+            }           
         }
         return false;
+    }
+
+    void getElements()
+    {
+        TriggerElement.Clear();
+        int mask = 1 << 16;
+        RaycastHit2D[] hitPoints = Physics2D.BoxCastAll(BoxColl.bounds.center, BoxColl.size * transform.lossyScale.x, transform.rotation.eulerAngles.z, Vector2.zero, 0, mask);
+        for(int i = 0;i<hitPoints.Length;i++)
+        {
+            if (hitPoints[i].collider != BoxColl)  //排除自己
+            {
+                TriggerElement.Add(hitPoints[i].collider.GetComponent<Element>().element);
+            }
+        }
     }
 
 }

@@ -97,7 +97,7 @@ GameObject:
   - 198: {fileID: 198000014292746512}
   - 199: {fileID: 199000013024634760}
   m_Layer: 0
-  m_Name: Particle
+  m_Name: Particle_back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -417,7 +417,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010341890682}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -214.2, y: 18.4, z: 0}
+  m_LocalPosition: {x: -560.3, y: 32.5, z: -3.5312495}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -543,7 +543,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011881357116}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.1, y: 30.6, z: -5}
+  m_LocalPosition: {x: -6.1, y: 30.6, z: -5.1}
   m_LocalScale: {x: 51.91461, y: 32.24444, z: 4.0187607}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -1150,7 +1150,7 @@ ParticleSystem:
   moveWithTransform: 0
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -1922618419
+  randomSeed: -669447122
   InitialModule:
     serializedVersion: 2
     enabled: 1

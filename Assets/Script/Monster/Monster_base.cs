@@ -28,6 +28,7 @@ public class Monster_base : MonoBehaviour {
     protected Vector2 additionalVelocity = Vector2.zero;
     [HideInInspector]
     public dir Dir = dir.left;
+    protected bool isHurtPlayer = true; //是否对玩家产生伤害
 
     //资源----
     static private GameObject m_effect_lightning = null;
@@ -376,6 +377,10 @@ public class Monster_base : MonoBehaviour {
         Destroy(t_iceFrag);
     }
 
+    virtual protected void OnPetrochemicalStart()
+    { }
+    virtual protected void OnPetrochemicalEnd()
+    { }
     protected IEnumerator petrochemical()  //石化
     {
         if(abnormalState.Contains(AbnormalState.stone))
@@ -383,6 +388,8 @@ public class Monster_base : MonoBehaviour {
             yield break;
         }
         abnormalState.Add(AbnormalState.stone);
+
+        OnPetrochemicalStart();
 
         float originGravity = rig.gravityScale;
         float originDrag = rig.drag;
@@ -393,6 +400,7 @@ public class Monster_base : MonoBehaviour {
         SR.material = stone_material;
         this.enabled = false;
         animator.enabled = false;
+        isHurtPlayer = false;
         for(int i = 0;i<colliderID.Length;i++)
         {
             colliderID[i].isTrigger = false;
@@ -407,7 +415,10 @@ public class Monster_base : MonoBehaviour {
         rig.drag = GameData.dragScale_stone;
         //-----
 
+        //石化持续
         yield return new WaitForSeconds(GameData.stoneTime);
+
+        OnPetrochemicalEnd();
 
         SR.material = originMaterial;
         this.enabled = true;
@@ -417,6 +428,7 @@ public class Monster_base : MonoBehaviour {
             this.enabled = false;
             animator.enabled = false;
         }
+        isHurtPlayer = true;
         for (int i = 0; i < colliderID.Length; i++)
         {
             colliderID[i].isTrigger = true;

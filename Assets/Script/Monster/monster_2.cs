@@ -106,7 +106,7 @@ public class monster_2 : Monster_base {
 
     bool isSeePlayer()  //是否看到了主角
     {
-        int mask = (1 << 0) | (1 << 9);  //检测特定层
+        int mask = (1 << 17) | (1 << 9);  //检测特定层
         RaycastHit2D HitPoint = Physics2D.Raycast(eye.position, Dir == dir.right ? Vector2.right : Vector2.left, 15f, mask);
         if (HitPoint.transform != null)
         {
@@ -205,9 +205,9 @@ public class monster_2 : Monster_base {
         Destroy(this.gameObject);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) 
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.tag == "Player")
+        if(collision.tag.CompareTo("Player") == 0 && isHurtPlayer)
         {
             CharacterControl.instance.hurt(1, Attribute.normal);
         }

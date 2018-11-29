@@ -123,7 +123,7 @@ public class monster_1 : Monster_base {
 
     bool isSeePlayer()  //是否看到了主角
     {
-        int mask = (1 << 0) | (1 << 9);  //检测特定层
+        int mask = (1 << 17) | (1 << 9);  //检测特定层
         RaycastHit2D HitPoint = Physics2D.Raycast(rightPoint.position, Dir == dir.right ? Vector2.left : Vector2.right, 7f, mask);
         RaycastHit2D HitPoint_2 = Physics2D.Raycast(leftPoint.position, Dir == dir.left ? Vector2.left : Vector2.right, 7f, mask);
         if (HitPoint.transform != null)

@@ -94,7 +94,7 @@ public class monster_4_Water : Monster_base
 
     bool isSeePlayer()
     {
-        int mask = (1 << 0) | (1 << 9);  //检测特定层
+        int mask = (1 << 17) | (1 << 9);  //检测特定层
         RaycastHit2D hitPoint = Physics2D.Raycast(eye.position, Vector2.up, eyeDistance, mask);
         if (hitPoint.transform != null)
         {

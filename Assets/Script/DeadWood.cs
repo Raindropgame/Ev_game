@@ -10,7 +10,6 @@ public class DeadWood : MonoBehaviour {
     public bool isInRain = false;
 
     private bool isBurning = false;
-    private bool isBurningOver = false;
     private BoxCollider2D BoxColl;
     private bool isInShelter = false;
 
@@ -152,7 +151,6 @@ public class DeadWood : MonoBehaviour {
         if (isNormal)
         {
             Destroy(this.gameObject);
-            isBurningOver = true;
         }
         else
         {

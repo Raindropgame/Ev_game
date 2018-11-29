@@ -43,6 +43,8 @@ public class monster_5 : Monster_base{
         }
     }
     private float Timer_stop = 0;
+    private ParticleSystem.EmissionModule dashParticle;
+    private float originParticleRate;
 
     public override void onStart()
     {
@@ -50,6 +52,9 @@ public class monster_5 : Monster_base{
 
         animator.SetTrigger(currentState.ToString());
         Gravity = GameFunction.GetGameObjectInChildrenByName(this.gameObject, "Gravity").GetComponent<BoxCollider2D>();
+        dashParticle = GameFunction.GetGameObjectInChildrenByName(this.gameObject, "DashDustParticle").GetComponent<ParticleSystem>().emission;
+        originParticleRate = dashParticle.rate.constant;
+        dashParticle.rate = 0;
 
         if (transform.localScale.x < 0)  //向右
         {
@@ -160,6 +165,16 @@ public class monster_5 : Monster_base{
     {
         currentState = state;
         animator.SetTrigger(state.ToString());
+
+        //尘土粒子特效
+        if(state == monster_5_state.dash || state == monster_5_state.stop)
+        {
+            dashParticle.rate = originParticleRate;
+        }
+        else
+        {
+            dashParticle.rate = 0;
+        }
     }
 
     //改变方向
@@ -175,12 +190,11 @@ public class monster_5 : Monster_base{
 
     bool isSeePlayer()  //是否看到了主角
     {
-        int mask = (1 << 0) | (1 << 9);  //检测特定层
+        int mask = (1 << 17) | (1 << 9);  //检测特定层
         RaycastHit2D HitPoint = Physics2D.Raycast(transform.position + (Dir == dir.left?offset_Left:offset_Right), Dir == dir.right ? Vector2.right : Vector2.left, 40f, mask);
-        Debug.DrawLine(transform.position + (Dir == dir.left ? offset_Left : offset_Right), transform.position + (Dir == dir.left ? offset_Left : offset_Right) + (Dir == dir.right ? Vector3.right : Vector3.left) * 40f);
         if (HitPoint.transform != null)
         {
-            if (HitPoint.transform.tag == "Player")
+            if (HitPoint.transform.tag.CompareTo("Player") == 0)
             {
                 return true;
             }
@@ -232,7 +246,8 @@ public class monster_5 : Monster_base{
 
     bool isSeePlayer_rest()
     {
-        RaycastHit2D[] hitPoint = Physics2D.CircleCastAll(transform.position, rest_view_radius, Vector2.zero);
+        int mask = (1 << 17) | (1 << 9);  //检测特定层
+        RaycastHit2D[] hitPoint = Physics2D.CircleCastAll(transform.position, rest_view_radius, Vector2.zero,mask);
         for(int i = 0;i<hitPoint.Length;i++)
         {
             if(hitPoint[i].transform.tag.CompareTo("Player") == 0)
@@ -295,6 +310,7 @@ public class monster_5 : Monster_base{
 
     override protected IEnumerator die()  //死亡
     {
+        dashParticle.enabled = false;
         eye.SetActive(false);
         this.GetComponent<BoxCollider2D>().enabled = false;
         deadParticle.SetActive(true);
@@ -309,11 +325,34 @@ public class monster_5 : Monster_base{
         Destroy(this.gameObject);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag.CompareTo("Player") == 0 && isHurtPlayer)
         {
             CharacterControl.instance.hurt(1, Attribute.normal);
+        }
+    }
+
+    protected override void OnPetrochemicalStart()
+    {
+        base.OnPetrochemicalStart();
+
+        //停止发射粒子
+        dashParticle.rate = 0;
+    }
+
+    protected override void OnPetrochemicalEnd()
+    {
+        base.OnPetrochemicalEnd();
+
+        //粒子
+        if (currentState == monster_5_state.dash || currentState == monster_5_state.stop)
+        {
+            dashParticle.rate = originParticleRate;
+        }
+        else
+        {
+            dashParticle.rate = 0;
         }
     }
 
