@@ -100,7 +100,7 @@ public class monster_5 : Monster_base{
 
                 if(_isSeePlayer)
                 {
-                    angryValue += (Time.deltaTime * 3);
+                    angryValue += (Time.deltaTime * 3.5f);
                 }
 
                 if(angryValue > 5)
@@ -108,6 +108,14 @@ public class monster_5 : Monster_base{
                     if (_isSeePlayer)
                     {
                         changeState(monster_5_state.dash);
+                    }
+                }
+
+                if(Weather.instance.getDayState() == DayOrNight.Night && angryValue < 0.1f)
+                {
+                    if (!_isSeePlayer)
+                    {
+                        changeState(monster_5_state.rest);
                     }
                 }
                 break;
@@ -127,18 +135,25 @@ public class monster_5 : Monster_base{
 
             case monster_5_state.rest:
 
-                if(_isSeePlayer)
+                if (Weather.instance.getDayState() == DayOrNight.Day)
                 {
-                    angryValue += 3;
-                    changeState(monster_5_state.idle);
-                    if(CharacterControl.instance.transform.position.x > transform.position.x)
+                    if (_isSeePlayer)
                     {
-                        changeDir(dir.right);
+                        angryValue += 10;
+                        changeState(monster_5_state.idle);
+                        if (CharacterControl.instance.transform.position.x > transform.position.x)
+                        {
+                            changeDir(dir.right);
+                        }
+                        else
+                        {
+                            changeDir(dir.left);
+                        }
                     }
-                    else
-                    {
-                        changeDir(dir.left);
-                    }
+                }
+                else
+                {
+
                 }
                 break;
 
@@ -262,6 +277,21 @@ public class monster_5 : Monster_base{
     {
         currentHP -= damage;
 
+        if(currentState == monster_5_state.rest)
+        {
+            changeState(monster_5_state.idle);
+        }
+        else
+        {
+            if(currentState == monster_5_state.idle)  //被攻击并且没看到人
+            {
+                if(!_isSeePlayer)
+                {
+                    changeState(monster_5_state.dash);
+                }
+            }
+        }
+
         if (attribute == Attribute.fire)
         {
             if (abnormalState.Contains(AbnormalState.frozen))
@@ -356,4 +386,26 @@ public class monster_5 : Monster_base{
         }
     }
 
+    protected override void OnFrozenStart()
+    {
+        base.OnPetrochemicalStart();
+
+        //停止发射粒子
+        dashParticle.rate = 0;
+    }
+
+    protected override void OnFrozenEnd()
+    {
+        base.OnPetrochemicalEnd();
+
+        //粒子
+        if (currentState == monster_5_state.dash || currentState == monster_5_state.stop)
+        {
+            dashParticle.rate = originParticleRate;
+        }
+        else
+        {
+            dashParticle.rate = 0;
+        }
+    }
 }

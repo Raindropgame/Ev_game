@@ -48,4 +48,14 @@ public class GameFunction{
         t_Vector3.Set(x, y, z);
         return t_Vector3;
     }
+
+    private static Color m_Color = Color.white;
+    static public Color getColor(float r,float g,float b)
+    {
+        m_Color.r = r;
+        m_Color.g = g;
+        m_Color.b = b;
+        return m_Color;
+    }
+
 }

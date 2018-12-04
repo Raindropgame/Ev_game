@@ -25,6 +25,8 @@ public class CharacterControl : MonoBehaviour
     public float DashInertiaTime = 0.1f;
     public Vector3 jumpScale;
     public float jumpScale_Time = 0.2f;
+    public float proportion_dashScale = 0.4f;
+    public Vector3 dashScale;
 
     [HideInInspector]
     public Rigidbody2D rig;
@@ -57,6 +59,7 @@ public class CharacterControl : MonoBehaviour
     private float _Timer_dash = 0;
     private float _Timer_JumpScale;
     private Vector3 originScale;
+    private float Timer_dashScale = 0;
 
     private void Awake()
     {
@@ -260,6 +263,10 @@ public class CharacterControl : MonoBehaviour
                 }
 
                 _dashTime += Time.deltaTime;
+                Timer_dashScale += Time.deltaTime;
+
+                float t_dashScale = Timer_dashScale / (proportion_dashScale * DashTime);
+                transform.localScale = Vector3.Lerp(dashScale, originScale, t_dashScale);
                 rig.velocity = new Vector2(Dir == dir.left ? -DashSpeed : DashSpeed, 0);
                 if(_dashTime > DashTime)
                 {
@@ -491,6 +498,7 @@ public class CharacterControl : MonoBehaviour
         changeAnimation(); //改变当前动画
         CharacterObjectManager.instance.changeDustParticle(currentState, lastState, isJump, isInRain, Dir);  //改变尘土粒子效果
         correctJumpScale();  //修正跳跃形变
+        correntDashScale();  //修正冲刺形变
         lastState = currentState;
 
     }
@@ -780,6 +788,7 @@ public class CharacterControl : MonoBehaviour
             currentState = state.dash;  //冲刺
             CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_dash;
             CharacterObjectManager.instance.dash();
+            Timer_dashScale = 0;
             return true;
         }
         return false;
@@ -990,6 +999,18 @@ public class CharacterControl : MonoBehaviour
         if(currentState != state.jump && lastState == state.jump)
         {
             transform.localScale = originScale;
+        }
+    }
+
+    //修正冲刺产生的形变
+    void correntDashScale()
+    {
+        if(lastState == state.dash)
+        {
+            if(currentState != state.dash)
+            {
+                transform.localScale = originScale;
+            }
         }
     }
 } 

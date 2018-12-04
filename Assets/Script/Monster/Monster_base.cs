@@ -12,12 +12,14 @@ public class Monster_base : MonoBehaviour {
     [HideInInspector]
     public int currentHP;
     public Collider2D[] colliderID;   //一个怪物提供多个碰撞体
-    public Transform foot;
     [Header("是否打开击退效果")]
     public bool isUseHitBack = false;
     public Vector2 backVelocity;
     public float backTime;
+    [Header("是否检测在雨中的状态")]
+    public bool isGetRainState = true;
     [Header("---------------")]
+
 
     protected Texture texture;
     protected SpriteRenderer SR;
@@ -29,6 +31,8 @@ public class Monster_base : MonoBehaviour {
     [HideInInspector]
     public dir Dir = dir.left;
     protected bool isHurtPlayer = true; //是否对玩家产生伤害
+    protected bool isInRain = false;  //是否在雨中
+    protected bool isInShelter = false;
 
     //资源----
     static private GameObject m_effect_lightning = null;
@@ -151,6 +155,9 @@ public class Monster_base : MonoBehaviour {
 
         if (isEnable)
         {
+            //是否在雨中
+
+
             _FixedUpdate();
 
             CalAdditionalVelocity();  //计算额外速度
@@ -219,15 +226,37 @@ public class Monster_base : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "lighting")   //被雷电击中
+        if(collision.tag.CompareTo("lighting") == 0)   //被雷电击中
         {
             _getHurt(GameData.lightningDamage, Attribute.lightning,Vector2.zero);
+        }
+        else
+        {
+            if(collision.gameObject.layer == LayerMask.NameToLayer("shelter"))
+            {
+                isInShelter = true;
+            }
         }
 
         TriggerEnter(collision);
     }
 
     virtual public void TriggerEnter(Collider2D collision)   
+    {
+
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.gameObject.layer == LayerMask.NameToLayer("shelter"))
+        {
+            isInShelter = false;
+        }
+
+        TriggerExit(collision);
+    }
+
+    virtual public void TriggerExit(Collider2D collision)
     {
 
     }
@@ -278,17 +307,22 @@ public class Monster_base : MonoBehaviour {
         return false;
     }
 
+    RaycastHit2D hitPoint;
     protected bool isGround()  //是否落地
     {
         LayerMask layerMask = 1 << 9;
-        RaycastHit2D HitPoint = Physics2D.Raycast(foot.position, Vector2.down, 2f, layerMask);
-        if (HitPoint.distance <= 0.15f && (HitPoint.transform != null))
+        RaycastHit2D hitPoint = Physics2D.Raycast(colliderID[0].bounds.center + GameFunction.getVector3(0, -colliderID[0].bounds.extents.y, 0), Vector2.down, 0.1f, layerMask);
+        if (hitPoint.transform != null)
         {
             return true;
         }
         return false;
     }
 
+    virtual protected void OnFrozenStart()
+    { }
+    virtual protected void OnFrozenEnd()
+    { }
     protected IEnumerator frozen()  //冰冻
     {
         if(abnormalState.Contains(AbnormalState.frozen))  //是否已经被冰冻
@@ -296,10 +330,14 @@ public class Monster_base : MonoBehaviour {
             yield break;
         }
 
-        abnormalState.Add(AbnormalState.frozen);  
+        abnormalState.Add(AbnormalState.frozen);
+        isHurtPlayer = false;
         //---添加图层
         GameObject t = new GameObject();
         SpriteRenderer t_SR = t.AddComponent<SpriteRenderer>();
+        Quaternion originRotato = transform.rotation;
+        transform.rotation = Quaternion.Euler(Vector3.zero);
+
         if (SR.bounds.extents.x > SR.bounds.extents.y)  //选择图片
         {
             t_SR.sprite = iceCube[1];
@@ -308,24 +346,26 @@ public class Monster_base : MonoBehaviour {
         {
             t_SR.sprite = iceCube[0];
         }
+        transform.rotation = originRotato;
 
         Bounds t_bounds = SR.bounds,bounds = t_SR.bounds;
-        t.transform.position = t_bounds.center + Vector3.back * 0.01f ;
         Vector2 scale = Vector2.zero;
         if(t_bounds.extents.x > t_bounds.extents.y)  //宽大于高
         {
-            float _scale = t_bounds.extents.x / (bounds.extents.x * 0.41f);
+            float _scale = t_bounds.extents.x / (bounds.extents.x * 0.67f);
             scale.x = _scale;
             scale.y = _scale;
+            t.transform.position = t_bounds.center + GameFunction.getVector3(0,bounds.extents.y * 0.33f * _scale - t_bounds.extents.y,-0.01f);
         }
         else   //高大于宽
         {
-            float _scale = t_bounds.extents.x / (bounds.extents.x * 0.41f);
+            t.transform.position = t_bounds.center + Vector3.back * 0.01f;
+            float _scale = t_bounds.extents.y / (bounds.extents.y * 0.68f);
             scale.x = _scale;
             scale.y = _scale;
         }
         t.transform.localScale = scale;
-        t.transform.parent = transform;
+        t.transform.SetParent(transform, true);
         t.transform.Rotate(transform.rotation.eulerAngles);
         //----
         animator.enabled = false;
@@ -353,6 +393,14 @@ public class Monster_base : MonoBehaviour {
                 Destroy(t);
                 yield return new WaitForSeconds(_t_iceFrag.GetComponent<ParticleSystem>().duration);
                 Destroy(_t_iceFrag);
+                if(!abnormalState.Contains(AbnormalState.stone))
+                {
+                    isHurtPlayer = true;
+                }
+                else
+                {
+                    isHurtPlayer = false;
+                }
                 yield break;
             }
 
@@ -568,5 +616,40 @@ public class Monster_base : MonoBehaviour {
         }
     }
 
+    private void OnDrawGizmos()
+    {
+        try
+        {
+            Gizmos.DrawWireCube(SR.bounds.center, SR.bounds.size);
+        }
+        catch
+        {
 
+        }
+    }
+
+    //改变方向
+    void changeDir(dir d)
+    {
+        if (Dir != d)
+        {
+            Dir = d;
+            GameFunction.t_Vector3.Set(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+            transform.localScale = GameFunction.t_Vector3;
+        }
+    }
+
+    void getIsInRain()
+    {
+        if (isGetRainState)
+        {
+            if (!isInShelter)
+            {
+                if (WeatherData.getIntance().currentWeather == weather.Rain || WeatherData.getIntance().currentWeather == weather.RainAndThunder)
+                {
+                    isInRain = true;
+                }
+            }
+        }
+    }
 }

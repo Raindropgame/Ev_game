@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Element : MonoBehaviour {
 
-    public bool isAddRig = false;  //是否可接受事件
     public Attribute element;
     [HideInInspector]
     public ArrayList TriggerElement = new ArrayList();
@@ -15,20 +14,6 @@ public class Element : MonoBehaviour {
     private void Start()
     {
         BoxColl = GetComponent<BoxCollider2D>();
-        if(isAddRig)
-        {
-            Rigidbody2D t;
-            t = GetComponent<Rigidbody2D>();
-            if (t == null)
-            {
-                t = this.gameObject.AddComponent<Rigidbody2D>();
-                t.gravityScale = 0;
-            }
-            else
-            {
-                t.gravityScale = 0;
-            }
-        }
     }
 
 

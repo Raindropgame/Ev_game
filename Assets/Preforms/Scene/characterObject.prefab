@@ -1008,7 +1008,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAddRig: 0
   element: 0
-  isTrigger: 0
   isLock: 0
 --- !u!114 &114000010296506652
 MonoBehaviour:
@@ -1074,7 +1073,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAddRig: 0
   element: 0
-  isTrigger: 0
   isLock: 0
 --- !u!114 &114000011933592616
 MonoBehaviour:
@@ -1089,7 +1087,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAddRig: 0
   element: 5
-  isTrigger: 0
   isLock: 0
 --- !u!114 &114000011967474926
 MonoBehaviour:
@@ -1161,7 +1158,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAddRig: 0
   element: 0
-  isTrigger: 0
   isLock: 0
 --- !u!114 &114000014028958184
 MonoBehaviour:
@@ -15229,7 +15225,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 112247dc1f8b4f348b35c05f3eae41c9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.347}
   m_FlipX: 0
@@ -15328,7 +15324,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 112247dc1f8b4f348b35c05f3eae41c9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.347}
   m_FlipX: 0

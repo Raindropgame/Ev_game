@@ -12,7 +12,6 @@
 		Pass
 		{
 			ZWrite Off
-			ZTest Always
 			Cull Off
 			blend SrcAlpha OneMinusSrcAlpha
 

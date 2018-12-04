@@ -27,7 +27,6 @@ public class Mechanical_1 : MonoBehaviour {
         MB.SetTexture("_MainTex", SR.sprite.texture);
     }
 
-
     private void FixedUpdate()
     {
         if (!isMalfunction)

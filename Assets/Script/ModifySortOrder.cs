@@ -11,5 +11,6 @@ public class ModifySortOrder : MonoBehaviour {
 	void Start () {
         Render = GetComponent<TrailRenderer>();
         Render.sortingOrder = SortingOrder;
+        Destroy(this);
 	}
 }

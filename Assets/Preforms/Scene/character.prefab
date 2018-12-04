@@ -517,6 +517,8 @@ MonoBehaviour:
   DashInertiaTime: 0.23
   jumpScale: {x: 0.5, y: 0.8, z: 1}
   jumpScale_Time: 0.3
+  proportion_dashScale: 0.7
+  dashScale: {x: 0.7, y: 0.23, z: 1}
   rig: {fileID: 0}
   _jumpTimes: 0
   isInRain: 0

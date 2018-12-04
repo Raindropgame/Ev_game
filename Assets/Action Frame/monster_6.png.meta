@@ -1,0 +1,227 @@
+fileFormatVersion: 2
+guid: ad411c8e774945c478c168bd5e10fee9
+timeCreated: 1543911581
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: monster_6_0
+    21300002: monster_6_1
+    21300004: monster_6_2
+    21300006: monster_6_3
+    21300008: monster_6_4
+    21300010: monster_6_5
+    21300012: monster_6_6
+    21300014: monster_6_7
+    21300016: monster_6_8
+    21300018: monster_6_9
+    21300020: monster_6_10
+    21300022: monster_6_11
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: monster_6_0
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 728
+        width: 238
+        height: 278
+      alignment: 9
+      pivot: {x: 0.5319291, y: 0.023556717}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: monster_6_1
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 732
+        width: 236
+        height: 275
+      alignment: 9
+      pivot: {x: 0.5274383, y: 0.02264027}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: monster_6_2
+      rect:
+        serializedVersion: 2
+        x: 668
+        y: 888
+        width: 221
+        height: 73
+      alignment: 9
+      pivot: {x: 0.103726625, y: 0.45429805}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: monster_6_3
+      rect:
+        serializedVersion: 2
+        x: 683
+        y: 763
+        width: 219
+        height: 65
+      alignment: 9
+      pivot: {x: 0.10010797, y: 0.4358417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: monster_6_4
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 674
+        width: 84
+        height: 186
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: monster_6_5
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 434
+        width: 260
+        height: 272
+      alignment: 9
+      pivot: {x: 0.63358337, y: 0.03252512}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: monster_6_6
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 431
+        width: 259
+        height: 277
+      alignment: 9
+      pivot: {x: 0.6340992, y: 0.03883808}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: monster_6_7
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 432
+        width: 295
+        height: 267
+      alignment: 9
+      pivot: {x: 0.5678471, y: 0.0347945}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: monster_6_8
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 83
+        width: 238
+        height: 277
+      alignment: 9
+      pivot: {x: 0.5408453, y: 0.024273703}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: monster_6_9
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 86
+        width: 238
+        height: 275
+      alignment: 9
+      pivot: {x: 0.5703447, y: 0.020813877}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: monster_6_10
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 78
+        width: 238
+        height: 274
+      alignment: 9
+      pivot: {x: 0.5521912, y: 0.021036135}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: monster_6_11
+      rect:
+        serializedVersion: 2
+        x: 782
+        y: 79
+        width: 239
+        height: 275
+      alignment: 9
+      pivot: {x: 0.5632712, y: 0.018850125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
