@@ -298,14 +298,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hurtColor: {r: 0, g: 0, b: 0, a: 0}
-  MaxHP: 100
+  MaxHP: 4
   currentHP: 0
   colliderID:
   - {fileID: 61000012585975980}
   isUseHitBack: 1
   backVelocity: {x: 2, y: 0}
   backTime: 0.05
-  isGetRainState: 1
+  isGetRainState: 0
   Dir: 0
   walkSpeed: 1.5
   attackSpeed: 30
@@ -324,7 +324,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   element: 0
-  isLock: 0
 --- !u!198 &198000013363069950
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -527,9 +526,9 @@ ParticleSystem:
         atime7: 0
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
-      minColor: {r: 1, g: 1, b: 1, a: 1}
+      minColor: {r: 0.3764706, g: 0.23137255, b: 0.09803922, a: 1}
       maxColor: {r: 0.5529412, g: 0.4509804, b: 0.14509805, a: 1}
-      minMaxState: 0
+      minMaxState: 2
     startSize:
       scalar: 3
       maxCurve:
