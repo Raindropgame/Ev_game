@@ -18,7 +18,8 @@ public class CharacterObjectManager : MonoBehaviour
     public ParticleSystem WalkDust,WalkDust_rain;
     public ParticleSystem JumpDust,JumpDust_rain;
     public ParticleSystem FallDust, FallDust_rain;
-    public GameObject BeHurt_BG;   
+    public GameObject BeHurt_BG;
+    public ParticleSystem Particle_Treat;
 
     private GameObject character;
     private GameObject _attack1_left, _attack1_right, _attack2_left, _attack2_right;
@@ -407,5 +408,10 @@ public class CharacterObjectManager : MonoBehaviour
         }
         BeHurt_BG.SetActive(false);
         isBeHurt = false;
+    }
+
+    public void PLayTreat()
+    {
+        Particle_Treat.Play();
     }
 }

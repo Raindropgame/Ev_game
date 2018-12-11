@@ -45,6 +45,7 @@ public class monster_6 :Monster_base {
     }
     private bool isDash = false;
     private RaycastHit2D hitPoint;
+    private GameObject Attack_Effect;
 
     public override void onStart()
     {
@@ -56,6 +57,7 @@ public class monster_6 :Monster_base {
         eye_Left = colliderID[0].bounds.min - transform.position + GameFunction.getVector3(-0.2f,0.2f,0);
         changeDir(dir.right);
         eye_Right = colliderID[0].bounds.max + Vector3.down * colliderID[0].bounds.size.y - transform.position + GameFunction.getVector3(0.2f, 0.2f, 0);
+        Attack_Effect = GameFunction.GetGameObjectInChildrenByName(this.gameObject, "Attack_Effect");
     }
 
     protected override void _FixedUpdate()
@@ -289,6 +291,8 @@ public class monster_6 :Monster_base {
 
     override protected IEnumerator die()  //死亡
     {
+        Attack_Effect.SetActive(false);
+
         this.GetComponent<BoxCollider2D>().enabled = false;
         deadParticle.SetActive(true);
         GetComponent<SpriteRenderer>().enabled = false;
@@ -306,7 +310,7 @@ public class monster_6 :Monster_base {
     {
         if(collision.tag.CompareTo("Player") == 0)
         {
-            CharacterControl.instance.hurt(isBurning?2:1,Attribute.normal);
+            CharacterControl.instance.hurt(isBurning?2:1,Attribute.normal,colliderID[0].bounds.center);
         }
     }
 
@@ -328,7 +332,7 @@ public class monster_6 :Monster_base {
             float t = Timer_1 / (burnTime * 0.1f);
 
             //渐变动画
-            SR.color = Color.Lerp(Color.white, GameFunction.getColor(1, 0.48f, 0.48f), t);
+            SR.color = Color.Lerp(Color.white, GameFunction.getColor(1, 0.48f, 0.48f,1), t);
 
             yield return null;
         }
@@ -355,7 +359,7 @@ public class monster_6 :Monster_base {
             float t = Timer_1 / (burnTime * 0.1f);
 
             //渐变动画
-            SR.color = Color.Lerp(GameFunction.getColor(1, 0.48f, 0.48f), Color.white, t);
+            SR.color = Color.Lerp(GameFunction.getColor(1, 0.48f, 0.48f,1), Color.white, t);
 
             yield return null;
         }

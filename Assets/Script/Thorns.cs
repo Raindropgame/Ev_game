@@ -17,8 +17,10 @@ public class Thorns : MonoBehaviour {
     private Vector3 t_vec3_0;
     private float origin_y;
     private float random_factor;
+    private BoxCollider2D Coll;
 
 	void Start () {
+        Coll = GetComponent<BoxCollider2D>();
         SR = GetComponent<SpriteRenderer>();
         MaterialPropertyBlock MB = null;
         MB = new MaterialPropertyBlock();
@@ -47,7 +49,7 @@ public class Thorns : MonoBehaviour {
     {
         if (collision.tag.CompareTo("Player") == 0)
         {
-            CharacterControl.instance.hurt(damage, Attribute.normal);
+            CharacterControl.instance.hurt(damage, Attribute.normal, Coll.bounds.center);
 
             return;
         }

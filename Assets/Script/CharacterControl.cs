@@ -799,10 +799,35 @@ public class CharacterControl : MonoBehaviour
         CharacterObjectManager.instance.arrow();
     }
 
-    public bool hurt(int Damage,Attribute attribute)  //受伤调用函数
+    public bool hurt(int Damage,Attribute attribute,Vector3 CollCenter)  //受伤调用函数
     {
         float hurt_contined_time = 1;  //无敌持续时间
         if(!isHurt)
+        {
+            //方向
+            if(CollCenter.x > transform.position.x)
+            {
+                Dir = dir.right;
+            }
+            else
+            {
+                Dir = dir.left;
+            }           
+
+            CharacterAttribute.GetInstance().reduce_HP(Damage);
+            isHurt = true;
+            currentState = state.hurt;
+            _dashTime = 0;
+            Invoke("end_invincibility", hurt_contined_time);
+            CharacterObjectManager.instance.BeHurt();  //开启图片动画
+            return true;
+        }
+        return false;
+    }
+    public bool hurt(int Damage, Attribute attribute)  //受伤调用函数(不指定方向)
+    {
+        float hurt_contined_time = 1;  //无敌持续时间
+        if (!isHurt)
         {
             CharacterAttribute.GetInstance().reduce_HP(Damage);
             isHurt = true;

@@ -50,11 +50,12 @@ public class GameFunction{
     }
 
     private static Color m_Color = Color.white;
-    static public Color getColor(float r,float g,float b)
+    static public Color getColor(float r,float g,float b,float a)
     {
         m_Color.r = r;
         m_Color.g = g;
         m_Color.b = b;
+        m_Color.a = a;
         return m_Color;
     }
 

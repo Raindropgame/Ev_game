@@ -115,6 +115,7 @@ public class CharacterAttribute{
         {
             HP += num;
         }
+        CharacterObjectManager.instance.PLayTreat();
         return HP;
     }
 

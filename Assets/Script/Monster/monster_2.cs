@@ -209,7 +209,7 @@ public class monster_2 : Monster_base {
     {
         if(collision.tag.CompareTo("Player") == 0 && isHurtPlayer)
         {
-            CharacterControl.instance.hurt(1, Attribute.normal);
+            CharacterControl.instance.hurt(1, Attribute.normal, colliderID[0].bounds.center);
         }
     }
 

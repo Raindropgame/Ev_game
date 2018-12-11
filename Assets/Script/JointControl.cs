@@ -13,9 +13,11 @@ public class JointControl : MonoBehaviour {
 
     private Rigidbody2D rig;
     private float _time0 = 0;
+    private BoxCollider2D Coll;
 
 	void Start () {
         rig = GetComponent<Rigidbody2D>();
+        Coll = GetComponent<BoxCollider2D>();
 	}
 
 
@@ -55,7 +57,7 @@ public class JointControl : MonoBehaviour {
     {
         if(collision.transform.tag == "Player")
         {
-            CharacterControl.instance.hurt(1, Attribute.normal);
+            CharacterControl.instance.hurt(1, Attribute.normal,Coll.bounds.center);
         }
     }
 

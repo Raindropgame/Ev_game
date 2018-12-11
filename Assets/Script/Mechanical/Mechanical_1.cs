@@ -18,6 +18,7 @@ public class Mechanical_1 : MonoBehaviour {
     private MaterialPropertyBlock MB;
     private SpriteRenderer SR;
     private Material originMaterial;
+    private BoxCollider2D BoxColl;
 
     private void Start()
     {
@@ -25,6 +26,7 @@ public class Mechanical_1 : MonoBehaviour {
         SR = GetComponent<SpriteRenderer>();
         originMaterial = SR.material;
         MB.SetTexture("_MainTex", SR.sprite.texture);
+        BoxColl = GetComponent<BoxCollider2D>();
     }
 
     private void FixedUpdate()
@@ -75,7 +77,7 @@ public class Mechanical_1 : MonoBehaviour {
     {
         if(collision.tag.CompareTo("Player") == 0)
         {
-            CharacterControl.instance.hurt(1, Attribute.normal);
+            CharacterControl.instance.hurt(1, Attribute.normal, BoxColl.bounds.center);
         }
     }
 

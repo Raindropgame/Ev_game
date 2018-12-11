@@ -94,7 +94,7 @@ public class Lighting : MonoBehaviour {
     {
         if(collision.tag == "Player")  //击中玩家
         {
-            CharacterControl.instance.hurt(GameData.lightningDamage,Attribute.lightning);
+            CharacterControl.instance.hurt(GameData.lightningDamage,Attribute.lightning,ECollider.bounds.center);
         }
     }
 
