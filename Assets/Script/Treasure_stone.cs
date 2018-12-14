@@ -13,7 +13,6 @@ public class Treasure_stone : MonoBehaviour {
             {
                 if (collision.tag.Substring(0, 4).CompareTo("arms") == 0)
                 {
-                    Debug.Log("Boom");
                     isUsed = true;
                     Broken();
                 }

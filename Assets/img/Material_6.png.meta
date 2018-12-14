@@ -1,0 +1,157 @@
+fileFormatVersion: 2
+guid: 08081496f46161246aa16c7f24787e82
+timeCreated: 1544712585
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Material_6_0
+    21300002: Material_6_1
+    21300004: Material_6_2
+    21300006: Material_6_3
+    21300008: Material_6_4
+    21300010: Material_6_5
+    21300012: Material_6_6
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Material_6_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 785
+        width: 216
+        height: 235
+      alignment: 9
+      pivot: {x: 0.5266574, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Material_6_1
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 806
+        width: 220
+        height: 187
+      alignment: 9
+      pivot: {x: 0.5366418, y: 0.51231635}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Material_6_2
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 675
+        width: 252
+        height: 330
+      alignment: 9
+      pivot: {x: 0.4771508, y: 0.5279175}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Material_6_3
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 392
+        width: 145
+        height: 369
+      alignment: 9
+      pivot: {x: 0.5000001, y: 0.54993373}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Material_6_4
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 417
+        width: 330
+        height: 356
+      alignment: 9
+      pivot: {x: 0.37088162, y: 0.46441686}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Material_6_5
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 0
+        width: 136
+        height: 364
+      alignment: 9
+      pivot: {x: 0.33911526, y: 0.64553136}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Material_6_6
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 277
+        width: 232
+        height: 331
+      alignment: 9
+      pivot: {x: 0.777972, y: 0.51391655}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

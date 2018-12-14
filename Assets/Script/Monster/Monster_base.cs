@@ -332,6 +332,7 @@ public class Monster_base : MonoBehaviour {
 
         abnormalState.Add(AbnormalState.frozen);
         isHurtPlayer = false;
+
         //---添加图层
         GameObject t = new GameObject();
         SpriteRenderer t_SR = t.AddComponent<SpriteRenderer>();
@@ -368,9 +369,12 @@ public class Monster_base : MonoBehaviour {
         t.transform.SetParent(transform, true);
         t.transform.Rotate(transform.rotation.eulerAngles);
         //----
+
         animator.enabled = false;
         isEnable = false;
         rig.velocity = Vector2.zero;
+        float originGravity = rig.gravityScale;  //添加重力
+        rig.gravityScale = GameData.gravityScale_stone;
 
         float _time1 = 0;
         int _currentHP = currentHP;
@@ -380,10 +384,12 @@ public class Monster_base : MonoBehaviour {
 
             if(_currentHP != currentHP)
             {
+                rig.gravityScale = originGravity; //还原重力
                 animator.enabled = true;
                 isEnable = true;
                 if (abnormalState.Contains(AbnormalState.stone))  //是否被石化
                 {
+                    rig.gravityScale = GameData.gravityScale_stone;
                     animator.enabled = false;
                 }
                 abnormalState.Remove(AbnormalState.frozen);
@@ -410,10 +416,12 @@ public class Monster_base : MonoBehaviour {
             yield return null;
         }
 
+        rig.gravityScale = originGravity; //还原重力
         animator.enabled = true;
         isEnable = true;
         if (abnormalState.Contains(AbnormalState.stone))  //是否被石化
         {
+            rig.gravityScale = GameData.gravityScale_stone;
             animator.enabled = false;
         }
         abnormalState.Remove(AbnormalState.frozen);
@@ -456,10 +464,7 @@ public class Monster_base : MonoBehaviour {
         this.gameObject.tag = "maps";
         this.gameObject.layer = LayerMask.NameToLayer("terrain");
         //重力与摩擦力
-        if (originGravity != 0)
-        {
-            rig.gravityScale = GameData.gravityScale_stone;
-        }
+        rig.gravityScale = GameData.gravityScale_stone;
         rig.drag = GameData.dragScale_stone;
         //-----
 

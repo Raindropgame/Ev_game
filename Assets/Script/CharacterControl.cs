@@ -1038,4 +1038,9 @@ public class CharacterControl : MonoBehaviour
             }
         }
     }
+
+    public Vector3 getCollCenter()
+    {
+        return _collider.bounds.center;
+    }
 } 
