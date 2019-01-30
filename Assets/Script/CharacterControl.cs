@@ -61,6 +61,9 @@ public class CharacterControl : MonoBehaviour
     private Vector3 originScale;
     private float Timer_dashScale = 0;
 
+    public delegate void HurtHandler();
+    public static event HurtHandler Event_hurt;
+
     private void Awake()
     {
         instance = this;
@@ -812,8 +815,12 @@ public class CharacterControl : MonoBehaviour
             else
             {
                 Dir = dir.left;
-            }           
+            }
 
+            if (Event_hurt != null)
+            {
+                Event_hurt();
+            }
             CharacterAttribute.GetInstance().reduce_HP(Damage);
             isHurt = true;
             currentState = state.hurt;
@@ -829,6 +836,10 @@ public class CharacterControl : MonoBehaviour
         float hurt_contined_time = 1;  //无敌持续时间
         if (!isHurt)
         {
+            if (Event_hurt != null)
+            {
+                Event_hurt();
+            }
             CharacterAttribute.GetInstance().reduce_HP(Damage);
             isHurt = true;
             currentState = state.hurt;
@@ -1042,5 +1053,19 @@ public class CharacterControl : MonoBehaviour
     public Vector3 getCollCenter()
     {
         return _collider.bounds.center;
+    }
+
+    //控制Door_1的钥匙
+    private bool m_isGetDoor1_Key = false;
+    public bool isGetDoor1_Key
+    {
+        set
+        {
+            m_isGetDoor1_Key = value;
+        }
+        get
+        {
+            return m_isGetDoor1_Key;
+        }
     }
 } 

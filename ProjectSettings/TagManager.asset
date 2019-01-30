@@ -16,6 +16,7 @@ TagManager:
   - enemy
   - damage
   - conductor
+  - Door_1
   layers:
   - Default
   - TransparentFX

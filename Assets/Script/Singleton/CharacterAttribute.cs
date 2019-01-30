@@ -123,4 +123,25 @@ public class CharacterAttribute{
     {
         MaxHP += num;
     }
+
+    //金币
+    private int m_coinNum = 0;
+    public int coinNum
+    {
+        get
+        {
+            return m_coinNum;
+        }
+        set
+        {
+            if (value < 0)
+            {
+                m_coinNum = 0;
+            }
+            else
+            {
+                m_coinNum = value;
+            }
+        }
+    }
 }

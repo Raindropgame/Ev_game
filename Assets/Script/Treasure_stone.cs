@@ -33,9 +33,23 @@ public class Treasure_stone : MonoBehaviour {
         stone_broken = null;
 
         //奖励
-        GameObject Soul = Resources.Load<GameObject>("Soul");
-        Instantiate(Soul, position: transform.position, rotation: Quaternion.Euler(0, 0, 0));
-        Soul = null;
+        float t = Random.value;
+        if (t < 0.5f)
+        {
+            GameObject Soul = Resources.Load<GameObject>("Soul");
+            Instantiate(Soul, position: transform.position, rotation: Quaternion.Euler(0, 0, 0));
+            Soul = null;
+        }
+        else
+        {
+            int num = Random.Range(4, 7);
+            GameObject Coin = Resources.Load<GameObject>("Coin");
+            for (int i = 0; i < num; i++)
+            {
+                ((GameObject)Instantiate(Coin, position: transform.position, rotation: Quaternion.Euler(0, 0, 0))).GetComponent<Rigidbody2D>().AddForce(Random.insideUnitCircle * 200);
+            }
+            Coin = null;
+        }
 
         Resources.UnloadUnusedAssets();
     }

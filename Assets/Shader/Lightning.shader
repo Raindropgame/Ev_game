@@ -1,4 +1,6 @@
-﻿Shader "Self/Lightning"
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Self/Lightning"
 {
 	Properties
 	{
@@ -41,7 +43,7 @@
 			v2f vert (appdata v)
 			{
 				v2f o;
-				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.uv = v.uv;
 				o.pos = v.vertex;
 				o.col = v.col;

@@ -192,6 +192,16 @@ public class monster_2 : Monster_base {
 
     override protected IEnumerator die()  //死亡
     {
+        //销毁光晕
+        try
+        {
+            Destroy(GameFunction.GetGameObjectInChildrenByName(this.gameObject, "Bloom"));
+        }
+        catch
+        {
+
+        }
+
         this.GetComponent<BoxCollider2D>().enabled = false;
         deadParticle.SetActive(true);
         GetComponent<SpriteRenderer>().enabled = false;
