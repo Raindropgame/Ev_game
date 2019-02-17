@@ -74,7 +74,7 @@ public class CharacterControl : MonoBehaviour
     {
         Init();
         rig = this.GetComponent<Rigidbody2D>();
-        XJumpSpeed = Walkspeed + 1;
+        XJumpSpeed = Walkspeed + 2.5f;
         YJumpSpeed = JumpSpeed;
         Yacceleration = JumpSpeed / MaxJumpTime;
         _collider = this.GetComponent<BoxCollider2D>();
@@ -112,7 +112,7 @@ public class CharacterControl : MonoBehaviour
                 if(Input.GetKeyDown(KeyCode.Space) && isEnable[(int)state.jump] && isGetInput)
                 {
                     currentState = state.jump;    //跳跃
-                    XJumpSpeed = Walkspeed + 1;
+                    XJumpSpeed = Walkspeed + 2.5f;
                 }
 
                 attack(); // 攻击
@@ -123,7 +123,7 @@ public class CharacterControl : MonoBehaviour
                 if(OnGround() == false)
                 {
                     currentState = state.fall;  //落下
-                    XJumpSpeed = Walkspeed + 1;
+                    XJumpSpeed = Walkspeed + 2.5f;
                     YJumpSpeed = 0;
                 }
                 break;
@@ -137,7 +137,7 @@ public class CharacterControl : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Space) && isEnable[(int)state.jump] && isGetInput)
                 {
                     currentState = state.jump;    //跳跃
-                    XJumpSpeed = Walkspeed + 1;
+                    XJumpSpeed = Walkspeed + 2.5f;
                 }
 
                 dash(); //冲刺
@@ -148,7 +148,7 @@ public class CharacterControl : MonoBehaviour
                 if (OnGround() == false)
                 {
                     currentState = state.fall;  //落下
-                    XJumpSpeed = Walkspeed + 1;
+                    XJumpSpeed = Walkspeed + 2.5f;
                     YJumpSpeed = 0;
                 }
                 break;
@@ -576,12 +576,12 @@ public class CharacterControl : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.LeftArrow) && isGetInput)
         {
-            rig.velocity = new Vector2(-XJumpSpeed, rig.velocity.y);
+            rig.velocity = GameFunction.getVector2(-XJumpSpeed, rig.velocity.y);
             Dir = dir.left;
         }
         if(Input.GetKey(KeyCode.RightArrow) && isGetInput)
         {
-            rig.velocity = new Vector2(XJumpSpeed, rig.velocity.y);
+            rig.velocity = GameFunction.getVector2(XJumpSpeed, rig.velocity.y);
             Dir = dir.right;
         }
     }

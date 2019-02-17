@@ -17,7 +17,7 @@ public class Door_1 : MonoBehaviour {
 	}
 	
 	void Update () {
-        if (!isLock)
+        if (isLock)
         {
             if (isStone)
             {

@@ -3,6 +3,9 @@ using System.Collections;
 
 public class Treasure_stone : MonoBehaviour {
 
+    public float odds_icon = 0.5f;
+    public int minCoin = 4, maxCoin = 7;
+
     private bool isUsed = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -34,7 +37,7 @@ public class Treasure_stone : MonoBehaviour {
 
         //奖励
         float t = Random.value;
-        if (t < 0.5f)
+        if (t > odds_icon)
         {
             GameObject Soul = Resources.Load<GameObject>("Soul");
             Instantiate(Soul, position: transform.position, rotation: Quaternion.Euler(0, 0, 0));
@@ -42,11 +45,11 @@ public class Treasure_stone : MonoBehaviour {
         }
         else
         {
-            int num = Random.Range(4, 7);
+            int num = Random.Range(minCoin, maxCoin);
             GameObject Coin = Resources.Load<GameObject>("Coin");
             for (int i = 0; i < num; i++)
             {
-                ((GameObject)Instantiate(Coin, position: transform.position, rotation: Quaternion.Euler(0, 0, 0))).GetComponent<Rigidbody2D>().AddForce(Random.insideUnitCircle * 200);
+                ((GameObject)Instantiate(Coin, position: transform.position, rotation: Quaternion.Euler(0, 0, 0))).GetComponent<Rigidbody2D>().AddForce(Random.insideUnitCircle * 800);
             }
             Coin = null;
         }

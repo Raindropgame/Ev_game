@@ -133,7 +133,6 @@ public class Door_1_key : MonoBehaviour {
     IEnumerator IE_destory(GameObject Door1)
     {
         Door_1 t_Door_1 = Door1.GetComponent<Door_1>();
-        Vector3 targetPos = t_Door_1.Stone_trans.position;
 
         const float duration = 2f;
         float timer = 0;
@@ -142,7 +141,7 @@ public class Door_1_key : MonoBehaviour {
             timer += Time.deltaTime;
             float t = timer / duration;
 
-            transform.position = Vector3.Lerp(transform.position, t_Door_1.Stone_trans.position, t);
+            transform.position = Vector3.Lerp(transform.position, t_Door_1.Stone_trans.position + Vector3.back * 0.1f, t);
 
             yield return null;
         }

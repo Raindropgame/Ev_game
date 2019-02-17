@@ -49,6 +49,15 @@ public class GameFunction{
         return t_Vector3;
     }
 
+    //vector2
+    static public Vector2 t_Vector2 = Vector2.zero;
+
+    static public Vector2 getVector2(float x, float y)
+    {
+        t_Vector2.Set(x, y);
+        return t_Vector2;
+    }
+
     private static Color m_Color = Color.white;
     static public Color getColor(float r,float g,float b,float a)
     {

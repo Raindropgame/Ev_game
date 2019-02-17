@@ -13,13 +13,16 @@ public class BackgorundMove : MonoBehaviour {
 
     private void OnEnable()
     {
-        maps = GameObject.FindGameObjectsWithTag("map");
-        background = GameObject.FindGameObjectsWithTag("map_background");
-        for(int i = 0;i<background.Length;i++)  //防止背景抖动，直接设为摄像机子物体
+        if (!test.isEditor)
         {
-            background[i].transform.SetParent(this.transform, true);
+            maps = GameObject.FindGameObjectsWithTag("map");
+            background = GameObject.FindGameObjectsWithTag("map_background");
+            for (int i = 0; i < background.Length; i++)  //防止背景抖动，直接设为摄像机子物体
+            {
+                background[i].transform.SetParent(this.transform, true);
+            }
+            nowPosition = this.transform.position;
         }
-        nowPosition = this.transform.position;
     }
 
     private void Update()  //Update 背景会抖动

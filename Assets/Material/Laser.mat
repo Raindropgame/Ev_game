@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Masker_base
-  m_Shader: {fileID: 4800000, guid: fbef04fe9c689a345b3ccc3ed1dedbd7, type: 3}
+  m_Name: Laser
+  m_Shader: {fileID: 4800000, guid: 2286658530091494eab7e5d5e4a61fb4, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -48,7 +48,7 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 09487775e6cea5443b73d19b9ec087ad, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -56,6 +56,12 @@ Material:
       second:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _NoiseTex
+      second:
+        m_Texture: {fileID: 2800000, guid: a6a31a4127eb1574384f4b9f2c1ea41c, type: 3}
+        m_Scale: {x: 1, y: 5}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _OcclusionMap
@@ -71,9 +77,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - first:
-        name: _Alpha
-      second: 0
-    - first:
         name: _BumpScale
       second: 1
     - first:
@@ -83,11 +86,11 @@ Material:
         name: _DetailNormalMapScale
       second: 1
     - first:
-        name: _Distance
-      second: 51.67
-    - first:
         name: _DstBlend
       second: 0
+    - first:
+        name: _FlashCycle
+      second: 41.17
     - first:
         name: _GlossMapScale
       second: 1
@@ -116,11 +119,17 @@ Material:
         name: _SpecularHighlights
       second: 1
     - first:
+        name: _Speed
+      second: 3
+    - first:
         name: _SrcBlend
       second: 1
     - first:
         name: _UVSec
       second: 0
+    - first:
+        name: _Width
+      second: 0.133
     - first:
         name: _ZWrite
       second: 1
