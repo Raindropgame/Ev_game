@@ -88,7 +88,6 @@ public class CharacterControl : MonoBehaviour
 
     private void Update()
     {
-
         isJump = !OnGround();  //测试
         isInRain = checkIsInRain(); //是否在雨中
 

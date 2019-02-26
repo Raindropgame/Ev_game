@@ -39,7 +39,7 @@ public class Sword : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.tag == "maps")  //碰到地面
+        if(collision.gameObject.layer.CompareTo(LayerMask.NameToLayer("terrain")) == 0)  //碰到地面
         {
             CharacterControl.instance.add_Velocity(new Vector2(CharacterControl.instance.Dir == dir.left ? Velocity : -Velocity, 0));
         }
@@ -47,7 +47,7 @@ public class Sword : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "enemy")  //攻击敌人
+        if (collision.tag.CompareTo("enemy") == 0)  //攻击敌人
         {
             CharacterControl.instance.add_Velocity(new Vector2(CharacterControl.instance.Dir == dir.left ?  backVelocity_enemy: -backVelocity_enemy, 0));  //击退并加特效
             GameObject t = CharacterObjectManager.instance.getHitPoint();
@@ -63,7 +63,7 @@ public class Sword : MonoBehaviour {
     {
         Collider.isTrigger = true;  //碰到物体变为触发器
         HitPoint = collision.contacts[0];  //获取碰撞点
-        if (collision.transform.tag == "maps")
+        if (collision.gameObject.layer.CompareTo(LayerMask.NameToLayer("terrain")) == 0)
         {
             GameObject t = CharacterObjectManager.instance.getHitPoint();
             t.SetActive(true);

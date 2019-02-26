@@ -33,10 +33,10 @@ Material:
       second: 0
     - first:
         name: _Scale
-      second: 1
+      second: 0.782
     - first:
         name: _Total
-      second: 1
+      second: 0.82
     m_Colors:
     - first:
         name: <noninit>

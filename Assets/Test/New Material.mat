@@ -6,9 +6,9 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Fire_new
-  m_Shader: {fileID: 4800000, guid: ebc7a8fb50dfb7843a9aeea1218393ff, type: 3}
-  m_ShaderKeywords: _EMISSION
+  m_Name: New Material
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: PIXELSNAP_ON _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -40,12 +40,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
-        name: _DistortTex
-      second:
-        m_Texture: {fileID: 2800000, guid: a4e1894d13a12df428b5600a8cdef3a6, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
         name: _EmissionMap
       second:
         m_Texture: {fileID: 0}
@@ -54,15 +48,9 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: d8c064639e63aeb41a61fc111e69a489, type: 3}
-        m_Scale: {x: 1.2, y: 1.2}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _Mask
-      second:
-        m_Texture: {fileID: 2800000, guid: 0c198852369dfff47931c76818f7186b, type: 3}
-        m_Scale: {x: 1.59, y: 2.14}
-        m_Offset: {x: -0.27, y: -0.6}
     - first:
         name: _MetallicGlossMap
       second:
@@ -83,8 +71,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - first:
-        name: _Alpha
-      second: 0.79
+        name: PixelSnap
+      second: 1
     - first:
         name: _BumpScale
       second: 1
@@ -94,12 +82,6 @@ Material:
     - first:
         name: _DetailNormalMapScale
       second: 1
-    - first:
-        name: _Discard
-      second: 0.355
-    - first:
-        name: _DistortStrength
-      second: 0.02
     - first:
         name: _DstBlend
       second: 0
@@ -113,12 +95,6 @@ Material:
         name: _GlossyReflections
       second: 1
     - first:
-        name: _GradientTimes
-      second: 3.7
-    - first:
-        name: _Height
-      second: -0.7
-    - first:
         name: _Metallic
       second: 0
     - first:
@@ -131,23 +107,11 @@ Material:
         name: _Parallax
       second: 0.02
     - first:
-        name: _Random
-      second: 0
-    - first:
-        name: _Rim
-      second: 0.496
-    - first:
-        name: _RimWidth
-      second: 0.585
-    - first:
         name: _SmoothnessTextureChannel
       second: 0
     - first:
         name: _SpecularHighlights
       second: 1
-    - first:
-        name: _Speed_Y
-      second: -1.45
     - first:
         name: _SrcBlend
       second: 1
@@ -161,12 +125,6 @@ Material:
     - first:
         name: _Color
       second: {r: 1, g: 1, b: 1, a: 1}
-    - first:
-        name: _ColorBottom
-      second: {r: 1, g: 0.7941177, b: 0, a: 1}
-    - first:
-        name: _ColorTop
-      second: {r: 1, g: 0.2647059, b: 0, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}

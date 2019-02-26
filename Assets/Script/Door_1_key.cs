@@ -147,6 +147,7 @@ public class Door_1_key : MonoBehaviour {
         }
 
         t_Door_1.Unlock();  //解锁
+        CharacterControl.instance.isGetDoor1_Key = false;
         Destroy(this.gameObject);
     }
 
