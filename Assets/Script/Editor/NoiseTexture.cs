@@ -31,7 +31,6 @@ public class NoiseTexture : EditorWindow{
 
     delegate float delegate_noise(Vector2 p, Perlin perlin);
     delegate_noise noise;
-    Vector2 t_vec2 = Vector2.zero;
 
     private void OnGUI()
     {

@@ -155,8 +155,8 @@ QualitySettings:
     softVegetation: 1
     realtimeReflectionProbes: 1
     billboardsFaceCameraPosition: 1
-    vSyncCount: 1
-    lodBias: 1
+    vSyncCount: 0
+    lodBias: 2
     maximumLODLevel: 0
     particleRaycastBudget: 4096
     asyncUploadTimeSlice: 2

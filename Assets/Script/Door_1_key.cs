@@ -6,6 +6,7 @@ public class Door_1_key : MonoBehaviour {
     public float speed;
     public Vector3 offset;
     public Transform bloom;
+    public Transform effect;
 
     private bool isAttract = false;
     private Vector3 originPos;
@@ -19,6 +20,7 @@ public class Door_1_key : MonoBehaviour {
     private Color originColor_bloom;
     private Coroutine bloomCor = null;
     private bool isDisenble = false;
+    private Vector3 originScale_effect;
 
     private void Awake()
     {
@@ -37,6 +39,7 @@ public class Door_1_key : MonoBehaviour {
         bloom.localScale = Vector3.zero;
         SR_bloom = bloom.GetComponent<SpriteRenderer>();
         originColor_bloom = SR_bloom.color;
+        originScale_effect = effect.localScale;
     }
 
     private void FixedUpdate()
@@ -141,10 +144,13 @@ public class Door_1_key : MonoBehaviour {
             timer += Time.deltaTime;
             float t = timer / duration;
 
-            transform.position = Vector3.Lerp(transform.position, t_Door_1.Stone_trans.position + Vector3.back * 0.1f, t);
+            transform.position = Vector3.Lerp(transform.position, t_Door_1.Stone_trans.position + Vector3.back * 0.1f, t * 0.8f);
+            effect.localScale = Vector3.Lerp(effect.localScale, Vector3.zero, t);
 
             yield return null;
         }
+
+        Instantiate(ResourcesManagement.getInstance().getResources("Effect_expand"), position: transform.position, rotation: Quaternion.Euler(Vector3.zero));  //特效
 
         t_Door_1.Unlock();  //解锁
         CharacterControl.instance.isGetDoor1_Key = false;
@@ -164,10 +170,12 @@ public class Door_1_key : MonoBehaviour {
             if (isShow)
             {
                 bloom.localScale = Vector3.Lerp(Vector3.zero, originScale_bloom, t);
+                effect.localScale = Vector3.Lerp(effect.localScale, originScale_effect * 0.6f,t);
             }
             else
             {
                 bloom.localScale = Vector3.Lerp(originScale_bloom, Vector3.zero, t);
+                effect.localScale = Vector3.Lerp(effect.localScale, originScale_effect,t);
             }
 
             yield return null;
