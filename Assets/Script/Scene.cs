@@ -27,7 +27,7 @@ public class Scene : MonoBehaviour {
 
         character = GameObject.Find("character");
 
-        character.transform.position = new Vector3(BornPosition[TheSceneManager.getInstance().BornPositionNum].position.x, BornPosition[TheSceneManager.getInstance().BornPositionNum].position.y , -0.1f); // 更改位置
+        character.transform.position = GameFunction.getVector3(BornPosition[TheSceneManager.getInstance().BornPositionNum].position.x, BornPosition[TheSceneManager.getInstance().BornPositionNum].position.y , -0.1f); // 更改位置
         character.GetComponent<CharacterControl>().enabled = false;
         black = GameObject.Find("black");
 
@@ -37,15 +37,16 @@ public class Scene : MonoBehaviour {
     private void Update()
     {
         _time += Time.deltaTime;
-        if(_time > 1)  //停留1s
+        if(_time > 0.6f && _time < 1)  //停留1s
+        {
+            script1.enabled = true;
+            script2.enabled = false;
+        }
+        else if(_time > 1)
         {
             black.SetActive(false);
             character.GetComponent<CharacterControl>().enabled = true;
             isInit = false;
-
-            script1.enabled = true;
-            script2.enabled = false;
-
             this.enabled = false;
         }
     }

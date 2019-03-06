@@ -179,17 +179,6 @@ public class monster_6 :Monster_base {
         }
     }
 
-    //改变方向
-    void changeDir(dir d)
-    {
-        if (Dir != d)
-        {
-            Dir = d;
-            GameFunction.t_Vector3.Set(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-            transform.localScale = GameFunction.t_Vector3;
-        }
-    }
-
     bool isSeePlayer()
     {
         int mask = (1 << 17) | (1 << 9);
@@ -291,6 +280,7 @@ public class monster_6 :Monster_base {
 
     override protected IEnumerator die()  //死亡
     {
+        isHurtPlayer = false;
         Attack_Effect.SetActive(false);
 
         this.GetComponent<BoxCollider2D>().enabled = false;

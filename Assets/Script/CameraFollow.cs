@@ -19,6 +19,9 @@ public class CameraFollow : MonoBehaviour {
     [HideInInspector]
     public CameraMoveState moveState = CameraMoveState.both;
     private Vector3 currentPosition;
+    private Vector3 temp;
+    private bool isBeControl = false;
+    private float axis = 0;
 
 
     private void Awake()
@@ -34,7 +37,7 @@ public class CameraFollow : MonoBehaviour {
     private void Update()
     {
         CameraIsMove = false;
-        Vector3 temp = this.transform.position - (character.transform.position + targetPos_offset);
+        temp = this.transform.position - (character.transform.position + targetPos_offset);
         if (Mathf.Abs(temp.x) > t || Mathf.Abs(temp.y) > t) // 判断摄像机是否在角色附近
         {
             CameraIsMove = true;
@@ -54,13 +57,27 @@ public class CameraFollow : MonoBehaviour {
                     switch (moveState)
                     {
                         case CameraMoveState.both:
-                            this.transform.position = Vector3.MoveTowards(this.transform.position, targetPosition, charaRig.velocity.magnitude * Time.deltaTime);  // 如果人物在移动则摄像机速度=人物速度
+                            if (isBeControl)
+                            {
+                                this.transform.position = Vector2.SmoothDamp(this.transform.position, targetPosition, ref currentV, smoothTime);
+                            }
+                            else
+                            {
+                                //this.transform.position = Vector3.MoveTowards(this.transform.position, targetPosition, charaRig.velocity.magnitude * Time.deltaTime);  // 如果人物在移动则摄像机速度=人物速度
+                                this.transform.position = Vector2.SmoothDamp(this.transform.position, targetPosition, ref currentV, smoothTime * 0.8f);  //更加平滑
+                            }
                             break;
                         case CameraMoveState.onlyY:
-                            this.transform.position = new Vector3(this.transform.position.x, Vector2.MoveTowards(this.transform.position, targetPosition, charaRig.velocity.magnitude * Time.deltaTime).y, this.transform.position.z);
+                            targetPosition.x = axis;
+                            //temp = Vector2.MoveTowards(this.transform.position, targetPosition, charaRig.velocity.magnitude * Time.deltaTime);
+                            temp = Vector2.SmoothDamp(this.transform.position, targetPosition, ref currentV, smoothTime * 0.8f);
+                            this.transform.position = temp;
                             break;
                         case CameraMoveState.onlyX:
-                            this.transform.position = new Vector3(Vector2.MoveTowards(this.transform.position, targetPosition, charaRig.velocity.magnitude * Time.deltaTime).x, this.transform.position.y, this.transform.position.z);
+                            targetPosition.y = axis;
+                            //temp = Vector2.MoveTowards(this.transform.position, targetPosition, charaRig.velocity.magnitude * Time.deltaTime);
+                            temp = Vector2.SmoothDamp(this.transform.position, targetPosition, ref currentV, smoothTime);
+                            this.transform.position = temp;
                             break;
                     }
                 }
@@ -76,10 +93,14 @@ public class CameraFollow : MonoBehaviour {
                             this.transform.position = Vector2.SmoothDamp(this.transform.position, targetPosition, ref currentV, smoothTime);
                             break;
                         case CameraMoveState.onlyY:
-                            this.transform.position = new Vector3(this.transform.position.x, Mathf.SmoothDamp(this.transform.position.y, targetPosition.y, ref currentV.y, smoothTime), this.transform.position.z);
+                            targetPosition.x = axis;
+                            temp = Vector2.SmoothDamp(this.transform.position, targetPosition, ref currentV, smoothTime);
+                            this.transform.position = temp;
                             break;
                         case CameraMoveState.onlyX:
-                            this.transform.position = new Vector3(Mathf.SmoothDamp(this.transform.position.x, targetPosition.x, ref currentV.x, smoothTime), this.transform.position.y, this.transform.position.z);
+                            targetPosition.y = axis;
+                            temp = Vector2.SmoothDamp(this.transform.position, targetPosition, ref currentV, smoothTime);
+                            this.transform.position = temp;
                             break;
                     }
                 }
@@ -89,15 +110,21 @@ public class CameraFollow : MonoBehaviour {
         {
             tTime = 0;
         }
-        targetPosition = character.transform.position + targetPos_offset;
+
+        if (!isBeControl)
+        {
+            targetPosition = character.transform.position + targetPos_offset;
+        }
+        
         targetPosition.z = this.transform.position.z;
 
         currentPosition = transform.position;
     }
 
-    public void changeMoveState(CameraMoveState t)
+    public void changeMoveState(CameraMoveState t,float axis)
     {
         moveState = t;
+        this.axis = axis;
     }
 
     public IEnumerator shakeCamera(float shakeScale, float singleTime, float shakeTime)  //镜头震动效果
@@ -151,4 +178,17 @@ public class CameraFollow : MonoBehaviour {
         Time.timeScale = 1;
         isStop = false;
     }
+
+    //目标位置受其他控制
+    public void StayAt(Vector3 pos)
+    {
+        isBeControl = true;
+        targetPosition = pos;
+    }
+
+    public void unStay()
+    {
+        isBeControl = false;
+    }
+
 }

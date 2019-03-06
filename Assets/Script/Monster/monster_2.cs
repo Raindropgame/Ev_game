@@ -25,6 +25,8 @@ public class monster_2 : Monster_base {
     public Vector2 bulletSpeed;
     public float idleTime;
     public GameObject deadParticle;
+    public bool isEnableEdgeRay = true;
+    public float viewDistance_player = 15.0f;  //看见玩家的距离
 
     private float _time0 = 0;
     private Vector2 _walkSpeed;
@@ -37,9 +39,10 @@ public class monster_2 : Monster_base {
         currentState = monster_2_state.walk;
         CollHeight = colliderID[0].bounds.extents.y * 2;
         eye.transform.position = GameFunction.GetGameObjectInChildrenByName(this.gameObject, "Gravity").GetComponent<BoxCollider2D>().bounds.min + new Vector3(Dir == dir.left ? -0.05f : 0.05f, 0.01f, 0);
+        viewDistance_player *= Random.Range(0.6f, 1.4f);  //每个单体看见玩家的距离不同
     }
 
-    protected override void _FixedUpdate()
+    void Update()
     {
         base._FixedUpdate();
 
@@ -97,8 +100,7 @@ public class monster_2 : Monster_base {
         {
             if (isNearEdge() || NearWall() < 0.2f)  //转换方向
             {
-                Dir = (Dir == dir.left ? dir.right : dir.left);
-                transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+                changeDir(Dir == dir.left ? dir.right : dir.left);
             }
         }
     }
@@ -107,7 +109,7 @@ public class monster_2 : Monster_base {
     bool isSeePlayer()  //是否看到了主角
     {
         int mask = (1 << 17) | (1 << 9);  //检测特定层
-        RaycastHit2D HitPoint = Physics2D.Raycast(eye.position, Dir == dir.right ? Vector2.right : Vector2.left, 15f, mask);
+        RaycastHit2D HitPoint = Physics2D.Raycast(eye.position, Dir == dir.right ? Vector2.right : Vector2.left, viewDistance_player, mask);
         if (HitPoint.transform != null)
         {
             if (HitPoint.transform.tag == "Player")
@@ -120,13 +122,20 @@ public class monster_2 : Monster_base {
 
     bool isNearEdge()   //是否在边上
     {
-        LayerMask layerMask = 1 << 9;
-        RaycastHit2D HitPoint = Physics2D.Raycast(eye.position, Vector2.down, 1f, layerMask);
-        if (HitPoint.transform == null)
+        if (isEnableEdgeRay)
         {
-            return true;
+            LayerMask layerMask = 1 << 9;
+            RaycastHit2D HitPoint = Physics2D.Raycast(eye.position, Vector2.down, 0.5f, layerMask);
+            if (HitPoint.transform == null)
+            {
+                return true;
+            }
+            return false;
         }
-        return false;
+        else
+        {
+            return false;
+        }
     }
 
     float NearWall()  //检测离墙的距离

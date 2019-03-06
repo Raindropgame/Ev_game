@@ -59,7 +59,7 @@ GameObject:
   - 114: {fileID: 114000013814265298}
   - 50: {fileID: 50000011313954226}
   - 114: {fileID: 114000010360663092}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: attack2_right
   m_TagString: arms_player
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ GameObject:
   - 114: {fileID: 114000012211434208}
   - 50: {fileID: 50000014252011876}
   - 114: {fileID: 114000012744006842}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: attack2_left
   m_TagString: arms_player
   m_Icon: {fileID: 0}
@@ -202,7 +202,7 @@ GameObject:
   - 114: {fileID: 114000013730235232}
   - 50: {fileID: 50000011451217246}
   - 114: {fileID: 114000014028958184}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: attack1_left
   m_TagString: arms_player
   m_Icon: {fileID: 0}
@@ -389,7 +389,7 @@ GameObject:
   - 114: {fileID: 114000010296506652}
   - 50: {fileID: 50000012095363134}
   - 114: {fileID: 114000014275187724}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: attack1_right
   m_TagString: arms_player
   m_Icon: {fileID: 0}
@@ -1060,7 +1060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f892141544b124c42802240409b2fb18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Velocity: 20
+  Velocity: 5
   backVelocity_enemy: 15
 --- !u!114 &114000011245787474
 MonoBehaviour:
@@ -1147,7 +1147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f892141544b124c42802240409b2fb18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Velocity: 20
+  Velocity: 5
   backVelocity_enemy: 15
 --- !u!114 &114000013730235232
 MonoBehaviour:
@@ -1194,7 +1194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f892141544b124c42802240409b2fb18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Velocity: 20
+  Velocity: 5
   backVelocity_enemy: 15
 --- !u!114 &114000014275187724
 MonoBehaviour:
@@ -1207,7 +1207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f892141544b124c42802240409b2fb18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Velocity: 20
+  Velocity: 5
   backVelocity_enemy: 15
 --- !u!198 &198000010506235070
 ParticleSystem:

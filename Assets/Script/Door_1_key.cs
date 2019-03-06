@@ -204,20 +204,4 @@ public class Door_1_key : MonoBehaviour {
             yield return null;
         }
     }
-
-    private void OnBecameInvisible()
-    {
-        if(!isAttract)
-        {
-            this.enabled = false;
-        }
-    }
-
-    private void OnBecameVisible()
-    {
-        if(this.enabled == false)
-        {
-            this.enabled = true;
-        }
-    }
 }

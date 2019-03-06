@@ -85,7 +85,7 @@ public class Pop : MonoBehaviour {
 
         if(collision.transform.tag == "arms_player")  //被打击增加弹性
         {
-            SR.color -= new Color(0, 0.25f, 0.25f,0);
+            SR.color -= GameFunction.getColor(0, 0.25f, 0.25f,0);
             correctSR_Color();
             Behavior_beAttacked(collision.contacts[0].point, backSpeed);
             speed *= add_Sccale;
@@ -102,7 +102,7 @@ public class Pop : MonoBehaviour {
     {
         if (collision.transform.tag == "arms_player")  //被打击增加弹性
         {
-            SR.color -= new Color(0, 0.25f, 0.25f, 0);
+            SR.color -= GameFunction.getColor(0, 0.25f, 0.25f, 0);
             correctSR_Color();
             speed *= add_Sccale;
             animator.SetTrigger("beHit");

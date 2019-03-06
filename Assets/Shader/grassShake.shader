@@ -15,7 +15,7 @@
 		Cull off
 		blend SrcAlpha OneMinusSrcAlpha
 
-		Tags { "RenderType"="Transparent" "Queue" = "Transparent"}
+		Tags { "RenderType"="Transparent" "Queue" = "Transparent" "DisableBatching"="True"}
 
 		Pass
 		{
@@ -51,7 +51,8 @@
 			{
 				v2f o;
 				float4 newPos = v.vertex;
-				newPos.x = v.vertex.x + (_scale * sin(_Time.y * _Speed + v.color.a * 10) + _Offset) * lerp(0,1,v.uv.y - _Pivot_y);  //a通道控制时间轴偏移
+				float random = UnityObjectToClipPos(v.vertex).x;
+				newPos.x = v.vertex.x + (_scale * sin(_Time.y * _Speed + random) + _Offset) * lerp(0,1,v.uv.y - _Pivot_y);  //a通道控制时间轴偏移
 
 				o.vertex = UnityObjectToClipPos(newPos);
 				o.color = v.color;

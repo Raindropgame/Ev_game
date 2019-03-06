@@ -308,10 +308,33 @@ public class Monster_base : MonoBehaviour {
     }
 
     RaycastHit2D hitPoint;
+    private Collider2D m_gravity;
+    protected Collider2D gravity
+    {
+        get
+        {
+            if (m_gravity == null)
+            {
+                m_gravity = GameFunction.GetGameObjectInChildrenByName(this.gameObject, "Gravity").GetComponent<Collider2D>();
+            }
+            return m_gravity;
+        }
+        set
+        {
+            m_gravity = value;
+        }
+    }
     protected bool isGround()  //是否落地
     {
+        
+
         LayerMask layerMask = 1 << 9;
-        RaycastHit2D hitPoint = Physics2D.Raycast(colliderID[0].bounds.center + GameFunction.getVector3(0, -colliderID[0].bounds.extents.y, 0), Vector2.down, 0.1f, layerMask);
+        hitPoint = Physics2D.Raycast((Vector2)gravity.bounds.min, Vector2.down, 0.05f, layerMask);
+        if (hitPoint.transform != null)
+        {
+            return true;
+        }
+        hitPoint = Physics2D.Raycast((Vector2)gravity.bounds.min + Vector2.right * gravity.bounds.size.y, Vector2.down, 0.05f, layerMask);
         if (hitPoint.transform != null)
         {
             return true;
@@ -634,7 +657,7 @@ public class Monster_base : MonoBehaviour {
     }
 
     //改变方向
-    void changeDir(dir d)
+    protected void changeDir(dir d)
     {
         if (Dir != d)
         {

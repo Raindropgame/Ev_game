@@ -38,14 +38,15 @@ public class CaveMask : MonoBehaviour {
     {
         float _time = 0;
         Color t;
-        while(_time < hideTime)
+        float a = SR[0].color.a;
+        while (_time < hideTime)
         {
             _time += Time.deltaTime;
 
             for(int i = 0;i<SR.Length;i++)
             {
                 t = SR[i].color;
-                t.a = Mathf.Lerp(1, 0, _time / hideTime);
+                t.a = Mathf.Lerp(a, 0, _time / hideTime);
                 SR[i].color = t;
             }
             yield return null;
@@ -56,6 +57,7 @@ public class CaveMask : MonoBehaviour {
     {
         float _time = 0;
         Color t;
+        float a = SR[0].color.a;
         while (_time < hideTime)
         {
             _time += Time.deltaTime;
@@ -63,7 +65,7 @@ public class CaveMask : MonoBehaviour {
             for (int i = 0; i < SR.Length; i++)
             {
                 t = SR[i].color;
-                t.a = Mathf.Lerp(0, 1, _time / hideTime);
+                t.a = Mathf.Lerp(a, 1, _time / hideTime);
                 SR[i].color = t;
             }
             yield return null;

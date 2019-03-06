@@ -18,7 +18,6 @@ public class CharacterControl : MonoBehaviour
     public state currentState = state.normal;
     public float DoubleKeySapceTime = 0.5f;
     public dir Dir = dir.right;
-    public Transform[] LeftHitTrans, RightHitTrans, HeadHitTrans;  //检测碰地的射线点  头：左面（左右）右面(左右）
     public float DoubleAttackSpaceTime = 0.5f;
     public bool[] isEnable = new bool[12];  //管理人物某些功能   (依赖外部)
     public bool isHurt = false;  //人物是否处在受伤时期
@@ -27,6 +26,7 @@ public class CharacterControl : MonoBehaviour
     public float jumpScale_Time = 0.2f;
     public float proportion_dashScale = 0.4f;
     public Vector3 dashScale;
+    public float jumpTimeFactor = 1f;
 
     [HideInInspector]
     public Rigidbody2D rig;
@@ -60,6 +60,7 @@ public class CharacterControl : MonoBehaviour
     private float _Timer_JumpScale;
     private Vector3 originScale;
     private float Timer_dashScale = 0;
+    private RaycastHit2D hitPoint;
 
     public delegate void HurtHandler();
     public static event HurtHandler Event_hurt;
@@ -203,7 +204,7 @@ public class CharacterControl : MonoBehaviour
                 if(Input.GetKey(KeyCode.Space) && JumpAccelerateTime < MaxJumpTime * (XJumpSpeed < RunSpeed ? 0.92f : 1.0f) && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_jump * Time.deltaTime && isGetInput)
                 {
                     CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_jump * Time.deltaTime;  //气息消耗
-                    JumpAccelerateTime += Time.deltaTime;
+                    JumpAccelerateTime += (Time.deltaTime * jumpTimeFactor);
                     //YJumpSpeed = YJumpSpeed - Mathf.Pow(Yacceleration * Time.deltaTime,3);
                     YJumpSpeed = ((-JumpSpeed / Mathf.Pow(MaxJumpTime * (XJumpSpeed < RunSpeed ? 0.92f : 1.0f), 2)) * Mathf.Pow(JumpAccelerateTime, 2) + JumpSpeed);
                     
@@ -211,25 +212,25 @@ public class CharacterControl : MonoBehaviour
                     {
                         YJumpSpeed = 0;
                     }
-                    rig.velocity = new Vector2(rig.velocity.x, YJumpSpeed);
+                    rig.velocity = GameFunction.getVector2(rig.velocity.x, YJumpSpeed);
                     currentState = state.jump;
                 }
                 JumpMove(); //跳跃时移动
 
                 //跳跃形变
-                _Timer_JumpScale += Time.deltaTime;
+                _Timer_JumpScale += (Time.deltaTime * jumpTimeFactor);
                 float t_jumpScale = _Timer_JumpScale / (jumpScale_Time);
-                transform.localScale = Vector3.Lerp(jumpScale, originScale, t_jumpScale);
+                transform.localScale = Vector3.Lerp(Dir == dir.right?jumpScale:GameFunction.getVector3(-jumpScale.x,jumpScale.y,jumpScale.z), Dir == dir.right?originScale:GameFunction.getVector3(-originScale.x,originScale.y,originScale.z), t_jumpScale);
 
                 if(attack())  //攻击
                 {
-                    rig.velocity = new Vector2(rig.velocity.x, 0);
+                    rig.velocity = GameFunction.getVector2(rig.velocity.x, 0);
                     YJumpSpeed = 0;
                 }
                 shoot(); //射击
                 if(Throw())  //扔
                 {
-                    rig.velocity = new Vector2(rig.velocity.x, 0);
+                    rig.velocity = GameFunction.getVector2(rig.velocity.x, 0);
                     YJumpSpeed = 0;
                 }
 
@@ -248,7 +249,6 @@ public class CharacterControl : MonoBehaviour
                 {
                     YJumpSpeed = 0;
                 }
-
                 break;
             case state.dash:
 
@@ -268,7 +268,7 @@ public class CharacterControl : MonoBehaviour
                 Timer_dashScale += Time.deltaTime;
 
                 float t_dashScale = Timer_dashScale / (proportion_dashScale * DashTime);
-                transform.localScale = Vector3.Lerp(dashScale, originScale, t_dashScale);
+                transform.localScale = Vector3.Lerp(Dir == dir.right ? dashScale : GameFunction.getVector3(-dashScale.x, dashScale.y, dashScale.z), Dir == dir.right ? originScale : GameFunction.getVector3(-originScale.x, originScale.y, originScale.z), t_dashScale);
                 rig.velocity = new Vector2(Dir == dir.left ? -DashSpeed : DashSpeed, 0);
                 if(_dashTime > DashTime)
                 {
@@ -391,7 +391,7 @@ public class CharacterControl : MonoBehaviour
                 {
                     JumpMove();  //水平弹飞中不能移动
                 }
-                YJumpSpeed = YJumpSpeed + Yacceleration * Time.deltaTime;
+                YJumpSpeed = YJumpSpeed + Yacceleration * Time.deltaTime * jumpTimeFactor;
                 if(YJumpSpeed > JumpSpeed)
                 {
                     YJumpSpeed = JumpSpeed;
@@ -399,7 +399,7 @@ public class CharacterControl : MonoBehaviour
 
                 if (!isBounce)
                 {
-                    rig.velocity = new Vector2(rig.velocity.x, -YJumpSpeed);
+                    rig.velocity = GameFunction.getVector2(rig.velocity.x, -YJumpSpeed);
                 }
                 
                 if(isBounce)
@@ -492,8 +492,10 @@ public class CharacterControl : MonoBehaviour
 
         if(lastDir != Dir) // 翻转图片  判断减少运算量
         {
-            SpriteRenderer.flipX = SpriteRenderer.flipX == false ? true : false;
-            changeCollider();
+            //SpriteRenderer.flipX = SpriteRenderer.flipX == false ? true : false;
+            GameFunction.t_Vector3 = transform.localScale;
+            GameFunction.t_Vector3.x *= -1;
+            transform.localScale = GameFunction.t_Vector3;
         }
         lastDir = Dir;
 
@@ -587,38 +589,9 @@ public class CharacterControl : MonoBehaviour
 
     bool OnGround()  //判断是否在地上
     {
-        int Tdir;
-        if(Dir == dir.left)  //首先检测方向
-        {
-            Tdir = 0;
-        }
-        else
-        {
-            Tdir = 1;
-        }
-
-        RaycastHit2D LeftHit = Physics2D.Raycast(LeftHitTrans[Tdir].position, Vector2.down, 0.1f ,layerMask);
-        RaycastHit2D RightHit = Physics2D.Raycast(RightHitTrans[Tdir].position, Vector2.down, 0.1f,layerMask);
-        //Debug.DrawRay(LeftHitTrans[Tdir].position, Vector2.down,Color.red);
-        //Debug.DrawRay(RightHitTrans[Tdir].position, Vector2.down,Color.red);
-        int i = 0;  //射线发生碰撞的个数
-        if (LeftHit.transform != null)
-        {
-            i++;
-            /*if (LeftHit.transform.tag == "maps")
-            {
-                i++;
-            }*/
-        }
-        if (RightHit.transform != null)
-        {
-            i++;
-            /*if (RightHit.transform.tag == "maps")
-            {
-                i++;
-            }*/
-        }
-        if (i != 0)
+        int mask = 1 << LayerMask.NameToLayer("terrain");
+        hitPoint = Physics2D.Raycast(_collider.bounds.min, Vector2.down, 0.2f, mask);
+        if(hitPoint.transform != null)
         {
             YJumpSpeed = JumpSpeed;
             JumpAccelerateTime = 0;  // 落地 重新计算已加速的时间
@@ -631,74 +604,41 @@ public class CharacterControl : MonoBehaviour
             }
             return true;
         }
-        else
+        hitPoint = Physics2D.Raycast((Vector2)_collider.bounds.min + _collider.bounds.size.x * Vector2.right, Vector2.down, 0.2f, mask);
+        if(hitPoint.transform != null)
         {
-            return false;
-        }
-    }
-
-    bool AtTop()  //判断头是否顶到墙
-    {
-        //判断是否发生碰撞
-        int collideTimes = 0;
-        if(Dir == dir.left)
-        {
-            for(int i = 0;i<2;i++)
+            YJumpSpeed = JumpSpeed;
+            JumpAccelerateTime = 0;  // 落地 重新计算已加速的时间
+            dashTimes = 0;  //空中冲刺次数重新计为0
+            JumpShootTimes = 0;  //归零空中射击次数
+            if (lastState == state.fall)
             {
-                RaycastHit2D HitPoint = Physics2D.Raycast(HeadHitTrans[i].position, Vector2.up, 0.2f, layerMask);
-                if(HitPoint.transform != null)
-                {
-                    collideTimes++;
-                    break;
-                }
+                _jumpTimes = 0;  //归零跳跃次数
+                stopBounce();
             }
-        }
-        else
-        {
-            for (int i = 2; i < 4; i++)
-            {
-                RaycastHit2D HitPoint = Physics2D.Raycast(HeadHitTrans[i].position, Vector2.up, 0.2f, layerMask);
-                if (HitPoint.transform != null)
-                {
-                    collideTimes++;
-                    break;
-                }
-            }
-        }
-
-        if(collideTimes != 0)
-        {
-            //--------
-            stopBounce();
-            //--------
-
-
             return true;
         }
         return false;
     }
 
-    void changeCollider()
+    bool AtTop()  //判断头是否顶到墙
     {
-        float[] LeftOffSet = { -0.376f, 1.753f }, RightOffSet = { 0.509f, 1.753f };
-        float[] LeftSize = { 1.241f, 3.82f }, RightSize = { 1.645f, 3.82f };
-        float[] RightOffSet_2 = { 0.49f, 1.91f }, LeftOffSet_2 = { -0.37f, 1.82f };
-        float RightRadius = 0.97f, LeftRadius = 0.81f;
-        if(Dir == dir.left)
+        int mask = 1 << LayerMask.NameToLayer("terrain");
+        hitPoint = Physics2D.Raycast((Vector2)_collider.bounds.max + Vector2.left * _collider.bounds.size.x, Vector2.up, 0.1f, mask);
+        if(hitPoint.transform != null)
         {
-            _collider.offset = new Vector2(LeftOffSet[0], LeftOffSet[1]);
-            _collider.size = new Vector2(LeftSize[0], LeftSize[1]);
-            _circleCollider.offset = new Vector2(LeftOffSet_2[0], LeftOffSet_2[1]);
-            _circleCollider.radius = LeftRadius;
+            stopBounce();
+            return true;
         }
-        else
+        hitPoint = Physics2D.Raycast(_collider.bounds.max, Vector2.up, 0.1f, mask);
+        if (hitPoint.transform != null)
         {
-            _collider.offset = new Vector2(RightOffSet[0], RightOffSet[1]);
-            _collider.size = new Vector2(RightSize[0], RightSize[1]);
-            _circleCollider.offset = new Vector2(RightOffSet_2[0], RightOffSet_2[1]);
-            _circleCollider.radius = RightRadius;
+            stopBounce();
+            return true;
         }
+        return false;
     }
+
 
     bool isPlayAnimation()  //当前动画是否播放完毕？
     {
@@ -1033,7 +973,7 @@ public class CharacterControl : MonoBehaviour
     {
         if(currentState != state.jump && lastState == state.jump)
         {
-            transform.localScale = originScale;
+            transform.localScale = Dir == dir.right ? originScale : GameFunction.getVector3(-originScale.x, originScale.y, originScale.z);
         }
     }
 
@@ -1044,7 +984,7 @@ public class CharacterControl : MonoBehaviour
         {
             if(currentState != state.dash)
             {
-                transform.localScale = originScale;
+                transform.localScale = Dir == dir.right?originScale:GameFunction.getVector3(-originScale.x,originScale.y,originScale.z);
             }
         }
     }

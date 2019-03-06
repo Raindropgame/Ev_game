@@ -29,12 +29,13 @@ public class Element : MonoBehaviour {
         return false;
     }
 
+    RaycastHit2D[] hitPoints = new RaycastHit2D[10];
     void getElements()
     {
         TriggerElement.Clear();
         int mask = 1 << 16;
-        RaycastHit2D[] hitPoints = Physics2D.BoxCastAll(BoxColl.bounds.center, GameFunction.getVector3(BoxColl.size.x * Mathf.Abs(transform.lossyScale.x), BoxColl.size.y * Mathf.Abs(transform.lossyScale.y), 1), transform.rotation.eulerAngles.z, Vector2.zero, 0, mask);
-        for(int i = 0;i<hitPoints.Length;i++)
+        Physics2D.BoxCastNonAlloc(BoxColl.bounds.center, GameFunction.getVector3(BoxColl.size.x * Mathf.Abs(transform.lossyScale.x), BoxColl.size.y * Mathf.Abs(transform.lossyScale.y), 1), transform.rotation.eulerAngles.z, Vector2.zero, hitPoints, 0, mask);
+        for (int i = 0;hitPoints[i].transform != null;i++)
         {
             if (hitPoints[i].collider != BoxColl)  //排除自己
             {

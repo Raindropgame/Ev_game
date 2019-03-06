@@ -33,7 +33,7 @@ Material:
       second: 0
     - first:
         name: _LighterScale
-      second: 1
+      second: 1.45
     - first:
         name: _Pivot_x
       second: 0

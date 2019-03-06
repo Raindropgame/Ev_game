@@ -41,7 +41,7 @@ public class bullet_monster_2 : MonoBehaviour {
     {
         if (collision.transform.tag == "Player" && SR.enabled == false)
         {
-            CharacterControl.instance.hurt(Damage, Attribute.wood);  //对玩家造成伤害
+            CharacterControl.instance.hurt(Damage, Attribute.wood,coll.bounds.center);  //对玩家造成伤害
         }
         if (collision.transform.tag == "enemy" && SR.enabled == false)
         {
@@ -65,7 +65,7 @@ public class bullet_monster_2 : MonoBehaviour {
     {
         SR.enabled = false;
         BoomEffect.SetActive(true);
-        Invoke("setFalse", 1);  //播放完特效后关闭
+        Invoke("setFalse", 0.3f);  //播放完特效后关闭
     }
 
     void setFalse()

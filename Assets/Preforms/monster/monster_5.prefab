@@ -349,14 +349,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hurtColor: {r: 0, g: 0, b: 0, a: 0}
-  MaxHP: 10
+  MaxHP: 3
   currentHP: 0
   colliderID:
   - {fileID: 61000010761871936}
-  foot: {fileID: 0}
   isUseHitBack: 1
   backVelocity: {x: 6, y: 0}
   backTime: 0.01
+  isGetRainState: 1
   Dir: 0
   dashSpeed: 14
   rest_view_radius: 12
