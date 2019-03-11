@@ -27,17 +27,32 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - first:
+        name: _frozeTex
+      second:
+        m_Texture: {fileID: 2800000, guid: e3b3b218c7ec3ea4d834f54f3c600d54, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - first:
         name: <noninit>
       second: 0
     - first:
+        name: _isFroze
+      second: 0
+    - first:
         name: _isHit
+      second: 0
+    - first:
+        name: isFroze
       second: 0
     m_Colors:
     - first:
         name: <noninit>
       second: {r: 0, g: 2.018452, b: 1e-45, a: 5.7372367e-35}
+    - first:
+        name: _frozeColor
+      second: {r: 0.74137926, g: 0.8630831, b: 1, a: 0.422}
     - first:
         name: _hitColor
       second: {r: 1, g: 1, b: 1, a: 1}

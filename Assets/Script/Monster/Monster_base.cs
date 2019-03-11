@@ -348,50 +348,20 @@ public class Monster_base : MonoBehaviour {
     { }
     protected IEnumerator frozen()  //冰冻
     {
-        if(abnormalState.Contains(AbnormalState.frozen))  //是否已经被冰冻
+        if(abnormalState.Contains(AbnormalState.frozen) || abnormalState.Contains(AbnormalState.stone))  //是否已经被冰冻
         {
             yield break;
         }
 
+        OnFrozenStart();
+
         abnormalState.Add(AbnormalState.frozen);
         isHurtPlayer = false;
 
-        //---添加图层
-        GameObject t = new GameObject();
-        SpriteRenderer t_SR = t.AddComponent<SpriteRenderer>();
-        Quaternion originRotato = transform.rotation;
-        transform.rotation = Quaternion.Euler(Vector3.zero);
-
-        if (SR.bounds.extents.x > SR.bounds.extents.y)  //选择图片
-        {
-            t_SR.sprite = iceCube[1];
-        }
-        else
-        {
-            t_SR.sprite = iceCube[0];
-        }
-        transform.rotation = originRotato;
-
-        Bounds t_bounds = SR.bounds,bounds = t_SR.bounds;
-        Vector2 scale = Vector2.zero;
-        if(t_bounds.extents.x > t_bounds.extents.y)  //宽大于高
-        {
-            float _scale = t_bounds.extents.x / (bounds.extents.x * 0.67f);
-            scale.x = _scale;
-            scale.y = _scale;
-            t.transform.position = t_bounds.center + GameFunction.getVector3(0,bounds.extents.y * 0.33f * _scale - t_bounds.extents.y,-0.01f);
-        }
-        else   //高大于宽
-        {
-            t.transform.position = t_bounds.center + Vector3.back * 0.01f;
-            float _scale = t_bounds.extents.y / (bounds.extents.y * 0.68f);
-            scale.x = _scale;
-            scale.y = _scale;
-        }
-        t.transform.localScale = scale;
-        t.transform.SetParent(transform, true);
-        t.transform.Rotate(transform.rotation.eulerAngles);
-        //----
+        MaterialPropertyBlock MB = new MaterialPropertyBlock();
+        SR.GetPropertyBlock(MB);
+        MB.SetFloat("_isFroze", 1);
+        SR.SetPropertyBlock(MB);
 
         animator.enabled = false;
         isEnable = false;
@@ -404,9 +374,12 @@ public class Monster_base : MonoBehaviour {
         while(_time1<GameData.frozenTime)  //被攻击提前碎掉
         {
             _time1 += Time.deltaTime;
+            SR.SetPropertyBlock(MB);
 
-            if(_currentHP != currentHP)
+            if (_currentHP != currentHP)
             {
+                MB.SetFloat("_isFroze", 0);
+                SR.SetPropertyBlock(MB);
                 rig.gravityScale = originGravity; //还原重力
                 animator.enabled = true;
                 isEnable = true;
@@ -416,10 +389,9 @@ public class Monster_base : MonoBehaviour {
                     animator.enabled = false;
                 }
                 abnormalState.Remove(AbnormalState.frozen);
-                GameObject _t_iceFrag = Instantiate(iceFrag, position: t.transform.position, rotation: Quaternion.Euler(0, 0, 0)) as GameObject;
+                GameObject _t_iceFrag = Instantiate(iceFrag, position: transform.position, rotation: Quaternion.Euler(0, 0, 0)) as GameObject;
                 _t_iceFrag.transform.parent = transform;
                 _t_iceFrag.transform.localScale = Vector3.one;
-                Destroy(t);
                 yield return new WaitForSeconds(_t_iceFrag.GetComponent<ParticleSystem>().duration);
                 Destroy(_t_iceFrag);
                 if(!abnormalState.Contains(AbnormalState.stone))
@@ -430,6 +402,8 @@ public class Monster_base : MonoBehaviour {
                 {
                     isHurtPlayer = false;
                 }
+
+                OnFrozenEnd();
                 yield break;
             }
 
@@ -438,6 +412,11 @@ public class Monster_base : MonoBehaviour {
 
             yield return null;
         }
+
+        OnFrozenEnd();
+        isHurtPlayer = true;
+        MB.SetFloat("_isFroze", 0);
+        SR.SetPropertyBlock(MB);
 
         rig.gravityScale = originGravity; //还原重力
         animator.enabled = true;
@@ -448,10 +427,9 @@ public class Monster_base : MonoBehaviour {
             animator.enabled = false;
         }
         abnormalState.Remove(AbnormalState.frozen);
-        GameObject t_iceFrag = Instantiate(iceFrag, position: t.transform.position, rotation: Quaternion.Euler(0, 0, 0)) as GameObject;
+        GameObject t_iceFrag = Instantiate(iceFrag, position: transform.position, rotation: Quaternion.Euler(0, 0, 0)) as GameObject;
         t_iceFrag.transform.parent = transform;
         t_iceFrag.transform.localScale = Vector3.one;
-        Destroy(t);
         yield return new WaitForSeconds(t_iceFrag.GetComponent<ParticleSystem>().duration);
         Destroy(t_iceFrag);
     }

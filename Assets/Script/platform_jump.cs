@@ -46,7 +46,7 @@ public class platform_jump : MonoBehaviour {
         {
             if (!Rest)
             {
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (MyInput.instance.isGetJumpDown())
                 {
                     CharacterControl.instance._jumpTimes--;
                     Rest = true;

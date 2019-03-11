@@ -10,7 +10,7 @@ public class UIManagement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (MyInput.instance.isGetBag())
         {
             if (ArmsGemsBar.activeSelf)
             {

@@ -54,8 +54,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013576995838}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.55999756, y: 17.65, z: 1}
-  m_LocalScale: {x: 2.05673, y: 3.02948, z: 2.37257}
+  m_LocalPosition: {x: -12.43, y: 7.93, z: -5}
+  m_LocalScale: {x: 1.7765696, y: 2.6168337, z: 2.0493894}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000012067365528}
@@ -131,6 +131,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elementTrigger: {fileID: 114000013474960582}
+  maxBurnScale: 0.36
+  burnColor: {r: 1, g: 0.47398585, b: 0.12758625, a: 1}
+  unBurnColor: {r: 0.09558821, g: 0.04419743, b: 0.0036257587, a: 1}
+  burnTime: 3
 --- !u!114 &114000013474960582
 MonoBehaviour:
   m_ObjectHideFlags: 1

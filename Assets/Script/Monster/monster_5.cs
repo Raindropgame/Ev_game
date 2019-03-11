@@ -192,17 +192,6 @@ public class monster_5 : Monster_base{
         }
     }
 
-    //改变方向
-    void changeDir(dir d)
-    {
-        if (Dir != d)
-        {
-            Dir = d;
-            GameFunction.t_Vector3.Set(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-            transform.localScale = GameFunction.t_Vector3;
-        }
-    }
-
     bool isSeePlayer()  //是否看到了主角
     {
         int mask = (1 << 17) | (1 << 9);  //检测特定层

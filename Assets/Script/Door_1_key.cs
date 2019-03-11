@@ -21,6 +21,7 @@ public class Door_1_key : MonoBehaviour {
     private Coroutine bloomCor = null;
     private bool isDisenble = false;
     private Vector3 originScale_effect;
+    private Vector2 currentV = Vector2.zero;
 
     private void Awake()
     {
@@ -84,7 +85,7 @@ public class Door_1_key : MonoBehaviour {
         {
             if (((Vector2)(this.transform.position - CharacterControl.instance.transform.position - offset)).sqrMagnitude > Mathf.Sqrt(0.1f) && !isStop)
             {
-                this.transform.position = Vector2.MoveTowards(this.transform.position, CharacterControl.instance.transform.position + offset, speed * Time.deltaTime);
+                this.transform.position = Vector2.SmoothDamp(this.transform.position, CharacterControl.instance.transform.position + offset,ref currentV, 0.7f,CharacterControl.instance.JumpSpeed);
 
                 targetPos = this.transform.position;
                 timer = 0;

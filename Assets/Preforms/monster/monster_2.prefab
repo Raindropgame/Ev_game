@@ -241,7 +241,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010978104578}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.05722, y: -8.473875, z: -0.01}
+  m_LocalPosition: {x: -21.52, y: 8.68, z: -0.01}
   m_LocalScale: {x: 1.628298, y: 1.6282979, z: 1.6282979}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -367,7 +367,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: -0.0000076293945, y: 0.00000047683716}
   serializedVersion: 2
-  m_Radius: 2.594561
+  m_Radius: 1.4355412
 --- !u!58 &58000012687251394
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -520,7 +520,8 @@ MonoBehaviour:
   bulletSpeed: {x: 20, y: -5}
   idleTime: 3
   deadParticle: {fileID: 1000010430501034}
-  isEnableEdgeRay: 1
+  isEnableEdgeRay: 0
+  viewDistance_player: 15
 --- !u!198 &198000010568044718
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -2265,7 +2266,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -1487707826
+  randomSeed: -477986451
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -3979,7 +3980,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -775248867
+  randomSeed: -2094328033
   InitialModule:
     serializedVersion: 2
     enabled: 1

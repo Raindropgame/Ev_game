@@ -19,7 +19,7 @@
 		}
 		
 		cull off
-		Blend One OneMinusSrcAlpha
+		Blend SrcAlpha OneMinusSrcAlpha
 
 		Pass
 		{

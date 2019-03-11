@@ -5702,18 +5702,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 4000011499600890, guid: 999ce0f9205008c4db83bc96bda83f63, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 2.486694
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011499600890, guid: 999ce0f9205008c4db83bc96bda83f63, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 3.6628194
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011499600890, guid: 999ce0f9205008c4db83bc96bda83f63, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 2.8685572
-      objectReference: {fileID: 0}
     - target: {fileID: 1000013576995838, guid: 999ce0f9205008c4db83bc96bda83f63, type: 2}
       propertyPath: m_Name
       value: grass (1)
@@ -11225,7 +11213,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013576793802, guid: 9029c3783664b4145a1546ce9a103d8c, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -0.1
+      value: -0.99
       objectReference: {fileID: 0}
     - target: {fileID: 4000013576793802, guid: 9029c3783664b4145a1546ce9a103d8c, type: 2}
       propertyPath: m_LocalRotation.x
@@ -11366,18 +11354,6 @@ Prefab:
     - target: {fileID: 4000011499600890, guid: 999ce0f9205008c4db83bc96bda83f63, type: 2}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011499600890, guid: 999ce0f9205008c4db83bc96bda83f63, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1.7467757
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011499600890, guid: 999ce0f9205008c4db83bc96bda83f63, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 2.5729449
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011499600890, guid: 999ce0f9205008c4db83bc96bda83f63, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 2.0150154
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 999ce0f9205008c4db83bc96bda83f63, type: 2}
@@ -14969,18 +14945,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 4000011499600890, guid: 999ce0f9205008c4db83bc96bda83f63, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1.77657
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011499600890, guid: 999ce0f9205008c4db83bc96bda83f63, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 2.6168299
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011499600890, guid: 999ce0f9205008c4db83bc96bda83f63, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 2.0493898
-      objectReference: {fileID: 0}
     - target: {fileID: 1000013576995838, guid: 999ce0f9205008c4db83bc96bda83f63, type: 2}
       propertyPath: m_Name
       value: grass (8)
@@ -17017,6 +16981,28 @@ Transform:
   m_PrefabParentObject: {fileID: 4000013576793802, guid: 9029c3783664b4145a1546ce9a103d8c,
     type: 2}
   m_PrefabInternal: {fileID: 941650318}
+--- !u!1 &941710158 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000013576995838, guid: 999ce0f9205008c4db83bc96bda83f63,
+    type: 2}
+  m_PrefabInternal: {fileID: 884007560}
+--- !u!50 &941710164
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 941710158}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &942309730
 Prefab:
   m_ObjectHideFlags: 0
@@ -24166,11 +24152,6 @@ Prefab:
       propertyPath: m_Name
       value: monster_2 (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011395609436, guid: c3f8de559eac7ac47b3e27a4e070c21f,
-        type: 2}
-      propertyPath: isEnableEdgeRay
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c3f8de559eac7ac47b3e27a4e070c21f, type: 2}
   m_IsPrefabParent: 0
@@ -28239,18 +28220,6 @@ Prefab:
     - target: {fileID: 4000011499600890, guid: 999ce0f9205008c4db83bc96bda83f63, type: 2}
       propertyPath: m_RootOrder
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011499600890, guid: 999ce0f9205008c4db83bc96bda83f63, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1.7765696
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011499600890, guid: 999ce0f9205008c4db83bc96bda83f63, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 2.6168337
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011499600890, guid: 999ce0f9205008c4db83bc96bda83f63, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 2.0493894
       objectReference: {fileID: 0}
     - target: {fileID: 1000013576995838, guid: 999ce0f9205008c4db83bc96bda83f63, type: 2}
       propertyPath: m_Name

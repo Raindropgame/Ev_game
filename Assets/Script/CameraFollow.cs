@@ -14,7 +14,6 @@ public class CameraFollow : MonoBehaviour {
     private float tTime = 0;
     private bool isMoving = false;
     Vector3 targetPosition;
-    private Rigidbody2D charaRig;
     private Vector2 currentV = Vector2.zero;
     [HideInInspector]
     public CameraMoveState moveState = CameraMoveState.both;
@@ -23,12 +22,10 @@ public class CameraFollow : MonoBehaviour {
     private bool isBeControl = false;
     private float axis = 0;
 
-
     private void Awake()
     {
         instance = this;
         character = GameObject.Find("character");
-        charaRig = character.GetComponent<Rigidbody2D>();
         targetPosition = character.transform.position + targetPos_offset;
         targetPosition.z = this.transform.position.z;
         currentPosition = transform.position;
@@ -70,7 +67,7 @@ public class CameraFollow : MonoBehaviour {
                         case CameraMoveState.onlyY:
                             targetPosition.x = axis;
                             //temp = Vector2.MoveTowards(this.transform.position, targetPosition, charaRig.velocity.magnitude * Time.deltaTime);
-                            temp = Vector2.SmoothDamp(this.transform.position, targetPosition, ref currentV, smoothTime * 0.8f);
+                            temp = Vector2.SmoothDamp(this.transform.position, targetPosition, ref currentV, smoothTime);
                             this.transform.position = temp;
                             break;
                         case CameraMoveState.onlyX:

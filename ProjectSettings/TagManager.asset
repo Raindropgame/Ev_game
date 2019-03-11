@@ -18,6 +18,7 @@ TagManager:
   - conductor
   - Door_1
   - monster
+  - stone
   layers:
   - Default
   - TransparentFX

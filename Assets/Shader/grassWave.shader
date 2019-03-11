@@ -12,7 +12,7 @@
 		Cull off
 		blend SrcAlpha OneMinusSrcAlpha
 
-		Tags { "RenderType"="Transparent" "Queue" = "Transparent"}
+		Tags { "RenderType"="Transparent" "Queue" = "Transparent" "DisableBatching"="True"}
 
 		Pass
 		{

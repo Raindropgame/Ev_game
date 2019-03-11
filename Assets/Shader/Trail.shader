@@ -4,6 +4,7 @@
 	{
 		_MainTex ("Texture", 2D) = "white" {}
 		_NoiseTex ("NoiseTex",2D) = "white" {}
+		_trailAlpha ("trailAlpha",Range(0,1)) = 0
 	}
 	SubShader
 	{
@@ -40,6 +41,7 @@
 			float4 _MainTex_ST;
 			sampler2D _NoiseTex;
 			float4 _NoiseTex_ST;
+			float _trailAlpha;
 			
 			v2f vert (appdata v)
 			{
@@ -55,7 +57,7 @@
 			{				
 				fixed4 col = tex2D(_MainTex, i.uv);
 				fixed noise = tex2D(_NoiseTex, i.uv2 + fixed2(-_Time.y,0));
-				col.a *= (noise * lerp(1,0,i.uv2.x));
+				col.a *= (noise * lerp(1,_trailAlpha,i.uv2.x));
 				return col * i.color;
 			}
 			ENDCG

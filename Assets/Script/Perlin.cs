@@ -8,7 +8,7 @@ public class Perlin{
 
     public Perlin(int size)
     {
-        this.Size = size + 1;
+        this.Size = size;
         IntiGradient();
     }
 

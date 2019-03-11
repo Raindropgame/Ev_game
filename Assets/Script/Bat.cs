@@ -127,14 +127,6 @@ public class Bat : Monster_base {
         rig.velocity = Vector2.zero;
     }
 
-    void changeDir(dir t)
-    {
-        if(Dir != t)
-        {
-            Dir = t;
-            transform.localScale = GameFunction.getVector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-        }
-    }
 
     Vector2 dir_view = Vector3.zero;
     bool isSeePlayer()

@@ -11,7 +11,7 @@ public class stone : MonoBehaviour
     public float speed,time;
 
     private Rigidbody2D rig;
-    private float drag, mass;
+    private float mass;
     private bool isFrozen = false;
     private SpriteRenderer SR;
     public bool isInShelter = false;
@@ -23,7 +23,6 @@ public class stone : MonoBehaviour
         CharacterObjectManager._sendHurt += getHurt;  //受伤消息(来自玩家)注册
         rig = GetComponent<Rigidbody2D>();
         SR = GetComponent<SpriteRenderer>();
-        drag = rig.drag;
         mass = rig.mass;
     }
 
@@ -38,19 +37,16 @@ public class stone : MonoBehaviour
 
         if (isInRain)   //下雨减少摩擦
         {
-            rig.drag = Scale * drag;
             rig.mass = Scale * mass;
         }
         else
         {
             if (isFrozen)
             {
-                rig.drag = Scale * drag;
                 rig.mass = Scale * mass;
             }
             else
             {
-                rig.drag = drag;
                 rig.mass = mass;
             }
         }

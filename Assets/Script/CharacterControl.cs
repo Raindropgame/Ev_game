@@ -37,7 +37,6 @@ public class CharacterControl : MonoBehaviour
     private float JumpAccelerateTime = 0; //记录跳跃加速的时间  按键越久跳跃越高
     private float XJumpSpeed, YJumpSpeed, Yacceleration;
     private BoxCollider2D _collider;
-    private CircleCollider2D _circleCollider;
     private dir lastDir;  //上一帧的方向
     private SpriteRenderer SpriteRenderer;
     private Animator animator;
@@ -48,7 +47,6 @@ public class CharacterControl : MonoBehaviour
     private float _dashTime = 0;
     private int dashTimes = 0;  //记录空中冲刺次数
     private int JumpShootTimes = 0;  //记录控制射击次数
-    private int layerMask = 1 << 9;  //检测指定层
     private float _hurtTime = 0; //用于记录受伤时间
     private float jumpshoot_backTime = 0.05f,_time3 = 0;  //跳射后退时间
     private bool isJumpShootBack = false; //是否开始跳射后退
@@ -79,7 +77,6 @@ public class CharacterControl : MonoBehaviour
         YJumpSpeed = JumpSpeed;
         Yacceleration = JumpSpeed / MaxJumpTime;
         _collider = this.GetComponent<BoxCollider2D>();
-        _circleCollider = GetComponentInChildren<CircleCollider2D>();
         lastDir = dir.right;
         SpriteRenderer = this.GetComponent<SpriteRenderer>();
         animator = this.GetComponent<Animator>();
@@ -105,11 +102,11 @@ public class CharacterControl : MonoBehaviour
         {
             case state.normal:
                 changeDir();  // 行走
-                if (isDoubleKeyDown() != 0 && isEnable[(int)state.run])
+                if ((isDoubleKeyDown() != 0 || MyInput.instance.isGetRun())&& isEnable[(int)state.run])
                 {
                     currentState = state.run;  //双击变为奔跑
                 }
-                if(Input.GetKeyDown(KeyCode.Space) && isEnable[(int)state.jump] && isGetInput)
+                if(MyInput.instance.isGetJumpDown() && isEnable[(int)state.jump] && isGetInput)
                 {
                     currentState = state.jump;    //跳跃
                     XJumpSpeed = Walkspeed + 2.5f;
@@ -130,11 +127,11 @@ public class CharacterControl : MonoBehaviour
             case state.walk:
                 currentState = state.normal;    //闲置
                 changeDir();
-                if (isDoubleKeyDown() != 0 && isEnable[(int)state.run])
+                if ((isDoubleKeyDown() != 0 || MyInput.instance.isGetRun())&& isEnable[(int)state.run])
                 {
                     currentState = state.run;    //奔跑
                 }
-                if (Input.GetKeyDown(KeyCode.Space) && isEnable[(int)state.jump] && isGetInput)
+                if (MyInput.instance.isGetJumpDown() && isEnable[(int)state.jump] && isGetInput)
                 {
                     currentState = state.jump;    //跳跃
                     XJumpSpeed = Walkspeed + 2.5f;
@@ -161,16 +158,18 @@ public class CharacterControl : MonoBehaviour
                 }
                 CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_run * Time.deltaTime;  //奔跑气息消耗
 
-                if (Input.GetKey(KeyCode.LeftArrow) && isGetInput)
+                if (MyInput.instance.isGetLeft() && isGetInput)
                 {
                     rig.velocity += new Vector2(-RunSpeed, 0);
+                    Dir = dir.left;
                 }
-                if (Input.GetKey(KeyCode.RightArrow) && isGetInput)
+                if (MyInput.instance.isGetRight() && isGetInput)
                 {
                     rig.velocity += new Vector2(RunSpeed, 0);
+                    Dir = dir.right;
                 }
 
-                if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow) && isGetInput)
+                if (MyInput.instance.isGetLeftUp() || MyInput.instance.isGetRightUp() && isGetInput)
                 {
                     currentState = state.normal;    //闲置
                 }
@@ -180,7 +179,7 @@ public class CharacterControl : MonoBehaviour
                 Throw();  //扔
                 dash(); //冲刺
 
-                if (Input.GetKeyDown(KeyCode.Space) && isEnable[(int)state.jump] && isGetInput)
+                if (MyInput.instance.isGetJumpDown() && isEnable[(int)state.jump] && isGetInput)
                 {
                     currentState = state.jump;    //跳跃
                     XJumpSpeed = RunSpeed + 1;
@@ -201,7 +200,7 @@ public class CharacterControl : MonoBehaviour
 
                 isDoubleKeyDown();  //计时
                 currentState = state.fall;    //下落
-                if(Input.GetKey(KeyCode.Space) && JumpAccelerateTime < MaxJumpTime * (XJumpSpeed < RunSpeed ? 0.92f : 1.0f) && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_jump * Time.deltaTime && isGetInput)
+                if(MyInput.instance.isGetJump() && JumpAccelerateTime < MaxJumpTime * (XJumpSpeed < RunSpeed ? 0.92f : 1.0f) && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_jump * Time.deltaTime && isGetInput)
                 {
                     CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_jump * Time.deltaTime;  //气息消耗
                     JumpAccelerateTime += (Time.deltaTime * jumpTimeFactor);
@@ -407,14 +406,14 @@ public class CharacterControl : MonoBehaviour
                     AtTop();
                 }
 
-                if (Input.GetKeyDown(KeyCode.X) && isEnable[(int)state.attack1] && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_attack && isGetInput)  //攻击
+                if (MyInput.instance.isGetAttack() && isEnable[(int)state.attack1] && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_attack && isGetInput)  //攻击
                 {
                     CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_attack;
                     currentState = state.attack1;  //攻击
                     CharacterObjectManager.instance.attack1(Dir);
                 }
 
-                if(Input.GetKeyDown(KeyCode.Space) && _jumpTimes < JumpTimes && isEnable[(int)state.jump] && isGetInput)   //连跳
+                if(MyInput.instance.isGetJumpDown() && _jumpTimes < JumpTimes && isEnable[(int)state.jump] && isGetInput)   //连跳
                 {
                     currentState = state.jump;
                     JumpAccelerateTime = 0;
@@ -509,13 +508,13 @@ public class CharacterControl : MonoBehaviour
 
     void changeDir()
     {
-        if (Input.GetKey(KeyCode.LeftArrow) && isGetInput)
+        if (MyInput.instance.isGetLeft() && isGetInput)
         {
             rig.velocity += new Vector2(-Walkspeed, 0);
             currentState = state.walk;
             Dir = dir.left;
         }
-        if (Input.GetKey(KeyCode.RightArrow) && isGetInput)
+        if (MyInput.instance.isGetRight() && isGetInput)
         {
             rig.velocity += new Vector2(Walkspeed, 0);
             currentState = state.walk;
@@ -525,6 +524,7 @@ public class CharacterControl : MonoBehaviour
 
     int isDoubleKeyDown()
     {
+
         switch (LeftOrRight)
         {
             case 1:
@@ -544,7 +544,7 @@ public class CharacterControl : MonoBehaviour
                 }
                 break;
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow) && isGetInput)
+        if (MyInput.instance.isGetRightDown() && isGetInput)
         {
             if (LeftOrRight == 2 && RightKeyDown < DoubleKeySapceTime)
             {
@@ -557,7 +557,7 @@ public class CharacterControl : MonoBehaviour
                 LeftOrRight = 2;
             }
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && isGetInput)
+        if (MyInput.instance.isGetLeftDown() && isGetInput)
         {
             if (LeftOrRight == 1 && LeftKeyDown < DoubleKeySapceTime)
             {
@@ -575,12 +575,12 @@ public class CharacterControl : MonoBehaviour
 
     void JumpMove()
     {
-        if(Input.GetKey(KeyCode.LeftArrow) && isGetInput)
+        if(MyInput.instance.isGetLeft() && isGetInput)
         {
             rig.velocity = GameFunction.getVector2(-XJumpSpeed, rig.velocity.y);
             Dir = dir.left;
         }
-        if(Input.GetKey(KeyCode.RightArrow) && isGetInput)
+        if(MyInput.instance.isGetRight() && isGetInput)
         {
             rig.velocity = GameFunction.getVector2(XJumpSpeed, rig.velocity.y);
             Dir = dir.right;
@@ -659,7 +659,7 @@ public class CharacterControl : MonoBehaviour
 
     bool attack()  //封装攻击
     {
-        if(Input.GetKeyDown(KeyCode.X) && isEnable[(int)state.attack1] && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_attack && isGetInput)
+        if(MyInput.instance.isGetAttack() && isEnable[(int)state.attack1] && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_attack && isGetInput)
         {
             if(isAttack && _DoubleAttackSpaceTime < DoubleAttackSpaceTime)
             {
@@ -683,7 +683,7 @@ public class CharacterControl : MonoBehaviour
 
     bool shoot()   //射击
     {
-        if(Input.GetKeyDown(KeyCode.Z) && isEnable[(int)state.shoot] && isGetInput)
+        if(MyInput.instance.isGetShoot() && isEnable[(int)state.shoot] && isGetInput)
         {
             if (isJump)
             {
@@ -713,7 +713,7 @@ public class CharacterControl : MonoBehaviour
 
     bool Throw()   //扔
     {
-        if(Input.GetKeyDown(KeyCode.S) && CharacterAttribute.GetInstance().isEnable[(int)state.Throw] && CharacterAttribute.GetInstance().Breath > CharacterAttribute.GetInstance().expend_throw && isGetInput)
+        if(MyInput.instance.isGetThrow() && CharacterAttribute.GetInstance().isEnable[(int)state.Throw] && CharacterAttribute.GetInstance().Breath > CharacterAttribute.GetInstance().expend_throw && isGetInput)
         {
             currentState = state.Throw;
             CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_throw;
@@ -724,7 +724,7 @@ public class CharacterControl : MonoBehaviour
 
     bool dash()
     {
-        if (Input.GetKeyDown(KeyCode.C) && isEnable[(int)state.dash] && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_dash && dashTimes < 1 && isGetInput)
+        if (MyInput.instance.isGetDash() && isEnable[(int)state.dash] && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_dash && dashTimes < 1 && isGetInput)
         {
             dashTimes++;
             currentState = state.dash;  //冲刺

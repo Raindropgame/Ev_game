@@ -26,7 +26,7 @@ GameObject:
   - 61: {fileID: 61000010858719880}
   m_Layer: 9
   m_Name: stone
-  m_TagString: maps
+  m_TagString: stone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,8 +83,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011117643628}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -47.510086, y: -14.502481, z: 0}
-  m_LocalScale: {x: 2.089313, y: 2.089313, z: 2.089313}
+  m_LocalPosition: {x: -41.59, y: 81.48, z: 0}
+  m_LocalScale: {x: 2.08931, y: 2.08931, z: 2.08931}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000010485990586}
@@ -113,9 +113,9 @@ Rigidbody2D:
   m_GameObject: {fileID: 1000011117643628}
   m_UseAutoMass: 0
   m_Mass: 5
-  m_LinearDrag: 8
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
-  m_GravityScale: 20
+  m_GravityScale: 10
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -192,6 +192,8 @@ MonoBehaviour:
   reactionForce: 5000
   speed: 40
   time: 0.4
+  isInShelter: 0
+  isInRain: 0
 --- !u!212 &212000012042930324
 SpriteRenderer:
   m_ObjectHideFlags: 1
