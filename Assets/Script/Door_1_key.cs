@@ -151,7 +151,7 @@ public class Door_1_key : MonoBehaviour {
             yield return null;
         }
 
-        Instantiate(ResourcesManagement.getInstance().getResources("Effect_expand"), position: transform.position, rotation: Quaternion.Euler(Vector3.zero));  //特效
+        Instantiate(ResourcesManagement.getInstance().getResources<GameObject>("Effect_expand"), position: transform.position, rotation: Quaternion.Euler(Vector3.zero));  //特效
 
         t_Door_1.Unlock();  //解锁
         CharacterControl.instance.isGetDoor1_Key = false;

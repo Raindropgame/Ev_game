@@ -19,7 +19,8 @@ public class CameraFollow : MonoBehaviour {
     public CameraMoveState moveState = CameraMoveState.both;
     private Vector3 currentPosition;
     private Vector3 temp;
-    private bool isBeControl = false;
+    [HideInInspector]
+    public bool isBeControl = false;
     private float axis = 0;
 
     private void Awake()

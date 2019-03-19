@@ -5,11 +5,12 @@ public class Shiner : MonoBehaviour {
     //对于发光物，呼吸效果
 
 
-    public float frequency;
-    public float changeScale;
+    public float speed;
+    public Color color;
     public SpriteRenderer[] SR;
 
     private Color[] originColor;
+    private float timer = 0;
 
 	void Start () {
         originColor = new Color[SR.Length];
@@ -21,10 +22,10 @@ public class Shiner : MonoBehaviour {
     }
 	
 	void Update () {
+        timer += Time.deltaTime;
 	    for(int i = 0;i<SR.Length;i++)
         {
-            SR[i].color = originColor[i] + changeScale * Color.white * (float)(0.5 * Mathf.Sin(Time.time / frequency) - 1);
-            SR[i].color = new Color(SR[i].color.r, SR[i].color.g, SR[i].color.b, 1);
+            SR[i].color = Color.Lerp(Color.white, color, 0.5f * Mathf.Sin(timer * speed) + 0.5f);
         }
 	}
 }

@@ -108,7 +108,7 @@ public class SoulStone : MonoBehaviour {
 
             yield return null;
         }
-        CharacterAttribute.GetInstance().add_HP(1);
+        CharacterAttribute.GetInstance().add_HP(CharacterAttribute.GetInstance().MaxHP);
 
         _time0 = 0;
         Soul.SetActive(false);

@@ -31,7 +31,7 @@ AnimationClip:
         tangentMode: 1
       - time: 0.033333335
         value: 0
-        inSlope: 0
+        inSlope: -1066.9204
         outSlope: 0
         tangentMode: 1
       m_PreInfinity: 2
@@ -92,7 +92,7 @@ AnimationClip:
         tangentMode: 1
       - time: 0.033333335
         value: 0
-        inSlope: 0
+        inSlope: -1066.9204
         outSlope: 0
         tangentMode: 1
       m_PreInfinity: 2

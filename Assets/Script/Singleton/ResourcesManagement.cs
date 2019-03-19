@@ -13,8 +13,10 @@ public class ResourcesManagement{
         return instance;
     }
 
-    public Object getResources(string name)
+    public T getResources<T>(string name) where T : Object
     {
-        return Resources.Load<GameObject>(name);
+        T result = default(T);
+        result = (T)(Object)Resources.Load<T>(name);
+        return result;
     }
 }

@@ -65,7 +65,7 @@ public class Grass : MonoBehaviour {
     {
         GameFunction.t_Vector3 = transform.position;
         GameFunction.t_Vector3.z -= 0.01f;
-        GameObject fire = Instantiate(ResourcesManagement.getInstance().getResources("Fire"), position: GameFunction.t_Vector3, rotation: Quaternion.Euler(Vector3.zero)) as GameObject;
+        GameObject fire = Instantiate(ResourcesManagement.getInstance().getResources<GameObject>("Fire"), position: GameFunction.t_Vector3, rotation: Quaternion.Euler(Vector3.zero)) as GameObject;
         Bounds bounds_fire = fire.GetComponentInChildren<BoxCollider2D>().bounds;
         Vector3 originScale_fire;
 
@@ -130,7 +130,7 @@ public class Grass : MonoBehaviour {
             yield return null;
         }
 
-        Instantiate(ResourcesManagement.getInstance().getResources("Smoke"),position:fire.transform.position,rotation:Quaternion.Euler(Vector3.zero));
+        Instantiate(ResourcesManagement.getInstance().getResources<GameObject>("Smoke"),position:fire.transform.position,rotation:Quaternion.Euler(Vector3.zero));
         if(isExtinguish)
         {
             Destroy(fire);

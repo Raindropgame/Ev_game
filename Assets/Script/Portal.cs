@@ -19,7 +19,7 @@ public class Portal : MonoBehaviour {
         {
             if(m_Effect_portal_show == null)
             {
-                GameObject t = Instantiate(((GameObject)ResourcesManagement.getInstance().getResources("Effect_portal_show")), position: Vector3.zero, rotation: Quaternion.Euler(Vector3.zero)) as GameObject;
+                GameObject t = Instantiate(((GameObject)ResourcesManagement.getInstance().getResources<GameObject>("Effect_portal_show")), position: Vector3.zero, rotation: Quaternion.Euler(Vector3.zero)) as GameObject;
                 m_Effect_portal_show = t.GetComponent<ParticleSystem>();
             }
             return m_Effect_portal_show;
@@ -108,6 +108,16 @@ public class Portal : MonoBehaviour {
             {
                 if (collision.tag.CompareTo(sender_tag[i]) == 0)
                 {
+                    try
+                    {
+                        //不为刀
+                        if (collision.transform.name.Substring(0, 6).CompareTo("attack") == 0)
+                            continue;
+                    }
+                    catch
+                    {
+
+                    }
                     isEnable = false;
                     StartCoroutine(cool());
                     transfer(collision.transform);

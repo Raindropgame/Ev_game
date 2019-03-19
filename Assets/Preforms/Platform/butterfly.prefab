@@ -145,7 +145,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010028531046}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -58.127228, y: 30.176125, z: 0}
+  m_LocalPosition: {x: 34.993988, y: 51.794178, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -189,7 +189,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010020934182}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -5}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -273,10 +273,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particle: {fileID: 198000011089624990}
   Halo: {fileID: 212000010517488058}
-  restTime: 5
+  restTime: 3.5
   disableColor: {r: 0.50735295, g: 0.50735295, b: 0.50735295, a: 1}
   scale: 0.5
-  speed: 2
+  speed: 4
   _light: {fileID: 108000010651402514}
   nearRange: 2
   maxDistanceDelta: 0.2

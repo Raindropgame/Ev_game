@@ -1,11 +1,10 @@
 fileFormatVersion: 2
-guid: f6e5dddbb17cd324183db8e5f4b85896
-timeCreated: 1552481319
+guid: 9d0253954e1278c45b65ad2e0563d450
+timeCreated: 1552991967
 licenseType: Pro
 MonoImporter:
   serializedVersion: 2
-  defaultReferences:
-  - noiseTex: {fileID: 2800000, guid: 34e509b9c7dc2184299e3c0e3cc134a4, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

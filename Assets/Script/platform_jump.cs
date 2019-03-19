@@ -48,7 +48,7 @@ public class platform_jump : MonoBehaviour {
             {
                 if (MyInput.instance.isGetJumpDown())
                 {
-                    CharacterControl.instance._jumpTimes--;
+                    CharacterControl.instance.isPlatJump = true;                  
                     Rest = true;
                     particle.gameObject.SetActive(true);
                     Invoke("reset", restTime);
@@ -58,7 +58,7 @@ public class platform_jump : MonoBehaviour {
             }
         }
 
-        transform.position = new Vector3(transform.position.x, transform.position.y, originPos.z);   //纠正Z值
+        transform.position = GameFunction.getVector3(transform.position.x, transform.position.y, originPos.z);   //纠正Z值
 	}
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -86,11 +86,11 @@ public class platform_jump : MonoBehaviour {
     IEnumerator halo()
     {
         float alpha_start = 0.7f;
-        float duration = 0.5f, _time1 = 0;
+        float duration = 0.28f, _time1 = 0;
         while(true)
         {
             _time1 += Time.deltaTime;
-            Halo.color = new Color(Halo.color.r, Halo.color.g, Halo.color.b, Mathf.Lerp(alpha_start, 1, _time1 / duration));
+            Halo.color = GameFunction.getColor(Halo.color.r, Halo.color.g, Halo.color.b, Mathf.Lerp(alpha_start, 1, _time1 / duration));
             Halo.gameObject.transform.localScale = Vector3.Lerp(Vector3.one * 3, Vector3.zero, _time1 / duration);
             _light.range = Mathf.Lerp(light_rest_range, origin_range, _time1 / duration);
             if(_time1 > duration)

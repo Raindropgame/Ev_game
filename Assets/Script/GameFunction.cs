@@ -58,7 +58,7 @@ public class GameFunction{
         return t_Vector2;
     }
 
-    private static Color m_Color = Color.white;
+    public static Color m_Color = Color.white;
     static public Color getColor(float r,float g,float b,float a)
     {
         m_Color.r = r;

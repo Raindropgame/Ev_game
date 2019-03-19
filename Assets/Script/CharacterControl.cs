@@ -27,6 +27,7 @@ public class CharacterControl : MonoBehaviour
     public float proportion_dashScale = 0.4f;
     public Vector3 dashScale;
     public float jumpTimeFactor = 1f;
+    public bool isPlatJump = false;  //连跳平台
 
     [HideInInspector]
     public Rigidbody2D rig;
@@ -413,12 +414,13 @@ public class CharacterControl : MonoBehaviour
                     CharacterObjectManager.instance.attack1(Dir);
                 }
 
-                if(MyInput.instance.isGetJumpDown() && _jumpTimes < JumpTimes && isEnable[(int)state.jump] && isGetInput)   //连跳
+                if((MyInput.instance.isGetJumpDown() && _jumpTimes < JumpTimes && isEnable[(int)state.jump] && isGetInput) || isPlatJump)  //连跳
                 {
+                    isPlatJump = false;
                     currentState = state.jump;
                     JumpAccelerateTime = 0;
                     YJumpSpeed = JumpSpeed;
-                    rig.velocity = new Vector2(0, 0);
+                    rig.velocity = Vector2.zero;
                     _jumpTimes++;
                 }
 

@@ -296,8 +296,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 522a0c287bd061f40a60bb24a7924836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequency: 1.5
-  changeScale: 0.6
+  speed: 1.2
+  color: {r: 0, g: 0, b: 0, a: 1}
   SR:
   - {fileID: 212000013486205082}
   - {fileID: 212000013681501486}

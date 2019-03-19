@@ -10,10 +10,13 @@ public class Pause : MonoBehaviour {
 	void Update () {
 	    if(Input.GetKeyDown(KeyCode.Escape))
         {
-            black.SetActive(true);
-            black.GetComponent<Image>().color = new Color(0.9f, 0.9f, 0.9f, 0.5f);
-            CharacterControl.instance.enabled = false;
-            Time.timeScale = 0;
+            if (Time.timeScale != 0)
+            {
+                black.SetActive(true);
+                black.GetComponent<Image>().color = new Color(0.9f, 0.9f, 0.9f, 0.5f);
+                CharacterControl.instance.enabled = false;
+                Time.timeScale = 0;
+            }
         }
         if(Input.GetKeyDown(KeyCode.Return))
         {

@@ -75,7 +75,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000011325053330}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!4 &4000011325053330
 Transform:
   m_ObjectHideFlags: 1
@@ -83,12 +83,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011117643628}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -41.59, y: 81.48, z: 0}
+  m_LocalPosition: {x: 79.66, y: 63.99, z: 0}
   m_LocalScale: {x: 2.08931, y: 2.08931, z: 2.08931}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 4000010485990586}
   - {fileID: 4000014013320968}
+  - {fileID: 4000010485990586}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &4000014013320968
@@ -98,12 +98,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011299837152}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0000018258141, y: 0, z: 0}
-  m_LocalScale: {x: 0.9999985, y: 0.9999985, z: 0.9999985}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000011325053330}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!50 &50000010135828940
 Rigidbody2D:
   serializedVersion: 2
@@ -119,8 +119,8 @@ Rigidbody2D:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!61 &61000010858719880
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -160,9 +160,9 @@ BoxCollider2D:
   m_Material: {fileID: 6200000, guid: ffe1917866e2e544a832fc984f897af1, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0.008727391, y: -0.01308949}
+  m_Offset: {x: 0.038820516, y: -0.14297606}
   serializedVersion: 2
-  m_Size: {x: 1.1396241, y: 0.3280801}
+  m_Size: {x: 1.0250819, y: 0.050190464}
 --- !u!61 &61000013690780720
 BoxCollider2D:
   m_ObjectHideFlags: 1
