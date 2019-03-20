@@ -103,7 +103,7 @@ public class CharacterControl : MonoBehaviour
         {
             case state.normal:
                 changeDir();  // 行走
-                if ((isDoubleKeyDown() != 0 || MyInput.instance.isGetRun())&& isEnable[(int)state.run])
+                if ((isDoubleKeyDown() != 0 || MyInput.instance.isGetRun())&& isEnable[(int)state.run] && !CharacterAttribute.GetInstance().isOverLoad_breath)
                 {
                     currentState = state.run;  //双击变为奔跑
                 }
@@ -128,7 +128,7 @@ public class CharacterControl : MonoBehaviour
             case state.walk:
                 currentState = state.normal;    //闲置
                 changeDir();
-                if ((isDoubleKeyDown() != 0 || MyInput.instance.isGetRun())&& isEnable[(int)state.run])
+                if ((isDoubleKeyDown() != 0 || MyInput.instance.isGetRun())&& isEnable[(int)state.run] && !CharacterAttribute.GetInstance().isOverLoad_breath)
                 {
                     currentState = state.run;    //奔跑
                 }
@@ -152,7 +152,7 @@ public class CharacterControl : MonoBehaviour
                 break;
             case state.run:
 
-                if(! (CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_run * Time.deltaTime))
+                if((CharacterAttribute.GetInstance().isOverLoad_breath))
                 {
                     currentState = state.normal;
                     break;  //如果气息不够则退回站立状态
@@ -201,7 +201,7 @@ public class CharacterControl : MonoBehaviour
 
                 isDoubleKeyDown();  //计时
                 currentState = state.fall;    //下落
-                if(MyInput.instance.isGetJump() && JumpAccelerateTime < MaxJumpTime * (XJumpSpeed < RunSpeed ? 0.92f : 1.0f) && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_jump * Time.deltaTime && isGetInput)
+                if(MyInput.instance.isGetJump() && JumpAccelerateTime < MaxJumpTime * (XJumpSpeed < RunSpeed ? 0.92f : 1.0f) && !CharacterAttribute.GetInstance().isOverLoad_breath && isGetInput)
                 {
                     CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_jump * Time.deltaTime;  //气息消耗
                     JumpAccelerateTime += (Time.deltaTime * jumpTimeFactor);
@@ -407,7 +407,7 @@ public class CharacterControl : MonoBehaviour
                     AtTop();
                 }
 
-                if (MyInput.instance.isGetAttack() && isEnable[(int)state.attack1] && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_attack && isGetInput)  //攻击
+                if (MyInput.instance.isGetAttack() && isEnable[(int)state.attack1] && !CharacterAttribute.GetInstance().isOverLoad_breath && isGetInput)  //攻击
                 {
                     CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_attack;
                     currentState = state.attack1;  //攻击
@@ -661,7 +661,7 @@ public class CharacterControl : MonoBehaviour
 
     bool attack()  //封装攻击
     {
-        if(MyInput.instance.isGetAttack() && isEnable[(int)state.attack1] && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_attack && isGetInput)
+        if(MyInput.instance.isGetAttack() && isEnable[(int)state.attack1] && !CharacterAttribute.GetInstance().isOverLoad_breath && isGetInput)
         {
             if(isAttack && _DoubleAttackSpaceTime < DoubleAttackSpaceTime)
             {
@@ -689,7 +689,7 @@ public class CharacterControl : MonoBehaviour
         {
             if (isJump)
             {
-                if (JumpShootTimes < MaxJumpShootTimes && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_jumpshoot)
+                if (JumpShootTimes < MaxJumpShootTimes && !CharacterAttribute.GetInstance().isOverLoad_breath)
                 {
                     currentState = state.jumpshoot;
                     //CharacterObjectManager.instance.arrow_2();
@@ -701,7 +701,7 @@ public class CharacterControl : MonoBehaviour
             }
             else
             {
-                if (CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_shoot)
+                if (!CharacterAttribute.GetInstance().isOverLoad_breath)
                 {
                     currentState = state.shoot;
                     CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_shoot;   //气息消耗
@@ -715,7 +715,7 @@ public class CharacterControl : MonoBehaviour
 
     bool Throw()   //扔
     {
-        if(MyInput.instance.isGetThrow() && CharacterAttribute.GetInstance().isEnable[(int)state.Throw] && CharacterAttribute.GetInstance().Breath > CharacterAttribute.GetInstance().expend_throw && isGetInput)
+        if(MyInput.instance.isGetThrow() && CharacterAttribute.GetInstance().isEnable[(int)state.Throw] && !CharacterAttribute.GetInstance().isOverLoad_breath && isGetInput)
         {
             currentState = state.Throw;
             CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_throw;
@@ -726,7 +726,7 @@ public class CharacterControl : MonoBehaviour
 
     bool dash()
     {
-        if (MyInput.instance.isGetDash() && isEnable[(int)state.dash] && CharacterAttribute.GetInstance().Breath >= CharacterAttribute.GetInstance().expend_dash && dashTimes < 1 && isGetInput)
+        if (MyInput.instance.isGetDash() && isEnable[(int)state.dash] && !CharacterAttribute.GetInstance().isOverLoad_breath && dashTimes < 1 && isGetInput)
         {
             dashTimes++;
             currentState = state.dash;  //冲刺

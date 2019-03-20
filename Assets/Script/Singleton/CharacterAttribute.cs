@@ -19,7 +19,41 @@ public class CharacterAttribute{
     }
 
     public int MaxBreath = 50;  //最大气息值
-    public float Breath = 50;  //当前气息值
+    private float m_Breath = 50;  //当前气息值
+    public float Breath
+    {
+        get
+        {
+            if(isOverLoad_breath)
+            {
+                return 0;
+            }
+            else
+            {
+                return m_Breath;
+            }
+        }
+        set
+        {
+            if(value < 0)
+            {
+                m_Breath = 0;
+            }
+            else if(value > MaxBreath)
+            {
+                m_Breath = MaxBreath;
+            }
+            m_Breath = value;
+        }
+    }
+    public float Breath_real
+    {
+        get
+        {
+            return m_Breath;
+        }
+    }
+    public bool isOverLoad_breath = false;  //是否过载
 
     public int MaxHP = 3;   //最大生命值
     public int HP = 3;  // 当前生命值
@@ -41,6 +75,7 @@ public class CharacterAttribute{
     public Attribute[] ArmsAttribute = new Attribute[3] { Attribute.normal, Attribute.normal, Attribute.normal };
 
     public int Speed_recovery = 30;  //气息恢复速度
+    public int Speed_recovery_overload = 25;  //过载气息恢复速度
 
     //能力
     public bool[] isEnable = { true, false, true, false, true, true, false, true, false, true, true, true,true };

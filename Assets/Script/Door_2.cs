@@ -3,6 +3,20 @@ using System.Collections;
 
 public class Door_2 : MonoBehaviour {
 
+    static ParticleSystem m_PS_dust = null;
+    static ParticleSystem PS_dust
+    {
+        get
+        {
+            if(m_PS_dust == null)
+            {
+                GameObject t = Instantiate(ResourcesManagement.getInstance().getResources<GameObject>("Door_Dust"), position: Vector3.zero, rotation: Quaternion.Euler(Vector3.forward * 90)) as GameObject;
+                m_PS_dust = t.GetComponent<ParticleSystem>();
+            }
+            return m_PS_dust;
+        }
+    }
+
     public Door_2_button button;
     public Transform door_bottom, door_up,door_stone;
     public float Height_bottom, Height_up;
@@ -109,6 +123,9 @@ public class Door_2 : MonoBehaviour {
             door_bottom.position = Vector3.Lerp(currentPos_bottom, originPos_door_bottom, t);
             yield return null;
         }
+
+        PS_dust.transform.position = transform.position;
+        PS_dust.Play();
 
         timer = 0;
         const float time_stone = 1f;

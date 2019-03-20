@@ -4493,6 +4493,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce4046e60a9e450459797c4fb2a2ad96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  overload_min: {r: 1, g: 0.27241385, b: 0.27241385, a: 1}
+  overload_max: {r: 1, g: 0.81810343, b: 0.27241385, a: 1}
+  normal: {r: 0, g: 0.60294104, b: 1, a: 1}
 --- !u!114 &114000012522663848
 MonoBehaviour:
   m_ObjectHideFlags: 1
