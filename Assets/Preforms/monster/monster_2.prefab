@@ -508,7 +508,7 @@ MonoBehaviour:
   colliderID:
   - {fileID: 61000010400358946}
   isUseHitBack: 1
-  backVelocity: {x: 5, y: 0}
+  backVelocity: 9
   backTime: 0.05
   isGetRainState: 1
   Dir: 0
@@ -520,7 +520,7 @@ MonoBehaviour:
   bulletSpeed: {x: 20, y: -5}
   idleTime: 3
   deadParticle: {fileID: 1000010430501034}
-  isEnableEdgeRay: 0
+  isEnableEdgeRay: 1
   viewDistance_player: 15
 --- !u!198 &198000010568044718
 ParticleSystem:

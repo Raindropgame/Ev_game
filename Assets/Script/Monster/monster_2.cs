@@ -158,7 +158,7 @@ public class monster_2 : Monster_base {
             if (abnormalState.Contains(AbnormalState.frozen))
             {
                 CameraFollow.instance.Stop(0.17f,0.1f);  //屏幕特效
-                StartCoroutine(CameraFollow.instance.shakeCamera(0.25f, 0.04f, 0.2f));  //镜头抖动
+                CameraFollow.instance.shakeCamera(0.25f, 0.04f, 0.2f);  //镜头抖动
                 GameObject t = Resources.Load<GameObject>("fire");
                 Instantiate(t, position: SR.bounds.center, rotation: Quaternion.Euler(0, 0, 0));
                 currentHP -= damage;  //双倍伤害
@@ -217,7 +217,7 @@ public class monster_2 : Monster_base {
         this.enabled = false;
 
         Time.timeScale = 0;
-        StartCoroutine(CameraFollow.instance.shakeCamera(0.25f, 0.04f, 0.2f));  //镜头抖动
+        CameraFollow.instance.shakeCamera(0.25f, 0.04f, 0.2f);  //镜头抖动
         yield return new WaitForSecondsRealtime(0.1f);  //卡屏
         Time.timeScale = 1;
         yield return new WaitForSeconds(deadParticle.GetComponent<ParticleSystem>().startLifetime);

@@ -37,7 +37,8 @@ public class CharacterControl : MonoBehaviour
     public int _jumpTimes = 0; //记录跳跃次数
     private float JumpAccelerateTime = 0; //记录跳跃加速的时间  按键越久跳跃越高
     private float XJumpSpeed, YJumpSpeed, Yacceleration;
-    private BoxCollider2D _collider;
+    [HideInInspector]
+    public BoxCollider2D _collider;
     private dir lastDir;  //上一帧的方向
     private SpriteRenderer SpriteRenderer;
     private Animator animator;

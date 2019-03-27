@@ -20,6 +20,7 @@ public class CharacterObjectManager : MonoBehaviour
     public ParticleSystem FallDust, FallDust_rain;
     public GameObject BeHurt_BG;
     public ParticleSystem Particle_Treat;
+    public GameObject Source_Particle_swordHurt;  //刀攻击粒子特效
 
     private GameObject character;
     private GameObject _attack1_left, _attack1_right, _attack2_left, _attack2_right;
@@ -29,6 +30,7 @@ public class CharacterObjectManager : MonoBehaviour
     private ParticleSystem.EmissionModule dashParticle;  //冲刺粒子系统
     private ParticleSystem.EmissionModule WalkDustEmission, WalkDustEmission_rain;
     private bool isBeHurt = false;
+    private ParticleSystem Particle_swordHurt;
 
 
     private void Start()
@@ -72,6 +74,10 @@ public class CharacterObjectManager : MonoBehaviour
             t_gameobject.SetActive(false);
             HitPointList.Add(t_gameobject); 
         }
+
+        //刀攻击粒子特效初始化
+        GameObject t = Instantiate(Source_Particle_swordHurt, position: Vector3.zero, rotation: Quaternion.Euler(Vector3.zero)) as GameObject;
+        Particle_swordHurt = t.GetComponent<ParticleSystem>();
 
     }
 
@@ -413,5 +419,19 @@ public class CharacterObjectManager : MonoBehaviour
     public void PLayTreat()
     {
         Particle_Treat.Play();
+    }
+
+    /// <summary>
+    /// 播放刀攻击动画
+    /// </summary>
+    /// <param name="Pos"></param>
+    public void PlaySwordHurtParticle(Vector3 Pos)
+    {
+        Particle_swordHurt.transform.position = Pos;
+        if(Particle_swordHurt.transform.position.z == 0)  //解决不可见问题
+        {
+            Particle_swordHurt.transform.position += Vector3.forward * 0.01f;
+        }
+        Particle_swordHurt.Play();
     }
 }

@@ -19,6 +19,8 @@ public class Scene : MonoBehaviour {
 
     private void Awake()
     {
+        System.DateTime currentTime = new System.DateTime();
+        Random.InitState(currentTime.Millisecond);
 
         script1 = GameObject.Find("MainCamera").GetComponent<CameraFollow>();
         script2 = GameObject.Find("MainCamera").GetComponent<CameraFollow_Start>();
@@ -32,6 +34,7 @@ public class Scene : MonoBehaviour {
         black = GameObject.Find("black");
 
         script1.enabled = false;
+
     }
 
     private void Update()

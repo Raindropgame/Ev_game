@@ -1090,6 +1090,8 @@ MonoBehaviour:
   FallDust_rain: {fileID: 198000012874627322}
   BeHurt_BG: {fileID: 1000012872111302}
   Particle_Treat: {fileID: 198000012376415140}
+  Source_Particle_swordHurt: {fileID: 1000011908952338, guid: 8e2f55924f5126b4d856a7e9ae292b3b,
+    type: 2}
 --- !u!114 &114000011451773936
 MonoBehaviour:
   m_ObjectHideFlags: 1

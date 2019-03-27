@@ -125,8 +125,9 @@ public class CameraFollow : MonoBehaviour {
         this.axis = axis;
     }
 
-    public IEnumerator shakeCamera(float shakeScale, float singleTime, float shakeTime)  //镜头震动效果
+    IEnumerator IE_shakeCamera(float shakeScale, float singleTime, float shakeTime)  //镜头震动效果
     {
+        isShake = true;
         if (!Scene.instance.isInit)  //初始阶段不能抖动
         {
             float _time0 = 0, _time1 = 0;
@@ -156,6 +157,23 @@ public class CameraFollow : MonoBehaviour {
                 yield return null;
             }
 
+        }
+
+        isShake = false;
+    }
+
+    private bool isShake = false;
+    /// <summary>
+    /// 震屏
+    /// </summary>
+    /// <param name="shakeScale"></param>
+    /// <param name="singleTime"></param>
+    /// <param name="shakeTime"></param>
+    public void shakeCamera(float shakeScale, float singleTime, float shakeTime)
+    {
+        if (!isShake)
+        {
+            StartCoroutine(IE_shakeCamera(shakeScale, singleTime, shakeTime));
         }
     }
 
@@ -189,4 +207,26 @@ public class CameraFollow : MonoBehaviour {
         isBeControl = false;
     }
 
+    IEnumerator IE_stutter(float time)
+    {
+        isStutter = true;
+        float originScale = Time.timeScale;
+        Time.timeScale = 0;
+        yield return new WaitForSecondsRealtime(time);
+        Time.timeScale = originScale;
+        isStutter = false;
+    }
+
+    private bool isStutter = false;
+    /// <summary>
+    /// 卡顿特效
+    /// </summary>
+    /// <param name="time"></param>
+    public void Stutter(float time)
+    {
+        if(!isStutter)
+        {
+            StartCoroutine(IE_stutter(time));
+        }
+    }
 }

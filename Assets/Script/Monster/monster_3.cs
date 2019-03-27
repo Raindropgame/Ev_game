@@ -48,7 +48,7 @@ public class monster_3 : Monster_base {
         }
 
         Time.timeScale = 0;
-        StartCoroutine(CameraFollow.instance.shakeCamera(0.25f, 0.04f, 0.2f));  //镜头抖动
+        CameraFollow.instance.shakeCamera(0.25f, 0.04f, 0.2f);  //镜头抖动
         yield return new WaitForSecondsRealtime(0.1f);  //卡屏
         Time.timeScale = 1;
         yield return new WaitForSeconds(boom_particle.GetComponent<ParticleSystem>().startLifetime);

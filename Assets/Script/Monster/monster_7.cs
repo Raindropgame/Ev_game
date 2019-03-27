@@ -18,7 +18,6 @@ public class monster_7 : Monster_base {
     private bool _isNearWall = false;
     private bool _isGround = false;
     private bool _isNearEdge = false;
-    private RaycastHit2D hitPoint;
     private float Timer_shrink;
 
     public override void onStart()

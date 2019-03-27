@@ -14,7 +14,7 @@ public class Monster_base : MonoBehaviour {
     public Collider2D[] colliderID;   //一个怪物提供多个碰撞体
     [Header("是否打开击退效果")]
     public bool isUseHitBack = false;
-    public Vector2 backVelocity;
+    public float backVelocity;
     public float backTime;
     [Header("是否检测在雨中的状态")]
     public bool isGetRainState = true;
@@ -31,7 +31,20 @@ public class Monster_base : MonoBehaviour {
     [HideInInspector]
     public dir Dir = dir.left;
     protected bool isHurtPlayer = true; //是否对玩家产生伤害
-    protected bool isInRain = false;  //是否在雨中
+    private bool m_isInRain = false;  //是否在雨中
+    protected bool isInRain
+    {
+        get
+        {
+            getIsInRain();
+            return m_isInRain;
+
+        }
+        set
+        {
+            m_isInRain = value;
+        }
+    }
     protected bool isInShelter = false;
 
     //资源----
@@ -286,7 +299,7 @@ public class Monster_base : MonoBehaviour {
                 Vector2 direction = Vector2.zero;
                 for (int i = 0;i<colliderID.Length;i++)
                 {
-                    direction += ((Vector2)colliderID[i].bounds.center - ColliderPos);  //攻击物指向被攻击物
+                    direction = ((Vector2)colliderID[i].bounds.center - ColliderPos).normalized;  //攻击物指向被攻击物
                 }
                 StartCoroutine(hitBack(backTime,direction));
             }
@@ -307,7 +320,7 @@ public class Monster_base : MonoBehaviour {
         return false;
     }
 
-    RaycastHit2D hitPoint;
+    protected RaycastHit2D hitPoint;
     private Collider2D m_gravity;
     protected Collider2D gravity
     {
@@ -609,15 +622,18 @@ public class Monster_base : MonoBehaviour {
         while (_time < time)
         {
             _time += Time.deltaTime;
+            float t = 1 - (_time / time);
 
-            if (direction.x < 0)
-            {
-                additionalVelocity = -backVelocity;
-            }
-            else
-            {
-                additionalVelocity = backVelocity;
-            }
+            rig.velocity = Vector2.zero;
+            //if (direction.x < 0)
+            //{
+            //    additionalVelocity += -backVelocity.x * t * direction;
+            //}
+            //else
+            //{
+            //    additionalVelocity += backVelocity.x * t * direction;
+            //}
+            additionalVelocity += backVelocity * t * direction;
             yield return null;
         }
     }

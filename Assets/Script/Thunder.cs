@@ -46,7 +46,7 @@ public class Thunder : MonoBehaviour {
                     if (Random.value < Lighting_Odds)
                     {
                         getLighting().SetActive(true);
-                        StartCoroutine(CameraFollow.instance.shakeCamera(0.25f, 0.06f, 0.3f));  //出现闪电时镜头抖动
+                        CameraFollow.instance.shakeCamera(0.25f, 0.06f, 0.3f);  //出现闪电时镜头抖动
                         isCooling = true;
                         LeftTime = 0;
                     }

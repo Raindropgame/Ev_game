@@ -148,7 +148,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012077245480}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.98, y: 0.849, z: 0.01}
+  m_LocalPosition: {x: -1.023, y: 0.829, z: 0.01}
   m_LocalScale: {x: 0.4430062, y: 0.23515423, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 41.158}
   m_Children:
@@ -201,8 +201,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012733609058}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -400.2472, y: 32.246124, z: 0}
-  m_LocalScale: {x: -2.124717, y: 2.1247175, z: 2.1247175}
+  m_LocalPosition: {x: -24.187225, y: -9.003876, z: 0}
+  m_LocalScale: {x: 2.124717, y: 2.1247175, z: 2.1247175}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000012249002934}
@@ -354,8 +354,8 @@ MonoBehaviour:
   colliderID:
   - {fileID: 61000010761871936}
   isUseHitBack: 1
-  backVelocity: {x: 6, y: 0}
-  backTime: 0.01
+  backVelocity: 10
+  backTime: 0.3
   isGetRainState: 1
   Dir: 0
   dashSpeed: 14

@@ -14,6 +14,7 @@ public class Sword : MonoBehaviour {
     private ContactPoint2D HitPoint;
     private Animator animator;
     private Element ElementTrigger = null;
+    private bool isContact = false;
 
     private void Awake()
     {
@@ -50,12 +51,17 @@ public class Sword : MonoBehaviour {
         if (collision.tag.CompareTo("enemy") == 0)  //攻击敌人
         {
             CharacterControl.instance.add_Velocity(new Vector2(CharacterControl.instance.Dir == dir.left ?  backVelocity_enemy: -backVelocity_enemy, 0));  //击退并加特效
-            GameObject t = CharacterObjectManager.instance.getHitPoint();
-            t.SetActive(true);
-            t.transform.position = collision.bounds.center;
-            t.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+            if (!isContact)
+            {
+                GameObject t = CharacterObjectManager.instance.getHitPoint();
+                t.SetActive(true);
+                t.transform.position = collision.bounds.center;
+                t.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+                CharacterObjectManager.instance.PlaySwordHurtParticle(collision.bounds.center);
+                isContact = true;
+            }
 
-            CharacterObjectManager.instance.sendHurt(CharacterAttribute.GetInstance().Attack[(int)Arms.swords], CharacterAttribute.GetInstance().ArmsAttribute[(int)Arms.swords], collision.gameObject.GetInstanceID(),Collider.bounds.center);
+            CharacterObjectManager.instance.sendHurt(CharacterAttribute.GetInstance().Attack[(int)Arms.swords], CharacterAttribute.GetInstance().ArmsAttribute[(int)Arms.swords], collision.gameObject.GetInstanceID(),CharacterControl.instance._collider.bounds.center);
         }
     }
 
@@ -65,10 +71,15 @@ public class Sword : MonoBehaviour {
         HitPoint = collision.contacts[0];  //获取碰撞点
         if (collision.gameObject.layer.CompareTo(LayerMask.NameToLayer("terrain")) == 0)
         {
-            GameObject t = CharacterObjectManager.instance.getHitPoint();
-            t.SetActive(true);
-            t.transform.position = HitPoint.point;
-            t.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+            if (!isContact)
+            {
+                GameObject t = CharacterObjectManager.instance.getHitPoint();
+                t.SetActive(true);
+                t.transform.position = HitPoint.point;
+                t.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+                CharacterObjectManager.instance.PlaySwordHurtParticle(HitPoint.point);
+                isContact = true;
+            }
 
             CharacterObjectManager.instance.sendHurt(0, CharacterAttribute.GetInstance().ArmsAttribute[(int)Arms.swords], collision.gameObject.GetInstanceID(),Vector2.zero);
         }
@@ -86,6 +97,7 @@ public class Sword : MonoBehaviour {
 
         }
         animator.SetTrigger(CharacterAttribute.GetInstance().ArmsAttribute[(int)Arms.swords].ToString());   //根据属性更改动画
+        isContact = false;
     }
 
     private void OnDisable()

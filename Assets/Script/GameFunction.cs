@@ -68,4 +68,14 @@ public class GameFunction{
         return m_Color;
     }
 
+    /// <summary>
+    /// 平滑插值
+    /// </summary>
+    /// <param name="t"></param>
+    /// <returns></returns>
+    static public float smoothLerp(float t)
+    {
+        return 3 * t * t - 2 * t * t * t;
+    }
+
 }

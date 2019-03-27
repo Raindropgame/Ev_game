@@ -125,7 +125,7 @@ public class monster_4_Water : Monster_base
         deadParticle.SetActive(true);
         GetComponent<SpriteRenderer>().enabled = false;
         Time.timeScale = 0;
-        StartCoroutine(CameraFollow.instance.shakeCamera(0.25f, 0.04f, 0.2f));  //镜头抖动
+        CameraFollow.instance.shakeCamera(0.25f, 0.04f, 0.2f);  //镜头抖动
         yield return new WaitForSecondsRealtime(0.1f);  //卡屏
         Time.timeScale = 1;
         yield return new WaitForSeconds(deadParticle.GetComponent<ParticleSystem>().startLifetime);
@@ -142,7 +142,7 @@ public class monster_4_Water : Monster_base
             {
                 CameraFollow.instance.Stop(GameData.fire_boom_stopTime, 0.1f);  //屏幕特效
                 Screen1_render.instance.Wave(this.transform.position, 0.5f);
-                StartCoroutine(CameraFollow.instance.shakeCamera(0.2f, 0.03f, 0.3f));  //镜头抖动
+                CameraFollow.instance.shakeCamera(0.2f, 0.03f, 0.3f);  //镜头抖动
                 GameObject t = Resources.Load<GameObject>("fire");
                 Instantiate(t, position: SR.bounds.center, rotation: Quaternion.Euler(0, 0, 0));
                 currentHP -= damage;  //双倍伤害
