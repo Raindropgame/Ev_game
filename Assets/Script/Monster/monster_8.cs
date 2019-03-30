@@ -35,6 +35,8 @@ public class monster_8 : Monster_base{
     public Color restColor_center;
     public SpriteRenderer SR_center;
     public GameObject Particle_Die;
+    public Transform laserHit;
+    public SpriteRenderer SR_laserHit;
 
     private state_monster_8 currentState = state_monster_8.idle;
     private bool _isSeePlayer = false;
@@ -91,6 +93,7 @@ public class monster_8 : Monster_base{
             return m_view_Player;
         }
     }
+    private Vector3 originScale_laserHit;
 
     public override void onStart()
     {
@@ -102,6 +105,7 @@ public class monster_8 : Monster_base{
         originScale = transform.localScale;
         originColor_heart = SR_heart.color;
         originColor_center = SR_center.color;
+        originScale_laserHit = laserHit.localScale;
     }
 
     protected override void _FixedUpdate()
@@ -362,6 +366,7 @@ public class monster_8 : Monster_base{
         LR.SetPosition(0, GameFunction.t_Vector3);
         edgeColl.points = edgePos;
         Vector2 _targetPos;
+        SR_laserHit.enabled = true;
         while (Timer < duration)
         {
             Timer += Time.deltaTime;
@@ -390,8 +395,12 @@ public class monster_8 : Monster_base{
             edgeColl.points = edgePos;
             LR.SetPosition(1, GameFunction.t_Vector3);
 
+            laserHit.transform.position = GameFunction.t_Vector3;
+            laserHit.localScale = Vector3.Lerp(originScale_laserHit, Vector3.zero, t - 0.3f);
+
             yield return null;
         }
+        SR_laserHit.enabled = false;
         isLaser = false;
         LR.enabled = false;
         edgeColl.enabled = false;
@@ -463,13 +472,4 @@ public class monster_8 : Monster_base{
         Particle_hurt.Play();
     }
 
-    private void OnBecameVisible()
-    {
-        this.enabled = true;
-    }
-
-    private void OnBecameInvisible()
-    {
-        this.enabled = false;
-    }
 }

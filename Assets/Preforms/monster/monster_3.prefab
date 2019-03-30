@@ -24,8 +24,7 @@ GameObject:
   - 232: {fileID: 232000013723901832}
   - 114: {fileID: 114000010582456890}
   - 61: {fileID: 61000011509101346}
-  - 61: {fileID: 61000011317835780}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: 1
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -41,7 +40,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000014114221822}
   - 212: {fileID: 212000012965475318}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: New Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +60,6 @@ GameObject:
   - 232: {fileID: 232000013837800876}
   - 114: {fileID: 114000010707889080}
   - 61: {fileID: 61000010437867968}
-  - 61: {fileID: 61000014086886698}
   m_Layer: 9
   m_Name: head
   m_TagString: enemy
@@ -77,7 +75,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000011183061348}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +91,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013686278366}
   - 212: {fileID: 212000012223917490}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: New Sprite (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +106,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000010860648714}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +122,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012801928284}
   - 114: {fileID: 114000011894966354}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: monster_3
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -144,8 +142,8 @@ GameObject:
   - 232: {fileID: 232000012342721810}
   - 114: {fileID: 114000011205594574}
   - 61: {fileID: 61000013475546260}
-  - 61: {fileID: 61000013972501548}
-  m_Layer: 9
+  - 61: {fileID: 61000011978482468}
+  m_Layer: 13
   m_Name: 2
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -162,7 +160,8 @@ GameObject:
   - 4: {fileID: 4000013715278262}
   - 198: {fileID: 198000010392834840}
   - 199: {fileID: 199000010451253976}
-  m_Layer: 9
+  - 114: {fileID: 114000011568002112}
+  m_Layer: 0
   m_Name: boom_particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,9 +176,10 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000010113904970}
-  m_Layer: 9
+  - 61: {fileID: 61000012320245746}
+  m_Layer: 0
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -198,7 +198,7 @@ GameObject:
   - 114: {fileID: 114000013701614416}
   - 61: {fileID: 61000011471682222}
   - 61: {fileID: 61000010210813628}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: root
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -213,7 +213,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000012735657232}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,8 +226,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013237835362}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: -3.18, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -3.1799998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -308,10 +308,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012046301704}
-  m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
-  m_LocalPosition: {x: -192.69724, y: 54.366123, z: 1}
+  m_LocalRotation: {x: 0, y: -0, z: 0, w: -1}
+  m_LocalPosition: {x: -194.45, y: 41.68, z: 1}
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 360}
   m_Children:
   - {fileID: 4000010555182610}
   - {fileID: 4000013633971814}
@@ -327,8 +327,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012314450944}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.47, y: -4.93, z: 0.2}
-  m_LocalScale: {x: 1, y: 1.0040184, z: 1}
+  m_LocalPosition: {x: -1.4699936, y: -4.9300003, z: 0.20000005}
+  m_LocalScale: {x: 1, y: 1.0040182, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000010113904970}
@@ -483,20 +483,6 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1.8999999, y: 4.2999997}
---- !u!61 &61000011317835780
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010487987052}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_Offset: {x: 0.0011786222, y: -0.0000019073486}
-  serializedVersion: 2
-  m_Size: {x: 3.5628438, y: 4.8499994}
 --- !u!61 &61000011471682222
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -525,6 +511,34 @@ BoxCollider2D:
   m_Offset: {x: -0.05260861, y: -0.0000019073486}
   serializedVersion: 2
   m_Size: {x: 2.9537964, y: 4.8499994}
+--- !u!61 &61000011978482468
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012314450944}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.012404203, y: -0.0000004749287}
+  serializedVersion: 2
+  m_Size: {x: 3.0009964, y: 3.49}
+--- !u!61 &61000012320245746
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013237835362}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.012404203, y: -0.0000004749287}
+  serializedVersion: 2
+  m_Size: {x: 3.0009964, y: 3.49}
 --- !u!61 &61000013475546260
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -539,34 +553,6 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 2.5299997, y: 3.4899998}
---- !u!61 &61000013972501548
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012314450944}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_Offset: {x: 0.012404203, y: -0.0000004749287}
-  serializedVersion: 2
-  m_Size: {x: 3.0009964, y: 3.49}
---- !u!61 &61000014086886698
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011536634738}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_Offset: {x: -0.012402296, y: 0}
-  serializedVersion: 2
-  m_Size: {x: 2.2717824, y: 4.2999997}
 --- !u!114 &114000010582456890
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -618,6 +604,18 @@ MonoBehaviour:
   force: 20
   isActive: 1
   changeTime: 1
+--- !u!114 &114000011568002112
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013108746486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7092e6fa0685cc44580a5bc15df76aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 1
 --- !u!114 &114000011894966354
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -633,10 +631,12 @@ MonoBehaviour:
   MaxHP: 5
   currentHP: 0
   colliderID:
-  - {fileID: 61000011471682222}
-  - {fileID: 61000011509101346}
-  - {fileID: 61000013475546260}
-  - {fileID: 61000010437867968}
+  - {fileID: 61000012320245746}
+  isUseHitBack: 0
+  backVelocity: 0
+  backTime: 0
+  isGetRainState: 0
+  Dir: 0
   _SR:
   - {fileID: 212000010083370562}
   - {fileID: 212000014232518744}
@@ -2658,7 +2658,7 @@ DistanceJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 0
   m_Anchor: {x: -0.13027173, y: 1.4019251}
-  m_ConnectedAnchor: {x: -387.94193, y: 54.639225}
+  m_ConnectedAnchor: {x: -195.1781, y: 42.640774}
   m_AutoConfigureDistance: 1
   m_Distance: 0.005
   m_MaxDistanceOnly: 0

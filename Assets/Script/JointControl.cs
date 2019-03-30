@@ -37,7 +37,7 @@ public class JointControl : MonoBehaviour {
             {
                 if (isActive)
                 {
-                    Vector2 direction = Vector3.Cross(((Vector2)CharacterControl.instance.transform.position - (Vector2)ForcePos.position).normalized, new Vector3(0, 0, -1));
+                    Vector2 direction = Vector3.Cross(((Vector2)CharacterControl.instance.transform.position - (Vector2)ForcePos.position).normalized, Vector3.back);
                     _time0 += Time.deltaTime;
                     if (_time0 < changeTime)
                     {

@@ -37,6 +37,7 @@ GameObject:
   - 4: {fileID: 4000010747211184}
   - 61: {fileID: 61000010960556190}
   - 61: {fileID: 61000013890934136}
+  - 50: {fileID: 50000012017727878}
   m_Layer: 9
   m_Name: Terrain
   m_TagString: maps
@@ -111,10 +112,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012203921990}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -198.73, y: -1.98, z: 2}
-  m_LocalScale: {x: 0.615103, y: 0.615103, z: 0.615103}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.42, y: -0.55, z: 2}
+  m_LocalScale: {x: 0.47062021, y: 0.4706202, z: 0.47061998}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000014172736608}
   - {fileID: 4000013364269860}
@@ -151,6 +152,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!50 &50000012017727878
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011835137242}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &61000010960556190
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -204,6 +222,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4f3a4b2b20679945abaa9ea8f821ed4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  odds_icon: 0.9
+  minCoin: 4
+  maxCoin: 10
 --- !u!212 &212000011177317970
 SpriteRenderer:
   m_ObjectHideFlags: 1

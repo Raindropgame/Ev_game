@@ -36,7 +36,7 @@ public class BackgorundMove : MonoBehaviour {
                 tVector.z = 0;
                 for (int i = 0; i < maps.Length; i++)
                 {
-                    maps[i].transform.position = new Vector3((maps[i].transform.position - tVector * (maps[i].transform.position.z * 0.1f)).x, (maps[i].transform.position - 0.2f * tVector * (maps[i].transform.position.z * 0.1f)).y, maps[i].transform.position.z);
+                    maps[i].transform.localPosition = GameFunction.getVector3((maps[i].transform.localPosition - tVector * (maps[i].transform.localPosition.z * 0.1f)).x, (maps[i].transform.localPosition - 0.2f * tVector * (maps[i].transform.localPosition.z * 0.1f)).y, maps[i].transform.localPosition.z);
                 }
                 for (int i = 0; i < background.Length; i++)
                 {
@@ -59,7 +59,7 @@ public class BackgorundMove : MonoBehaviour {
             tVector.z = 0;
             for (int i = 0; i < maps.Length; i++)
             {
-                maps[i].transform.position = new Vector3((maps[i].transform.position - tVector * (maps[i].transform.position.z * 0.1f)).x, (maps[i].transform.position - 0.2f * tVector * (maps[i].transform.position.z * 0.1f)).y, maps[i].transform.position.z);
+                maps[i].transform.localPosition = GameFunction.getVector3((maps[i].transform.localPosition - tVector * (maps[i].transform.localPosition.z * 0.1f)).x, (maps[i].transform.localPosition - 0.2f * tVector * (maps[i].transform.localPosition.z * 0.1f)).y, maps[i].transform.localPosition.z);
             }
             nowPosition = this.transform.position;
         }
@@ -72,7 +72,7 @@ public class BackgorundMove : MonoBehaviour {
         tVector.z = 0;
         for (int i = 0; i < maps.Length; i++)
         {
-            maps[i].transform.position = new Vector3((maps[i].transform.position - tVector * (maps[i].transform.position.z * 0.1f)).x, (maps[i].transform.position - 0.2f * tVector * (maps[i].transform.position.z * 0.1f)).y, maps[i].transform.position.z);
+            maps[i].transform.localPosition = GameFunction.getVector3((maps[i].transform.localPosition - tVector * (maps[i].transform.localPosition.z * 0.1f)).x, (maps[i].transform.localPosition - 0.2f * tVector * (maps[i].transform.localPosition.z * 0.1f)).y, maps[i].transform.localPosition.z);
         }
         nowPosition = this.transform.position;
     }

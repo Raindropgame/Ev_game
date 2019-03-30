@@ -33,9 +33,9 @@ public class platform_jump : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if(((Vector2)(originPos - CharacterControl.instance.transform.position)).sqrMagnitude < Mathf.Pow(nearRange,2) && !Rest) //是否在靠近的范围内
+        if(((Vector2)(originPos - CharacterControl.instance._collider.bounds.center)).sqrMagnitude < Mathf.Pow(nearRange,2) && !Rest) //是否在靠近的范围内
         {
-            transform.position = Vector2.MoveTowards(transform.position, CharacterControl.instance.transform.position, maxDistanceDelta);
+            transform.position = Vector2.MoveTowards(transform.position, CharacterControl.instance._collider.bounds.center, maxDistanceDelta);
         }
         else
         {
@@ -48,7 +48,7 @@ public class platform_jump : MonoBehaviour {
             {
                 if (MyInput.instance.isGetJumpDown())
                 {
-                    CharacterControl.instance.isPlatJump = true;                  
+                    CharacterControl.instance.isPlatJump = true;             
                     Rest = true;
                     particle.gameObject.SetActive(true);
                     Invoke("reset", restTime);

@@ -61,6 +61,8 @@ public class CharacterControl : MonoBehaviour
     private Vector3 originScale;
     private float Timer_dashScale = 0;
     private RaycastHit2D hitPoint;
+    private float Time_pressJumpKey = 0;
+    private bool canJump = false;
 
     public delegate void HurtHandler();
     public static event HurtHandler Event_hurt;
@@ -68,9 +70,10 @@ public class CharacterControl : MonoBehaviour
     private void Awake()
     {
         instance = this;
+
+        _collider = this.GetComponent<BoxCollider2D>();
     }
 
-    // Use this for initialization
     void Start()
     {
         Init();
@@ -78,7 +81,6 @@ public class CharacterControl : MonoBehaviour
         XJumpSpeed = Walkspeed + 2.5f;
         YJumpSpeed = JumpSpeed;
         Yacceleration = JumpSpeed / MaxJumpTime;
-        _collider = this.GetComponent<BoxCollider2D>();
         lastDir = dir.right;
         SpriteRenderer = this.GetComponent<SpriteRenderer>();
         animator = this.GetComponent<Animator>();
@@ -202,7 +204,34 @@ public class CharacterControl : MonoBehaviour
 
                 isDoubleKeyDown();  //计时
                 currentState = state.fall;    //下落
-                if(MyInput.instance.isGetJump() && JumpAccelerateTime < MaxJumpTime * (XJumpSpeed < RunSpeed ? 0.92f : 1.0f) && !CharacterAttribute.GetInstance().isOverLoad_breath && isGetInput)
+
+                if (isPlatJump)  //连跳
+                {
+                    isPlatJump = false;
+                    JumpAccelerateTime = 0;
+                    YJumpSpeed = JumpSpeed;
+                    rig.velocity = Vector2.zero;
+                    _jumpTimes++;
+                    canJump = false;
+                    Time_pressJumpKey = 0;
+                }
+
+                //是否在跳跃（按键）
+                if (MyInput.instance.isGetJump() && isGetInput)
+                {
+                    Time_pressJumpKey += Time.deltaTime;
+                    canJump = true;
+                }
+                else
+                {
+                    canJump = false;
+                }
+                if (Time_pressJumpKey > MaxJumpTime * (XJumpSpeed < RunSpeed ? 0.92f : 1.0f) * 0.6f)   //剩余50%时间自动跳跃
+                {
+                    canJump = true;
+                }
+
+                if (JumpAccelerateTime < MaxJumpTime * (XJumpSpeed < RunSpeed ? 0.92f : 1.0f) && !CharacterAttribute.GetInstance().isOverLoad_breath && canJump)
                 {
                     CharacterAttribute.GetInstance().Breath -= CharacterAttribute.GetInstance().expend_jump * Time.deltaTime;  //气息消耗
                     JumpAccelerateTime += (Time.deltaTime * jumpTimeFactor);
@@ -250,6 +279,7 @@ public class CharacterControl : MonoBehaviour
                 {
                     YJumpSpeed = 0;
                 }
+
                 break;
             case state.dash:
 
@@ -423,6 +453,8 @@ public class CharacterControl : MonoBehaviour
                     YJumpSpeed = JumpSpeed;
                     rig.velocity = Vector2.zero;
                     _jumpTimes++;
+                    canJump = false;
+                    Time_pressJumpKey = 0;
                 }
 
                 shoot(); //射击
@@ -597,7 +629,10 @@ public class CharacterControl : MonoBehaviour
         if(hitPoint.transform != null)
         {
             YJumpSpeed = JumpSpeed;
-            JumpAccelerateTime = 0;  // 落地 重新计算已加速的时间
+            if (currentState == state.fall)  //避免角落跳跃BUG
+            {
+                JumpAccelerateTime = 0;  // 落地 重新计算已加速的时间
+            }
             dashTimes = 0;  //空中冲刺次数重新计为0
             JumpShootTimes = 0;  //归零空中射击次数
             if (lastState == state.fall)
@@ -605,13 +640,18 @@ public class CharacterControl : MonoBehaviour
                 _jumpTimes = 0;  //归零跳跃次数
                 stopBounce();
             }
+            canJump = false;
+            Time_pressJumpKey = 0;
             return true;
         }
         hitPoint = Physics2D.Raycast((Vector2)_collider.bounds.min + _collider.bounds.size.x * Vector2.right, Vector2.down, 0.2f, mask);
         if(hitPoint.transform != null)
         {
             YJumpSpeed = JumpSpeed;
-            JumpAccelerateTime = 0;  // 落地 重新计算已加速的时间
+            if (currentState == state.fall)
+            {
+                JumpAccelerateTime = 0;  // 落地 重新计算已加速的时间
+            }
             dashTimes = 0;  //空中冲刺次数重新计为0
             JumpShootTimes = 0;  //归零空中射击次数
             if (lastState == state.fall)
@@ -619,6 +659,8 @@ public class CharacterControl : MonoBehaviour
                 _jumpTimes = 0;  //归零跳跃次数
                 stopBounce();
             }
+            canJump = false;
+            Time_pressJumpKey = 0;
             return true;
         }
         return false;

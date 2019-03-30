@@ -43,7 +43,7 @@ public class bullet_monster_2 : MonoBehaviour {
         {
             CharacterControl.instance.hurt(Damage, Attribute.wood,coll.bounds.center);  //对玩家造成伤害
         }
-        if (collision.transform.tag == "enemy" && SR.enabled == false)
+        else if (collision.transform.tag == "enemy" && SR.enabled == false)
         {
             try
             {

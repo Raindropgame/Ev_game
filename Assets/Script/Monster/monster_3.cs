@@ -41,18 +41,13 @@ public class monster_3 : Monster_base {
 
     override protected IEnumerator die()  //死亡
     {
+        yield return null;
         boom_particle.SetActive(true);
-        foreach(Collider2D t in colliderID)
-        {
-            t.gameObject.SetActive(false);
-        }
-
-        Time.timeScale = 0;
-        CameraFollow.instance.shakeCamera(0.25f, 0.04f, 0.2f);  //镜头抖动
-        yield return new WaitForSecondsRealtime(0.1f);  //卡屏
-        Time.timeScale = 1;
-        yield return new WaitForSeconds(boom_particle.GetComponent<ParticleSystem>().startLifetime);
+        boom_particle.transform.parent = null;
         Destroy(this.gameObject);
+        CameraFollow.instance.shakeCamera(0.25f, 0.04f, 0.2f);  //镜头抖动
+        CameraFollow.instance.Stutter(0.15f);
+        
     }
 
     override public IEnumerator beHurt()  //受伤反馈
@@ -83,6 +78,11 @@ public class monster_3 : Monster_base {
     private void OnBecameInvisible()
     {
         this.enabled = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log(collision.tag);
     }
 
 
